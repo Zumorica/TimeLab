@@ -2,7 +2,7 @@
 	These are simple defaults for your project.
  */
 
-world
+/world
 	fps = 25		// 25 frames per second
 	icon_size = 32	// 32x32 icon size by default
 
@@ -11,8 +11,10 @@ world
 
 // Make objects move 8 pixels per tick when walking
 
-mob
+/mob
+	/mob/Login()
+		world << "Hello!"
 	step_size = 8
 
-obj
+/obj
 	step_size = 8
