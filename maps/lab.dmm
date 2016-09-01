@@ -1,0 +1,16 @@
+"a" = (/turf/wall/generic,/area)
+"b" = (/turf/floor/generic,/area)
+"c" = (/turf/start,/area)
+
+(1,1,1) = {"
+aaaaaaaaaa
+abbbbbbbba
+abbbbbbbba
+abbbbbbbba
+abbbcbbbba
+abbbbbbbba
+abbbbbbbba
+abbbbbbbba
+abbbbbbbba
+aaaaaaaaaa
+"}

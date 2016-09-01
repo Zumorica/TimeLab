@@ -13,6 +13,13 @@
 // END_PREFERENCES
 
 // BEGIN_INCLUDE
-#include "Time lab.dm"
+#include "code\world.dm"
+#include "code\mob\mob.dm"
+#include "code\mob\alive\human.dm"
+#include "code\obj\obj.dm"
+#include "code\turf\turf.dm"
+#include "code\turf\floor\floor.dm"
+#include "code\turf\wall\wall.dm"
+#include "maps\lab.dmm"
 // END_INCLUDE
 
