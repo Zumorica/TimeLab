@@ -1,6 +1,7 @@
 /obj/electricity/lightswitch
 	name = "Light switch"
 	icon = 'images/lightswitch.dmi'
+	layer = ABOVE_TURFS
 	required_watts = 0
 	luminosity = 1
 	powered = 1
@@ -27,19 +28,19 @@
 /obj/electricity/lightswitch/north
 	on_state = "ON_NORTH"
 	off_state = "OFF_NORTH"
-	Power_on_lights()
+	icon_state = "ON_NORTH"
 
 /obj/electricity/lightswitch/south
 	on_state = "ON_SOUTH"
 	off_state = "OFF_SOUTH"
-	Power_on_lights()
+	icon_state = "ON_SOUTH"
 
 /obj/electricity/lightswitch/west
 	on_state = "ON_WEST"
 	off_state = "OFF_WEST"
-	Power_on_lights()
+	icon_state = "ON_WEST"
 
 /obj/electricity/lightswitch/east
 	on_state = "ON_EAST"
 	off_state = "OFF_EAST"
-	Power_on_lights()
+	icon_state = "ON_EAST"

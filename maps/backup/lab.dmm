@@ -5,7 +5,7 @@
 "e" = (/obj/electricity/lightbulb/north,/turf/floor/generic,/area/underground)
 "f" = (/obj/electricity/lightbulb/east,/turf/floor/generic,/area/underground)
 "g" = (/obj/electricity/lightbulb/west,/turf/floor/generic,/area/underground)
-"h" = (/turf/floor/generic/start,/area/underground)
+"h" = (/obj/start,/turf/floor/generic,/area/underground)
 "i" = (/obj/electricity/lightbulb/south,/turf/floor/generic,/area/underground)
 
 (1,1,1) = {"

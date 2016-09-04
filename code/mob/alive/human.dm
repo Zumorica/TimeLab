@@ -3,7 +3,7 @@
 	luminosity=0
 
 	/mob/living/human/Login()
-		loc = locate(/turf/start)
+		loc = locate(/turf/floor/generic/start)
 		..()
 
 	/mob/living/human/verb/Say(msg as text)

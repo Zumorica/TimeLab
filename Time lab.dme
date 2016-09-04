@@ -14,6 +14,7 @@
 
 // BEGIN_INCLUDE
 #include "code\world.dm"
+#include "code\ atom\atom.dm"
 #include "code\area\area.dm"
 #include "code\area\underground.dm"
 #include "code\mob\mob.dm"
