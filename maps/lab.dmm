@@ -1,16 +1,41 @@
-"a" = (/turf/wall/generic,/area)
-"b" = (/turf/floor/generic,/area)
-"c" = (/turf/start,/area)
+"a" = (/turf/wall/generic,/area/underground)
+"b" = (/turf/floor/generic,/area/underground)
+"c" = (/obj/electricity/lightbulb/north,/turf/floor/generic,/area/underground)
+"d" = (/obj/electricity/lightswitch,/turf/floor/generic,/area/underground)
+"e" = (/obj/electricity/lightbulb/east,/turf/floor/generic,/area/underground)
+"f" = (/obj/electricity/lightbulb/west,/turf/floor/generic,/area/underground)
+"g" = (/turf/start,/area/underground)
+"h" = (/obj/electricity/lightbulb/south,/turf/floor/generic,/area/underground)
 
 (1,1,1) = {"
-aaaaaaaaaa
-abbbbbbbba
-abbbbbbbba
-abbbbbbbba
-abbbcbbbba
-abbbbbbbba
-abbbbbbbba
-abbbbbbbba
-abbbbbbbba
-aaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abbbbbbbbbbbbbaabbbbbbbbbbbbba
+abbbbbbbbbbbbbaabbbbbbbbbbbbba
+abbbbbbbbbbbaaaaaabbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbabbbbabbbbbbbbbbba
+abbbbbbbbbbbabbbbabbbbbbbbbbba
+abbbbbbbbbbbabbbbabbbbbbbbbbba
+abaaaaaaaaaaabbbbaaaaaaaaaaaba
+ababbbbbbbabcbdbbcbabbbbbbbaba
+ababbbbbbeafbbbbbbeafbbbbbbaba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+ababbbbbbbbbbbbgbbbbbbbbbbbaba
+ababbbbbbeafbbbbbbeafbbbbbbaba
+ababbbbbbbabhbbbbhbabbbbbbbaba
+abaaaaaaaaaaabbbbaaaaaaaaaaaba
+abbbbbbbbbbbabbbbabbbbbbbbbbba
+abbbbbbbbbbbabbbbabbbbbbbbbbba
+abbbbbbbbbbbabbbbabbbbbbbbbbba
+abbbbbbbbbbbabbbbabbbbbbbbbbba
+abbbbbbbbbbbabbbbabbbbbbbbbbba
+abbbbbbbbbbbabbbbabbbbbbbbbbba
+abbbbbbbbbbbabbbbabbbbbbbbbbba
+abbbbbbbbbbbabbbbabbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}

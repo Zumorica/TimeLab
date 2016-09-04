@@ -1,5 +1,6 @@
 /world
-	fps = 60
+	fps = 30
 	icon_size = 32
-	view = 12
+	view = "15x15"
 	mob = /mob/living/human
+	area = /area/underground

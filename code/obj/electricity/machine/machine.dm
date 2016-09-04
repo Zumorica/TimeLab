@@ -1,0 +1,1 @@
+/obj/electricity/machine

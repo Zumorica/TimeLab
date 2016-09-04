@@ -1,5 +1,6 @@
 /mob/living/human
-	icon = 'images/player.dmi'
+	icon = 'images/human.dmi'
+	luminosity=0
 
 	/mob/living/human/Login()
 		loc = locate(/turf/start)
