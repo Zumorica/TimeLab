@@ -23,7 +23,7 @@
 		..(other)
 
 	/obj/electricity/machine/door/proc/open()
-		if (state == DOOR_CLOSED)
+		if (state == DOOR_CLOSED && health)
 			state = DOOR_OPENING
 			flick(opening_state, src)
 			icon_state = open_state
@@ -35,7 +35,7 @@
 			close()
 
 	/obj/electricity/machine/door/proc/close()
-		if (state == DOOR_OPEN)
+		if (state == DOOR_OPEN && health)
 			state = DOOR_CLOSING
 			flick(closing_state, src)
 			icon_state = closed_state

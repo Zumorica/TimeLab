@@ -17,6 +17,7 @@
 #include "code\ atom\atom.dm"
 #include "code\area\area.dm"
 #include "code\area\underground.dm"
+#include "code\client\client.dm"
 #include "code\mob\mob.dm"
 #include "code\mob\alive\human.dm"
 #include "code\obj\obj.dm"

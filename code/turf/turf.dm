@@ -1,1 +1,2 @@
 /turf
+	invincible = True
