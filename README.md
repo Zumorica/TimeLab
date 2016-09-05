@@ -22,7 +22,7 @@ You should see this:
 
 ```
 saving Time lab.dmb (DEBUG mode)
-Time lab.dmb - 0 errors, 0 warnings (9/6/16 1:38 am)
+Time lab.dmb - 0 errors, 0 warnings
 ```
 If you see any errors or warnings, something has gone horribly wrong.
 You should try to redownload the source code, or if the issue persists, [complain about it](https://github.com/ZDDM/Time-lab/issues/new).
