@@ -4,7 +4,6 @@
 	intention = HARM_INTENTION
 
 	/mob/living/human/Clicked(other, location, control, params)
-		world << other
 		..()
 
 	/mob/living/human/Login()
@@ -12,4 +11,4 @@
 		..()
 
 	/mob/living/human/verb/Say(msg as text)
-		view(2) << "[usr] says \"[msg]\""
+		view(8) << "[usr] says \"[msg]\""

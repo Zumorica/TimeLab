@@ -1,5 +1,5 @@
 /mob
-	step_size = 32
+	step_size = 32																// Makes mobs move an entire tile per step.
 
 /mob/living
 	var/intention = NO_INTENTION

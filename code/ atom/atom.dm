@@ -16,12 +16,12 @@
 	/atom/proc/attack(atom/other)
 		other.damage(rand(0, 10) * attack_factor)
 
-	/atom/proc/Clicked(other, location, control, params)						// Called when client clicks other objects.
+	/atom/proc/Clicked(other, location, control, params)						// Called when client object clicks other objects.
 		return
 
-	/atom/proc/Bumped(atom/other)
+	/atom/proc/Bumped(atom/other)												// Called when you bump into other objects / other objects bump into you.
 		return
 
-	/atom/movable/Bump(atom/a)
+	/atom/movable/Bump(atom/a)													// Overrides Bump proc so /atom/proc/Bumped(atom/other) can be possible
 		a.Bumped(src)
 		return ..(a)

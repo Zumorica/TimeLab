@@ -4,52 +4,55 @@
 "d" = (/obj/electricity/lightbulb/east,/turf/floor/generic/wooden,/area/underground)
 "e" = (/turf/floor/generic/white,/area/underground)
 "f" = (/obj/electricity/lightbulb/west,/turf/floor/generic/wooden,/area/underground)
-"g" = (/obj/electricity/machine/door,/turf/floor/generic/red,/area/underground)
-"h" = (/obj/electricity/lightbulb/north,/turf/floor/generic/red,/area/underground)
-"i" = (/turf/floor/generic/red,/area/underground)
-"j" = (/obj/electricity/lightbulb,/turf/floor/generic/red,/area/underground)
-"k" = (/turf/floor/generic/black,/area/underground)
-"l" = (/turf/floor/generic/chess,/area/underground)
-"m" = (/turf/floor/generic,/area/underground)
-"n" = (/obj/electricity/lightbulb/north,/turf/floor/generic,/area/underground)
-"o" = (/obj/electricity/lightbulb/west,/turf/floor/generic/chess,/area/underground)
-"p" = (/obj/electricity/lightbulb/east,/turf/floor/generic/chess,/area/underground)
-"q" = (/obj/electricity/lightbulb/west,/turf/floor/generic,/area/underground)
-"r" = (/obj/electricity/lightbulb/east,/turf/floor/generic,/area/underground)
-"s" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
-"t" = (/turf/floor/generic/start,/area/underground)
-"u" = (/obj/electricity/lightbulb/south,/turf/floor/generic,/area/underground)
-"v" = (/obj/electricity/lightswitch/west,/turf/wall/generic,/area/underground)
+"g" = (/obj/electricity/lightbulb,/turf/floor/generic/wooden,/area/underground)
+"h" = (/obj/electricity/machine/door,/turf/floor/generic/red,/area/underground)
+"i" = (/obj/electricity/lightbulb/north,/turf/floor/generic/red,/area/underground)
+"j" = (/turf/floor/generic/red,/area/underground)
+"k" = (/obj/electricity/lightbulb,/turf/floor/generic/red,/area/underground)
+"l" = (/obj/electricity/machine/door,/turf/floor/generic/black,/area/underground)
+"m" = (/turf/floor/generic/black,/area/underground)
+"n" = (/turf/floor/generic/chess,/area/underground)
+"o" = (/turf/floor/generic,/area/underground)
+"p" = (/obj/electricity/lightbulb/north,/turf/floor/generic,/area/underground)
+"q" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/underground)
+"r" = (/obj/electricity/lightbulb/west,/turf/floor/generic/chess,/area/underground)
+"s" = (/obj/electricity/lightbulb/east,/turf/floor/generic/chess,/area/underground)
+"t" = (/obj/electricity/lightbulb/west,/turf/floor/generic,/area/underground)
+"u" = (/obj/electricity/lightbulb/east,/turf/floor/generic,/area/underground)
+"v" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
+"w" = (/turf/floor/generic/start,/area/underground)
+"x" = (/obj/electricity/lightbulb/south,/turf/floor/generic,/area/underground)
+"y" = (/obj/electricity/lightswitch/west,/turf/wall/generic,/area/underground)
 
 (1,1,1) = {"
 aaaaaaaaaaaabaaaaaaaaaaaaaaaaa
 accccccccccccdaaeeeeeeeeeeeeea
 afcccccccccccdaaeeeeeeeeeeeeea
-accccccccccdaaaaaaeeeeeeeeeeea
-acccccccccccghiihgeeeeeeeeeeea
-acccccccccccgiiiigeeeeeeeeeeea
-acccccccccccgiiiigeeeeeeeeeeea
-acccccccccccaiiiiaeeeeeeeeeeea
-afcccccccccdajiijaeeeeeeeeeeea
-acccccccccccaiiiiaeeeeeeeeeeea
-akaaaaaaaaabaggggaaaaaaaaaaaka
-akalllllllamnmmmmnmalllllllaka
-akaolllllpaqmmmmmmraollllllaka
-akslllllllsmmmmmmmmslllllllska
-akaollllllsmmmtmmmmslllllllaka
-akallllllpaqmmmmmmraollllllaka
-akalllllllamummmmumalllllllaka
-akaaaaaaaaaaaggggaaaaaaaaaaaka
-acccccccccccaiiiiaeeeeeeeeeeea
-acccccccccccviiiiaeeeeeeeeeeea
-acccccccccccaiiiiaeeeeeeeeeeea
-acccccccccccaiiiiaeeeeeeeeeeea
-acccccccccccaiiiiaeeeeeeeeeeea
-acccccccccccaiiiiaeeeeeeeeeeea
-acccccccccccaiiiiaeeeeeeeeeeea
-acccccccccccaiiiiaeeeeeeeeeeea
-acccccccccccgiiiigeeeeeeeeeeea
-acccccccccccgiiiigeeeeeeeeeeea
-acccccccccccgiiiigeeeeeeeeeeea
+acccccgccccdaaaaaaeeeeeeeeeeea
+accccccccccchijjiheeeeeeeeeeea
+accccccccccchjjjjheeeeeeeeeeea
+accccccccccchjjjjheeeeeeeeeeea
+acccccgcccccajjjjaeeeeeeeeeeea
+afcccccccccdakjjkaeeeeeeeeeeea
+acccccccccccajjjjaeeeeeeeeeeea
+alaaaaaaaaabahhhhaaaaaaaaaaala
+amannnnnnnaopoooopoannnnnnnama
+aqarnnnnnsatoooooouarnnnnnnaqa
+amvnnnnnnnvoooooooovnnnnnnnvma
+amarnnnnnnvooowoooovnnnnnnnama
+aqannnnnnsatoooooouarnnnnnnaqa
+amannnnnnnaoxooooxoannnnnnnama
+alaaaaaaaaaaahhhhaaaaaaaaaaala
+acccccccccccajjjjaeeeeeeeeeeea
+acccccccccccyjjjjaeeeeeeeeeeea
+acccccccccccajjjjaeeeeeeeeeeea
+acccccccccccajjjjaeeeeeeeeeeea
+acccccccccccajjjjaeeeeeeeeeeea
+acccccccccccajjjjaeeeeeeeeeeea
+acccccccccccajjjjaeeeeeeeeeeea
+acccccccccccajjjjaeeeeeeeeeeea
+accccccccccchjjjjheeeeeeeeeeea
+accccccccccchjjjjheeeeeeeeeeea
+accccccccccchjjjjheeeeeeeeeeea
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}

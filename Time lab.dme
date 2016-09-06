@@ -13,6 +13,7 @@
 // END_PREFERENCES
 
 // BEGIN_INCLUDE
+#include "code\define.dm"
 #include "code\world.dm"
 #include "code\ atom\atom.dm"
 #include "code\area\area.dm"
