@@ -7,7 +7,11 @@
 		..()
 
 	/mob/living/human/Login()
-		loc = locate(/turf/floor/generic/start)
+		if(!loc)
+			world << "[usr] has joined."
+			loc = locate(/turf/floor/generic/start)
+		else
+			world << "[usr] has reconnected."
 		..()
 
 	/mob/living/human/verb/Say(msg as text)
@@ -19,3 +23,12 @@
 
 	/mob/living/human/verb/Shout(msg as text)
 		view(16) << "[usr] shouts, \"<B><BIG>[msg]</BIG></B>\""
+
+	/mob/living/human/verb/Who()																// List online players.
+		var/mob/M
+		usr << "Online players:"
+		for(M in world)
+			if(!M.key)
+				continue
+			else
+				usr << M.key
