@@ -1,58 +1,58 @@
 "a" = (/turf/wall/generic,/area/underground)
-"b" = (/obj/electricity/lightswitch/north,/turf/wall/generic,/area/underground)
-"c" = (/turf/floor/generic/wooden,/area/underground)
-"d" = (/obj/electricity/lightbulb/east,/turf/floor/generic/wooden,/area/underground)
-"e" = (/turf/floor/generic/white,/area/underground)
-"f" = (/obj/electricity/lightbulb/west,/turf/floor/generic/wooden,/area/underground)
-"g" = (/obj/electricity/lightbulb,/turf/floor/generic/wooden,/area/underground)
-"h" = (/obj/electricity/machine/door,/turf/floor/generic/red,/area/underground)
-"i" = (/obj/electricity/lightbulb/north,/turf/floor/generic/red,/area/underground)
-"j" = (/turf/floor/generic/red,/area/underground)
+"b" = (/turf/floor/generic/wooden,/area/underground)
+"c" = (/obj/electricity/lightbulb/east,/turf/floor/generic/wooden,/area/underground)
+"d" = (/turf/floor/generic/white,/area/underground)
+"e" = (/obj/electricity/lightbulb/west,/turf/floor/generic/wooden,/area/underground)
+"f" = (/obj/electricity/lightbulb,/turf/floor/generic/wooden,/area/underground)
+"g" = (/obj/electricity/machine/door,/turf/floor/generic/red,/area/underground)
+"h" = (/obj/electricity/lightbulb/north,/turf/floor/generic/red,/area/underground)
+"i" = (/turf/floor/generic/red,/area/underground)
+"j" = (/obj/electricity/lightswitch/east,/turf/floor/generic/wooden,/area/underground)
 "k" = (/obj/electricity/lightbulb,/turf/floor/generic/red,/area/underground)
 "l" = (/obj/electricity/machine/door,/turf/floor/generic/black,/area/underground)
 "m" = (/turf/floor/generic/black,/area/underground)
 "n" = (/turf/floor/generic/chess,/area/underground)
-"o" = (/turf/floor/generic,/area/underground)
+"o" = (/obj/electricity/lightswitch/north,/turf/floor/generic,/area/underground)
 "p" = (/obj/electricity/lightbulb/north,/turf/floor/generic,/area/underground)
-"q" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/underground)
-"r" = (/obj/electricity/lightbulb/west,/turf/floor/generic/chess,/area/underground)
-"s" = (/obj/electricity/lightbulb/east,/turf/floor/generic/chess,/area/underground)
-"t" = (/obj/electricity/lightbulb/west,/turf/floor/generic,/area/underground)
-"u" = (/obj/electricity/lightbulb/east,/turf/floor/generic,/area/underground)
-"v" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
-"w" = (/turf/floor/generic/start,/area/underground)
-"x" = (/obj/electricity/lightbulb/south,/turf/floor/generic,/area/underground)
-"y" = (/obj/electricity/lightswitch/west,/turf/wall/generic,/area/underground)
+"q" = (/turf/floor/generic,/area/underground)
+"r" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/underground)
+"s" = (/obj/electricity/lightbulb/west,/turf/floor/generic/chess,/area/underground)
+"t" = (/obj/electricity/lightbulb/east,/turf/floor/generic/chess,/area/underground)
+"u" = (/obj/electricity/lightbulb/west,/turf/floor/generic,/area/underground)
+"v" = (/obj/electricity/lightbulb/east,/turf/floor/generic,/area/underground)
+"w" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
+"x" = (/turf/floor/generic/start,/area/underground)
+"y" = (/obj/electricity/lightbulb/south,/turf/floor/generic,/area/underground)
 
 (1,1,1) = {"
-aaaaaaaaaaaabaaaaaaaaaaaaaaaaa
-accccccccccccdaaeeeeeeeeeeeeea
-afcccccccccccdaaeeeeeeeeeeeeea
-acccccgccccdaaaaaaeeeeeeeeeeea
-accccccccccchijjiheeeeeeeeeeea
-accccccccccchjjjjheeeeeeeeeeea
-accccccccccchjjjjheeeeeeeeeeea
-acccccgcccccajjjjaeeeeeeeeeeea
-afcccccccccdakjjkaeeeeeeeeeeea
-acccccccccccajjjjaeeeeeeeeeeea
-alaaaaaaaaabahhhhaaaaaaaaaaala
-amannnnnnnaopoooopoannnnnnnama
-aqarnnnnnsatoooooouarnnnnnnaqa
-amvnnnnnnnvoooooooovnnnnnnnvma
-amarnnnnnnvooowoooovnnnnnnnama
-aqannnnnnsatoooooouarnnnnnnaqa
-amannnnnnnaoxooooxoannnnnnnama
-alaaaaaaaaaaahhhhaaaaaaaaaaala
-acccccccccccajjjjaeeeeeeeeeeea
-acccccccccccyjjjjaeeeeeeeeeeea
-acccccccccccajjjjaeeeeeeeeeeea
-acccccccccccajjjjaeeeeeeeeeeea
-acccccccccccajjjjaeeeeeeeeeeea
-acccccccccccajjjjaeeeeeeeeeeea
-acccccccccccajjjjaeeeeeeeeeeea
-acccccccccccajjjjaeeeeeeeeeeea
-accccccccccchjjjjheeeeeeeeeeea
-accccccccccchjjjjheeeeeeeeeeea
-accccccccccchjjjjheeeeeeeeeeea
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abbbbbbbbbbbbcaaddddddddddddda
+aebbbbbbbbbbbcaaddddddddddddda
+abbbbbfbbbbcaaaaaaddddddddddda
+abbbbbbbbbbbghiihgddddddddddda
+abbbbbbbbbbbgiiiigddddddddddda
+abbbbbbbbbbbgiiiigddddddddddda
+abbbbbfbbbbjaiiiiaddddddddddda
+aebbbbbbbbbcakiikaddddddddddda
+abbbbbbbbbbbaiiiiaddddddddddda
+alaaaaaaaaaaaggggaaaaaaaaaaala
+amannnnnnnaopqqqqpqannnnnnnama
+arasnnnnntauqqqqqqvasnnnnnnara
+amwnnnnnnnwqqqqqqqqwnnnnnnnwma
+amasnnnnnnwqqqxqqqqwnnnnnnnama
+arannnnnntauqqqqqqvasnnnnnnara
+amannnnnnnaqyqqqqyqannnnnnnama
+alaaaaaaaaaaaggggaaaaaaaaaaala
+abbbbbbbbbbbaiiiiaddddddddddda
+abbbbbbbbbbbaiiiiaddddddddddda
+abbbbbbbbbbbaiiiiaddddddddddda
+abbbbbbbbbbbaiiiiaddddddddddda
+abbbbbbbbbbbaiiiiaddddddddddda
+abbbbbbbbbbbaiiiiaddddddddddda
+abbbbbbbbbbbaiiiiaddddddddddda
+abbbbbbbbbbbaiiiiaddddddddddda
+abbbbbbbbbbbgiiiigddddddddddda
+abbbbbbbbbbbgiiiigddddddddddda
+abbbbbbbbbbbgiiiigddddddddddda
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}

@@ -47,18 +47,22 @@
 	on_state = "ON_NORTH"
 	off_state = "OFF_NORTH"
 	icon_state = "ON_NORTH"
+	pixel_y = 32
 
 /obj/electricity/lightswitch/south
 	on_state = "ON_SOUTH"
 	off_state = "OFF_SOUTH"
 	icon_state = "ON_SOUTH"
+	pixel_y = -32
 
 /obj/electricity/lightswitch/west
 	on_state = "ON_WEST"
 	off_state = "OFF_WEST"
 	icon_state = "ON_WEST"
+	pixel_x = -32
 
 /obj/electricity/lightswitch/east
 	on_state = "ON_EAST"
 	off_state = "OFF_EAST"
 	icon_state = "ON_EAST"
+	pixel_x = 32
