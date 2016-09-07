@@ -24,7 +24,7 @@
 	/mob/living/human/verb/Shout(msg as text)
 		view(16) << "[usr] shouts, \"<B><BIG>[msg]</BIG></B>\""
 
-	/mob/living/human/verb/Who()																// List online players.
+	/mob/living/human/verb/Who()																// Lists online players.
 		var/mob/M
 		usr << "Online players:"
 		for(M in world)
@@ -38,7 +38,7 @@
 		if(intention == HARM_INTENTION)
 			intentName = "Harm"
 		else
-			intentName = "Interact"																// Display stats, like health and intent.
+			intentName = "Interact"																// Displays stats, like health and intent.
 		statpanel("General")
 		stat("Health: ", health)
 		stat("Intent: ", intentName)
@@ -51,3 +51,11 @@
 		else
 			intention = HARM_INTENTION
 			usr << "You can now harm things!"
+
+	/mob/living/human/attack(atom/other)														// Displays a message if you attack a player.
+		if(istype(other, /mob/living/human))
+			if(src == other)
+				view() << "[src] attacks \himself."
+			else
+				view() << "[src] attacks [other]."
+		..(other)
