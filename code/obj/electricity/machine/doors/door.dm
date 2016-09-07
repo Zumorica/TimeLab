@@ -11,6 +11,12 @@
 	var/closed_state = "CLOSED"
 	var/closing_state = "CLOSING"
 
+	/obj/electricity/machine/door/Interacted(mob/other)
+		if (istype(other, /mob/living/human) && get_dist(src, other) <= 1)
+			if (state == DOOR_CLOSED)
+				open()
+		..(other)
+
 	/obj/electricity/machine/door/Bumped(atom/other)
 		if (other.type == /mob/living/human)
 			if (state == DOOR_CLOSED)

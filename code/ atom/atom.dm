@@ -19,6 +19,8 @@
 	/atom/proc/Clicked(other, location, control, params)						// Called when client object clicks other objects.
 		return
 
+	/atom/proc/Interacted(mob/other)											// Called when a mob interacts with another atom.
+
 	/atom/proc/Bumped(atom/other)												// Called when you bump into other objects / other objects bump into you.
 		return
 

@@ -6,6 +6,6 @@
 
 	/mob/living/Clicked(atom/other)
 		if (intention == INTERACT_INTENTION)
-			return																// To be implemented
+			other.Interacted(usr)
 		else if (intention == HARM_INTENTION)
 			attack(other)
