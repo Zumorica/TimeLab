@@ -1,5 +1,5 @@
 /mob/living/human
-	icon = 'images/human.dmi'
+	icon = 'images/scientist.dmi'
 	luminosity=0
 	intention = HARM_INTENTION
 
@@ -32,3 +32,21 @@
 				continue
 			else
 				usr << M.key
+
+	/mob/living/human/Stat()
+		var/intentName = ""
+		if(intention == HARM_INTENTION)
+			intentName = "Harm"
+		else
+			intentName = "Interact"																// Display stats, like health and intent.
+		statpanel("General")
+		stat("Health: ", health)
+		stat("Intent: ", intentName)
+
+		set name = "Switch Intention"
+		if(intention == HARM_INTENTION)
+			intention = INTERACT_INTENTION
+			usr << "You can now interact with things!"
+		else
+			intention = HARM_INTENTION
+			usr << "You can now harm things!"
