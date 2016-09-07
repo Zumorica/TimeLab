@@ -15,6 +15,7 @@
 		if (istype(other, /mob/living/human) && get_dist(src, other) <= 1)
 			if (state == DOOR_CLOSED)
 				open()
+		..(other)
 
 	/obj/electricity/machine/door/Bumped(atom/other)
 		if (other.type == /mob/living/human)
@@ -27,19 +28,19 @@
 			state = DOOR_OPENING
 			flick(opening_state, src)
 			icon_state = open_state
-			sleep(7)
-			state = DOOR_OPEN
-			opacity = 0
-			density = 0
-			sleep(30)
-			close()
+			spawn(7)
+				state = DOOR_OPEN
+				opacity = 0
+				density = 0
+				spawn(30)
+					close()
 
 	/obj/electricity/machine/door/proc/close()
 		if (state == DOOR_OPEN && health)
 			state = DOOR_CLOSING
 			flick(closing_state, src)
 			icon_state = closed_state
-			sleep(7)
-			state = DOOR_CLOSED
-			density = 1
-			opacity = 1
+			spawn(7)
+				state = DOOR_CLOSED
+				density = 1
+				opacity = 1

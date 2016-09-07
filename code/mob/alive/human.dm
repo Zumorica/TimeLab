@@ -1,7 +1,7 @@
 /mob/living/human
 	icon = 'images/scientist.dmi'
 	luminosity=0
-	intention = HARM_INTENTION
+	intention = INTERACT_INTENTION
 
 	/mob/living/human/Clicked(other, location, control, params)
 		..()
