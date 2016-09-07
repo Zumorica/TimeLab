@@ -15,7 +15,6 @@
 		if (istype(other, /mob/living/human) && get_dist(src, other) <= 1)
 			if (state == DOOR_CLOSED)
 				open()
-		..(other)
 
 	/obj/electricity/machine/door/Bumped(atom/other)
 		if (other.type == /mob/living/human)
