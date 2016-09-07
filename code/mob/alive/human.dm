@@ -43,6 +43,7 @@
 		stat("Health: ", health)
 		stat("Intent: ", intentName)
 
+	/mob/living/human/verb/SwitchIntention()													// Switches intents.
 		set name = "Switch Intention"
 		if(intention == HARM_INTENTION)
 			intention = INTERACT_INTENTION
