@@ -1,22 +1,22 @@
 // Not to be confused with in-game time loops. Based on a snippet by Rushnut.
 
-var/Looper/looper = new/Looper
+var/Looper/looper = new/Looper													// Creates a global scheduler/looper.
 
 /Looper
 
 	var/ticks = 1																// Ticks before updating everything.
-	var/list/scheduled
+	var/list/scheduled															// Lists of objects to be scheduled.
 
 	/Looper/New()
-		spawn loop()
+		spawn loop()															// Spawns the looper.
 		return ..()
 
-	/Looper/proc/loop()
+	/Looper/proc/loop()															// Main loop.
 		for()
 			iterate()
-			sleep(world.tick_lag * ticks)
+			sleep(world.tick_lag * ticks)										// Wait a certain amount of ticks before looping again.
 
-	/Looper/proc/iterate()
+	/Looper/proc/iterate()														// Iterate through all objects.
 		for(var/datum/d in scheduled)
 			d.Update()
 
@@ -27,7 +27,7 @@ var/Looper/looper = new/Looper
 			return 1
 		return 0
 
-	/Looper/proc/unschedule(datum/other)
+	/Looper/proc/unschedule(datum/other)										// Unschedules datums.
 		if (other.is_updated)
 			return scheduled.Remove(other)
 		return 0
