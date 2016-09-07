@@ -5,7 +5,7 @@
 	required_watts = 0
 	luminosity = 1
 	powered = 1
-	var/switch_state = 0														// Wether the switch is on or off.
+	var/switch_state = 1														// Wether the switch is on or off.
 	var/on_state = ""
 	var/off_state = "OFF"
 
@@ -26,19 +26,22 @@
 		view(4) << "*click*"
 
 	/obj/electricity/lightswitch/proc/Power_on_lights()
-		switch_state = 1
 		for (var/obj/electricity/lightbulb/O in src.loc.loc.contents)
 			if ((O.type == /obj/electricity/lightbulb) || (O.type == /obj/electricity/lightbulb/north) || (O.type == /obj/electricity/lightbulb/south) || (O.type == /obj/electricity/lightbulb/west) || (O.type == /obj/electricity/lightbulb/east))
 				O.on()
 
-		icon_state = on_state
+		for (var/obj/electricity/lightswitch/L in src.loc.loc.contents)
+			L.icon_state = L.on_state
+			L.switch_state = 1
 
 	/obj/electricity/lightswitch/proc/Power_off_lights()
-		switch_state = 0
-		icon_state = off_state
 		for (var/obj/electricity/lightbulb/O in src.loc.loc.contents)
 			if ((O.type == /obj/electricity/lightbulb) || (O.type == /obj/electricity/lightbulb/north) || (O.type == /obj/electricity/lightbulb/south) || (O.type == /obj/electricity/lightbulb/west) || (O.type == /obj/electricity/lightbulb/east))
 				O.off()
+
+		for (var/obj/electricity/lightswitch/L in src.loc.loc.contents)
+			L.icon_state = L.off_state
+			L.switch_state = 0
 
 /obj/electricity/lightswitch/north
 	on_state = "ON_NORTH"
