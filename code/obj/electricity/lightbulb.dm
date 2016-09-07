@@ -2,12 +2,20 @@
 	name = "Lightbulb"
 	icon = 'images/lightbulb.dmi'
 	layer = ABOVE_MOBS
+	health = 10
 	required_watts = 50
 	luminosity = 4
 	var/isBroken = 0
 	var/on_state = ""
 	var/off_state = "OFF"
 	var/broken_state = "BROKEN"
+
+	/obj/electricity/lightbulb/Died()
+		if (!isBroken)
+			view(3) << "*<b>CRASH!</b>*"
+			view(3) << "The lightbulb breaks!"
+			isBroken = 1
+			off()
 
 	/obj/electricity/lightbulb/proc/off()
 		if (isBroken == 0)

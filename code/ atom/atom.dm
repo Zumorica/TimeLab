@@ -8,13 +8,17 @@
 	var/attack_factor = 1.0														// How much your damage affects atoms.
 
 	/atom/proc/damage(damage as num)											// Damage the atom.
-		if (!invincible || health <= 0)
+		if (!invincible && health > 0)
 			health -= damage * damage_factor
 			if (health <= 0)
 				health = 0
+				Died()
 
 	/atom/proc/attack(atom/other)
 		other.damage(rand(0, 10) * attack_factor)
+
+	/atom/proc/Died()															// Called when an atom dies. (His health reaches 0)
+		return
 
 	/atom/proc/Clicked(other, location, control, params)						// Called when client object clicks other objects.
 		return
