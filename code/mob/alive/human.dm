@@ -7,10 +7,15 @@
 	/mob/living/human/Clicked(other, location, control, params)
 		..()
 
+	/mob/living/human/Update()
+		UPDATE_HUD()
+		..()
+
 	/mob/living/human/Login()
 		if(!loc)
 			world << "[usr] has joined."
 			loc = locate(/turf/floor/generic/start)
+			looper.schedule(src)
 		else
 			world << "[usr] has reconnected."
 		client.screen += world_hud["Main HUD"]													// Displays HUDS.
@@ -145,4 +150,3 @@
 			if(0)
 				client.screen -= world_hud["HealthDisplay2"]
 				client.screen += world_hud["HealthDisplay3"]
-
