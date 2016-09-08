@@ -73,5 +73,5 @@
 
 		src.CLEAR_TEXT(m_id)
 
-	/mob/living/human/proc/BUTTON_CLICK(var/obj/HUD/Button/B)									// Handles button clicks.
+	/mob/living/human/proc/BUTTON_CLICK(var/obj/HUD/Button/B)									// Handles HUD button clicks.
 		//to be continued
