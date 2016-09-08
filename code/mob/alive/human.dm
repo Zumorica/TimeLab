@@ -12,6 +12,8 @@
 			loc = locate(/turf/floor/generic/start)
 		else
 			world << "[usr] has reconnected."
+		client.screen += world_hud["Main HUD"]													// Displays HUDS.
+		client.screen += world_hud["HealthDisplay"]
 		..()
 
 	/mob/living/human/verb/Say(msg as text)

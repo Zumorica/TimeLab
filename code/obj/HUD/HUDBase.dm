@@ -16,7 +16,7 @@
 			menu_id = m_id
 			tag = "[menu_id] [screen_loc]"
 
-/world/proc/CREATE_HUD(var/nw_x, var/nw_y, var/se_x, var/se_y, var/m_id, var/close_button)					//Takes the coordinates of top left and bottom right corners of the menu, menu id, and optional close button.
+/world/proc/CREATE_HUD(var/nw_x, var/nw_y, var/se_x, var/se_y, var/m_id, var/close_button)				//Takes the coordinates of top left and bottom right corners of the menu, menu id, and optional close button.
 	var/obj/HUD/H
 	var/tmp/list/hud_objects = new/list()																	// A list of all HUD objects.
 
@@ -71,3 +71,12 @@
 		edgemaker += 1
 
 	world_hud[m_id] = hud_objects																			// Storing the list of HUD objects in the world_hud list under the given menu id.
+
+/world/proc/CREATE_STATUS(var/coord, var/status_icon, var/m_id)												// Creates a single object on the screen.
+	var/obj/HUD/H
+	var/tmp/list/hud_objects = new/list()
+
+	H = new/obj/HUD(s_loc="[coord]", i_state=status_icon, m_id=m_id)
+	hud_objects += H
+
+	world_hud[m_id] = hud_objects
