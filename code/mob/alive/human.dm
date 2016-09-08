@@ -59,3 +59,19 @@
 			else
 				view() << "[src] attacks [other]."
 		..(other)
+
+
+
+	/mob/living/human/proc/CLOSE_WINDOW(var/m_id)												// Closes a HUD window.
+		if(m_id == "All")
+			for(var/V in world_hud)
+				if(V != "Main HUD")
+					src.client.screen -= world_hud[V]
+		else
+			src.client.screen -= world_hud[m_id]
+
+
+		src.CLEAR_TEXT(m_id)
+
+	/mob/living/human/proc/BUTTON_CLICK(var/obj/HUD/Button/B)									// Handles button clicks.
+		//to be continued

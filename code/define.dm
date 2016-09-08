@@ -17,5 +17,8 @@
 #define DOOR_CLOSING 	3
 #define DOOR_OPENING 	4
 
+#define font_width 10
+
 // Not a define but close enough
 var/Looper = /Looper
+var/list/world_hud = new/list()
