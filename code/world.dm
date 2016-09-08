@@ -4,4 +4,3 @@
 	view = "15x15"
 	mob = /mob/living/human
 	area = /area/underground
-	

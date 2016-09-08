@@ -60,8 +60,6 @@
 				view() << "[src] attacks [other]."
 		..(other)
 
-
-
 	/mob/living/human/proc/CLOSE_WINDOW(var/m_id)												// Closes a HUD window.
 		if(m_id == "All")
 			for(var/V in world_hud)

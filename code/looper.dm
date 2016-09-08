@@ -8,6 +8,7 @@ var/Looper/looper = new/Looper													// Creates a global scheduler/looper.
 	var/list/scheduled															// Lists of objects to be scheduled.
 
 	/Looper/New()
+		src.scheduled = new/list
 		spawn loop()															// Spawns the looper.
 		return ..()
 

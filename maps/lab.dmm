@@ -9,22 +9,35 @@
 "i" = (/turf/floor/generic/red,/area/underground)
 "j" = (/obj/electricity/lightswitch/east,/turf/floor/generic/wooden,/area/underground)
 "k" = (/obj/electricity/lightbulb,/turf/floor/generic/red,/area/underground)
-"l" = (/obj/electricity/machine/door,/turf/floor/generic/black,/area/underground)
-"m" = (/turf/floor/generic/black,/area/underground)
-"n" = (/turf/floor/generic/chess,/area/underground)
-"o" = (/turf/floor/generic/black,/area/elevator)
-"p" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/underground)
-"q" = (/obj/electricity/lightbulb/west,/turf/floor/generic/chess,/area/underground)
-"r" = (/obj/electricity/lightbulb/east,/turf/floor/generic/chess,/area/underground)
-"s" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/elevator)
-"t" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
-"u" = (/turf/floor/generic,/area/underground)
-"v" = (/obj/electricity/lightbulb,/turf/floor/generic,/area/underground)
-"w" = (/obj/electricity/machine/door,/turf/floor/generic,/area/underground)
-"x" = (/turf,/area/underground)
-"y" = (/turf/wall/generic,/area/elevator)
-"z" = (/obj/electricity/machine/door,/turf/floor/generic/red,/area/elevator)
-"A" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/elevator)
+"l" = (/obj/electricity/elevator/button/west,/turf/floor/generic/red,/area/underground)
+"m" = (/obj/electricity/machine/door,/turf/floor/generic/black,/area/underground)
+"n" = (/turf/wall/generic,/area/elevator{name = "Elevator0"})
+"o" = (/obj/electricity/machine/door/elevator_door,/turf/floor/generic/red,/area/elevator{name = "Elevator0"})
+"p" = (/turf/floor/generic/black,/area/underground)
+"q" = (/turf/floor/generic/chess,/area/underground)
+"r" = (/obj/electricity/elevator/button/east,/turf/floor/generic/chess,/area/underground)
+"s" = (/turf/floor/generic/black,/area/elevator{name = "Elevator0"})
+"t" = (/obj/electricity/elevator/controls/north,/turf/floor/generic/black,/area/elevator{name = "Elevator0"})
+"u" = (/obj/electricity/elevator/button/west,/turf/floor/generic/chess,/area/underground)
+"v" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/underground)
+"w" = (/obj/electricity/lightbulb/west,/turf/floor/generic/chess,/area/underground)
+"x" = (/obj/electricity/lightbulb/east,/turf/floor/generic/chess,/area/underground)
+"y" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/elevator{name = "Elevator0"})
+"z" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
+"A" = (/obj/electricity/machine/door/elevator_door,/turf/floor/generic/chess,/area/elevator{name = "Elevator0"})
+"B" = (/turf/floor/generic,/area/underground)
+"C" = (/obj/electricity/lightbulb,/turf/floor/generic,/area/underground)
+"D" = (/turf/wall/generic,/area/elevator{name = "Elevator1"})
+"E" = (/obj/electricity/machine/door/elevator_door,/turf/floor/generic,/area/elevator{name = "Elevator1"})
+"F" = (/turf/floor/generic/black,/area/elevator{name = "Elevator1"})
+"G" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/elevator{name = "Elevator1"})
+"H" = (/obj/electricity/elevator/button/north,/turf/floor/generic,/area/underground)
+"I" = (/turf,/area/underground)
+"J" = (/turf/wall/generic,/area/elevator)
+"K" = (/obj/electricity/machine/door/elevator_door,/turf,/area/elevator)
+"L" = (/turf/floor/generic/black,/area/elevator)
+"M" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/elevator)
+"N" = (/obj/electricity/elevator/button/north,/turf,/area/underground)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -36,16 +49,16 @@ abbbbbbbbbbbgiiiigddddddddddda
 abbbbbbbbbbbgiiiigddddddddddda
 abbbbbfbbbbjaiiiiaddddddddddda
 aebbbbbbbbbcakiikaddddddddddda
-abbbbbbbbbbbaiiiiaddddddddddda
-alaaaaaaaaaaaggggaaaaaaaaaaala
-amannnnnnnaooooooooannnnnnnama
-apaqnnnnnraosoooosoaqnnnnnnapa
-amtnnnnnnntooooooootnnnnnnntma
-amaqnnnnnntooooooootnnnnnnnama
-apannnnnnraosoooosoaqnnnnnnapa
-amannnnnnnaooooooooannnnnnnama
-alaaaaaaaaaaaggggaaaaaaaaaaala
-abbbbbbbbbbbaiiiiaddddddddddda
+abbbbbbbbbbbaliiiaddddddddddda
+amaaaaaaaannnoooonnnaaaaaaaama
+apaqqqqqqrnstssssssnuqqqqqqapa
+avawqqqqqxnsyssssysnwqqqqqqava
+apzqqqqqqqAssssssssAqqqqqqqzpa
+apawqqqqqqAssssssssAqqqqqqqapa
+avaqqqqqqxnsyssssysnwqqqqqqava
+apaqqqqqqqnssssssssnqqqqqqqapa
+amaaaaaaaannnoooonnnaaaaaaaama
+abbbbbbbbbbbaliiiaddddddddddda
 abbbbbbbbbbbaiiiiaddddddddddda
 abbbbbbbbbbbaiiiiaddddddddddda
 abbbbbbbbbbbaiiiiaddddddddddda
@@ -60,133 +73,133 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
 
 (1,1,2) = {"
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuvuuuuuuuuuuuuuuuuuuuuuuvuuuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuvuuuuuvuuuuuuuuuuuuuuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuuuuuuuuuuuuuuvuuuuuuuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuvuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuuuaaawwwwaaauuuuuuuuuu
-uuuuuuuuuuaooooooooauuuuuuuuuu
-uuuuuuuuuuaosoooosoauuuuuuuuuu
-uuuuuuvuuuwoooooooowuuuuuuuuuu
-uuvuuuuuuuwoooooooowuuuuvuuuuu
-uuuuuuuuuuaosoooosoauuuuuuuuuu
-uuuuuuuuuuaooooooooauuuuuuuuuu
-uuuuuuuuuuaaawwwwaaauuuuuuuuuu
-uuuuuuuuvuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuuuuuuuuuvuuuuvuuuuuuuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuvuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuuuuuuuuuuvuuuuuuuuuvuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBCBBBBBBBBBBBBBBBBBBBBBBCBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBCBBBBBCBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBCBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBCBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBDDDEEEEDDDBBBBBBBBBB
+BBBBBBBBBBDFFFFFFFFDBBBBBBBBBB
+BBBBBBBBBBDFGFFFFGFDBBBBBBBBBB
+BBBBBBCBBBEFFFFFFFFEBBBBBBBBBB
+BBCBBBBBBBEFFFFFFFFEBBBBCBBBBB
+BBBBBBBBBBDFGFFFFGFDBBBBBBBBBB
+BBBBBBBBBBDFFFFFFFFDBBBBBBBBBB
+BBBBBBBBBBDDDEEEEDDDBBBBBBBBBB
+BBBBBBBBCBBBHBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBCBBBBCBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBCBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBCBBBBBBBBBCBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 "}
 
 (1,1,3) = {"
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxyyyzzzzyyyxxxxxxxxxx
-xxxxxxxxxxyooooooooyxxxxxxxxxx
-xxxxxxxxxxyosoooosoyxxxxxxxxxx
-xxxxxxxxxxAooooooooAxxxxxxxxxx
-xxxxxxxxxxAooooooooAxxxxxxxxxx
-xxxxxxxxxxyosoooosoyxxxxxxxxxx
-xxxxxxxxxxyooooooooyxxxxxxxxxx
-xxxxxxxxxxyyyzzzzyyyxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIJJJKKKKJJJIIIIIIIIII
+IIIIIIIIIIJLLLLLLLLJIIIIIIIIII
+IIIIIIIIIIJLMLLLLMLJIIIIIIIIII
+IIIIIIIIIIKLLLLLLLLKIIIIIIIIII
+IIIIIIIIIIKLLLLLLLLKIIIIIIIIII
+IIIIIIIIIIJLMLLLLMLJIIIIIIIIII
+IIIIIIIIIIJLLLLLLLLJIIIIIIIIII
+IIIIIIIIIIJJJKKKKJJJIIIIIIIIII
+IIIIIIIIIIIINIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 "}
 
 (1,1,4) = {"
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 "}
 
 (1,1,5) = {"
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 "}
