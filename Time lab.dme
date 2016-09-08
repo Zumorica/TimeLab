@@ -15,6 +15,7 @@
 // BEGIN_INCLUDE
 #include "code\define.dm"
 #include "code\looper.dm"
+#include "code\utils.dm"
 #include "code\world.dm"
 #include "code\ atom\atom.dm"
 #include "code\ atom\movable\movable.dm"
