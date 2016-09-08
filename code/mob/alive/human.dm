@@ -2,6 +2,7 @@
 	icon = 'images/scientist.dmi'
 	luminosity=0
 	intention = INTERACT_INTENTION
+	var/dontsendmessages = 0
 
 	/mob/living/human/Clicked(other, location, control, params)
 		..()
@@ -17,14 +18,41 @@
 		..()
 
 	/mob/living/human/verb/Say(msg as text)
-		view(8) << "[usr] says, \"[msg]\""
+		if(msg == "" | msg == " ")
+			return
+		else
+			if(!dontsendmessages)
+				view(8) << "[usr] says, \"[msg]\""
+				dontsendmessages = 1
+				spawn(5)
+					dontsendmessages = 0
+			else
+				return
 
-	/mob/living/human/verb/Whisper(M as mob in oview(1), msg as text)							// Sends a message to mobs adjacent to you.
-		M << "[usr] whispers, \"<I>[msg]</I>\""
-		usr << "[usr]: <I>[msg]</I>"
+	/mob/living/human/verb/Whisper(M as mob in oview(1), msg as text)
+		if(msg == "" | msg == " ")
+			return
+		else
+			if(!dontsendmessages)							// Sends a message to mobs adjacent to you.
+				M << "[usr] whispers, \"<I>[msg]</I>\""
+				usr << "[usr]: <I>[msg]</I>"
+				dontsendmessages = 1
+				spawn(5)
+					dontsendmessages = 0
+			else
+				return
 
 	/mob/living/human/verb/Shout(msg as text)
-		view(16) << "[usr] shouts, \"<B><BIG>[msg]</BIG></B>\""
+		if(msg == "" | msg == " ")
+			return
+		else
+			if(!dontsendmessages)
+				view(16) << "[usr] shouts, \"<B><BIG>[msg]</BIG></B>\""
+				dontsendmessages = 1
+				spawn(5)
+					dontsendmessages = 0
+			else
+				return
 
 	/mob/living/human/verb/Who()																// Lists online players.
 		var/mob/M
