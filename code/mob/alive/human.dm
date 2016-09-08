@@ -67,7 +67,7 @@
 		if (length(tabless))
 			switch(speakState)
 				if (CAN_SPEAK)
-					view(16) << "[usr] says, \"[msg]\""
+					view(16) << "[usr] shouts, \"<b><big>[uppertext(msg)]!!</b></big>\""
 					speakState = CANT_SPEAK
 					spawn(5)
 						speakState = CAN_SPEAK
