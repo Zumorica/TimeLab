@@ -2,7 +2,7 @@
 	icon = 'images/scientist.dmi'
 	luminosity=0
 	intention = INTERACT_INTENTION
-	var/dontsendmessages = 0
+	var/speakState = CAN_SPEAK
 
 	/mob/living/human/Clicked(other, location, control, params)
 		..()
@@ -18,41 +18,70 @@
 		..()
 
 	/mob/living/human/verb/Say(msg as text)
-		if(msg == "" | msg == " ")
-			return
-		else
-			if(!dontsendmessages)
-				view(8) << "[usr] says, \"[msg]\""
-				dontsendmessages = 1
-				spawn(5)
-					dontsendmessages = 0
-			else
-				return
+		var/spaceless = ReplaceText(msg, " ", "")
+		var/tabless = ReplaceText(spaceless, "	", "")
+		if (length(tabless))
+			switch(speakState)
+				if (CAN_SPEAK)
+					view(8) << "[usr] says, \"[msg]\""
+					speakState = CANT_SPEAK
+					spawn(5)
+						speakState = CAN_SPEAK
+				if (MUTE)
+					view(4) << "[usr] looks like \he's trying to speak, but no sounds come out of \his mouth."
+					speakState = CANT_SPEAK
+					spawn(5)
+						speakState = MUTE
+				if (GAGGED)
+					view(5) << pick("[usr] mumbles, \"HMPF! Hmpf\"", "[usr] mumbles, \"Hmph!\"", "[usr] mumbles, \"Hmph...\"", "[usr] mumbles, \"HMHMHMHMPH! HMPH.\"", "[usr] mumbles, \"Hm. Hmpf hmpf.\"")
+					spawn(5)
+						speakState = GAGGED
+				else
+					return
 
 	/mob/living/human/verb/Whisper(M as mob in oview(1), msg as text)
-		if(msg == "" | msg == " ")
-			return
-		else
-			if(!dontsendmessages)							// Sends a message to mobs adjacent to you.
-				M << "[usr] whispers, \"<I>[msg]</I>\""
-				usr << "[usr]: <I>[msg]</I>"
-				dontsendmessages = 1
-				spawn(5)
-					dontsendmessages = 0
-			else
-				return
+		var/spaceless = ReplaceText(msg, " ", "")
+		var/tabless = ReplaceText(spaceless, "	", "")
+		if (length(tabless))
+			switch(speakState)
+				if (CAN_SPEAK)
+					M << "[usr] whispers, \"<i>[msg]</i>\""
+					speakState = CANT_SPEAK
+					spawn(5)
+						speakState = CAN_SPEAK
+				if (MUTE)
+					M << "[usr] looks like \he's trying to whisper to you, but no sounds come out of \his mouth."
+					speakState = CANT_SPEAK
+					spawn(5)
+						speakState = MUTE
+				if (GAGGED)
+					M << pick("[usr] mumbles quietly, \"HMPF! Hmpf\"", "[usr] mumbles quietly, \"Hmph!\"", "[usr] mumbles quietly, \"Hmph...\"", "[usr] mumbles quietly, \"HMHMHMHMPH! HMPH.\"", "[usr] mumbles quietly, \"Hm. Hmpf hmpf.\"")
+					spawn(5)
+						speakState = GAGGED
+				else
+					return
 
 	/mob/living/human/verb/Shout(msg as text)
-		if(msg == "" | msg == " ")
-			return
-		else
-			if(!dontsendmessages)
-				view(16) << "[usr] shouts, \"<B><BIG>[msg]</BIG></B>\""
-				dontsendmessages = 1
-				spawn(5)
-					dontsendmessages = 0
-			else
-				return
+		var/spaceless = ReplaceText(msg, " ", "")
+		var/tabless = ReplaceText(spaceless, "	", "")
+		if (length(tabless))
+			switch(speakState)
+				if (CAN_SPEAK)
+					view(16) << "[usr] says, \"[msg]\""
+					speakState = CANT_SPEAK
+					spawn(5)
+						speakState = CAN_SPEAK
+				if (MUTE)
+					view(8) << "[usr] looks like \he's trying to shout, but no sounds come out of \his mouth."
+					speakState = CANT_SPEAK
+					spawn(5)
+						speakState = MUTE
+				if (GAGGED)
+					view(10) << pick("[usr] mumbles loudly, \"HMPF! Hmpf\"", "[usr] mumbles loudly, \"Hmph!\"", "[usr] mumbles loudly, \"Hmph...\"", "[usr] mumbles loudly, \"HMHMHMHMPH! HMPH.\"", "[usr] mumbles loudly, \"Hm. Hmpf hmpf.\"")
+					spawn(5)
+						speakState = GAGGED
+				else
+					return
 
 	/mob/living/human/verb/Who()																// Lists online players.
 		var/mob/M

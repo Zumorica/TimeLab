@@ -22,6 +22,11 @@
 #define ELEVATOR_DOWN	2
 #define ELEVATOR_BROKEN 3
 
+#define CANT_SPEAK 0
+#define CAN_SPEAK  1
+#define MUTE	   2
+#define GAGGED	   3
+
 #define font_width 10
 
 // Not a define, but close enough.
