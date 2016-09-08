@@ -12,17 +12,19 @@
 "l" = (/obj/electricity/machine/door,/turf/floor/generic/black,/area/underground)
 "m" = (/turf/floor/generic/black,/area/underground)
 "n" = (/turf/floor/generic/chess,/area/underground)
-"o" = (/obj/electricity/lightswitch/north,/turf/floor/generic,/area/underground)
-"p" = (/obj/electricity/lightbulb/north,/turf/floor/generic,/area/underground)
-"q" = (/turf/floor/generic,/area/underground)
-"r" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/underground)
-"s" = (/obj/electricity/lightbulb/west,/turf/floor/generic/chess,/area/underground)
-"t" = (/obj/electricity/lightbulb/east,/turf/floor/generic/chess,/area/underground)
-"u" = (/obj/electricity/lightbulb/west,/turf/floor/generic,/area/underground)
-"v" = (/obj/electricity/lightbulb/east,/turf/floor/generic,/area/underground)
-"w" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
-"x" = (/turf/floor/generic/start,/area/underground)
-"y" = (/obj/electricity/lightbulb/south,/turf/floor/generic,/area/underground)
+"o" = (/turf/floor/generic/black,/area/elevator)
+"p" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/underground)
+"q" = (/obj/electricity/lightbulb/west,/turf/floor/generic/chess,/area/underground)
+"r" = (/obj/electricity/lightbulb/east,/turf/floor/generic/chess,/area/underground)
+"s" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/elevator)
+"t" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
+"u" = (/turf/floor/generic,/area/underground)
+"v" = (/obj/electricity/lightbulb,/turf/floor/generic,/area/underground)
+"w" = (/obj/electricity/machine/door,/turf/floor/generic,/area/underground)
+"x" = (/turf,/area/underground)
+"y" = (/turf/wall/generic,/area/elevator)
+"z" = (/obj/electricity/machine/door,/turf/floor/generic/red,/area/elevator)
+"A" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/elevator)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -36,12 +38,12 @@ abbbbbfbbbbjaiiiiaddddddddddda
 aebbbbbbbbbcakiikaddddddddddda
 abbbbbbbbbbbaiiiiaddddddddddda
 alaaaaaaaaaaaggggaaaaaaaaaaala
-amannnnnnnaopqqqqpqannnnnnnama
-arasnnnnntauqqqqqqvasnnnnnnara
-amwnnnnnnnwqqqqqqqqwnnnnnnnwma
-amasnnnnnnwqqqxqqqqwnnnnnnnama
-arannnnnntauqqqqqqvasnnnnnnara
-amannnnnnnaqyqqqqyqannnnnnnama
+amannnnnnnaooooooooannnnnnnama
+apaqnnnnnraosoooosoaqnnnnnnapa
+amtnnnnnnntooooooootnnnnnnntma
+amaqnnnnnntooooooootnnnnnnnama
+apannnnnnraosoooosoaqnnnnnnapa
+amannnnnnnaooooooooannnnnnnama
 alaaaaaaaaaaaggggaaaaaaaaaaala
 abbbbbbbbbbbaiiiiaddddddddddda
 abbbbbbbbbbbaiiiiaddddddddddda
@@ -55,4 +57,136 @@ abbbbbbbbbbbgiiiigddddddddddda
 abbbbbbbbbbbgiiiigddddddddddda
 abbbbbbbbbbbgiiiigddddddddddda
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
+
+(1,1,2) = {"
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuvuuuuuuuuuuuuuuuuuuuuuuvuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuvuuuuuvuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuvuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuvuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuaaawwwwaaauuuuuuuuuu
+uuuuuuuuuuaooooooooauuuuuuuuuu
+uuuuuuuuuuaosoooosoauuuuuuuuuu
+uuuuuuvuuuwoooooooowuuuuuuuuuu
+uuvuuuuuuuwoooooooowuuuuvuuuuu
+uuuuuuuuuuaosoooosoauuuuuuuuuu
+uuuuuuuuuuaooooooooauuuuuuuuuu
+uuuuuuuuuuaaawwwwaaauuuuuuuuuu
+uuuuuuuuvuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuvuuuuvuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuvuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuuvuuuuuuuuuvuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+"}
+
+(1,1,3) = {"
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxyyyzzzzyyyxxxxxxxxxx
+xxxxxxxxxxyooooooooyxxxxxxxxxx
+xxxxxxxxxxyosoooosoyxxxxxxxxxx
+xxxxxxxxxxAooooooooAxxxxxxxxxx
+xxxxxxxxxxAooooooooAxxxxxxxxxx
+xxxxxxxxxxyosoooosoyxxxxxxxxxx
+xxxxxxxxxxyooooooooyxxxxxxxxxx
+xxxxxxxxxxyyyzzzzyyyxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+"}
+
+(1,1,4) = {"
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+"}
+
+(1,1,5) = {"
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 "}
