@@ -5,8 +5,6 @@
 	/area/elevator/New()
 		spawn ..()
 		name = "Elevator on floor [z]"
-		spawn(50)
-			world << "[src] is alive on floor [src.z]"
 		elevator.elevators.Add(src)
 		looper.schedule(elevator)
 

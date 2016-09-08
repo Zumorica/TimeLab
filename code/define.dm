@@ -23,3 +23,6 @@
 #define ELEVATOR_BROKEN 3
 
 #define font_width 10
+
+// Not a define, but close enough.
+var/list/world_hud = new/list()
