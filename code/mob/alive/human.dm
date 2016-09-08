@@ -132,3 +132,17 @@
 
 	/mob/living/human/proc/BUTTON_CLICK(var/obj/HUD/Button/B)									// Handles HUD button clicks.
 		//to be continued
+
+
+	/mob/living/human/proc/UPDATE_HUD()															// Updates Health for now.
+		switch(health)
+			if(50 to 99)
+				client.screen -= world_hud["HealthDisplay"]
+				client.screen += world_hud["HealthDisplay1"]
+			if(1 to 49)
+				client.screen -= world_hud["HealthDisplay1"]
+				client.screen += world_hud["HealthDisplay2"]
+			if(0)
+				client.screen -= world_hud["HealthDisplay2"]
+				client.screen += world_hud["HealthDisplay3"]
+
