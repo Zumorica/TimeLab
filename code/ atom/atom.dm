@@ -7,6 +7,9 @@
 	var/base_attack_factor = 1.0												// Base attack factor
 	var/attack_factor = 1.0														// How much your damage affects atoms.
 
+	/atom/proc/GetArea()														// Returns the atom's area.
+		return
+
 	/atom/proc/damage(damage as num)											// Damage the atom.
 		if (!invincible && health > 0)
 			health -= damage * damage_factor
@@ -28,7 +31,3 @@
 
 	/atom/proc/Bumped(atom/other)												// Called when you bump into other objects / other objects bump into you.
 		return
-
-	/atom/movable/Bump(atom/a)													// Overrides Bump proc so /atom/proc/Bumped(atom/other) can be possible
-		a.Bumped(src)
-		return ..(a)
