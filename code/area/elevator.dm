@@ -2,10 +2,21 @@
 	luminosity = 5
 
 	/area/elevator/New()
-		spawn ..()
 		name = "Elevator on floor [z]"
 		elevator.elevators.Add(src)
-		looper.schedule(elevator)
+		return ..()
+
+	/area/elevator/proc/CheckNextZ()
+		if (z == world.maxz)
+			elevator.maxz = world.maxz
+		else
+			var/atom/other = src[1]
+			var/atom/otherup = locate(other.x, other.y, other.z + 1)
+			var/area/a = otherup.GetArea()
+			if (a.type == /area/elevator)
+				return
+			else
+				elevator.maxz = other.z
 
 	/area/elevator/proc/floor_up()
 		for (var/atom/movable/other in src)

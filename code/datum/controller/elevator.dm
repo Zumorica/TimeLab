@@ -3,6 +3,7 @@ var/datum/controller/elevator/elevator = new/datum/controller/elevator
 /datum/controller/elevator
 	var/elevator_z = 3
 	var/elevator_sleep = 30														// Number of milliseconds to sleep before the elevator goes up or down.
+	var/maxz = 0
 	var/spawned = 0
 	var/destination = 1
 	var/state = ELEVATOR_STOP
@@ -10,10 +11,15 @@ var/datum/controller/elevator/elevator = new/datum/controller/elevator
 
 	/datum/controller/elevator/New()
 		src.elevators = new/list
+		spawn (5)
+			looper.schedule(elevator)
 		..()
 
 	/datum/controller/elevator/Update()
 		var/area/elevator/a = GetCurrentArea()
+		if (!maxz)
+			a.CheckNextZ()
+			world << maxz
 		if (elevator_z == destination)
 			state = ELEVATOR_STOP
 			for (var/obj/electricity/machine/door/elevator_door/d)
@@ -43,7 +49,7 @@ var/datum/controller/elevator/elevator = new/datum/controller/elevator
 		..()
 
 	/datum/controller/elevator/proc/GoToFloor(var/floor as num)
-		if (floor > 0 && floor <= world.maxz && floor != elevator_z && state == ELEVATOR_STOP)
+		if (floor > 0 && floor <= maxz && floor != elevator_z && state == ELEVATOR_STOP)
 			destination = floor
 			if (floor > elevator_z)
 				state = ELEVATOR_UP

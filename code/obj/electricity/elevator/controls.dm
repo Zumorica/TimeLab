@@ -14,11 +14,11 @@
 			other << "The elevator is currently busy! It is currently on floor [elevator.elevator_z]..."
 			return
 
-		var/direction = Input(User=other, Message="Input floor number. Current floor: [elevator.elevator_z]. Last floor: [world.maxz]", Title="Elevator controls") as num
+		var/direction = Input(User=other, Message="Input floor number. Current floor: [elevator.elevator_z]. Last floor: [elevator.maxz]", Title="Elevator controls") as num
 		if (direction == elevator.elevator_z)
 			other << "The elevator is already there!"
 
-		else if (direction > world.maxz || direction <= 0)
+		else if (direction > elevator.maxz || direction <= 0)
 			other << "Invalid floor."
 
 		else
@@ -32,7 +32,7 @@
 		else if (direction == elevator.elevator_z)
 			oview(1) << "The elevator is already there!"
 
-		else if (direction > world.maxz || direction <= 0)
+		else if (direction > elevator.maxz || direction <= 0)
 			oview(1) << "Invalid floor."
 
 		else
@@ -47,7 +47,7 @@
 		// else if (direction == elevator.elevator_z)
 		// 	other << "The elevator is already there!"
 		//
-		// else if (direction > world.maxz || direction <= 0)
+		// else if (direction > elevator.maxz || direction <= 0)
 		// 	other << "Invalid floor."
 		//
 		// else
