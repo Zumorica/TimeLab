@@ -9,6 +9,7 @@
 	var/attack_delay = 7														// Delays attacks.
 	var/attack_state = CAN_ATTACK
 	var/speak_state = CAN_SPEAK
+	var/life_status = ALIVE
 
 	/atom/proc/GetArea()														// Returns the atom's area.
 		return

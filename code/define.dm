@@ -35,6 +35,9 @@
 #define CAN_ATTACK 	   1
 #define BUCKLED	  	   2
 
+#define DEAD 0
+#define ALIVE 1
+
 #define font_width 10
 
 // Not a define, but close enough.

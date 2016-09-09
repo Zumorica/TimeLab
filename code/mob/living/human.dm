@@ -27,6 +27,7 @@
 		speak_state = CANT_SPEAK
 		attack_state = CANT_ATTACK
 		move_state = CANT_MOVE
+		life_status = DEAD
 
 	/mob/living/human/verb/Say(msg as text)
 		var/spaceless = ReplaceText(msg, " ", "")

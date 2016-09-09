@@ -22,9 +22,10 @@
 		switch(move_state)
 			if (CAN_MOVE)
 				move_state = CANT_MOVE
-				spawn (move_delay)
-					move_state = CAN_MOVE
-				return ..()
+				if(life_status != DEAD)
+					spawn (move_delay)
+						move_state = CAN_MOVE
+					return ..()
 			if (CANT_MOVE)
 				return 0
 			if (BUCKLED)
