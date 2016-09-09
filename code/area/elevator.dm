@@ -44,7 +44,7 @@
 					continue
 				if (istype(a))
 					a.opacity = 0
-					other.Move(oloc)
+					other.loc = oloc
 					elevator.elevator_z = oloc.z
 					other << "<b> Floor:</b><big> [elevator.elevator_z] </big>"
 				else
