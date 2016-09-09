@@ -9,6 +9,21 @@
 	var/on_state = ""
 	var/off_state = "OFF"
 
+	/obj/electricity/elevator/controls/Interacted(mob/other)
+		if (elevator.state == ELEVATOR_UP || elevator.state == ELEVATOR_DOWN)
+			other << "The elevator is currently busy! It is currently on floor [elevator.elevator_z]..."
+			return
+
+		var/direction = Input(User=other, Message="Input floor number. Current floor: [elevator.elevator_z]. Last floor: [world.maxz]", Title="Elevator controls") as num
+		if (direction == elevator.elevator_z)
+			other << "The elevator is already there!"
+
+		else if (direction > world.maxz || direction <= 0)
+			other << "Invalid floor."
+
+		else
+			elevator.GoToFloor(direction)
+
 	/obj/electricity/elevator/controls/verb/Input(direction as num)
 		set src in oview(1)
 		if (elevator.state == ELEVATOR_UP || elevator.state == ELEVATOR_DOWN)

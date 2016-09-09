@@ -10,6 +10,7 @@
 	var/opening_state = "OPENING"
 	var/closed_state = "CLOSED"
 	var/closing_state = "CLOSING"
+	var/close_delay = 30
 
 	/obj/electricity/machine/door/Interacted(mob/other)
 		if (istype(other, /mob/living/human) && get_dist(src, other) <= 1)
@@ -32,8 +33,9 @@
 				state = DOOR_OPEN
 				opacity = 0
 				density = 0
-				spawn(30)
-					close()
+				if (close_delay)
+					spawn(close_delay)
+						close()
 
 	/obj/electricity/machine/door/proc/close()
 		if (state == DOOR_OPEN && health)

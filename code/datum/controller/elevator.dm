@@ -16,17 +16,25 @@ var/datum/controller/elevator/elevator = new/datum/controller/elevator
 		var/area/elevator/a = GetCurrentArea()
 		if (elevator_z == destination)
 			state = ELEVATOR_STOP
+			for (var/obj/electricity/machine/door/elevator_door/d)
+				d.open()
 		if (istype(a))
 			switch (state)
 				if (ELEVATOR_STOP)
 					return
 				if (ELEVATOR_UP)
+					for (var/obj/electricity/machine/door/elevator_door/d)
+						if (d.state != DOOR_CLOSED || d.state != DOOR_CLOSING)
+							d.close()
 					if (!spawned)
 						spawned = 1
 						spawn(elevator_sleep)
 							a.floor_up()
 							spawned = 0
 				if (ELEVATOR_DOWN)
+					for (var/obj/electricity/machine/door/elevator_door/d)
+						if (d.state != DOOR_CLOSED || d.state != DOOR_CLOSING)
+							d.close()
 					if (!spawned)
 						spawned = 1
 						spawn(elevator_sleep)
