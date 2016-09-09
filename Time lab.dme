@@ -26,7 +26,7 @@
 #include "code\datum\datum.dm"
 #include "code\datum\controller\elevator.dm"
 #include "code\mob\mob.dm"
-#include "code\mob\alive\human.dm"
+#include "code\mob\living\human.dm"
 #include "code\obj\obj.dm"
 #include "code\obj\electricity\electricity.dm"
 #include "code\obj\electricity\lightbulb.dm"
