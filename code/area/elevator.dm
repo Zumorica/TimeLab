@@ -1,6 +1,5 @@
 /area/elevator
 	luminosity = 5
-	name = "Elevator"
 
 	/area/elevator/New()
 		spawn ..()
@@ -18,7 +17,7 @@
 				elevator.elevator_z = oloc.z
 				other << "<b> Floor:</b><big> [elevator.elevator_z] </big>"
 			else
-				return
+				world << "<red>Error!</red> [a] is not elevator..."
 		opacity = 1
 
 	/area/elevator/proc/floor_down()
