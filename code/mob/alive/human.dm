@@ -20,6 +20,7 @@
 			world << "[usr] has reconnected."
 		client.screen += world_hud["Main HUD"]													// Displays HUDS.
 		client.screen += world_hud["HealthDisplay"]
+		client.screen += world_hud["Intent"]
 		..()
 
 	/mob/living/human/verb/Say(msg as text)
@@ -107,14 +108,16 @@
 		stat("Health: ", health)
 		stat("Intent: ", intentName)
 
-	/mob/living/human/verb/SwitchIntention()													// Switches intents.
+	/mob/living/human/proc/SwitchIntention()													// Switches intents.
 		set name = "Switch Intention"
 		if(intention == HARM_INTENTION)
 			intention = INTERACT_INTENTION
-			usr << "You can now interact with things!"
+			client.screen -= world_hud["Intent1"]
+			client.screen += world_hud["Intent"]
 		else
 			intention = HARM_INTENTION
-			usr << "You can now harm things!"
+			client.screen -= world_hud["Intent"]
+			client.screen += world_hud["Intent1"]
 
 	/mob/living/human/attack(atom/other)														// Displays a message if you attack a player.
 		if(istype(other, /mob/living/human))
@@ -136,7 +139,13 @@
 		src.CLEAR_TEXT(m_id)
 
 	/mob/living/human/proc/BUTTON_CLICK(var/obj/HUD/Button/B)									// Handles HUD button clicks.
-		//to be continued
+		switch(B.name)
+			if("IntentButton")
+				SwitchIntention()
+			if("IntentButton1")
+				SwitchIntention()
+			else
+				return
 
 
 	/mob/living/human/proc/UPDATE_HUD()															// Updates Health for now.
