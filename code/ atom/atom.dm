@@ -6,8 +6,9 @@
 	var/damage_factor = 1.0														// How much damage affects the atom.
 	var/base_attack_factor = 1.0												// Base attack factor
 	var/attack_factor = 1.0														// How much your damage affects atoms.
-	var/attack_delay = 5														// Delays attacks.
-	var/attack_status = CAN_ATTACK
+	var/attack_delay = 7														// Delays attacks.
+	var/attack_state = CAN_ATTACK
+	var/speak_state = CAN_SPEAK
 
 	/atom/proc/GetArea()														// Returns the atom's area.
 		return
@@ -20,11 +21,15 @@
 				Died()
 
 	/atom/proc/attack(atom/other)
-		if (attack_status == CAN_ATTACK)
+		if (attack_state == CAN_ATTACK)
 			other.damage(rand(0, 10) * attack_factor)
-			attack_status = CANT_ATTACK
+			if(src == other)
+				view() << "[src] attacks \himself."
+			else
+				view() << "[src] attacks [other]."
+			attack_state = CANT_ATTACK
 			spawn(attack_delay)
-				attack_status = CAN_ATTACK
+				attack_state = CAN_ATTACK
 
 	/atom/proc/Died()															// Called when an atom dies. (His health reaches 0)
 		return

@@ -2,7 +2,6 @@
 	icon = 'images/scientist.dmi'
 	luminosity=0
 	intention = INTERACT_INTENTION
-	var/speakState = CAN_SPEAK
 
 	/mob/living/human/Clicked(other, location, control, params)
 		..()
@@ -14,8 +13,8 @@
 	/mob/living/human/Login()
 		if(!loc)
 			world << "[usr] has joined."
+			looper.schedule(usr)
 			loc = locate(3, 3, 1)
-			looper.schedule(src)
 		else
 			world << "[usr] has reconnected."
 		client.screen += world_hud["Main HUD"]													// Displays HUDS.
@@ -23,25 +22,31 @@
 		client.screen += world_hud["Intent"]
 		..()
 
+	/mob/living/human/Died()
+		src.transform = turn(src.transform, 90)
+		speak_state = CANT_SPEAK
+		attack_state = CANT_ATTACK
+		move_state = CANT_MOVE
+
 	/mob/living/human/verb/Say(msg as text)
 		var/spaceless = ReplaceText(msg, " ", "")
 		var/tabless = ReplaceText(spaceless, "	", "")
 		if (length(tabless))
-			switch(speakState)
+			switch(speak_state)
 				if (CAN_SPEAK)
 					view(8) << "[usr] says, \"[msg]\""
-					speakState = CANT_SPEAK
+					speak_state = CANT_SPEAK
 					spawn(5)
-						speakState = CAN_SPEAK
+						speak_state = CAN_SPEAK
 				if (MUTE)
 					view(4) << "[usr] looks like \he's trying to speak, but no sounds come out of \his mouth."
-					speakState = CANT_SPEAK
+					speak_state = CANT_SPEAK
 					spawn(5)
-						speakState = MUTE
+						speak_state = MUTE
 				if (GAGGED)
 					view(5) << pick("[usr] mumbles, \"HMPF! Hmpf\"", "[usr] mumbles, \"Hmph!\"", "[usr] mumbles, \"Hmph...\"", "[usr] mumbles, \"HMHMHMHMPH! HMPH.\"", "[usr] mumbles, \"Hm. Hmpf hmpf.\"")
 					spawn(5)
-						speakState = GAGGED
+						speak_state = GAGGED
 				else
 					return
 
@@ -49,21 +54,21 @@
 		var/spaceless = ReplaceText(msg, " ", "")
 		var/tabless = ReplaceText(spaceless, "	", "")
 		if (length(tabless))
-			switch(speakState)
+			switch(speak_state)
 				if (CAN_SPEAK)
 					M << "[usr] whispers, \"<i>[msg]</i>\""
-					speakState = CANT_SPEAK
+					speak_state = CANT_SPEAK
 					spawn(5)
-						speakState = CAN_SPEAK
+						speak_state = CAN_SPEAK
 				if (MUTE)
 					M << "[usr] looks like \he's trying to whisper to you, but no sounds come out of \his mouth."
-					speakState = CANT_SPEAK
+					speak_state = CANT_SPEAK
 					spawn(5)
-						speakState = MUTE
+						speak_state = MUTE
 				if (GAGGED)
 					M << pick("[usr] mumbles quietly, \"HMPF! Hmpf\"", "[usr] mumbles quietly, \"Hmph!\"", "[usr] mumbles quietly, \"Hmph...\"", "[usr] mumbles quietly, \"HMHMHMHMPH! HMPH.\"", "[usr] mumbles quietly, \"Hm. Hmpf hmpf.\"")
 					spawn(5)
-						speakState = GAGGED
+						speak_state = GAGGED
 				else
 					return
 
@@ -71,21 +76,21 @@
 		var/spaceless = ReplaceText(msg, " ", "")
 		var/tabless = ReplaceText(spaceless, "	", "")
 		if (length(tabless))
-			switch(speakState)
+			switch(speak_state)
 				if (CAN_SPEAK)
 					view(16) << "[usr] shouts, \"<b><big>[uppertext(msg)]!!</b></big>\""
-					speakState = CANT_SPEAK
+					speak_state = CANT_SPEAK
 					spawn(5)
-						speakState = CAN_SPEAK
+						speak_state = CAN_SPEAK
 				if (MUTE)
 					view(8) << "[usr] looks like \he's trying to shout, but no sounds come out of \his mouth."
-					speakState = CANT_SPEAK
+					speak_state = CANT_SPEAK
 					spawn(5)
-						speakState = MUTE
+						speak_state = MUTE
 				if (GAGGED)
 					view(10) << pick("[usr] mumbles loudly, \"HMPF! Hmpf\"", "[usr] mumbles loudly, \"Hmph!\"", "[usr] mumbles loudly, \"Hmph...\"", "[usr] mumbles loudly, \"HMHMHMHMPH! HMPH.\"", "[usr] mumbles loudly, \"Hm. Hmpf hmpf.\"")
 					spawn(5)
-						speakState = GAGGED
+						speak_state = GAGGED
 				else
 					return
 
@@ -97,6 +102,9 @@
 				continue
 			else
 				usr << M.key
+
+	/mob/living/human/verb/Die()
+		damage(max_health)
 
 	/mob/living/human/Stat()
 		var/intentName = ""
@@ -118,14 +126,6 @@
 			intention = HARM_INTENTION
 			client.screen -= world_hud["Intent"]
 			client.screen += world_hud["Intent1"]
-
-	/mob/living/human/attack(atom/other)														// Displays a message if you attack a player.
-		if(istype(other, /mob/living/human))
-			if(src == other)
-				view() << "[src] attacks \himself."
-			else
-				view() << "[src] attacks [other]."
-		..(other)
 
 	/mob/living/human/proc/CLOSE_WINDOW(var/m_id)												// Closes a HUD window.
 		if(m_id == "All")

@@ -2,6 +2,7 @@
 	name = "Lightbulb"
 	icon = 'images/lightbulb.dmi'
 	layer = ABOVE_MOBS
+	max_health = 10
 	health = 10
 	required_watts = 50
 	luminosity = 5
