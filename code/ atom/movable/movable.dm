@@ -21,7 +21,7 @@
 		old_loc = loc
 		switch(move_state)
 			if (CAN_MOVE)
-				move_state = MOVE_COOLDOWN
+				move_state = CANT_MOVE
 				spawn (move_delay)
 					move_state = CAN_MOVE
 				return ..()
@@ -29,5 +29,3 @@
 				return 0
 			if (BUCKLED)
 				return 0 // To be implemented
-			if (MOVE_COOLDOWN)
-				return 0

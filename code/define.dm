@@ -29,8 +29,11 @@
 
 #define CANT_MOVE	   0
 #define CAN_MOVE  	   1
-#define MOVE_COOLDOWN  2
-#define BUCKLED	  	   3
+#define BUCKLED	  	   2
+
+#define CANT_ATTACK	   0
+#define CAN_ATTACK 	   1
+#define BUCKLED	  	   2
 
 #define font_width 10
 

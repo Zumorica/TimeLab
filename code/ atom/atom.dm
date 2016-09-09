@@ -6,6 +6,8 @@
 	var/damage_factor = 1.0														// How much damage affects the atom.
 	var/base_attack_factor = 1.0												// Base attack factor
 	var/attack_factor = 1.0														// How much your damage affects atoms.
+	var/attack_delay = 5														// Delays attacks.
+	var/attack_status = CAN_ATTACK
 
 	/atom/proc/GetArea()														// Returns the atom's area.
 		return
@@ -18,7 +20,11 @@
 				Died()
 
 	/atom/proc/attack(atom/other)
-		other.damage(rand(0, 10) * attack_factor)
+		if (attack_status == CAN_ATTACK)
+			other.damage(rand(0, 10) * attack_factor)
+			attack_status = CANT_ATTACK
+			spawn(attack_delay)
+				attack_status = CAN_ATTACK
 
 	/atom/proc/Died()															// Called when an atom dies. (His health reaches 0)
 		return
