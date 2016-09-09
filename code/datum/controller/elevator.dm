@@ -19,7 +19,6 @@ var/datum/controller/elevator/elevator = new/datum/controller/elevator
 		var/area/elevator/a = GetCurrentArea()
 		if (!maxz)
 			a.CheckNextZ()
-			world << maxz
 		if (elevator_z == destination)
 			state = ELEVATOR_STOP
 			for (var/obj/electricity/machine/door/elevator_door/d)
