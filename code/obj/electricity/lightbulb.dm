@@ -4,7 +4,7 @@
 	layer = ABOVE_MOBS
 	health = 10
 	required_watts = 50
-	luminosity = 4
+	luminosity = 5
 	var/isBroken = 0
 	var/on_state = ""
 	var/off_state = "OFF"
