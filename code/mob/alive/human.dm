@@ -14,7 +14,7 @@
 	/mob/living/human/Login()
 		if(!loc)
 			world << "[usr] has joined."
-			loc = locate(/turf/floor/generic/start)
+			loc = locate(3, 3, 1)
 			looper.schedule(src)
 		else
 			world << "[usr] has reconnected."

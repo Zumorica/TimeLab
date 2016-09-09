@@ -27,6 +27,11 @@
 #define MUTE	   2
 #define GAGGED	   3
 
+#define CANT_MOVE	   0
+#define CAN_MOVE  	   1
+#define MOVE_COOLDOWN  2
+#define BUCKLED	  	   3
+
 #define font_width 10
 
 // Not a define, but close enough.
