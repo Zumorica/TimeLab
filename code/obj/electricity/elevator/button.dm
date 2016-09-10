@@ -10,8 +10,6 @@
 	var/off_state = "OFF"
 
 	/obj/electricity/elevator/button/Interacted(mob/other)
-		if(other.life_state == DEAD)
-			return
 		if (!elevator.GoToFloor(other.z))
 			if (other.z == elevator.elevator_z)
 				other << "The elevator is already here!"
