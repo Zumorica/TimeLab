@@ -19,19 +19,19 @@
 			health -= damage * damage_factor
 			if (health <= 0)
 				health = 0
+				life_state = DEAD
 				Died()
 
 	/atom/proc/attack(atom/other)
-		if (attack_state == CAN_ATTACK)
+		if (attack_state == CAN_ATTACK && life_state == ALIVE)
 			other.damage(rand(0, 10) * attack_factor)
 			if(src == other)
 				view() << "[src] attacks \himself."
 			else
 				view() << "[src] attacks [other]."
 			attack_state = CANT_ATTACK
-			if(life_state != DEAD)
-				spawn(attack_delay)
-					attack_state = CAN_ATTACK
+			spawn(attack_delay)
+				attack_state = CAN_ATTACK
 
 	/atom/proc/Died()															// Called when an atom dies. (His health reaches 0)
 		return
