@@ -10,7 +10,7 @@
 	var/off_state = "OFF"
 
 	/obj/electricity/elevator/controls/Interacted(mob/other)
-		if(other.life_status == DEAD)
+		if(other.life_state == DEAD)
 			return
 		if (elevator.state == ELEVATOR_UP || elevator.state == ELEVATOR_DOWN)
 			other << "The elevator is currently busy! It is currently on floor [elevator.elevator_z]..."

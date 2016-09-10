@@ -22,7 +22,7 @@
 		switch(move_state)
 			if (CAN_MOVE)
 				move_state = CANT_MOVE
-				if(life_status != DEAD)
+				if(life_state != DEAD)
 					spawn (move_delay)
 						move_state = CAN_MOVE
 					return ..()

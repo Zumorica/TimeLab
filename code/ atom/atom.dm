@@ -9,7 +9,7 @@
 	var/attack_delay = 7														// Delays attacks.
 	var/attack_state = CAN_ATTACK
 	var/speak_state = CAN_SPEAK
-	var/life_status = ALIVE
+	var/life_state = ALIVE
 
 	/atom/proc/GetArea()														// Returns the atom's area.
 		return
@@ -29,7 +29,7 @@
 			else
 				view() << "[src] attacks [other]."
 			attack_state = CANT_ATTACK
-			if(life_status != DEAD)
+			if(life_state != DEAD)
 				spawn(attack_delay)
 					attack_state = CAN_ATTACK
 
