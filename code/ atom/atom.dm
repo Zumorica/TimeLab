@@ -29,8 +29,9 @@
 			else
 				view() << "[src] attacks [other]."
 			attack_state = CANT_ATTACK
-			spawn(attack_delay)
-				attack_state = CAN_ATTACK
+			if(life_status != DEAD)
+				spawn(attack_delay)
+					attack_state = CAN_ATTACK
 
 	/atom/proc/Died()															// Called when an atom dies. (His health reaches 0)
 		return

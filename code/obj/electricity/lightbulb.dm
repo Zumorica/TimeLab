@@ -36,6 +36,8 @@
 		set src in view(1)
 		set name = "Break"
 		name = "Broken lightbulb"
+		if(usr.life_status == DEAD)
+			return
 		if (isBroken == 1)
 			usr << "The lightbulb is already broken, silly!"
 			view(3) << "[usr.name] attempts to break a broken lightbulb..."

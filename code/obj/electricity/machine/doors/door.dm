@@ -13,7 +13,7 @@
 	var/close_delay = 30
 
 	/obj/electricity/machine/door/Interacted(mob/other)
-		if (istype(other, /mob/living/human) && get_dist(src, other) <= 1)
+		if (istype(other, /mob/living/human) && get_dist(src, other) <= 1 && other.life_status != DEAD)
 			if (state == DOOR_CLOSED)
 				open()
 		..(other)
