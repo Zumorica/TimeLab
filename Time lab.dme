@@ -14,6 +14,7 @@
 
 // BEGIN_INCLUDE
 #include "code\define.dm"
+#include "code\game.dm"
 #include "code\looper.dm"
 #include "code\utils.dm"
 #include "code\world.dm"
@@ -25,7 +26,9 @@
 #include "code\client\client.dm"
 #include "code\datum\datum.dm"
 #include "code\datum\controller\elevator.dm"
+#include "code\datum\controller\event\event.dm"
 #include "code\mob\mob.dm"
+#include "code\mob\new_player.dm"
 #include "code\mob\living\human.dm"
 #include "code\obj\obj.dm"
 #include "code\obj\electricity\electricity.dm"
