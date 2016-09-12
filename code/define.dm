@@ -38,6 +38,11 @@
 #define DEAD 0
 #define ALIVE 1
 
+#define PRE_ROUND     0
+#define PLAYING       1
+#define ROUND_FAIL    2
+#define ROUND_SUCCESS 3
+
 #define font_width 10
 
 // Not a define, but close enough.
