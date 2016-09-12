@@ -2,7 +2,7 @@
 	fps = 30
 	icon_size = 32
 	view = "16x16"
-	mob = /mob/living/human
+	mob = /mob/new_player
 	area = /area/underground
 
 	/world/New()

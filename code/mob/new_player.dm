@@ -1,0 +1,1 @@
+/mob/new_player
