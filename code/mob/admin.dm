@@ -4,6 +4,6 @@
 	/mob/admin/verb/Start_round()
 		set category = "Admin"
 		if (!game.finished_loading)
-			usr << "<color=#FF0000>The game hasn't finished loading yet!</color>"
+			usr << "<font color=red>The game hasn't finished loading yet!</font>"
 		else if (game.game_state == PRE_ROUND)
 			game.start_round()
