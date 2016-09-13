@@ -14,23 +14,24 @@ var/game/game = new/game
 	/game/Update()
 		switch (game_state)
 			if (PRE_ROUND)
-				if (!ranks_set && clients[1])
+				if (!ranks_set && clients.len)
 					spawn() set_ranks()
 				if (ranks_set)
 					finished_loading = 1
 
 	/game/proc/set_ranks()
-		var/tmp/raw = file2text("config/admins.txt")
-		var/list/ranks = TextSplit(raw, "\n")
-		for (var/rank in ranks)
-			var/list/split = TextSplit(rank, "=")
-			if (split)
-				var/client/c = find_user(split[1])
-				if (c)
-					c.rank = split[2]
-					if (split[2] == "admin")
-						c.verbs += typesof(/mob/admin/verb)
-		ranks_set = 1
+		if (clients.len)
+			var/tmp/raw = file2text("config/admins.txt")
+			var/list/ranks = TextSplit(raw, "\n")
+			for (var/rank in ranks)
+				var/list/split = TextSplit(rank, "=")
+				if (split)
+					var/client/c = find_user(split[1])
+					if (c)
+						c.rank = split[2]
+						if (split[2] == "admin")
+							c.verbs += typesof(/mob/admin/verb)
+			ranks_set = 1
 
 	/game/proc/find_user(var/name)
 		for (var/client/c in clients)
