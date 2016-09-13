@@ -12,14 +12,17 @@
 
 	/mob/living/human/Login()
 		if(!loc)
-			world << "[usr] has joined."
 			looper.schedule(usr)
 			loc = locate(3, 3, 1)
-		else
-			world << "[usr] has reconnected."
 		client.screen += world_hud["Main HUD"]													// Displays HUDS.
 		client.screen += world_hud["HealthDisplay"]
 		client.screen += world_hud["Intent"]
+		..()
+
+	/mob/living/human/Logout()
+		client.screen -= world_hud["Main HUD"]
+		client.screen -= world_hud["HealthDisplay"]
+		client.screen -= world_hud["Intent"]
 		..()
 
 	/mob/living/human/Died()
