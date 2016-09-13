@@ -15,6 +15,7 @@
 // BEGIN_INCLUDE
 #include "code\define.dm"
 #include "code\game.dm"
+#include "code\inventory.dm"
 #include "code\looper.dm"
 #include "code\utils.dm"
 #include "code\world.dm"
@@ -44,6 +45,8 @@
 #include "code\obj\HUD\HUDBase.dm"
 #include "code\obj\HUD\HUDButtons.dm"
 #include "code\obj\HUD\HUDText.dm"
+#include "code\obj\storable\ball.dm"
+#include "code\obj\storable\storable.dm"
 #include "code\turf\turf.dm"
 #include "code\turf\floor\floor.dm"
 #include "code\turf\wall\wall.dm"

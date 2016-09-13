@@ -10,7 +10,10 @@
 		HUDS()																								// Creates HUDs.
 
 	/world/proc/HUDS()
-		CREATE_HUD(1,2,13,1, m_id="Main HUD")
+		CREATE_BUTTON("8, 1", "LeftHand", "HLeft")
+		CREATE_BUTTON("8, 1", "LeftHandActive", "AHLeft")
+		CREATE_BUTTON("9, 1", "RightHand", "HRight")
+		CREATE_BUTTON("9, 1", "RightHandActive", "AHRight")
 		CREATE_STATUS("15,12", "Health", "HealthDisplay")
 		CREATE_STATUS("15,12", "Health1", "HealthDisplay1")
 		CREATE_STATUS("15,12", "Health2", "HealthDisplay2")

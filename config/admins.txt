@@ -1,1 +1,2 @@
 ZumoDeManzana=admin
+Krauss=admin

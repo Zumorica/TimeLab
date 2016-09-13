@@ -17,7 +17,8 @@
 			loc = locate(3, 3, 1)
 		else
 			world << "[usr] has reconnected."
-		client.screen += world_hud["Main HUD"]													// Displays HUDS.
+		client.screen += world_hud["HLeft"]														// Displays HUDS.
+		client.screen += world_hud["AHRight"]
 		client.screen += world_hud["HealthDisplay"]
 		client.screen += world_hud["Intent"]
 		..()
@@ -145,6 +146,18 @@
 				SwitchIntention()
 			if("IntentButton1")
 				SwitchIntention()
+			if("RightHand")
+				client.screen -= world_hud["HRight"]
+				client.screen += world_hud["AHRight"]
+				client.screen -= world_hud["AHLeft"]
+				client.screen += world_hud["HLeft"]
+				inventory.active_hand = "right"
+			if("LeftHand")
+				client.screen -= world_hud["HLeft"]
+				client.screen += world_hud["AHLeft"]
+				client.screen -= world_hud["AHRight"]
+				client.screen += world_hud["HRight"]
+				inventory.active_hand = "left"
 			else
 				return
 
