@@ -15,7 +15,7 @@
 	/client/verb/Rank()
 		usr << rank
 
-	/client/verb/Say(message as text)
+	/client/verb/OOC(message as text)
 		set category = "OOC"
 		for (var/client/c in game.clients)
 			c << "<b>(OOC) [usr]:</b> [message]"
