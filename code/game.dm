@@ -45,3 +45,4 @@ var/game/game = new/game
 				var/mob/living/human/h = new/mob/living/human
 				h.name = "[c]"
 				h.client = c
+				c.screen -= title

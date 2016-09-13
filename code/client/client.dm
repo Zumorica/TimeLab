@@ -4,6 +4,7 @@
 	/client/New()
 		spawn ()
 			game.clients.Add(src)
+		screen += title
 		..()
 
 	/client/Click(other, location, control, params)

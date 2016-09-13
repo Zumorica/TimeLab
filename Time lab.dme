@@ -32,6 +32,7 @@
 #include "code\mob\new_player.dm"
 #include "code\mob\living\human.dm"
 #include "code\obj\obj.dm"
+#include "code\obj\title.dm"
 #include "code\obj\electricity\electricity.dm"
 #include "code\obj\electricity\lightbulb.dm"
 #include "code\obj\electricity\lightswitch.dm"
