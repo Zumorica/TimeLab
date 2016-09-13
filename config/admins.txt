@@ -1,1 +1,1 @@
-ZumoDeManzana=Owner=memerodeverdad
+ZumoDeManzana=admin

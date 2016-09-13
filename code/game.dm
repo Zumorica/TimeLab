@@ -16,6 +16,8 @@ var/game/game = new/game
 			if (PRE_ROUND)
 				if (!ranks_set && clients[1])
 					spawn() set_ranks()
+				if (ranks_set)
+					finished_loading = 1
 
 	/game/proc/set_ranks()
 		var/tmp/raw = file2text("config/admins.txt")
@@ -26,6 +28,8 @@ var/game/game = new/game
 				var/client/c = find_user(split[1])
 				if (c)
 					c.rank = split[2]
+					if (split[2] == "admin")
+						c.verbs += typesof(/mob/admin/verb)
 		ranks_set = 1
 
 	/game/proc/find_user(var/name)
@@ -33,3 +37,11 @@ var/game/game = new/game
 			if ("[c]" == name)
 				return c
 		return 0
+
+	/game/proc/start_round()
+		if (finished_loading)
+			game_state = PLAYING
+			for (var/client/c in clients)
+				var/mob/living/human/h = new/mob/living/human
+				h.name = "[c]"
+				h.client = c

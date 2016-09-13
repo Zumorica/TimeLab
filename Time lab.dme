@@ -27,6 +27,7 @@
 #include "code\datum\datum.dm"
 #include "code\datum\controller\elevator.dm"
 #include "code\datum\controller\event\event.dm"
+#include "code\mob\admin.dm"
 #include "code\mob\mob.dm"
 #include "code\mob\new_player.dm"
 #include "code\mob\living\human.dm"
