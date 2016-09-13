@@ -15,6 +15,11 @@
 	/client/verb/Rank()
 		usr << rank
 
+	/client/verb/Say(message as text)
+		set category = "OOC"
+		for (var/client/c in game.clients)
+			c << "<b>(OOC) [usr]:</b> [message]"
+
 	/client/Del()
 		game.clients.Remove(src)
 		..()
