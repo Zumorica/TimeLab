@@ -1,6 +1,6 @@
 /mob
 	step_size = 32																// Makes mobs move an entire tile per step.
-	var/list/inventory_items = new/list()
+	var/list/inventory_items = list("right_hand" = null, "left_hand" = null)
 
 /mob/living
 	var/intention = NO_INTENTION
