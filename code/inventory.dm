@@ -4,7 +4,7 @@ var/inventory/inventory = new/inventory
   var/layer = 22
   var/active_hand = "right_hand"
   var/list/inventory_slots
-  inventory_slots = list("right_hand", "left_hand")
+  inventory_slots = list("right_hand", "left_hand", "right_pocket", "left_pocket")
 
   /inventory/proc/addItem(mob/M, obj/storable/I)
     if(!M.inventory_items[active_hand])
@@ -30,3 +30,18 @@ var/inventory/inventory = new/inventory
     I.layer = 3
     I.loc = M.loc
     M.client.screen -= I
+
+  /inventory/proc/change(mob/M, i_slot)
+    var/obj/storable/I = M.inventory_items[active_hand]
+    if(!M.inventory_items[i_slot] && M.inventory_items[active_hand])
+      M.inventory_items[i_slot] = I
+      M.inventory_items[active_hand] = null
+      switch(i_slot)
+        if("left_pocket")
+          I.screen_loc = "10, 1"
+        if("right_pocket")
+          I.screen_loc = "11, 1"
+        else
+          return
+    else
+      return

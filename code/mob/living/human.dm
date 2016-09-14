@@ -19,11 +19,17 @@
 
 		client.screen += world_hud["HLeft"]														// Displays HUDS.
 		client.screen += world_hud["AHRight"]
+		client.screen += world_hud["Pocket"]
+		client.screen += world_hud["Pocket1"]
 		client.screen += world_hud["HealthDisplay"]
 		client.screen += world_hud["Intent"]
 		..()
 
 	/mob/living/human/Logout()
+		client.screen -= world_hud["HLeft"]
+		client.screen -= world_hud["AHRight"]
+		client.screen -= world_hud["Pocket"]
+		client.screen -= world_hud["Pocket1"]
 		client.screen -= world_hud["HealthDisplay"]
 		client.screen -= world_hud["Intent"]
 		..()
@@ -163,6 +169,10 @@
 				client.screen -= world_hud["AHRight"]
 				client.screen += world_hud["HRight"]
 				inventory.active_hand = "left_hand"
+			if("Pocket")
+				inventory.change(usr, "left_pocket")
+			if("Pocket1")
+				inventory.change(usr, "right_pocket")
 			else
 				return
 
