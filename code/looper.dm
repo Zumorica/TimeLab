@@ -1,4 +1,4 @@
-// Not to be confused with in-game time loops. Based on a snippet by Rushnut.
+// Not to be confused with in-game time loops.
 
 var/looper/looper = new/looper													// Creates a global scheduler/looper.
 

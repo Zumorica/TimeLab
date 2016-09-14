@@ -2,7 +2,7 @@
 	luminosity = 5
 
 	/area/elevator/New()
-		name = "Elevator on floor [z]"
+		name = "Elevator on basement [z]"
 		elevator.elevators.Add(src)
 		return ..()
 
@@ -29,9 +29,9 @@
 				a.opacity = 0
 				other.loc = oloc
 				elevator.elevator_z = oloc.z
-				other << "<b> Floor:</b><big> [elevator.elevator_z] </big>"
+				other << "<b> Basement:</b><big> [elevator.elevator_z] </big>"
 			else
-				world << "<red>Error!</red> [a] is not elevator..."
+				world.log << "<red>Error!</red> [a] is not elevator..."
 		opacity = 1
 
 	/area/elevator/proc/floor_down()
@@ -46,7 +46,7 @@
 					a.opacity = 0
 					other.loc = oloc
 					elevator.elevator_z = oloc.z
-					other << "<b> Floor:</b><big> [elevator.elevator_z] </big>"
+					other << "<b> Basement:</b><big> [elevator.elevator_z] </big>"
 				else
-					world << "<red>Error!</red> [a] is not elevator..."
+					world.log << "<red>Error!</red> [a] is not elevator..."
 			opacity = 1
