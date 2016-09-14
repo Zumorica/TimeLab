@@ -2,6 +2,8 @@ var/game/game = new/game
 
 /game
 	var/finished_loading = 0
+	var/round_eta = 60
+	var/can_substract = 1
 	var/ranks_set = 0
 	var/game_state = PRE_ROUND
 	var/list/clients = list()
@@ -16,8 +18,20 @@ var/game/game = new/game
 			if (PRE_ROUND)
 				if (!ranks_set && clients.len)
 					spawn() set_ranks()
+
 				if (ranks_set)
 					finished_loading = 1
+
+				if (finished_loading)
+					if (round_eta && can_substract)
+						round_eta -= 1
+						can_substract = 0
+						if (round_eta <= 0)
+							round_eta = 0
+						spawn(10) can_substract = 1
+
+					if (round_eta == 0)
+						start_round()
 
 	/game/proc/set_ranks()
 		if (clients.len)
