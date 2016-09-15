@@ -36,6 +36,7 @@
 
 	/mob/living/human/Died()
 		src.transform = turn(src.transform, 90)
+		density = 0
 		speak_state = CANT_SPEAK
 		attack_state = CANT_ATTACK
 		move_state = CANT_MOVE
@@ -106,15 +107,6 @@
 						speak_state = GAGGED
 				else
 					return
-
-	/mob/living/human/verb/Who()																// Lists online players.
-		var/mob/M
-		usr << "Online players:"
-		for(M in world)
-			if(!M.key)
-				continue
-			else
-				usr << M.key
 
 	/mob/living/human/verb/Die()
 		damage(max_health)
