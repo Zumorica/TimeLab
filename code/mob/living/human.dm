@@ -162,9 +162,11 @@
 				client.screen += world_hud["HRight"]
 				inventory.active_hand = "left_hand"
 			if("Pocket")
-				inventory.change(usr, "left_pocket")
+				if(usr.life_state == ALIVE)
+					inventory.change(usr, "left_pocket")
 			if("Pocket1")
-				inventory.change(usr, "right_pocket")
+				if(usr.life_state == ALIVE)
+					inventory.change(usr, "right_pocket")
 			else
 				return
 
