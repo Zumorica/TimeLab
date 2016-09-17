@@ -7,6 +7,7 @@ var/game/game = new/game
 	var/ranks_set = 0
 	var/game_state = PRE_ROUND
 	var/list/clients = list()
+	var/list/events = list()
 
 	/game/New()
 		spawn(10)
