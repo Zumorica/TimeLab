@@ -1,8 +1,8 @@
 /datum/controller/event/earthquake
 	name = "Earthquake"
 	codename = "earthquake"
-	event_eta = 3
-	finish_eta = 5
+	event_eta = 120 * rand(1, 60)
+	finish_eta = 5 * rand(1, 12)
 
 	/datum/controller/event/earthquake/Start()
 		for (var/mob/living/l in world)
