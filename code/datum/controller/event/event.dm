@@ -33,6 +33,7 @@
 				Start()
 
 		if (game.game_state == PLAYING && event_started && !event_finished)
+			Update_event()
 			if (finish_eta > 0 && can_substract_finish)
 				finish_eta -= 1
 				can_substract_finish = 0
@@ -44,7 +45,10 @@
 				event_finished = 1
 				Finished()
 
-	/datum/controller/event/proc/Start()										// To be overriden by events.
+	/datum/controller/event/proc/Start()										// For when events start.
+		return
+
+	/datum/controller/event/proc/Update_event()									// This proc is called as long as the event is active.
 		return
 
 	/datum/controller/event/proc/Finished()										// For when events are finished.
