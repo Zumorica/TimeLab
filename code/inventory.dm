@@ -6,7 +6,7 @@ var/inventory/inventory = new/inventory
   var/list/inventory_slots
   inventory_slots = list("right_hand", "left_hand", "right_pocket", "left_pocket")
 
-  /inventory/proc/addItem(mob/M, obj/storable/I)
+  /inventory/proc/addItem(mob/M, obj/item/I)
     if(!M.inventory_items[active_hand])
       for(var/x in M.inventory_items)
         if(M.inventory_items[x] == I)
@@ -22,7 +22,7 @@ var/inventory/inventory = new/inventory
     else
       return
 
-  /inventory/proc/dropItem(mob/M, obj/storable/I)
+  /inventory/proc/dropItem(mob/M, obj/item/I)
     M.contents -= I
     for(var/x in M.inventory_items)
       if(M.inventory_items[x] == I)
@@ -32,7 +32,7 @@ var/inventory/inventory = new/inventory
     M.client.screen -= I
 
   /inventory/proc/change(mob/M, i_slot)
-    var/obj/storable/I = M.inventory_items[active_hand]
+    var/obj/item/I = M.inventory_items[active_hand]
     if(!M.inventory_items[i_slot] && M.inventory_items[active_hand])
       M.inventory_items[i_slot] = I
       M.inventory_items[active_hand] = null

@@ -25,7 +25,7 @@
 "ay" = (/obj/electricity/lightbulb/west,/turf/floor/generic/black,/area/elevator)
 "az" = (/obj/electricity/lightbulb/east,/turf/floor/generic/black,/area/elevator)
 "aA" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
-"aB" = (/obj/storable/ball,/turf/floor/generic/wooden,/area/underground)
+"aB" = (/obj/item/ball,/turf/floor/generic/wooden,/area/underground)
 "aC" = (/obj/electricity/lightbulb/north,/turf/floor/generic/wooden,/area/underground)
 "aD" = (/obj/electricity/lightbulb/south,/turf/floor/generic/wooden,/area/underground)
 "aE" = (/obj/electricity/elevator/button/south,/turf/floor/generic/wooden,/area/underground)
