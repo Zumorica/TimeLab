@@ -154,13 +154,13 @@
 				client.screen += world_hud["AHRight"]
 				client.screen -= world_hud["AHLeft"]
 				client.screen += world_hud["HLeft"]
-				inventory.active_hand = "right_hand"
+				active_hand = "right_hand"
 			if("LeftHand")
 				client.screen -= world_hud["HLeft"]
 				client.screen += world_hud["AHLeft"]
 				client.screen -= world_hud["AHRight"]
 				client.screen += world_hud["HRight"]
-				inventory.active_hand = "left_hand"
+				active_hand = "left_hand"
 			if("Pocket")
 				if(usr.life_state == ALIVE)
 					inventory.change(usr, "left_pocket")
