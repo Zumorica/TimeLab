@@ -13,7 +13,7 @@
 	var/close_delay = 30
 
 	/obj/electricity/machine/door/Interacted(mob/other)
-		if (istype(other, /mob/living/human) && get_dist(src, other) <= 1)
+		if (istype(other, /mob/living/human) && get_dist(src, other) <= 1 && !other.inventory_items[other.active_hand])
 			if (state == DOOR_CLOSED)
 				open()
 		..(other)
@@ -46,3 +46,6 @@
 				state = DOOR_CLOSED
 				density = 1
 				opacity = 1
+
+	/obj/electricity/machine/door/Interacted_Item(mob/other)
+		view(6) << "[other] hits the door with [other.inventory_items[other.active_hand]]."

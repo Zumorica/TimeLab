@@ -40,7 +40,11 @@
 		return
 
 	/atom/proc/Interacted(mob/other)											// Called when a mob interacts with another atom.
-		return
+		if (istype(other, /mob/living/human) && get_dist(src, other) <= 1 && other.inventory_items[other.active_hand])
+			src.Interacted_Item(other)
 
 	/atom/proc/Bumped(atom/other)												// Called when you bump into other objects / other objects bump into you.
+		return
+
+	/atom/proc/Interacted_Item(mob/other)								// Called when a mob interacts with an object while holding an item.
 		return
