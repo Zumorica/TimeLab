@@ -3,7 +3,7 @@ var/inventory/inventory = new/inventory
 /inventory
   var/layer = 22
   var/list/inventory_slots
-  inventory_slots = list("right_hand", "left_hand", "right_pocket", "left_pocket")
+  inventory_slots = list("right_hand", "left_hand", "right_pocket" = list(1), "left_pocket" = list(1))  // Each inventory slot contains a list of sizes it can fit.
 
   /inventory/proc/addItem(mob/M, obj/item/I)
     if(!M.inventory_items[M.active_hand])
@@ -31,7 +31,10 @@ var/inventory/inventory = new/inventory
 
   /inventory/proc/change(mob/M, i_slot)
     var/obj/item/I = M.inventory_items[M.active_hand]
-    if(!M.inventory_items[i_slot] && M.inventory_items[M.active_hand])
+    if(!M.inventory_items[i_slot] && I)
+      if(!(I.size in inventory_slots[i_slot]))
+        M << "This item is too big to fit in there!"
+        return
       M.inventory_items[i_slot] = I
       M.inventory_items[M.active_hand] = null
       switch(i_slot)
