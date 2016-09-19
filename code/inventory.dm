@@ -21,11 +21,10 @@ var/inventory/inventory = new/inventory
     else
       return
 
-  /inventory/proc/dropItem(mob/M, obj/item/I)
+  /inventory/proc/dropItem(mob/M)
+    var/obj/item/I = M.inventory_items[M.active_hand]
     M.contents -= I
-    for(var/x in M.inventory_items)
-      if(M.inventory_items[x] == I)
-        M.inventory_items[x] = null
+    M.inventory_items[M.active_hand] = null
     I.layer = 3
     I.loc = M.loc
     M.client.screen -= I

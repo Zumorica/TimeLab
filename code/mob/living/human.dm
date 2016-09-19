@@ -23,6 +23,8 @@
 		client.screen += world_hud["Pocket1"]
 		client.screen += world_hud["HealthDisplay"]
 		client.screen += world_hud["Intent"]
+		client.screen += world_hud["DropButton"]
+		client.screen += world_hud["ThrowButton"]
 		..()
 
 	/mob/living/human/Logout()
@@ -167,6 +169,9 @@
 			if("Pocket1")
 				if(usr.life_state == ALIVE)
 					inventory.change(usr, "right_pocket")
+			if("Drop")
+				if(usr.life_state == ALIVE && usr.inventory_items[active_hand])
+					inventory.dropItem(usr)
 			else
 				return
 

@@ -22,3 +22,5 @@
 		CREATE_STATUS("16,12", "Health3", "HealthDisplay3")
 		CREATE_BUTTON("15, SOUTH", "IntentButton", "Intent")
 		CREATE_BUTTON("15, SOUTH", "IntentButton1", "Intent1")
+		CREATE_BUTTON("15, SOUTH", "Drop", "DropButton")
+		CREATE_BUTTON("15, SOUTH", "Throw", "ThrowButton")
