@@ -1,5 +1,10 @@
 /mob/new_player
 	/mob/new_player/Stat()
+		if (client.will_join)
+			stat("Joined game:", "Yes!")
+		else
+			stat("Joined game:", "No...")
+
 		switch (game.game_state)
 			if (PRE_ROUND)
 				stat("Round state:", "Pre-round.")
@@ -15,3 +20,10 @@
 				stat("Round start ETA:", game.round_eta)
 			else
 				stat("Round start ETA:", "DELAYED.")
+
+	/mob/new_player/verb/Join_game()
+		if (game.game_state == PRE_ROUND)
+			client.will_join = 1
+		else if (game.game_state == PLAYING)
+			client.will_join = 1
+			game.handle_new_human(client)

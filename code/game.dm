@@ -6,6 +6,7 @@ var/game/game = new/game
 	var/can_substract = 1
 	var/ranks_set = 0
 	var/game_state = PRE_ROUND
+	var/midround_join = 1
 	var/list/clients = list()
 	var/list/events = list()
 
@@ -54,11 +55,15 @@ var/game/game = new/game
 				return c
 		return 0
 
+	/game/proc/handle_new_human(var/client/c)
+		var/mob/living/human/h = new/mob/living/human
+		h.name = "[c]"
+		h.client = c
+		c.screen -= title
+
 	/game/proc/start_round()
 		if (finished_loading)
 			game_state = PLAYING
 			for (var/client/c in clients)
-				var/mob/living/human/h = new/mob/living/human
-				h.name = "[c]"
-				h.client = c
-				c.screen -= title
+				if (c.will_join)
+					handle_new_human(c)

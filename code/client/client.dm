@@ -1,5 +1,6 @@
 /client
 	var/rank = "User"
+	var/will_join = 0
 
 	/client/New()
 		spawn ()
