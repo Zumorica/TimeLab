@@ -14,10 +14,18 @@
 		for (var/mob/living/l in world)
 			l << "The ground shakes violently!"
 
+		..()
+
 	/datum/controller/event/earthquake/Update_event()
 		for (var/client/c in game.clients)
 			c.eye = locate(c.mob)
 			c.eye = locate(c.mob.x + rand(-1, 1), c.mob.y + rand(-1, 1), c.mob.z)
+
+		for (var/obj/electricity/lightbulb/l in world)
+			if (prob(0.10))
+				l.damage(5)
+
+		..()
 
 	/datum/controller/event/earthquake/Finished()
 		for (var/client/c in game.clients)
@@ -25,3 +33,5 @@
 
 		for (var/mob/living/l in world)
 			l << "The ground stops shaking..."
+
+		..()
