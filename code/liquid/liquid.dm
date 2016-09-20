@@ -12,59 +12,60 @@
 			looper.schedule(src)
 		..()
 
-	/liquid/Update_icon()
-		if (game.game_state != PRE_ROUND)
-			var/tmp/icon/i = new(icon)
-			switch (flood_level)
-				if (8)
-					i.ChangeOpacity(2)
-					opacity = 1
-					layer = ABOVE_MOBS
-					icon = i
-				if (7)
-					i.ChangeOpacity(2)
-					i.ChangeOpacity(1)
-					layer = ABOVE_MOBS
-					opacity = 1
-					icon = i
-				if (6)
-					i.ChangeOpacity(2)
-					i.ChangeOpacity(0.95)
-					opacity = 0
-					layer = ABOVE_MOBS
-					icon = i
-				if (5)
-					i.ChangeOpacity(2)
-					i.ChangeOpacity(0.85)
-					opacity = 0
-					layer = ABOVE_MOBS
-					icon = i
-				if (4)
-					i.ChangeOpacity(2)
-					i.ChangeOpacity(0.75)
-					opacity = 0
-					layer = BELOW_MOBS
-					icon = i
-				if (3)
-					i.ChangeOpacity(2)
-					i.ChangeOpacity(0.70)
-					opacity = 0
-					layer = BELOW_MOBS
-					icon = i
-				if (2)
-					i.ChangeOpacity(2)
-					i.ChangeOpacity(0.65)
-					opacity = 0
-					layer = BELOW_MOBS
-					icon = i
-				if (1)
-					i.ChangeOpacity(2)
-					i.ChangeOpacity(0.5)
-					opacity = 0
-					layer = BELOW_MOBS
-					icon = i
-				if (0)
-					Del()
+	// /liquid/Update_icon()
+		// if (game.game_state != PRE_ROUND)
+		// 	var/tmp/icon/i = new(icon)
+		// 	switch (flood_level)
+		// 		if (8)
+		// 			i.ChangeOpacity(2)
+		// 			opacity = 1
+		// 			layer = ABOVE_MOBS
+		// 			icon = i
+		// 		if (7)
+		// 			i.ChangeOpacity(2)
+		// 			i.ChangeOpacity(1)
+		// 			layer = ABOVE_MOBS
+		// 			opacity = 1
+		// 			icon = i
+		// 		if (6)
+		// 			i.ChangeOpacity(2)
+		// 			i.ChangeOpacity(0.95)
+		// 			opacity = 0
+		// 			layer = ABOVE_MOBS
+		// 			icon = i
+		// 		if (5)
+		// 			i.ChangeOpacity(2)
+		// 			i.ChangeOpacity(0.85)
+		// 			opacity = 0
+		// 			layer = ABOVE_MOBS
+		// 			icon = i
+		// 		if (4)
+		// 			i.ChangeOpacity(2)
+		// 			i.ChangeOpacity(0.75)
+		// 			opacity = 0
+		// 			layer = BELOW_MOBS
+		// 			icon = i
+		// 		if (3)
+		// 			i.ChangeOpacity(2)
+		// 			i.ChangeOpacity(0.70)
+		// 			opacity = 0
+		// 			layer = BELOW_MOBS
+		// 			icon = i
+		// 		if (2)
+		// 			i.ChangeOpacity(2)
+		// 			i.ChangeOpacity(0.65)
+		// 			opacity = 0
+		// 			layer = BELOW_MOBS
+		// 			icon = i
+		// 		if (1)
+		// 			i.ChangeOpacity(2)
+		// 			i.ChangeOpacity(0.5)
+		// 			opacity = 0
+		// 			layer = BELOW_MOBS
+		// 			icon = i
+		// 		if (0)
+		// 			Del()
+		// 	i.Del()
 
 	/liquid/Update()
 		name = "[flood_level]"
