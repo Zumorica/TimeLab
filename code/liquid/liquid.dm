@@ -14,7 +14,7 @@
 
 	/liquid/Update_icon()
 		if (game.game_state != PRE_ROUND)
-			var/icon/i = new(icon)
+			var/tmp/icon/i = new(icon)
 			switch (flood_level)
 				if (8)
 					i.ChangeOpacity(2)
@@ -31,16 +31,19 @@
 					i.ChangeOpacity(2)
 					i.ChangeOpacity(0.95)
 					opacity = 0
+					layer = ABOVE_MOBS
 					icon = i
 				if (5)
 					i.ChangeOpacity(2)
 					i.ChangeOpacity(0.85)
 					opacity = 0
+					layer = ABOVE_MOBS
 					icon = i
 				if (4)
 					i.ChangeOpacity(2)
 					i.ChangeOpacity(0.75)
 					opacity = 0
+					layer = BELOW_MOBS
 					icon = i
 				if (3)
 					i.ChangeOpacity(2)
@@ -85,41 +88,65 @@
 					if (istype(f_north))
 						spawn (flood_timer)
 							if (flood_level > 1)
-								var/liquid/l = new(src)
-								l.loc = locate(x, y + 1, z)
-								l.flood_level = 1
-								flood_level -= 1
-								can_flood = 0
+								var/turf/l_loc = locate(x, y + 1, z)
+								var/can_move = 1
+								for (var/atom/o in l_loc.contents)
+									if (o.opacity == 1)
+										can_move = 0
+								if (can_move)
+									var/liquid/l = new(src)
+									l.loc = locate(x, y + 1, z)
+									l.flood_level = 1
+									flood_level -= 1
+									can_flood = 0
 								spawn(flood_timer)
 									can_flood = 1
 					if (istype(f_south))
 						spawn (flood_timer)
 							if (flood_level > 1)
-								var/liquid/l = new(src)
-								l.loc = locate(x, y - 1, z)
-								l.flood_level = 1
-								flood_level -= 1
-								can_flood = 0
+								var/turf/l_loc = locate(x, y - 1, z)
+								var/can_move = 1
+								for (var/atom/o in l_loc.contents)
+									if (o.opacity == 1)
+										can_move = 0
+								if (can_move)
+									var/liquid/l = new(src)
+									l.loc = locate(x, y - 1, z)
+									l.flood_level = 1
+									flood_level -= 1
+									can_flood = 0
 								spawn(flood_timer)
 									can_flood = 1
 					if (istype(f_west))
 						spawn (flood_timer)
 							if (flood_level > 1)
-								var/liquid/l = new(src)
-								l.loc = locate(x - 1, y, z)
-								l.flood_level = 1
-								flood_level -= 1
-								can_flood = 0
+								var/turf/l_loc = locate(x - 1, y, z)
+								var/can_move = 1
+								for (var/atom/o in l_loc.contents)
+									if (o.opacity == 1)
+										can_move = 0
+								if (can_move)
+									var/liquid/l = new(src)
+									l.loc = locate(x - 1, y, z)
+									l.flood_level = 1
+									flood_level -= 1
+									can_flood = 0
 								spawn(flood_timer)
 									can_flood = 1
 					if (istype(f_east))
 						spawn (flood_timer)
 							if (flood_level > 1)
-								var/liquid/l = new(src)
-								l.loc = locate(x + 1, y, z)
-								l.flood_level = 1
-								flood_level -= 1
-								can_flood = 0
+								var/turf/l_loc = locate(x + 1, y, z)
+								var/can_move = 1
+								for (var/atom/o in l_loc.contents)
+									if (o.opacity == 1)
+										can_move = 0
+								if (can_move)
+									var/liquid/l = new(src)
+									l.loc = locate(x + 1, y, z)
+									l.flood_level = 1
+									flood_level -= 1
+									can_flood = 0
 								spawn(flood_timer)
 									can_flood = 1
 
