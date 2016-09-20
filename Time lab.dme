@@ -29,6 +29,8 @@
 #include "code\datum\controller\elevator.dm"
 #include "code\datum\controller\event\earthquake.dm"
 #include "code\datum\controller\event\event.dm"
+#include "code\icon\icon.dm"
+#include "code\liquid\liquid.dm"
 #include "code\mob\admin.dm"
 #include "code\mob\mob.dm"
 #include "code\mob\new_player.dm"
