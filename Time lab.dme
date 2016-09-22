@@ -51,6 +51,8 @@
 #include "code\obj\HUD\HUDText.dm"
 #include "code\obj\item\ball.dm"
 #include "code\obj\item\item.dm"
+#include "code\obj\overlay\fire.dm"
+#include "code\obj\overlay\overlay.dm"
 #include "code\turf\turf.dm"
 #include "code\turf\floor\floor.dm"
 #include "code\turf\wall\wall.dm"
