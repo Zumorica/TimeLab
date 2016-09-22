@@ -32,6 +32,7 @@
 #include "code\icon\icon.dm"
 #include "code\liquid\lava.dm"
 #include "code\liquid\liquid.dm"
+#include "code\liquid\water.dm"
 #include "code\mob\admin.dm"
 #include "code\mob\mob.dm"
 #include "code\mob\new_player.dm"

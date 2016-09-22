@@ -143,5 +143,6 @@
 					can_flood = 1
 
 	/liquid/proc/On_atom_collision(var/atom/o)									// Called each tick an atom is colliding with the liquid.
-		o.On_liquid_collision(src)
+		if(o)
+			o.On_liquid_collision(src)
 		return
