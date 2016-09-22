@@ -1,74 +1,54 @@
 /liquid
 	parent_type = /obj
 	icon = 'images/liquid.dmi'
-	icon_state = ""
 	opacity = 0
 	var/flood_level = 8															// 8 should be maximum level.
 	var/can_flood = 1
-	var/flood_timer = 15
+	var/flood_timer = 5
 
 	/liquid/New()
 		spawn(5)
 			looper.schedule(src)
 		..()
 
-	// /liquid/Update_icon()
-		// if (game.game_state != PRE_ROUND)
-		// 	var/tmp/icon/i = new(icon)
-		// 	switch (flood_level)
-		// 		if (8)
-		// 			i.ChangeOpacity(2)
-		// 			opacity = 1
-		// 			layer = ABOVE_MOBS
-		// 			icon = i
-		// 		if (7)
-		// 			i.ChangeOpacity(2)
-		// 			i.ChangeOpacity(1)
-		// 			layer = ABOVE_MOBS
-		// 			opacity = 1
-		// 			icon = i
-		// 		if (6)
-		// 			i.ChangeOpacity(2)
-		// 			i.ChangeOpacity(0.95)
-		// 			opacity = 0
-		// 			layer = ABOVE_MOBS
-		// 			icon = i
-		// 		if (5)
-		// 			i.ChangeOpacity(2)
-		// 			i.ChangeOpacity(0.85)
-		// 			opacity = 0
-		// 			layer = ABOVE_MOBS
-		// 			icon = i
-		// 		if (4)
-		// 			i.ChangeOpacity(2)
-		// 			i.ChangeOpacity(0.75)
-		// 			opacity = 0
-		// 			layer = BELOW_MOBS
-		// 			icon = i
-		// 		if (3)
-		// 			i.ChangeOpacity(2)
-		// 			i.ChangeOpacity(0.70)
-		// 			opacity = 0
-		// 			layer = BELOW_MOBS
-		// 			icon = i
-		// 		if (2)
-		// 			i.ChangeOpacity(2)
-		// 			i.ChangeOpacity(0.65)
-		// 			opacity = 0
-		// 			layer = BELOW_MOBS
-		// 			icon = i
-		// 		if (1)
-		// 			i.ChangeOpacity(2)
-		// 			i.ChangeOpacity(0.5)
-		// 			opacity = 0
-		// 			layer = BELOW_MOBS
-		// 			icon = i
-		// 		if (0)
-		// 			Del()
-		// 	i.Del()
+	/liquid/Update_icon()
+		if (game.game_state != PRE_ROUND)
+			switch (flood_level)
+				if (8)
+					opacity = 1
+					layer = ABOVE_MOBS
+				if (7)
+					layer = ABOVE_MOBS
+					opacity = 1
+				if (6)
+					opacity = 0
+					layer = ABOVE_MOBS
+				if (5)
+					opacity = 0
+					layer = ABOVE_MOBS
+				if (4)
+					opacity = 0
+					layer = BELOW_MOBS
+				if (3)
+					opacity = 0
+					layer = BELOW_MOBS
+				if (2)
+					opacity = 0
+					layer = BELOW_MOBS
+				if (1)
+					opacity = 0
+					layer = BELOW_MOBS
+				if (0)
+					Del()
 
 	/liquid/Update()
 		name = "[flood_level]"
+
+		var/turf/actual = locate(x, y, z)
+		for (var/atom/a in actual.contents)
+			if (a.loc == loc && a != src)
+				spawn () On_atom_collision(a)
+
 		if (game.game_state != PRE_ROUND)
 			if (flood_level > 8)
 				flood_level = 8
@@ -95,7 +75,7 @@
 									if (o.opacity == 1)
 										can_move = 0
 								if (can_move)
-									var/liquid/l = new(src)
+									var/liquid/l = new type
 									l.loc = locate(x, y + 1, z)
 									l.flood_level = 1
 									flood_level -= 1
@@ -111,7 +91,7 @@
 									if (o.opacity == 1)
 										can_move = 0
 								if (can_move)
-									var/liquid/l = new(src)
+									var/liquid/l = new type
 									l.loc = locate(x, y - 1, z)
 									l.flood_level = 1
 									flood_level -= 1
@@ -127,7 +107,7 @@
 									if (o.opacity == 1)
 										can_move = 0
 								if (can_move)
-									var/liquid/l = new(src)
+									var/liquid/l = new type
 									l.loc = locate(x - 1, y, z)
 									l.flood_level = 1
 									flood_level -= 1
@@ -143,7 +123,7 @@
 									if (o.opacity == 1)
 										can_move = 0
 								if (can_move)
-									var/liquid/l = new(src)
+									var/liquid/l = new type
 									l.loc = locate(x + 1, y, z)
 									l.flood_level = 1
 									flood_level -= 1
@@ -161,3 +141,7 @@
 				can_flood = 0
 				spawn(flood_timer)
 					can_flood = 1
+
+	/liquid/proc/On_atom_collision(var/atom/o)									// Called each tick an atom is colliding with the liquid.
+		o.On_liquid_collision(src)
+		return
