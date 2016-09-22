@@ -25,6 +25,8 @@
 		client.screen += world_hud["Intent"]
 		client.screen += world_hud["DropButton"]
 		client.screen += world_hud["ThrowButton"]
+		client.screen += world_hud["Back"]
+		client.screen += world_hud["Keychain"]
 		..()
 
 	/mob/living/human/Logout()
@@ -169,6 +171,12 @@
 			if("Pocket1")
 				if(usr.life_state == ALIVE)
 					inventory.change(usr, "right_pocket")
+			if("Back")
+				if(usr.life_state == ALIVE)
+					inventory.change(usr, "back")
+			if("Keychain")
+				if(usr.life_state == ALIVE)
+					inventory.change(usr, "keychain")
 			if("Drop")
 				if(usr.life_state == ALIVE && usr.inventory_items[active_hand])
 					inventory.dropItem(usr)

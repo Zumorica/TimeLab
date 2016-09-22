@@ -10,6 +10,8 @@
 		HUDS()																								// Creates HUDs.
 
 	/world/proc/HUDS()
+		CREATE_BUTTON("6, SOUTH", "Keychain", "Keychain")
+		CREATE_BUTTON("7, SOUTH", "Back", "Back")
 		CREATE_BUTTON("8, SOUTH", "LeftHand", "HLeft")
 		CREATE_BUTTON("8, SOUTH", "LeftHandActive", "AHLeft")
 		CREATE_BUTTON("9, SOUTH", "RightHand", "HRight")

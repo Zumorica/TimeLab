@@ -3,7 +3,7 @@ var/inventory/inventory = new/inventory
 /inventory
   var/layer = 22
   var/list/inventory_slots
-  inventory_slots = list("right_hand", "left_hand", "right_pocket" = list(1), "left_pocket" = list(1))  // Each inventory slot contains a list of sizes it can fit.
+  inventory_slots = list("right_hand", "left_hand", "right_pocket" = list(1), "left_pocket" = list(1), "back" = list(1, 2, 3), "keychain" = list(4))  // Each inventory slot contains a list of sizes it can fit.
 
   /inventory/proc/addItem(mob/M, obj/item/I)
     if(!M.inventory_items[M.active_hand])
@@ -39,9 +39,13 @@ var/inventory/inventory = new/inventory
       M.inventory_items[M.active_hand] = null
       switch(i_slot)
         if("left_pocket")
-          I.screen_loc = "10, 1"
+          I.screen_loc = "10, SOUTH"
         if("right_pocket")
-          I.screen_loc = "11, 1"
+          I.screen_loc = "11, SOUTH"
+        if("keychain")
+          I.screen_loc = "6, SOUTH"
+        if("back")
+          I.screen_loc = "7, SOUTH"
         else
           return
     else
