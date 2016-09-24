@@ -26,8 +26,8 @@
 "az" = (/obj/electricity/lightbulb/east,/turf/floor/generic/black,/area/elevator)
 "aA" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
 "aB" = (/liquid/lava,/turf/floor/generic/wooden,/area/underground)
-"aC" = (/liquid,/turf/floor/generic/red,/area/underground)
-"aD" = (/obj/item/ball,/turf/floor/generic/wooden,/area/underground)
+"aC" = (/obj/item/ball,/turf/floor/generic/wooden,/area/underground)
+"aD" = (/liquid/water,/turf/floor/generic/wooden,/area/underground)
 "aE" = (/obj/electricity/lightbulb/north,/turf/floor/generic/wooden,/area/underground)
 "aF" = (/obj/electricity/lightbulb/south,/turf/floor/generic/wooden,/area/underground)
 "aG" = (/obj/electricity/elevator/button/south,/turf/floor/generic/wooden,/area/underground)
@@ -78,17 +78,17 @@ aaapaaawaqaqaqaqaqaqaoasasasasasasasasaoaqaqaqaqaqaqaqaaapaa
 aaavaaaqaqaqaqaqaqaxanayasasasasasasazanawaqaqaqaqaqaqaaavaa
 aaapaaaqaqaqaqaqaqaqanasasasasasasasasanaqaqaqaqaqaqaqaaapaa
 aaamaaaaaaaaaaaaaaaaanananaoaoaoaoanananaaaaaaaaaaaaaaaaamaa
-aaabababababababababababaaalaiaiaiaaadadadadadadadadadadadaa
-aaababaBaBaBaBaBaBaBababaaaCaiaiaCaaadadadadadadadadadadadaa
-aaabababababababababababaaaiaiaiaiaaadadadadadadadadadadadaa
-aaabababafabaDabafabababaaaiaiaiaiaaadadadadadadadadadadadaa
-aaabababababababababababaaaCaiaiaCaaadadadadadadadadadadadaa
+aaababababababababababaBaaalaiaiaiaaadadadadadadadadadadadaa
 aaabababababababababababaaaiaiaiaiaaadadadadadadadadadadadaa
 aaabababababababababababaaaiaiaiaiaaadadadadadadadadadadadaa
-aaabababafabababafabababaaaCaiaiaCaaadadadadadadadadadadadaa
+aaabababafabaCabafabababaaaiaiaiaiaaadadadadadadadadadadadaa
+aaabababababababababababaaaiaiaiaiaaadadadadadadadadadadadaa
+aaabababababababababababaaaiaiaiaiaaadadadadadadadadadadadaa
+aaabababababababababababaaaiaiaiaiaaadadadadadadadadadadadaa
+aaabababafabababafabababaaaiaiaiaiaaadadadadadadadadadadadaa
 aaabababababababababababagaiaiaiaiagadadadadadadadadadadadaa
 aaabababababababababababagaiaiaiaiagadadadadadadadadadadadaa
-aaabababababababababababagaiaiaiaiagadadadadadadadadadadadaa
+aaaDababababababababababagaiaiaiaiagadadadadadadadadadadadaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
 

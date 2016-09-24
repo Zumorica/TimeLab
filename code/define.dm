@@ -45,6 +45,9 @@
 #define ROUND_FAIL    2
 #define ROUND_SUCCESS 3
 
+#define LIQUID_STILL  	0
+#define LIQUID_MOVEMENT 1
+
 #define font_width 10
 
 // Not a define, but close enough.

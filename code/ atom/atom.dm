@@ -2,17 +2,20 @@
 	var/max_health = 100														// Max health the atom can have.
 	var/health = 100	  	 													// Health of the atom.
 	var/invincible = False 														// Is the atom invincible or not?
-	var/base_damage_factor = 1.0  												// Base damage factor.
 	var/damage_factor = 1.0														// How much damage affects the atom.
-	var/base_attack_factor = 1.0												// Base attack factor
+	var/burn_damage_factor = 1.0												// How much burns affect the atom.
 	var/attack_factor = 1.0														// How much your damage affects atoms.
 	var/attack_delay = 7														// Delays attacks.
 	var/is_burning = 0															// Whether atom is burning or not.
-	var/burn_time_base = 10														// Burn time. In seconds.
-	var/burn_time_final															// Modify burn_time_base instead.
+	var/burn_time = 10															// Burn time. In seconds.
 	var/attack_state = CAN_ATTACK
 	var/speak_state = CAN_SPEAK
 	var/life_state = ALIVE
+
+	/atom/New()
+		var/icon/i = new(icon)
+		icon = i
+		..()
 
 	/atom/proc/GetArea()														// Returns the atom's area.
 		return
@@ -55,26 +58,21 @@
 	/atom/proc/burn(var/burn_factor)											// Should be called for burning atoms.
 		if (!(prob(10) / burn_factor) && !is_burning)
 			is_burning = 1
-			burn_time_final = burn_time_base * burn_factor
+			burn_time = initial(burn_time) * burn_factor
 			overlays |= /obj/overlay/fire
-			spawn(burn_time_final)
+			spawn(burn_time)
 				On_burn(burn_factor)
 
 	/atom/proc/extinguish()														// Should be called for extinguishing atoms.
 		if (is_burning)
 			is_burning = 0
 			overlays -= /obj/overlay/fire
-			src << "The fire extinguishes..."
 
 	/atom/proc/On_burn(var/burn_factor)
 		if (prob(2) / burn_factor)
 			extinguish()
 
 		if (is_burning)
-			damage(1.25 * burn_factor)
-			spawn (burn_time_final)
+			damage(1.25 * burn_factor * burn_damage_factor)
+			spawn (burn_time)
 				On_burn(burn_factor)
-
-	/atom/proc/On_liquid_collision(var/liquid/l)
-		if (istype(l, /liquid/water))
-			extinguish()
