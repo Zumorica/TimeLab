@@ -2,8 +2,6 @@
 	icon = 'images/floor.dmi'
 	icon_state = "blue"
 
-/turf/floor/generic/start
-
 /turf/floor/generic/red
 	icon_state = "red"
 
@@ -18,3 +16,7 @@
 
 /turf/floor/generic/wooden
 	icon_state = "wooden"
+
+/turf/floor/rock
+	icon = 'images/rock.dmi'
+	icon_state = "floor"

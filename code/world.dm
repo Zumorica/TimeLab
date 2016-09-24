@@ -4,6 +4,7 @@
 	view = "16x16"
 	mob = /mob/new_player
 	area = /area/underground
+	turf = /turf/wall/rock
 
 	/world/New()
 		..()
