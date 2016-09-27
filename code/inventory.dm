@@ -50,3 +50,17 @@ var/inventory/inventory = new/inventory
           return
     else
       return
+
+/inventory/storage
+  var/is_open = False
+  var/list/storage_items = list()
+
+  /inventory/storage/proc/addTo(obj/item/I, mob/M)
+    storage_items += I
+    M.contents -= I
+    M.inventory_items[M.active_hand] = null
+    if(!is_open)
+      I.screen_loc = null
+
+  /inventory/storage/proc/open()
+    return
