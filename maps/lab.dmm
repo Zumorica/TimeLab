@@ -29,11 +29,11 @@
 "aC" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
 "aD" = (/liquid/lava,/turf/floor/generic/wooden,/area/underground)
 "aE" = (/turf/floor/generic/white,/area/underground)
-"aF" = (/obj/item/ball,/turf/floor/generic/wooden,/area/underground)
-"aG" = (/obj/electricity/lightbulb/west,/turf/floor/generic/red,/area/underground)
-"aH" = (/obj/electricity/lightbulb/east,/turf/floor/generic/red,/area/underground)
-"aI" = (/obj/electricity/lightbulb/west,/turf/floor/generic/white,/area/underground)
-"aJ" = (/obj/item/backpack,/turf/floor/generic/wooden,/area/underground)
+"aF" = (/obj/item/container/suitcase,/turf/floor/generic/wooden,/area/underground)
+"aG" = (/obj/item/ball,/turf/floor/generic/wooden,/area/underground)
+"aH" = (/obj/electricity/lightbulb/west,/turf/floor/generic/red,/area/underground)
+"aI" = (/obj/electricity/lightbulb/east,/turf/floor/generic/red,/area/underground)
+"aJ" = (/obj/electricity/lightbulb/west,/turf/floor/generic/white,/area/underground)
 "aK" = (/liquid/water,/turf/floor/generic/wooden,/area/underground)
 "aL" = (/turf/floor/rock,/area/underground)
 "aM" = (/obj/electricity/elevator/button/west,/turf/floor/rock,/area/underground)
@@ -77,11 +77,11 @@ aaaxakasasasasasasazapaAauauauauauauaBapayasasasasasasakaxaa
 aaarakasasasasasasasapauauauauauauauauapasasasasasasasakaraa
 aaaoaaaaaaaaaaaaaaaaapapapaqaqaqaqapapapaaaaaaaaaaaaaaaaaoaa
 aaacacacacacacacacacacaDaaanajajajaaaEaEaEaEaEaEaEaEaEaEaEaa
-aaacacacacacacacacacacacaaajajajajaaaEaEaEaEaEaEaEaEaEaEaEaa
+aaacacacacacaFacacacacacaaajajajajaaaEaEaEaEaEaEaEaEaEaEaEaa
 aaacacacacacacacacacacacakajajajajakaEaEaEaEaEaEaEaEaEaEaEaa
-aaacacacagacaFacagacacadaaaGajajaHaaaIaEaEaEaEaEaEaEaEaEaEaa
-aaacacacacaJacacacacacacakajajajajakaEaEaEaEaEaEaEaEaEaEaEaa
-aaacacacacacacacacacacadaaaGajajaHaaaIaEaEaEaEaEaEaEaEaEaEaa
+aaacacacagacaGacagacacadaaaHajajaIaaaJaEaEaEaEaEaEaEaEaEaEaa
+aaacacacacacacaFacacacacakajajajajakaEaEaEaEaEaEaEaEaEaEaEaa
+aaacacacacacacacacacacadaaaHajajaIaaaJaEaEaEaEaEaEaEaEaEaEaa
 aaacacacacacacacacacacacakajajajajakaEaEaEaEaEaEaEaEaEaEaEaa
 aaacacacagacacacagacacacaaajajajajaaaEaEaEaEaEaEaEaEaEaEaEaa
 aaacacacacacacacacacacacahajajajajahaEaEaEaEaEaEaEaEaEaEaEaa

@@ -56,11 +56,17 @@ var/inventory/inventory = new/inventory
   var/list/storage_items = list()
 
   /inventory/storage/proc/addTo(obj/item/I, mob/M)
+    if(istype(I, /obj/item/container))
+      return
     storage_items += I
     M.contents -= I
     M.inventory_items[M.active_hand] = null
     if(!is_open)
       I.screen_loc = null
 
-  /inventory/storage/proc/open()
+  /inventory/storage/proc/open(mob/other)
+    var/x = 4
+    while(x<14)
+      other.client.screen += world_hud["Storage[x]"]
+      x++
     return

@@ -51,8 +51,8 @@
 #include "code\obj\HUD\HUDBase.dm"
 #include "code\obj\HUD\HUDButtons.dm"
 #include "code\obj\HUD\HUDText.dm"
-#include "code\obj\item\backpack.dm"
 #include "code\obj\item\ball.dm"
+#include "code\obj\item\container.dm"
 #include "code\obj\item\item.dm"
 #include "code\obj\overlay\fire.dm"
 #include "code\obj\overlay\overlay.dm"
@@ -61,4 +61,3 @@
 #include "code\turf\wall\wall.dm"
 #include "maps\lab.dmm"
 // END_INCLUDE
-

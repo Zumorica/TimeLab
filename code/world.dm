@@ -27,3 +27,7 @@
 		CREATE_BUTTON("15, SOUTH", "IntentButton1", "Intent1")
 		CREATE_BUTTON("15, SOUTH", "Drop", "DropButton")
 		CREATE_BUTTON("15, SOUTH", "Throw", "ThrowButton")
+		var/x = 4
+		while(x<14)
+			CREATE_BUTTON("[x], SOUTH+1", "Storage", "Storage[x]")
+			x++
