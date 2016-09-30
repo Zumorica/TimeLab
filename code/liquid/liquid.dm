@@ -85,7 +85,7 @@
 					if (f && istype(f) && !istype(f, /turf/wall))
 						var/can_move_there = 1
 						for (var/atom/a in f.contents)
-							if (a.opacity)
+							if (a.density)
 								can_move_there = 0
 						if (!(locate(/liquid) in f.contents) && can_move_there && flood_level > 1)
 							var/liquid/liq = new type
