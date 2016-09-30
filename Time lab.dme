@@ -47,6 +47,7 @@
 #include "code\obj\electricity\machine\machine.dm"
 #include "code\obj\electricity\machine\doors\door.dm"
 #include "code\obj\electricity\machine\doors\elevator_door.dm"
+#include "code\obj\electricity\provider\generator.dm"
 #include "code\obj\electricity\provider\provider.dm"
 #include "code\obj\HUD\HUDBase.dm"
 #include "code\obj\HUD\HUDButtons.dm"

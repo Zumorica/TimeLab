@@ -82,7 +82,7 @@
 					var/list/l = list(f_n, f_s, f_w, f_e)
 
 					var/turf/f = pick(l)
-					if (f && istype(f) && !istype(f, /turf/wall))
+					if (f && istype(f) && !f.density)
 						var/can_move_there = 1
 						for (var/atom/a in f.contents)
 							if (a.density)

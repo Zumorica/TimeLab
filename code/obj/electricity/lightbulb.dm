@@ -1,15 +1,23 @@
 /obj/electricity/lightbulb
 	name = "Lightbulb"
 	icon = 'images/lightbulb.dmi'
+	icon_state = "OFF"
 	layer = ABOVE_MOBS
 	max_health = 10
 	health = 10
 	required_watts = 50
-	luminosity = 5
+	luminosity = 0
 	var/isBroken = 0
 	var/on_state = ""
 	var/off_state = "OFF"
 	var/broken_state = "BROKEN"
+
+	/obj/electricity/lightbulb/Consume_power()
+		if (powered)
+			on()
+		else
+			off()
+		..()
 
 	/obj/electricity/lightbulb/Died()
 		if (!isBroken)
@@ -29,7 +37,7 @@
 	/obj/electricity/lightbulb/proc/on()
 		if (isBroken == 0)
 			icon_state = on_state
-			luminosity = 4
+			luminosity = 6
 			powered = 1
 
 	/obj/electricity/lightbulb/verb/Break_lightbulb()
@@ -51,22 +59,22 @@
 	on_state = "ON_NORTH"
 	off_state = "OFF_NORTH"
 	broken_state = "BROKEN_NORTH"
-	icon_state = "ON_NORTH"
+	icon_state = "OFF_NORTH"
 
 /obj/electricity/lightbulb/south
 	on_state = "ON_SOUTH"
 	off_state = "OFF_SOUTH"
 	broken_state = "BROKEN_SOUTH"
-	icon_state = "ON_SOUTH"
+	icon_state = "OFF_SOUTH"
 
 /obj/electricity/lightbulb/west
 	on_state = "ON_WEST"
 	off_state = "OFF_WEST"
 	broken_state = "BROKEN_WEST"
-	icon_state = "ON_WEST"
+	icon_state = "OFF_WEST"
 
 /obj/electricity/lightbulb/east
 	on_state = "ON_EAST"
 	off_state = "OFF_EAST"
 	broken_state = "BROKEN_EAST"
-	icon_state = "ON_EAST"
+	icon_state = "OFF_EAST"
