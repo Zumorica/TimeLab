@@ -73,8 +73,8 @@ var/inventory/inventory = new/inventory
     while(x<16)
       other.client.screen += world_hud["Storage[x]"]
       x++
+    var/z = 4
     for(var/obj/item/y in storage_items)
-      var/z = 4
       y.screen_loc = "[z], SOUTH+1"
       z++
     is_open = True
