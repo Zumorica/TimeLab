@@ -1,6 +1,6 @@
 /obj/electricity/provider/generator
 	name = "Thermal generator"
-	providing_range = 16
+	providing_range = 2
 	dir = NORTH
 	opacity = 1
 	density = 1

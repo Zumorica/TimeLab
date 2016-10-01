@@ -17,47 +17,50 @@
 "aq" = (/obj/electricity/machine/door,/turf/floor/generic/black,/area/underground)
 "ar" = (/turf/wall/generic,/area/elevator)
 "as" = (/obj/electricity/machine/door/elevator_door,/turf/floor/generic/black,/area/elevator)
-"at" = (/turf/floor/generic/black,/area/underground)
-"au" = (/turf/floor/generic/chess,/area/underground)
-"av" = (/obj/electricity/elevator/button/east,/turf/floor/generic/chess,/area/underground)
-"aw" = (/turf/floor/generic/black,/area/elevator)
-"ax" = (/obj/electricity/elevator/controls/north,/turf/floor/generic/black,/area/elevator)
-"ay" = (/obj/electricity/elevator/button/west,/turf/floor/generic/chess,/area/underground)
-"az" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/underground)
-"aA" = (/obj/electricity/lightbulb/west,/turf/floor/generic/chess,/area/underground)
-"aB" = (/obj/electricity/lightbulb/east,/turf/floor/generic/chess,/area/underground)
-"aC" = (/obj/electricity/lightbulb/west,/turf/floor/generic/black,/area/elevator)
-"aD" = (/obj/electricity/lightbulb/east,/turf/floor/generic/black,/area/elevator)
-"aE" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
-"aF" = (/liquid/lava,/turf/floor/generic/wooden,/area/underground)
-"aG" = (/turf/floor/generic/white,/area/underground)
-"aH" = (/obj/item/container/suitcase,/turf/floor/generic/wooden,/area/underground)
-"aI" = (/obj/electricity/provider/generator,/turf/floor/generic/wooden,/area/underground)
-"aJ" = (/obj/item/ball,/turf/floor/generic/wooden,/area/underground)
-"aK" = (/obj/electricity/lightbulb/west,/turf/floor/generic/red,/area/underground)
-"aL" = (/obj/electricity/lightbulb/east,/turf/floor/generic/red,/area/underground)
-"aM" = (/obj/electricity/lightbulb/west,/turf/floor/generic/white,/area/underground)
-"aN" = (/liquid/water,/turf/floor/generic/wooden,/area/underground)
-"aO" = (/obj/electricity/elevator/button/west,/turf/floor/rock,/area/underground)
-"aP" = (/obj/electricity/lightbulb/east,/turf/floor/rock,/area/underground)
-"aQ" = (/turf/wall/generic,/area/elevator{name = "Elevator0"})
-"aR" = (/obj/electricity/machine/door/elevator_door,/turf/floor/generic/black,/area/elevator{name = "Elevator0"})
-"aS" = (/turf/floor/generic/black,/area/elevator{name = "Elevator0"})
-"aT" = (/obj/electricity/lightbulb/north,/turf/floor/generic/chess,/area/underground)
-"aU" = (/obj/electricity/elevator/button/east,/turf/floor/generic/red,/area/underground)
-"aV" = (/obj/electricity/lightbulb/south,/turf/floor/generic/chess,/area/underground)
-"aW" = (/obj/electricity/elevator/button/north,/turf/floor/rock,/area/underground)
-"aX" = (/obj/electricity/lightbulb/north,/turf/floor/rock,/area/underground)
-"aY" = (/obj/electricity/lightbulb,/turf/floor/rock,/area/underground)
-"aZ" = (/obj/electricity/lightbulb/south,/turf/floor/generic/red,/area/underground)
-"ba" = (/obj/electricity/lightbulb/south,/turf/floor/rock,/area/underground)
-"bb" = (/obj/electricity/elevator/button/south,/turf/floor/rock,/area/underground)
-"bc" = (/turf/wall/generic,/area/elevator{name = "Elevator1"})
-"bd" = (/obj/electricity/machine/door/elevator_door,/turf/floor/generic/black,/area/elevator{name = "Elevator1"})
-"be" = (/turf/floor/generic/black,/area/elevator{name = "Elevator1"})
-"bf" = (/obj/electricity/lightbulb/west,/turf/floor/rock,/area/underground)
-"bg" = (/obj/electricity/elevator/button/east,/turf/floor/rock,/area/underground)
-"bh" = (/turf,/area/underground)
+"at" = (/obj/electricity/provider/extender,/turf/floor/rock,/area/underground)
+"au" = (/turf/floor/generic/black,/area/underground)
+"av" = (/turf/floor/generic/chess,/area/underground)
+"aw" = (/obj/electricity/elevator/button/east,/turf/floor/generic/chess,/area/underground)
+"ax" = (/turf/floor/generic/black,/area/elevator)
+"ay" = (/obj/electricity/elevator/controls/north,/turf/floor/generic/black,/area/elevator)
+"az" = (/obj/electricity/elevator/button/west,/turf/floor/generic/chess,/area/underground)
+"aA" = (/obj/electricity/lightbulb,/turf/floor/generic/black,/area/underground)
+"aB" = (/obj/electricity/lightbulb/west,/turf/floor/generic/chess,/area/underground)
+"aC" = (/obj/electricity/lightbulb/east,/turf/floor/generic/chess,/area/underground)
+"aD" = (/obj/electricity/lightbulb/west,/turf/floor/generic/black,/area/elevator)
+"aE" = (/obj/electricity/lightbulb/east,/turf/floor/generic/black,/area/elevator)
+"aF" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
+"aG" = (/liquid/lava,/turf/floor/generic/wooden,/area/underground)
+"aH" = (/turf/floor/generic/white,/area/underground)
+"aI" = (/obj/item/container/suitcase,/turf/floor/generic/wooden,/area/underground)
+"aJ" = (/obj/electricity/provider/extender,/turf/floor/generic/red,/area/underground)
+"aK" = (/obj/electricity/provider/generator,/turf/floor/generic/wooden,/area/underground)
+"aL" = (/obj/item/ball,/turf/floor/generic/wooden,/area/underground)
+"aM" = (/obj/electricity/provider/extender,/turf/floor/generic/wooden,/area/underground)
+"aN" = (/obj/electricity/lightbulb/west,/turf/floor/generic/red,/area/underground)
+"aO" = (/obj/electricity/lightbulb/east,/turf/floor/generic/red,/area/underground)
+"aP" = (/obj/electricity/lightbulb/west,/turf/floor/generic/white,/area/underground)
+"aQ" = (/liquid/water,/turf/floor/generic/wooden,/area/underground)
+"aR" = (/obj/electricity/elevator/button/west,/turf/floor/rock,/area/underground)
+"aS" = (/obj/electricity/lightbulb/east,/turf/floor/rock,/area/underground)
+"aT" = (/turf/wall/generic,/area/elevator{name = "Elevator0"})
+"aU" = (/obj/electricity/machine/door/elevator_door,/turf/floor/generic/black,/area/elevator{name = "Elevator0"})
+"aV" = (/turf/floor/generic/black,/area/elevator{name = "Elevator0"})
+"aW" = (/obj/electricity/lightbulb/north,/turf/floor/generic/chess,/area/underground)
+"aX" = (/obj/electricity/elevator/button/east,/turf/floor/generic/red,/area/underground)
+"aY" = (/obj/electricity/lightbulb/south,/turf/floor/generic/chess,/area/underground)
+"aZ" = (/obj/electricity/elevator/button/north,/turf/floor/rock,/area/underground)
+"ba" = (/obj/electricity/lightbulb/north,/turf/floor/rock,/area/underground)
+"bb" = (/obj/electricity/lightbulb,/turf/floor/rock,/area/underground)
+"bc" = (/obj/electricity/lightbulb/south,/turf/floor/generic/red,/area/underground)
+"bd" = (/obj/electricity/lightbulb/south,/turf/floor/rock,/area/underground)
+"be" = (/obj/electricity/elevator/button/south,/turf/floor/rock,/area/underground)
+"bf" = (/turf/wall/generic,/area/elevator{name = "Elevator1"})
+"bg" = (/obj/electricity/machine/door/elevator_door,/turf/floor/generic/black,/area/elevator{name = "Elevator1"})
+"bh" = (/turf/floor/generic/black,/area/elevator{name = "Elevator1"})
+"bi" = (/obj/electricity/lightbulb/west,/turf/floor/rock,/area/underground)
+"bj" = (/obj/electricity/elevator/button/east,/turf/floor/rock,/area/underground)
+"bk" = (/turf,/area/underground)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababababababababab
@@ -70,25 +73,25 @@ aaacacacacacacacacacacacahajajajajahakaeaeaeaeaeaeaeaeaeaeab
 aaacacacacacagacacacacalaaajajajajababaeaeaeaeaeaeaeaeaeaeab
 aaafacacacacacacacacacadaaamajajamaaabaeaeaeaeaeaeaeaeaeaeab
 aaacacacacacacacacacacacaaanajajajaaabababababaoapabababakab
-aaaqaaaaaaaaaaaaaaaaarararasasasasarararaaaaaaapapaaaaaaaqaa
-aaataaauauauauauauavarawaxawawawawawawarayauauauauauauaaataa
-aaazaaaAauauauauauaBaraCawawawawawawaDaraAauauauauauauaaazaa
-aaataEauauauauauauauasawawawawawawawawasauauauauauauauaEataa
-aaataaaAauauauauauauasawawawawawawawawasauauauauauauauaaataa
-aaazakauauauauauauaBaraCawawawawawawaDaraAauauauauauauakazaa
-aaatakauauauauauauauarawawawawawawawawarauauauauauauauakataa
+aaaqaaaaaaaaaaaaaaaaarararasasasasarararaaaaaaapataaaaaaaqaa
+aaauaaavavavavavavawaraxayaxaxaxaxaxaxarazavavavavavavaaauaa
+aaaAaaaBavavavavavaCaraDaxaxaxaxaxaxaEaraBavavavavavavaaaAaa
+aaauaFavavavavavavavasaxaxaxaxaxaxaxaxasavavavavavavavaFauaa
+aaauaaaBavavavavavavasaxaxaxaxaxaxaxaxasavavavavavavavaaauaa
+aaaAakavavavavavavaCaraDaxaxaxaxaxaxaEaraBavavavavavavakaAaa
+aaauakavavavavavavavaraxaxaxaxaxaxaxaxaravavavavavavavakauaa
 aaaqaaaaaaaaaaaaaaaaarararasasasasarararaaaaaaaaaaaaaaaaaqaa
-aaacacacacacacacacakacaFaaanajajajaaaGaGaGaGaGaGaGaGaGaGaGaa
-aaacacacacacaHacacakacacaaajajajajaaaGaGaGaGaGaGaGaGaGaGaGaa
-aaacacacacacacacacaaaIacakajajajajakaGaGaGaGaGaGaGaGaGaGaGaa
-aaacacacagacaJacagacacadaaaKajajaLaaaMaGaGaGaGaGaGaGaGaGaGaa
-aaacacacacacacaHacacacacakajajajajakaGaGaGaGaGaGaGaGaGaGaGaa
-aaacacacacacacacacacacadaaaKajajaLaaaMaGaGaGaGaGaGaGaGaGaGaa
-aaacacacacacacacacacacacakajajajajakaGaGaGaGaGaGaGaGaGaGaGaa
-aaacacacagacacacagacacacaaajajajajaaaGaGaGaGaGaGaGaGaGaGaGaa
-aaacacacacacacacacacacacahajajajajahaGaGaGaGaGaGaGaGaGaGaGaa
-aaacacacacacacacacacacacahajajajajahaGaGaGaGaGaGaGaGaGaGaGaa
-aaaNacacacacacacacacacacahajajajajahaGaGaGaGaGaGaGaGaGaGaGaa
+aaacacacacacacacacakacaGaaanajajajaaaHaHaHaHaHaHaHaHaHaHaHaa
+aaacacacacacaIacacakacacaaajajajaJaaaHaHaHaHaHaHaHaHaHaHaHaa
+aaacacacacacacacacaaaKacakajajajajakaHaHaHaHaHaHaHaHaHaHaHaa
+aaacacacagacaLacagacacaMaaaNajajaOaaaPaHaHaHaHaHaHaHaHaHaHaa
+aaacacacacacacaIacacacacakajajajajakaHaHaHaHaHaHaHaHaHaHaHaa
+aaacacacacacacacacacacadaaaNajajaOaaaPaHaHaHaHaHaHaHaHaHaHaa
+aaacacacacacacacacacacacakajajajajakaHaHaHaHaHaHaHaHaHaHaHaa
+aaacacacagacacacagacacacaaajajajajaaaHaHaHaHaHaHaHaHaHaHaHaa
+aaacacacacacacacacacacacahajajajajahaHaHaHaHaHaHaHaHaHaHaHaa
+aaacacacacacacacacacacacahajajajajahaHaHaHaHaHaHaHaHaHaHaHaa
+aaaQacacacacacacacacacacahajajajajahaHaHaHaHaHaHaHaHaHaHaHaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
 
@@ -102,17 +105,17 @@ abababababababababababababababababapapapabababababababapabab
 abababababababababababababababababababababababababababapabab
 ababapapapapapapapapapapapapapapapapapapapapapapapapapapabab
 ababapapapapapapapapapapapapapapapapapapapapapapapapapapabab
-ababapapabababababababababaOapapaPabababababababababapapabab
-aaaaahahaaaaaaaaaaaaaQaQaQaRaRaRaRaQaQaQaaaaaaaaaaaaaEaEaaaa
-aaajajajajajajajajajaQaSaSaSaSaSaSaSaSaQauauauaTauaTauauauaa
-aaajajajajajajajajaUaQaSaSaSaSaSaSaSaSaQayauauauauauauauauaa
-aaajajajajajajajajajaRaSaSaSaSaSaSaSaSaRauauauauauauauauauaa
-aaajajajamajamajajajaRaSaSaSaSaSaSaSaSaRauauauauauauauauauaa
-aaajajajajajajajajajaQaSaSaSaSaSaSaSaSaQauauauauauauauauauaa
-aaajajajajajajajajajaQaSaSaSaSaSaSaSaSaQauauauaVauaVauauauaa
-aaajajajajajajajajajaQaQaQaRaRaRaRaQaQaQaaaaaaaaaaaaaEaEaaaa
-aaajajajajajajajajajaaabaWapabababababababababababababapaXab
-aaajajajajajajajajajaaababaYapapapapapapapapapapapapababapab
+ababapapabababababababababaRapapaSabababababababababapapabab
+aaaaahahaaaaaaaaaaaaaTaTaTaUaUaUaUaTaTaTaaaaaaaaaaaaaFaFaaaa
+aaajajajajajajajajajaTaVaVaVaVaVaVaVaVaTavavavaWavaWavavavaa
+aaajajajajajajajajaXaTaVaVaVaVaVaVaVaVaTazavavavavavavavavaa
+aaajajajajajajajajajaUaVaVaVaVaVaVaVaVaUavavavavavavavavavaa
+aaajajajamajamajajajaUaVaVaVaVaVaVaVaVaUavavavavavavavavavaa
+aaajajajajajajajajajaTaVaVaVaVaVaVaVaVaTavavavavavavavavavaa
+aaajajajajajajajajajaTaVaVaVaVaVaVaVaVaTavavavaYavaYavavavaa
+aaajajajajajajajajajaTaTaTaUaUaUaUaTaTaTaaaaaaaaaaaaaFaFaaaa
+aaajajajajajajajajajaaabaZapabababababababababababababapbaab
+aaajajajajajajajajajaaababbbapapapapapapapapapapapapababapab
 aaajajajajajajajajajaaababababababababapababapababapababapab
 aaajajajajajajajajajaaabapapapapapapapapababapababapababapab
 aaajajajamajamajajajaaababababababapabapababapababapapapapab
@@ -121,7 +124,7 @@ aaajajajajajajajajajaaabapapapapapapabapapababababababapabab
 aaajajajajajajajajajaaababababapabapababapababababababababab
 aaajajajajajajajajajahapabababapabapapapapapapapapapapapabab
 aaajajajajajajajajajahapapapapapabapababapababababababapabab
-aaajajajaZajaZajajajaaababababababapababapapababapapapapabab
+aaajajajbcajbcajajajaaababababababapababapapababapapapapabab
 aaaaaaaaaaaaaaaaaaaaaaababababababababababababababababababab
 "}
 
@@ -135,16 +138,16 @@ abababababababababapapapapapapababababababababapapapabapapab
 abababababababababapapapapapapababababababababapapapabapapab
 abababababababababababapapapapababababababababapapapabapapab
 ababababababababababababababapababababababababapapapababapab
-abababababababababababbabbapapapapapbaababababapapabababapab
-ababababababababababbcbcbcbdbdbdbdbcbcbcabababapapabababapab
-abababababababababaPbcbebebebebebebebebcbfababapapapapapapab
-abababababababababapbcbebebebebebebebebcaOababapapapapapapab
-abapapapapapapapapapbdbebebebebebebebebdapabababababapababab
-abapabababababababapbdbebebebebebebebebdapabababababapapapab
-abapabababababababbgbcbebebebebebebebebcapabababababapapapab
-abapabababababababaPbcbebebebebebebebebcbfababababababapapab
-abapababababababababbcbcbcbdbdbdbdbcbcbcapapapapabababapapab
-abapabababababababababaXaWapapapapapaXababababapapababababab
+abababababababababababbdbeapapapapapbdababababapapabababapab
+ababababababababababbfbfbfbgbgbgbgbfbfbfabababapapabababapab
+abababababababababaSbfbhbhbhbhbhbhbhbhbfbiababapapapapapapab
+abababababababababapbfbhbhbhbhbhbhbhbhbfaRababapapapapapapab
+abapapapapapapapapapbgbhbhbhbhbhbhbhbhbgapabababababapababab
+abapabababababababapbgbhbhbhbhbhbhbhbhbgapabababababapapapab
+abapabababababababbjbfbhbhbhbhbhbhbhbhbfapabababababapapapab
+abapabababababababaSbfbhbhbhbhbhbhbhbhbfbiababababababapapab
+abapababababababababbfbfbfbgbgbgbgbfbfbfapapapapabababapapab
+abapabababababababababbaaZapapapapapbaababababapapababababab
 abapabababababapapapabapabapapapababababababababapapapababab
 abapabababababapabapapapababapapapabababababababababapapabab
 abapabababababapababababababapapapabababababababababapapabab
@@ -159,67 +162,67 @@ abababababababababababababababababababababababababababababab
 "}
 
 (1,1,4) = {"
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
 "}
 
 (1,1,5) = {"
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
-bhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbh
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
 "}

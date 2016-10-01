@@ -8,6 +8,6 @@
 		if (!provider || provider == 1)
 			return
 		else
-			if (provider.stored_joules)
+			if (provider.stored_joules > 0 && (provider.stored_joules -= required_watts) >= 0)
 				provider.stored_joules -= required_watts
 				powered = 1
