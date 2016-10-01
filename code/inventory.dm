@@ -63,10 +63,27 @@ var/inventory/inventory = new/inventory
     M.inventory_items[M.active_hand] = null
     if(!is_open)
       I.screen_loc = null
+    else
+      I.screen_loc = "[length(storage_items)+3], SOUTH+1"
 
   /inventory/storage/proc/open(mob/other)
+    for(var/obj/item/container/c in other.contents)
+      c.close(other)
     var/x = 4
-    while(x<14)
+    while(x<16)
       other.client.screen += world_hud["Storage[x]"]
       x++
-    return
+    for(var/obj/item/y in storage_items)
+      var/z = 4
+      y.screen_loc = "[z], SOUTH+1"
+      z++
+    is_open = True
+
+  /inventory/storage/proc/close(mob/other)
+    is_open = False
+    var/x = 4
+    while(x<16)
+      other.client.screen -= world_hud["Storage[x]"]
+      x++
+    for(var/obj/item/y in storage_items)
+      y.screen_loc = null

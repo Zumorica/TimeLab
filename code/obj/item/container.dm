@@ -10,6 +10,9 @@
         inv.open(other)
     else
       ..()
+  /obj/item/container/proc/close(mob/other)
+    if(inv.is_open)
+      inv.close(other)
 
 /obj/item/container/suitcase
   icon_state = "suitcase"

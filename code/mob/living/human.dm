@@ -180,6 +180,10 @@
 			if("Drop")
 				if(usr.life_state == ALIVE && usr.inventory_items[active_hand])
 					inventory.dropItem(usr)
+			if("StorageClose")
+				if(usr.life_state == ALIVE)
+					for(var/obj/item/container/c in usr.contents)
+						c.close(usr)
 			else
 				return
 

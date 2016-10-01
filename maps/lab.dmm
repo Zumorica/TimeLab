@@ -32,8 +32,8 @@
 "aF" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
 "aG" = (/turf/floor/generic/white,/area/underground)
 "aH" = (/obj/item/container/suitcase,/turf/floor/generic/wooden,/area/underground)
-"aI" = (/obj/electricity/provider/extender,/turf/floor/generic/red,/area/underground)
-"aJ" = (/obj/item/ball,/turf/floor/generic/wooden,/area/underground)
+"aI" = (/obj/item/ball,/turf/floor/generic/wooden,/area/underground)
+"aJ" = (/obj/electricity/provider/extender,/turf/floor/generic/red,/area/underground)
 "aK" = (/obj/electricity/lightbulb/west,/turf/floor/generic/red,/area/underground)
 "aL" = (/obj/electricity/lightbulb/east,/turf/floor/generic/red,/area/underground)
 "aM" = (/obj/electricity/lightbulb/west,/turf/floor/generic/white,/area/underground)
@@ -81,8 +81,8 @@ aaauakavavavavavavavaraxaxaxaxaxaxaxaxaravavavavavavavakauaa
 aaaqaaaaaaaaaaaaaaaaarararasasasasarararaaaaaaaaaaaaaaaaaqaa
 aaacacacacacacacacacacacaaanajajajaaaGaGaGaGaGaGaGaGaGaGaGaa
 aaacacacacacaHacacacacacaaajajajajaaaGaGaGaGaGaGaGaGaGaGaGaa
-aaacacacacacacacacacacacakaIajajajakaGaGaGaGaGaGaGaGaGaGaGaa
-aaacacacagacaJacagacacacaaaKajajaLaaaMaGaGaGaGaGaGaGaGaGaGaa
+aaacacacacacacacaIacacacakaJajajajakaGaGaGaGaGaGaGaGaGaGaGaa
+aaacacacagacaIaIagacacacaaaKajajaLaaaMaGaGaGaGaGaGaGaGaGaGaa
 aaacacacacacacaHacacacacakajajajajakaGaGaGaGaGaGaGaGaGaGaGaa
 aaacacacacacacacacacacadaaaKajajaLaaaMaGaGaGaGaNaGaGaGaGaGaa
 aaacacacacacacacacacacacakajajajajakaGaGaGaGaGaGaGaGaGaGaGaa
