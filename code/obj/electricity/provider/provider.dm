@@ -1,7 +1,7 @@
 /obj/electricity/provider
 	required_watts = 0
 	provider = 1
-	var/providing_range = 32													// Objects within this range will receive energy.
+	var/providing_range = 16													// Objects within this range will receive energy.
 	var/stored_joules = 0
 	var/stored_joules_max = 1000000000											// Maximum value for storing joules.
 
@@ -17,7 +17,7 @@
 			if (stored_joules > stored_joules_max)
 				stored_joules = stored_joules_max
 			for (var/obj/electricity/o in orange(providing_range, src))
-				if (!o.provider && o != src)
+				if (!o.provider && o != src && provider)
 					o.provider = src
 				else if (o.provider == src)
 					o.Consume_power()

@@ -30,37 +30,35 @@
 "aD" = (/obj/electricity/lightbulb/west,/turf/floor/generic/black,/area/elevator)
 "aE" = (/obj/electricity/lightbulb/east,/turf/floor/generic/black,/area/elevator)
 "aF" = (/obj/electricity/machine/door,/turf/floor/generic/chess,/area/underground)
-"aG" = (/liquid/lava,/turf/floor/generic/wooden,/area/underground)
-"aH" = (/turf/floor/generic/white,/area/underground)
-"aI" = (/obj/item/container/suitcase,/turf/floor/generic/wooden,/area/underground)
-"aJ" = (/obj/electricity/provider/extender,/turf/floor/generic/red,/area/underground)
-"aK" = (/obj/electricity/provider/generator,/turf/floor/generic/wooden,/area/underground)
-"aL" = (/obj/item/ball,/turf/floor/generic/wooden,/area/underground)
-"aM" = (/obj/electricity/provider/extender,/turf/floor/generic/wooden,/area/underground)
-"aN" = (/obj/electricity/lightbulb/west,/turf/floor/generic/red,/area/underground)
-"aO" = (/obj/electricity/lightbulb/east,/turf/floor/generic/red,/area/underground)
-"aP" = (/obj/electricity/lightbulb/west,/turf/floor/generic/white,/area/underground)
-"aQ" = (/liquid/water,/turf/floor/generic/wooden,/area/underground)
-"aR" = (/obj/electricity/elevator/button/west,/turf/floor/rock,/area/underground)
-"aS" = (/obj/electricity/lightbulb/east,/turf/floor/rock,/area/underground)
-"aT" = (/turf/wall/generic,/area/elevator{name = "Elevator0"})
-"aU" = (/obj/electricity/machine/door/elevator_door,/turf/floor/generic/black,/area/elevator{name = "Elevator0"})
-"aV" = (/turf/floor/generic/black,/area/elevator{name = "Elevator0"})
-"aW" = (/obj/electricity/lightbulb/north,/turf/floor/generic/chess,/area/underground)
-"aX" = (/obj/electricity/elevator/button/east,/turf/floor/generic/red,/area/underground)
-"aY" = (/obj/electricity/lightbulb/south,/turf/floor/generic/chess,/area/underground)
-"aZ" = (/obj/electricity/elevator/button/north,/turf/floor/rock,/area/underground)
-"ba" = (/obj/electricity/lightbulb/north,/turf/floor/rock,/area/underground)
-"bb" = (/obj/electricity/lightbulb,/turf/floor/rock,/area/underground)
-"bc" = (/obj/electricity/lightbulb/south,/turf/floor/generic/red,/area/underground)
-"bd" = (/obj/electricity/lightbulb/south,/turf/floor/rock,/area/underground)
-"be" = (/obj/electricity/elevator/button/south,/turf/floor/rock,/area/underground)
-"bf" = (/turf/wall/generic,/area/elevator{name = "Elevator1"})
-"bg" = (/obj/electricity/machine/door/elevator_door,/turf/floor/generic/black,/area/elevator{name = "Elevator1"})
-"bh" = (/turf/floor/generic/black,/area/elevator{name = "Elevator1"})
-"bi" = (/obj/electricity/lightbulb/west,/turf/floor/rock,/area/underground)
-"bj" = (/obj/electricity/elevator/button/east,/turf/floor/rock,/area/underground)
-"bk" = (/turf,/area/underground)
+"aG" = (/turf/floor/generic/white,/area/underground)
+"aH" = (/obj/item/container/suitcase,/turf/floor/generic/wooden,/area/underground)
+"aI" = (/obj/electricity/provider/extender,/turf/floor/generic/red,/area/underground)
+"aJ" = (/obj/item/ball,/turf/floor/generic/wooden,/area/underground)
+"aK" = (/obj/electricity/lightbulb/west,/turf/floor/generic/red,/area/underground)
+"aL" = (/obj/electricity/lightbulb/east,/turf/floor/generic/red,/area/underground)
+"aM" = (/obj/electricity/lightbulb/west,/turf/floor/generic/white,/area/underground)
+"aN" = (/liquid/lava,/turf/floor/generic/white,/area/underground)
+"aO" = (/liquid/water,/turf/floor/generic/wooden,/area/underground)
+"aP" = (/obj/electricity/elevator/button/west,/turf/floor/rock,/area/underground)
+"aQ" = (/obj/electricity/lightbulb/east,/turf/floor/rock,/area/underground)
+"aR" = (/turf/wall/generic,/area/elevator{name = "Elevator0"})
+"aS" = (/obj/electricity/machine/door/elevator_door,/turf/floor/generic/black,/area/elevator{name = "Elevator0"})
+"aT" = (/turf/floor/generic/black,/area/elevator{name = "Elevator0"})
+"aU" = (/obj/electricity/lightbulb/north,/turf/floor/generic/chess,/area/underground)
+"aV" = (/obj/electricity/elevator/button/east,/turf/floor/generic/red,/area/underground)
+"aW" = (/obj/electricity/lightbulb/south,/turf/floor/generic/chess,/area/underground)
+"aX" = (/obj/electricity/elevator/button/north,/turf/floor/rock,/area/underground)
+"aY" = (/obj/electricity/lightbulb/north,/turf/floor/rock,/area/underground)
+"aZ" = (/obj/electricity/lightbulb,/turf/floor/rock,/area/underground)
+"ba" = (/obj/electricity/lightbulb/south,/turf/floor/generic/red,/area/underground)
+"bb" = (/obj/electricity/lightbulb/south,/turf/floor/rock,/area/underground)
+"bc" = (/obj/electricity/elevator/button/south,/turf/floor/rock,/area/underground)
+"bd" = (/turf/wall/generic,/area/elevator{name = "Elevator1"})
+"be" = (/obj/electricity/machine/door/elevator_door,/turf/floor/generic/black,/area/elevator{name = "Elevator1"})
+"bf" = (/turf/floor/generic/black,/area/elevator{name = "Elevator1"})
+"bg" = (/obj/electricity/lightbulb/west,/turf/floor/rock,/area/underground)
+"bh" = (/obj/electricity/elevator/button/east,/turf/floor/rock,/area/underground)
+"bi" = (/turf,/area/underground)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababababababababab
@@ -81,17 +79,17 @@ aaauaaaBavavavavavavasaxaxaxaxaxaxaxaxasavavavavavavavaaauaa
 aaaAakavavavavavavaCaraDaxaxaxaxaxaxaEaraBavavavavavavakaAaa
 aaauakavavavavavavavaraxaxaxaxaxaxaxaxaravavavavavavavakauaa
 aaaqaaaaaaaaaaaaaaaaarararasasasasarararaaaaaaaaaaaaaaaaaqaa
-aaacacacacacacacacakacaGaaanajajajaaaHaHaHaHaHaHaHaHaHaHaHaa
-aaacacacacacaIacacakacacaaajajajaJaaaHaHaHaHaHaHaHaHaHaHaHaa
-aaacacacacacacacacaaaKacakajajajajakaHaHaHaHaHaHaHaHaHaHaHaa
-aaacacacagacaLacagacacaMaaaNajajaOaaaPaHaHaHaHaHaHaHaHaHaHaa
-aaacacacacacacaIacacacacakajajajajakaHaHaHaHaHaHaHaHaHaHaHaa
-aaacacacacacacacacacacadaaaNajajaOaaaPaHaHaHaHaHaHaHaHaHaHaa
-aaacacacacacacacacacacacakajajajajakaHaHaHaHaHaHaHaHaHaHaHaa
-aaacacacagacacacagacacacaaajajajajaaaHaHaHaHaHaHaHaHaHaHaHaa
-aaacacacacacacacacacacacahajajajajahaHaHaHaHaHaHaHaHaHaHaHaa
-aaacacacacacacacacacacacahajajajajahaHaHaHaHaHaHaHaHaHaHaHaa
-aaaQacacacacacacacacacacahajajajajahaHaHaHaHaHaHaHaHaHaHaHaa
+aaacacacacacacacacacacacaaanajajajaaaGaGaGaGaGaGaGaGaGaGaGaa
+aaacacacacacaHacacacacacaaajajajajaaaGaGaGaGaGaGaGaGaGaGaGaa
+aaacacacacacacacacacacacakaIajajajakaGaGaGaGaGaGaGaGaGaGaGaa
+aaacacacagacaJacagacacacaaaKajajaLaaaMaGaGaGaGaGaGaGaGaGaGaa
+aaacacacacacacaHacacacacakajajajajakaGaGaGaGaGaGaGaGaGaGaGaa
+aaacacacacacacacacacacadaaaKajajaLaaaMaGaGaGaGaNaGaGaGaGaGaa
+aaacacacacacacacacacacacakajajajajakaGaGaGaGaGaGaGaGaGaGaGaa
+aaacacacagacacacagacacacaaajajajajaaaGaGaGaGaGaGaGaGaGaGaGaa
+aaacacacacacacacacacacacahajajajajahaGaGaGaGaGaGaGaGaGaGaGaa
+aaacacacacacacacacacacacahajajajajahaGaGaGaGaGaGaGaGaGaGaGaa
+aaaOacacacacacacacacacacahajajajajahaGaGaGaGaGaGaGaGaGaGaGaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
 
@@ -105,17 +103,17 @@ abababababababababababababababababapapapabababababababapabab
 abababababababababababababababababababababababababababapabab
 ababapapapapapapapapapapapapapapapapapapapapapapapapapapabab
 ababapapapapapapapapapapapapapapapapapapapapapapapapapapabab
-ababapapabababababababababaRapapaSabababababababababapapabab
-aaaaahahaaaaaaaaaaaaaTaTaTaUaUaUaUaTaTaTaaaaaaaaaaaaaFaFaaaa
-aaajajajajajajajajajaTaVaVaVaVaVaVaVaVaTavavavaWavaWavavavaa
-aaajajajajajajajajaXaTaVaVaVaVaVaVaVaVaTazavavavavavavavavaa
-aaajajajajajajajajajaUaVaVaVaVaVaVaVaVaUavavavavavavavavavaa
-aaajajajamajamajajajaUaVaVaVaVaVaVaVaVaUavavavavavavavavavaa
-aaajajajajajajajajajaTaVaVaVaVaVaVaVaVaTavavavavavavavavavaa
-aaajajajajajajajajajaTaVaVaVaVaVaVaVaVaTavavavaYavaYavavavaa
-aaajajajajajajajajajaTaTaTaUaUaUaUaTaTaTaaaaaaaaaaaaaFaFaaaa
-aaajajajajajajajajajaaabaZapabababababababababababababapbaab
-aaajajajajajajajajajaaababbbapapapapapapapapapapapapababapab
+ababapapabababababababababaPapapaQabababababababababapapabab
+aaaaahahaaaaaaaaaaaaaRaRaRaSaSaSaSaRaRaRaaaaaaaaaaaaaFaFaaaa
+aaajajajajajajajajajaRaTaTaTaTaTaTaTaTaRavavavaUavaUavavavaa
+aaajajajajajajajajaVaRaTaTaTaTaTaTaTaTaRazavavavavavavavavaa
+aaajajajajajajajajajaSaTaTaTaTaTaTaTaTaSavavavavavavavavavaa
+aaajajajamajamajajajaSaTaTaTaTaTaTaTaTaSavavavavavavavavavaa
+aaajajajajajajajajajaRaTaTaTaTaTaTaTaTaRavavavavavavavavavaa
+aaajajajajajajajajajaRaTaTaTaTaTaTaTaTaRavavavaWavaWavavavaa
+aaajajajajajajajajajaRaRaRaSaSaSaSaRaRaRaaaaaaaaaaaaaFaFaaaa
+aaajajajajajajajajajaaabaXapabababababababababababababapaYab
+aaajajajajajajajajajaaababaZapapapapapapapapapapapapababapab
 aaajajajajajajajajajaaababababababababapababapababapababapab
 aaajajajajajajajajajaaabapapapapapapapapababapababapababapab
 aaajajajamajamajajajaaababababababapabapababapababapapapapab
@@ -124,7 +122,7 @@ aaajajajajajajajajajaaabapapapapapapabapapababababababapabab
 aaajajajajajajajajajaaababababapabapababapababababababababab
 aaajajajajajajajajajahapabababapabapapapapapapapapapapapabab
 aaajajajajajajajajajahapapapapapabapababapababababababapabab
-aaajajajbcajbcajajajaaababababababapababapapababapapapapabab
+aaajajajbaajbaajajajaaababababababapababapapababapapapapabab
 aaaaaaaaaaaaaaaaaaaaaaababababababababababababababababababab
 "}
 
@@ -138,16 +136,16 @@ abababababababababapapapapapapababababababababapapapabapapab
 abababababababababapapapapapapababababababababapapapabapapab
 abababababababababababapapapapababababababababapapapabapapab
 ababababababababababababababapababababababababapapapababapab
-abababababababababababbdbeapapapapapbdababababapapabababapab
-ababababababababababbfbfbfbgbgbgbgbfbfbfabababapapabababapab
-abababababababababaSbfbhbhbhbhbhbhbhbhbfbiababapapapapapapab
-abababababababababapbfbhbhbhbhbhbhbhbhbfaRababapapapapapapab
-abapapapapapapapapapbgbhbhbhbhbhbhbhbhbgapabababababapababab
-abapabababababababapbgbhbhbhbhbhbhbhbhbgapabababababapapapab
-abapabababababababbjbfbhbhbhbhbhbhbhbhbfapabababababapapapab
-abapabababababababaSbfbhbhbhbhbhbhbhbhbfbiababababababapapab
-abapababababababababbfbfbfbgbgbgbgbfbfbfapapapapabababapapab
-abapabababababababababbaaZapapapapapbaababababapapababababab
+abababababababababababbbbcapapapapapbbababababapapabababapab
+ababababababababababbdbdbdbebebebebdbdbdabababapapabababapab
+abababababababababaQbdbfbfbfbfbfbfbfbfbdbgababapapapapapapab
+abababababababababapbdbfbfbfbfbfbfbfbfbdaPababapapapapapapab
+abapapapapapapapapapbebfbfbfbfbfbfbfbfbeapabababababapababab
+abapabababababababapbebfbfbfbfbfbfbfbfbeapabababababapapapab
+abapabababababababbhbdbfbfbfbfbfbfbfbfbdapabababababapapapab
+abapabababababababaQbdbfbfbfbfbfbfbfbfbdbgababababababapapab
+abapababababababababbdbdbdbebebebebdbdbdapapapapabababapapab
+abapabababababababababaYaXapapapapapaYababababapapababababab
 abapabababababapapapabapabapapapababababababababapapapababab
 abapabababababapabapapapababapapapabababababababababapapabab
 abapabababababapababababababapapapabababababababababapapabab
@@ -162,67 +160,67 @@ abababababababababababababababababababababababababababababab
 "}
 
 (1,1,4) = {"
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
 "}
 
 (1,1,5) = {"
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
-bkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbkbk
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
+bibibibibibibibibibibibibibibibibibibibibibibibibibibibibibi
 "}

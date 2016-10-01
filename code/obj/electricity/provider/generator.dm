@@ -18,6 +18,14 @@
 			t.opacity = 1
 		..()
 
+	/obj/electricity/provider/generator/New()
+		var/turf/t = locate(x + 1, y, z)
+		if (!t.density)
+			t.density = initial(t.density)
+			t.opacity = initial(t.opacity)
+		..()
+
+
 	/obj/electricity/provider/generator/Update()
 		var/turf/t
 		switch(dir)
@@ -46,3 +54,8 @@
 		else
 			icon_state = "off"
 		..()
+
+	/obj/electricity/provider/generator/verb/Info()
+		set src in view()
+		usr << "Stored joules: [stored_joules] / [stored_joules_max]"
+		usr << "Powered: [powered]"
