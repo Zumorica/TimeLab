@@ -21,8 +21,8 @@
 				required_watts = round(required_watts / 2)
 
 			if (provider.stored_joules > 0 && (provider.stored_joules -= required_watts) >= 0)
-				provider.stored_joules -= required_watts + extra_required_watts
-				stored_joules += required_watts + extra_required_watts
+				provider.stored_joules -= (required_watts + extra_required_watts)
+				stored_joules += (required_watts + extra_required_watts)
 				icon_state = ""
 				powered = 1
 
@@ -39,17 +39,18 @@
 				powered = 0
 			for (var/obj/electricity/o in orange(providing_range, src))
 				if (powered)
-					if (!o.provider && o.provider != 1)
+					if (!o.provider)
 						o.provider = src
 						extra_required_watts += o.required_watts
 					else if (o.provider == src)
 						o.Consume_power()
 
-		..()
 
 	/obj/electricity/provider/extender/verb/Info()
 		set src in view()
 		usr << "Provider: [provider]"
 		usr << "Stored joules: [stored_joules] / [stored_joules_max]"
 		usr << "Powered: [powered]"
+		usr << "Extends extender: [extends_extender]"
 		usr << "Required Watts: [required_watts]"
+		usr << "Extra Required Watts: [extra_required_watts]"
