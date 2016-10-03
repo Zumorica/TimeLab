@@ -29,6 +29,14 @@
 
 	/obj/electricity/provider/extender/Update()
 		if (game.game_state != PRE_ROUND)
+			if (provider && provider != 1)
+				if (provider.z != z)
+					provider = 0
+					powered = 0
+				var/d = get_dist(src, provider)
+				if (d > provider.providing_range)
+					provider = 0
+					powered = 0
 			if (stored_joules < 0)
 				stored_joules = 0
 			if (stored_joules > stored_joules_max)
