@@ -38,6 +38,7 @@
 #include "code\mob\mob.dm"
 #include "code\mob\new_player.dm"
 #include "code\mob\living\human.dm"
+#include "code\mob\living\living.dm"
 #include "code\obj\obj.dm"
 #include "code\obj\title.dm"
 #include "code\obj\electricity\electricity.dm"
