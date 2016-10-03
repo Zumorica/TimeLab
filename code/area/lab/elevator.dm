@@ -1,27 +1,27 @@
-/area/elevator
+/area/lab/elevator
 	luminosity = 5
 
-	/area/elevator/New()
+	/area/lab/elevator/New()
 		name = "Elevator on basement [z]"
 		elevator.elevators.Add(src)
 		return ..()
 
-	/area/elevator/proc/CheckNextZ()
+	/area/lab/elevator/proc/CheckNextZ()
 		if (z == world.maxz)
 			elevator.maxz = world.maxz
 		else
 			var/atom/other = src[1]
 			var/atom/otherup = locate(other.x, other.y, other.z + 1)
 			var/area/a = otherup.GetArea()
-			if (a.type == /area/elevator)
+			if (a.type == /area/lab/elevator)
 				return
 			else
 				elevator.maxz = other.z
 
-	/area/elevator/proc/floor_up()
+	/area/lab/elevator/proc/floor_up()
 		for (var/atom/movable/other in src)
 			var/atom/oloc = locate(other.x, other.y, other.z + 1)
-			var/area/elevator/a = oloc.GetArea()
+			var/area/lab/elevator/a = oloc.GetArea()
 			if (other.type == /obj/electricity/machine/door/elevator_door)
 				elevator.elevator_z = oloc.z
 				continue
@@ -34,11 +34,11 @@
 				world.log << "<red>Error!</red> [a] is not elevator..."
 		opacity = 1
 
-	/area/elevator/proc/floor_down()
+	/area/lab/elevator/proc/floor_down()
 		if (elevator.elevator_z >= 1)
 			for (var/atom/movable/other in src)
 				var/atom/oloc = locate(other.x, other.y, other.z - 1)
-				var/area/elevator/a = oloc.GetArea()
+				var/area/lab/elevator/a = oloc.GetArea()
 				if (other.type == /obj/electricity/machine/door/elevator_door)
 					elevator.elevator_z = oloc.z
 					continue
