@@ -16,7 +16,7 @@ var/datum/controller/elevator/elevator = new/datum/controller/elevator
 		..()
 
 	/datum/controller/elevator/Update()
-		var/area/elevator/a = GetCurrentArea()
+		var/area/lab/elevator/a = GetCurrentArea()
 		if (!maxz)
 			a.CheckNextZ()
 		if (elevator_z == destination)
@@ -58,7 +58,7 @@ var/datum/controller/elevator/elevator = new/datum/controller/elevator
 		return 0
 
 	/datum/controller/elevator/proc/GetCurrentArea()
-		for (var/area/elevator/e in world)
+		for (var/area/lab/elevator/e in world)
 			if (e.z == elevator_z)
 				return e
 		return
