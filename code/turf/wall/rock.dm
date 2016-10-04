@@ -2,7 +2,6 @@
 	icon = 'images/rock.dmi'
 	invincible = 0
 	damage_factor = 1.5
-	mineral = 0
 	opacity = 1
 	density = 1
 
