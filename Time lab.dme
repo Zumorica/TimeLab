@@ -58,10 +58,13 @@
 #include "code\obj\item\ball.dm"
 #include "code\obj\item\container.dm"
 #include "code\obj\item\item.dm"
+#include "code\obj\item\weapon\weapon.dm"
+#include "code\obj\item\weapon\pickaxe\pickaxe.dm"
 #include "code\obj\overlay\fire.dm"
 #include "code\obj\overlay\overlay.dm"
 #include "code\turf\turf.dm"
 #include "code\turf\floor\floor.dm"
+#include "code\turf\wall\rock.dm"
 #include "code\turf\wall\wall.dm"
 #include "maps\lab.dmm"
 // END_INCLUDE
