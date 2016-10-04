@@ -1,5 +1,4 @@
 /obj/electricity/machine/door
-	name = "Door"
 	icon = 'images/door.dmi'
 	icon_state = "CLOSED"
 	layer = ABOVE_MOBS
@@ -46,6 +45,3 @@
 				state = DOOR_CLOSED
 				density = 1
 				opacity = 1
-
-	/obj/electricity/machine/door/Interacted_Item(mob/other)
-		view(6) << "[other] hits the door with [other.inventory_items[other.active_hand]]."
