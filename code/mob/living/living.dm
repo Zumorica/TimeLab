@@ -1,9 +1,13 @@
 /mob/living
-	var/intention = NO_INTENTION
+	var/intention = INTERACT_INTENTION
+	var/interact_range = 1
 
 	/mob/living/Clicked(atom/other)
-		if (life_state == ALIVE)
-			if (intention == INTERACT_INTENTION)
+		if (life_state == ALIVE && get_dist(src, other) <= interact_range)
+			if (inventory_items[active_hand])
 				other.Interacted(usr)
-			else if (intention == HARM_INTENTION && get_dist(src, other) <= 1)		//You can only attack things next to you.
-				attack(other)
+			else
+				if (intention == INTERACT_INTENTION)
+					other.Interacted(usr)
+				else if (intention == HARM_INTENTION)
+					attack(other)

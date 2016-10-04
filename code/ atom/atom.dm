@@ -31,10 +31,6 @@
 	/atom/proc/attack(atom/other)
 		if (attack_state == CAN_ATTACK && life_state == ALIVE)
 			other.damage(rand(0, 10) * attack_factor)
-			if(src == other)
-				view() << "[src] attacks \himself."
-			else
-				view() << "[src] attacks [other]."
 			attack_state = CANT_ATTACK
 			spawn(attack_delay)
 				attack_state = CAN_ATTACK
@@ -47,12 +43,14 @@
 
 	/atom/proc/Interacted(mob/other)											// Called when a mob interacts with another atom.
 		if (istype(other, /mob/living/human) && get_dist(src, other) <= 1 && other.inventory_items[other.active_hand])
-			src.Interacted_Item(other)
+			src.Interacted_Item(other, other.inventory_items[other.active_hand])
+			return
 
 	/atom/proc/Bumped(atom/other)												// Called when you bump into other objects / other objects bump into you.
 		return
 
-	/atom/proc/Interacted_Item(mob/other)										// Called when a mob interacts with an object while holding an item.
+	/atom/proc/Interacted_Item(mob/other, obj/item/oitem)						// Called when a mob interacts with an object while holding an item.
+		oitem.On_interact(src)
 		return
 
 	/atom/proc/burn(var/burn_factor)											// Should be called for burning atoms.

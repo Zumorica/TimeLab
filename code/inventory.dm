@@ -18,6 +18,7 @@ var/inventory/inventory = new/inventory
 			else
 				I.screen_loc = "8, 1"
 			M.client.screen += I
+			I.On_pickup(M)
 		else
 			return
 
@@ -25,8 +26,9 @@ var/inventory/inventory = new/inventory
 		var/obj/item/I = M.inventory_items[M.active_hand]
 		M.contents -= I
 		M.inventory_items[M.active_hand] = null
-		I.layer = 3
+		I.layer = initial(I.layer)
 		I.loc = M.loc
+		I.On_drop(M)
 		M.client.screen -= I
 
 	/inventory/proc/change(mob/M, i_slot)
@@ -60,6 +62,7 @@ var/inventory/inventory = new/inventory
 			return
 		storage_items += I
 		M.contents -= I
+		I.On_store(src)
 		M.inventory_items[M.active_hand] = null
 		if(!is_open)
 			I.screen_loc = null
