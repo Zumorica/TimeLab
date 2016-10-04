@@ -58,6 +58,8 @@
 #include "code\obj\item\ball.dm"
 #include "code\obj\item\container.dm"
 #include "code\obj\item\item.dm"
+#include "code\obj\item\mineral\coal.dm"
+#include "code\obj\item\mineral\mineral.dm"
 #include "code\obj\item\weapon\weapon.dm"
 #include "code\obj\item\weapon\pickaxe\pickaxe.dm"
 #include "code\obj\overlay\fire.dm"
