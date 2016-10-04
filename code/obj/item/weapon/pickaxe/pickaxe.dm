@@ -1,6 +1,6 @@
 /obj/item/weapon/pickaxe
 	icon = 'images/pickaxe.dmi'
-	attack_factor = 2.5
+	attack_factor = 2
 	size = 3
 
 	/obj/item/weapon/pickaxe/On_interact(atom/other)
