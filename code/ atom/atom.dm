@@ -22,7 +22,7 @@
 
 	/atom/proc/damage(damage as num)											// Damage the atom.
 		if (!invincible && health > 0)
-			health -= damage * damage_factor
+			health -= round(damage * damage_factor)
 			if (health <= 0)
 				health = 0
 				life_state = DEAD
@@ -30,7 +30,7 @@
 
 	/atom/proc/attack(atom/other)
 		if (attack_state == CAN_ATTACK && life_state == ALIVE)
-			other.damage(rand(0, 10) * attack_factor)
+			other.damage(rand(1, 10) * attack_factor)
 			attack_state = CANT_ATTACK
 			spawn(attack_delay)
 				attack_state = CAN_ATTACK
