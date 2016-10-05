@@ -19,6 +19,8 @@
 		else
 			world << "[usr] has reconnected."
 
+		MakeMacro("T", "Say")
+
 		client.screen += world_hud["HLeft"]														// Displays HUDS.
 		client.screen += world_hud["AHRight"]
 		client.screen += world_hud["Pocket"]

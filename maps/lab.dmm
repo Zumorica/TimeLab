@@ -36,8 +36,8 @@
 "aJ" = (/obj/electricity/lightbulb/west,/turf/floor/generic/red,/area/underground)
 "aK" = (/obj/electricity/lightbulb/east,/turf/floor/generic/red,/area/underground)
 "aL" = (/obj/electricity/lightbulb/west,/turf/floor/generic/white,/area/underground)
-"aM" = (/liquid/lava,/turf/floor/generic/white,/area/underground)
-"aN" = (/obj/item/weapon/pickaxe,/turf/floor/generic/wooden,/area/underground)
+"aM" = (/obj/item/weapon/pickaxe,/turf/floor/generic/wooden,/area/underground)
+"aN" = (/liquid/lava,/turf/floor/generic/white,/area/underground)
 "aO" = (/liquid/water,/turf/floor/generic/wooden,/area/underground)
 "aP" = (/obj/electricity/elevator/button/west,/turf/floor/rock,/area/underground)
 "aQ" = (/obj/electricity/lightbulb/east,/turf/floor/rock,/area/underground)
@@ -84,8 +84,8 @@ aaacacacacacaHacacacacacaaajajajajaaaGaGaGaGaGaGaGaGaGaGaGaa
 aaacacacacacacacaIacacacakajajajajakaGaGaGaGaGaGaGaGaGaGaGaa
 aaacacacagacaIaIagacacadaaaJajajaKaaaLaGaGaGaGaGaGaGaGaGaGaa
 aaacacacacacacaHacacacacakajajajajakaGaGaGaGaGaGaGaGaGaGaGaa
-aaacacacacacacacacacacadaaaJajajaKaaaLaGaGaGaGaMaGaGaGaGaGaa
-aaacacacacacaNacacacacacakajajajajakaGaGaGaGaGaGaGaGaGaGaGaa
+aaacacacaMaMaMaMaMacacadaaaJajajaKaaaLaGaGaGaGaNaGaGaGaGaGaa
+aaacacacaMaMaMaMaMacacacakajajajajakaGaGaGaGaGaGaGaGaGaGaGaa
 aaacacacagacacacagacacacaaajajajajaaaGaGaGaGaGaGaGaGaGaGaGaa
 aaacacacacacabacacacacacahajajajajahaGaGaGaGaGaGaGaGaGaGaGaa
 aaacacacacacacacacacacacahajajajajahaGaGaGaGaGaGaGaGaGaGaGaa

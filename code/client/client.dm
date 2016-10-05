@@ -5,6 +5,11 @@
 	/client/New()
 		spawn ()
 			game.clients.Add(src)
+		MakeMacro("A+REP", ".West")
+		MakeMacro("D+REP", ".East")
+		MakeMacro("W+REP", ".North")
+		MakeMacro("S+REP", ".South")
+		MakeMacro("O", "OOC")
 		screen += title
 		..()
 
@@ -12,6 +17,9 @@
 		if (mob)
 			mob.Clicked(other, location, control, params)
 		return ..(other, location, control, params)
+
+	/client/proc/MakeMacro(var/key, var/command)
+		winset(src, url_encode(command), "parent=macro;name=[key];command=[url_encode(command)]")
 
 	/client/verb/Rank()
 		usr << rank
