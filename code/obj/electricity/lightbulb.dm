@@ -1,5 +1,4 @@
 /obj/electricity/lightbulb
-	name = "Lightbulb"
 	icon = 'images/lightbulb.dmi'
 	icon_state = "OFF"
 	layer = ABOVE_MOBS

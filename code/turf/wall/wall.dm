@@ -1,4 +1,5 @@
 /turf/wall/generic
+	name = "wall"
 	icon = 'images/wall.dmi'
 	opacity = 1
 	density = 1

@@ -10,4 +10,8 @@
 				if (intention == INTERACT_INTENTION)
 					other.Interacted(usr)
 				else if (intention == HARM_INTENTION)
+					if (other == src)
+						view(6) << "[src] punches \himself."
+					else
+						view(6) << "[src] punches [other]!"
 					attack(other)
