@@ -25,9 +25,6 @@
 			isBroken = 1
 			off()
 
-	/obj/electricity/lightbulb/Update()
-		..()
-
 	/obj/electricity/lightbulb/proc/off()
 		if (isBroken == 0)
 			icon_state = off_state
