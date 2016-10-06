@@ -17,7 +17,7 @@
 			looper.schedule(usr)
 			loc = locate(3, 3, 1)
 		else
-			world << "[usr] has reconnected."
+			world << "[client] has reconnected."
 
 		MakeMacro("T", "Say")
 
