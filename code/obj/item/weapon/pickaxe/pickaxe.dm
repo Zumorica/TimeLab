@@ -12,5 +12,8 @@
 			if (HARM_INTENTION)
 				if (attack_state == CAN_ATTACK && !other.invincible)
 					view(6) << "[carrier] attacks [other] with [src]!"
-				attack(other)
+				if (istype(other, /turf/wall/rock))
+					attack(other, 2)
+				else
+					attack(other)
 		..()

@@ -20,7 +20,7 @@
 	/atom/proc/GetArea()														// Returns the atom's area.
 		return
 
-	/atom/proc/damage(damage as num)											// Damage the atom.
+	/atom/proc/damage(var/damage as num)										// Damage the atom.
 		if (!invincible && health > 0)
 			health -= round(damage * damage_factor)
 			if (health <= 0)
@@ -28,9 +28,9 @@
 				life_state = DEAD
 				Died()
 
-	/atom/proc/attack(atom/other)
+	/atom/proc/attack(atom/other, var/bonus = 0)
 		if (attack_state == CAN_ATTACK && life_state == ALIVE)
-			other.damage(rand(1, 10) * attack_factor)
+			other.damage(rand(1, 10) * (attack_factor + bonus))
 			attack_state = CANT_ATTACK
 			spawn(attack_delay)
 				attack_state = CAN_ATTACK
