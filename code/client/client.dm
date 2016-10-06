@@ -10,6 +10,8 @@
 		MakeMacro("W+REP", ".North")
 		MakeMacro("S+REP", ".South")
 		MakeMacro("O", "OOC")
+		MakeMacro("T", "Say")
+		MakeMacro("Q", "drop")
 		screen += title
 		..()
 
@@ -23,6 +25,11 @@
 
 	/client/verb/Rank()
 		usr << rank
+
+	/client/verb/drop()
+		set hidden = 1
+		if (game.game_state != PRE_ROUND && src.mob)
+			inventory.dropItem(src.mob)
 
 	/client/verb/OOC(message as text)
 		set category = "OOC"

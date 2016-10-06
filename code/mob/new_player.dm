@@ -27,3 +27,6 @@
 		else if (game.game_state == PLAYING)
 			client.will_join = 1
 			game.handle_new_human(client)
+
+	/mob/new_player/verb/Say()
+		set hidden = 1
