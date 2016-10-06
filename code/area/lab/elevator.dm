@@ -14,9 +14,11 @@
 			var/atom/otherup = locate(other.x, other.y, other.z + 1)
 			var/area/a = otherup.GetArea()
 			if (a.type == /area/lab/elevator)
-				return
+				var/area/lab/elevator/b = a
+				return b.CheckNextZ()
 			else
 				elevator.maxz = other.z
+				return
 
 	/area/lab/elevator/proc/floor_up()
 		for (var/atom/movable/other in src)

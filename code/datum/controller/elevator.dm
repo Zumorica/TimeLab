@@ -1,7 +1,7 @@
 var/datum/controller/elevator/elevator = new/datum/controller/elevator
 
 /datum/controller/elevator
-	var/elevator_z = 3
+	var/elevator_z = 1
 	var/elevator_sleep = 30														// Number of milliseconds to sleep before the elevator goes up or down.
 	var/maxz = 0
 	var/spawned = 0
