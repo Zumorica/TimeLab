@@ -23,6 +23,7 @@
 	/atom/proc/damage(var/damage as num)										// Damage the atom.
 		if (!invincible && health > 0)
 			health -= round(damage * damage_factor)
+			On_damage(damage)
 			if (health <= 0)
 				health = 0
 				life_state = DEAD
@@ -31,11 +32,18 @@
 	/atom/proc/attack(atom/other, var/bonus = 0)
 		if (attack_state == CAN_ATTACK && life_state == ALIVE)
 			other.damage(rand(1, 10) * (attack_factor + bonus))
+			On_attack(other)
 			attack_state = CANT_ATTACK
 			spawn(attack_delay)
 				attack_state = CAN_ATTACK
 
 	/atom/proc/Died()															// Called when an atom dies. (His health reaches 0)
+		return
+
+	/atom/proc/On_attack(atom/other)											// Called when an atom attacks/damages other atoms.
+		return
+
+	/atom/proc/On_damage(var/damage)											// Called when an atom is attacked/damaged.
 		return
 
 	/atom/proc/Clicked(other, location, control, params)						// Called when client object clicks other objects.
