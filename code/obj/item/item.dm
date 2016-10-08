@@ -10,7 +10,10 @@
 			inventory.addItem(usr, src)
 
 	/obj/item/Interacted(mob/other)
-		if(istype(other, /mob/living/human) && get_dist(src, other) <= 1)
+		if(is_in_container(other))
+			var/obj/item/container/c = Get_container(other)
+			c.inv.removeFrom(src, other)
+		else if(istype(other, /mob/living/human) && get_dist(src, other) <= 1)
 			inventory.addItem(other, src)
 
 	/obj/item/proc/On_pickup(mob/other)
@@ -24,3 +27,14 @@
 
 	/obj/item/proc/On_interact(atom/other)
 		return
+
+	/obj/item/proc/is_in_container(mob/other)
+		for(var/obj/item/container/c in other.contents)
+			if(src in c.inv.storage_items)
+				return True
+		return False
+
+	/obj/item/proc/Get_container(mob/other)
+		for(var/obj/item/container/c in other.contents)
+			if(src in c.inv.storage_items)
+				return c

@@ -69,6 +69,19 @@ var/inventory/inventory = new/inventory
 		else
 			I.screen_loc = "[length(storage_items)+3], SOUTH+1"
 
+	/inventory/storage/proc/removeFrom(obj/item/I, mob/M)
+		if(M.inventory_items[M.active_hand])
+			return
+		for(var/obj/item/x in storage_items)
+			if(x == I)
+				storage_items.Remove(x)
+		M.inventory_items[M.active_hand] = I
+		M.contents += I
+		if(M.active_hand == "right_hand")
+			I.screen_loc = "9, 1"
+		else
+			I.screen_loc = "8, 1"
+
 	/inventory/storage/proc/open(mob/other)
 		for(var/obj/item/container/c in other.contents)
 			c.close(other)

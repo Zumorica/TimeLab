@@ -15,3 +15,5 @@
 					else
 						view(6) << "[src] punches [other]!"
 					attack(other)
+		else if(life_state == ALIVE && istype(other, /obj/item))
+			other.Interacted(usr)
