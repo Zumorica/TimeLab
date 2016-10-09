@@ -1,13 +1,3 @@
-# Ignore DM compiled files.
-
-*.mdme
-*.dmb
-*.rsc
-*.lk
-*.int
-*.backup
-*.int
-
 # https://github.com/github/gitignore/blob/master/Global/Linux.gitignore
 
 *~
