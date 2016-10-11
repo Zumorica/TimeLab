@@ -1,0 +1,1 @@
+extends "res://code/tile/tile.gd"
