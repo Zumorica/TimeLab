@@ -7,7 +7,6 @@ var host
 var info = {name = "Generic Scientist", version = "0"}
 var player_list = {}
 var started_networking = false
-var onready player = preload("red://scenes/client/client.tscn")
 
 func _ready():
 	host = NetworkedMultiplayerENet.new()
