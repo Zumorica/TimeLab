@@ -33,3 +33,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Godot executable for multiplayer testing
+godot
+godot.exe
