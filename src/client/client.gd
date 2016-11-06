@@ -40,4 +40,5 @@ func _set_mob_node(mob_node):
 		mob_node.get_parent().remove_child(mob_node)
 	mob_node.set_name("Mob")
 	add_child(mob_node)
+	emit_signal("_on_mob_change", mob_node)
 	
