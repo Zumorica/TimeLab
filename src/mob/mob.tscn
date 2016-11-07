@@ -18,6 +18,11 @@ collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
 race = "generic"
+direction = 0
+sprite_north = null
+sprite_south = null
+sprite_west = null
+sprite_east = null
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -28,5 +33,7 @@ trigger = false
 _update_shape_index = 0
 
 [connection signal="_on_client_input" from="." to="." method="_on_client_input"]
+
+[connection signal="draw" from="." to="." method="_on_Mob_draw"]
 
 
