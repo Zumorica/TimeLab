@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://src/tile/floor/floor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://res/img/tile/floor/blue.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
+[node name="BlueFloor" instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 0, 0 )
+
+[node name="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+script/script = null
+
+[node name="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 16, 16 )
+shape = SubResource( 1 )
+_update_shape_index = 0
+script/script = null
+
+
