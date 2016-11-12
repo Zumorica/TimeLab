@@ -4,4 +4,15 @@
 
 [node name="Wall" instance=ExtResource( 1 )]
 
+transform/pos = Vector2( 16, 16 )
+z/z = 1
+
+[node name="Sprite" parent="."]
+
+transform/pos = Vector2( 0, 0 )
+
+[node name="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0, 0 )
+
 

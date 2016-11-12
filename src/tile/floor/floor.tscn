@@ -4,6 +4,8 @@
 
 [node name="Floor" instance=ExtResource( 1 )]
 
+z/z = -1
+
 [node name="CollisionShape2D" parent="."]
 
 trigger = true
