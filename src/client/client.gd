@@ -1,6 +1,8 @@
 extends Node2D
 
 signal _on_mob_change(mob)
+signal _on_client_input(event)
+
 var network_id = 1
 
 func _ready():
@@ -10,7 +12,7 @@ func _ready():
 
 func _input(event):
 	if is_client() and get_mob():
-		get_mob().emit_signal("_on_client_input", event)
+		emit_signal("_on_client_input", event)
 
 func is_client():
 	"""This function returns true if currently the code is being
