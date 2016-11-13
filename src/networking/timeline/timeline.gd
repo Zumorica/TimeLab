@@ -2,6 +2,7 @@ extends Node
 
 var is_busy = false # When connecting/creating a server, this will be true.
 var is_online = false # When connected to/hosting a server, this will be true.
+var map_handler = preload("res://src/map/map.gd").MapHandler.new()
 onready var network_handler = NetworkedMultiplayerENet.new()
 
 func _ready():
