@@ -7,6 +7,7 @@ var network_id = 1
 
 func _ready():
 	set_mob("res://src/mob/living/human/human.tscn")
+	add_to_group("clients")
 	if is_client():
 		set_process_input(true)
 
