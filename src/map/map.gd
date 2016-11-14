@@ -8,6 +8,7 @@ class Map:
 	extends Node2D
 	
 	var data = []
+	var _updated_data = []
 	
 	func _ready():
 		set_name("Map")
@@ -22,14 +23,42 @@ class Map:
 	func px_pos_to_map(vector):
 		return Vector2(int(vector.x / 32), int(vector.y / 32))
 		
-	func create_map():
-		for tile in data:
-			var ins_tile = TILES[tile["tile"]].instance()
-			var px_pos = map_pos_to_px(tile["x"], tile["y"])
-			ins_tile.set_pos(px_pos)
-			for variable in tile["variables"].keys():
-				ins_tile._set("variable", tile["variables"][variable])
+	func _process_tile(tile):
+		var ins_tile = TILES[tile["tile"]].instance()
+		var px_pos = map_pos_to_px(tile["x"], tile["y"])
+		ins_tile.set_pos(px_pos)
+		for variable in tile["variables"].keys():
+			ins_tile._set("variable", tile["variables"][variable])
+		return ins_tile
+		
+	func _process_children(child):
+		var tile = {"tile" : 0, "x" : 0, "y" : 0, "variables" : {}}
+		for key in TILES.keys():
+			if child extends TILES[key]:
+				tile["tile"] = key
+		var tpos = px_pos_to_map(child.get_pos())
+		tile["x"] = tpos.x
+		tile["y"] = tpos.y
+		for i in get_property_list():
+			print(i["name"], get(i["name"])) # debugging print please ignore
+			tile["variables"][i["name"]] = get(i["name"])
+		return tile
+		
+	func create_map(original = true):
+		for child in get_children():
+			child.queue_free()
+		if original:
+			for tile in data:
+				add_child(_process_tile(tile))
+		else:
+			for tile in _updated_data:
+				add_child(_process_tile(tile))
 
+	func update_data():
+		_updated_data = []
+		for child in get_children():
+			_updated_data.append(_process_children(child))
+		
 class MapHandler:
 	extends Object
 	
