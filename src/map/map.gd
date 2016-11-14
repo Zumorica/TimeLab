@@ -1,12 +1,12 @@
-const BLUE_FLOOR = 1
-const GREY_WALL = 2
-
-const TILES = {1 : preload("res://src/tile/floor/blue.tscn"),
-			   2 : preload("res://src/tile/wall/grey.tscn")}
-
 class Map:
 	extends Node2D
 	
+	const BLUE_FLOOR = 1
+	const GREY_WALL = 2
+	
+	const TILES = {1 : preload("res://src/tile/floor/blue.tscn"),
+				   2 : preload("res://src/tile/wall/grey.tscn")}
+			
 	var data = []
 	var _updated_data = []
 	
@@ -25,10 +25,10 @@ class Map:
 		
 	func _process_tile(tile):
 		var ins_tile = TILES[tile["tile"]].instance()
-		var px_pos = map_pos_to_px(tile["x"], tile["y"])
+		var px_pos = map_pos_to_px(Vector2(tile["x"], tile["y"]), true)
 		ins_tile.set_pos(px_pos)
 		for variable in tile["variables"].keys():
-			ins_tile._set("variable", tile["variables"][variable])
+			ins_tile.set(variable, tile["variables"][variable])
 		return ins_tile
 		
 	func _process_children(child):
@@ -40,7 +40,6 @@ class Map:
 		tile["x"] = tpos.x
 		tile["y"] = tpos.y
 		for i in get_property_list():
-			print(i["name"], get(i["name"])) # debugging print please ignore
 			tile["variables"][i["name"]] = get(i["name"])
 		return tile
 		
@@ -61,6 +60,12 @@ class Map:
 		
 class MapHandler:
 	extends Object
+	
+	const BLUE_FLOOR = 1
+	const GREY_WALL = 2
+	
+	const TILES = {1 : preload("res://src/tile/floor/blue.tscn"),
+				   2 : preload("res://src/tile/wall/grey.tscn")}
 	
 	func get_map(map):
 		if typeof(map) == TYPE_STRING:
