@@ -5,6 +5,8 @@
 
 [node name="GreyWall" instance=ExtResource( 1 )]
 
+ID = 2
+
 [node name="Sprite" parent="."]
 
 texture = ExtResource( 2 )

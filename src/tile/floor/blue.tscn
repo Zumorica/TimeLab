@@ -10,6 +10,8 @@ extents = Vector2( 16, 16 )
 
 [node name="BlueFloor" instance=ExtResource( 1 )]
 
+ID = 1
+
 [node name="Sprite" parent="."]
 
 transform/pos = Vector2( 0, 0 )
