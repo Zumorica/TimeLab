@@ -1,5 +1,6 @@
 extends Node
 
+var map
 var is_busy = false # When connecting/creating a server, this will be true.
 var is_online = false # When connected to/hosting a server, this will be true.
 onready var map_handler = load("res://src/map/map.gd").MapHandler.new()
@@ -11,6 +12,7 @@ func _ready():
 func host_server(port, max_players):
 	is_busy = true
 	network_handler.create_server(port, max_players)
+	get_tree().set_network_peer(network_handler)
 
 func connect_to_server(ip, port):
 	is_busy = true
@@ -19,7 +21,9 @@ func connect_to_server(ip, port):
 	if get_tree().get_network_unique_id():
 		is_busy = false
 		is_online = true
-		
+
+func set_map(map):
+	map = map_handler.get_map(map)
 
 func connect_handlers():
 	get_tree().connect("network_peer_connected", self, "client_connected")

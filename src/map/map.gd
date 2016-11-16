@@ -78,7 +78,7 @@ class MapHandler:
 		# Do not call this function directly.
 		assert (typeof(map_string) == TYPE_STRING)
 		var map = load(map_string).new()
-		if map extends Map:
+		if map.has_method("create_map"):
 			return map
 		return false
 		
