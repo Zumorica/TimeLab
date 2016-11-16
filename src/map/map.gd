@@ -33,9 +33,7 @@ class Map:
 		
 	func _process_children(child):
 		var tile = {"tile" : 0, "x" : 0, "y" : 0, "variables" : {}}
-		for key in TILES.keys():
-			if child extends TILES[key]:
-				tile["tile"] = key
+		tile["tile"] = child.get("ID")
 		var tpos = px_pos_to_map(child.get_pos())
 		tile["x"] = tpos.x
 		tile["y"] = tpos.y
@@ -57,6 +55,13 @@ class Map:
 		_updated_data = []
 		for child in get_children():
 			_updated_data.append(_process_children(child))
+		return _updated_data
+		
+	func get_data(original = false):
+		if original:
+			return data
+		else:
+			return update_data()
 		
 class MapHandler:
 	extends Object
@@ -72,6 +77,8 @@ class MapHandler:
 			return _get_map_from_string(map)
 		elif (typeof(map) == TYPE_OBJECT):
 			return _get_map_from_class(map)
+		elif (typeof(map) == TYPE_ARRAY):
+			return _get_map_from_list(map)
 		return false
 		
 	func _get_map_from_string(map_string):
@@ -89,3 +96,10 @@ class MapHandler:
 		if map extends Map:
 			return map
 		return false
+		
+	func _get_map_from_list(map_data):
+		# Do not call this function directly.
+		assert (typeof(map_data) == TYPE_ARRAY)
+		var map = load("res://src/map/map.gd").Map.new()
+		map.data = map_data
+		return map
