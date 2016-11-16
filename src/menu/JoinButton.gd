@@ -9,5 +9,5 @@ func _on_Button_pressed():
 	if ip == "" or not ip.is_valid_ip_address():
 		print("Invalid ip address.")
 		return
-		
-	get_node("/root/timeline").connect_server(ip, int(port))
+
+	get_node("/root/timeline").connect_to_server(ip, int(port))

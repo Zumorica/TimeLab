@@ -171,6 +171,8 @@ focus_mode = 2
 caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
+[connection signal="pressed" from="TabContainer2/Join/Button" to="TabContainer2/Join/Button" method="_on_Button_pressed"]
+
 [connection signal="pressed" from="TabContainer2/Host/Button" to="TabContainer2/Host/Button" method="_on_Button_pressed"]
 
 
