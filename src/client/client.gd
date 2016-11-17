@@ -18,8 +18,7 @@ func _input(event):
 func is_client():
 	"""This function returns true if currently the code is being
 	   executed by this client's owner."""
-	#return network_id == get_tree().get_network_unique_id()
-	return true # Since there's no networking code yet, we suppose there's only one client.
+	return network_id == get_tree().get_network_unique_id()
 func get_mob():
 	#This function returns client's current mob.
 	if has_node("Mob"):
@@ -32,6 +31,8 @@ sync func set_mob(mob):
 	   It can take one argument, and it can
 	   be either the path to a scene, a nodepath,
 	   a node, or a class."""
+	if get_mob():
+		disconnect("_on_client_input", get_mob(), "_on_client_input")
 	var type = typeof(mob)
 	if type == TYPE_STRING:
 		_set_mob_scene(mob)
@@ -41,6 +42,9 @@ sync func set_mob(mob):
 		_set_mob_class(mob)
 	elif type == TYPE_OBJECT and not mob.has_method("instance"):
 		_set_mob_node(mob)
+	else:
+		return
+	connect("_on_client_input", get_mob(), "_on_client_input")
 
 func _set_mob_scene(scene_path):
 	# Do not call this function directly.
