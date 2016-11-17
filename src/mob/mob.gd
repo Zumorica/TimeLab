@@ -13,33 +13,32 @@ export(Texture) var sprite_west
 export(Texture) var sprite_east
 
 func _on_client_input(event):
-	if event.is_action("mob_move_up"):
+	if event.is_action_pressed("mob_move_up"):
 		move_local_y(-32, true)
-	if event.is_action("mob_move_down"):
+		direction = NORTH
+		update()
+	if event.is_action_pressed("mob_move_down"):
 		move_local_y(32, true)
-	if event.is_action("mob_move_left"):
+		direction = SOUTH
+		update()
+	if event.is_action_pressed("mob_move_left"):
 		move_local_x(-32, true)
-	if event.is_action("mob_move_right"):
+		direction = WEST
+		update()
+	if event.is_action_pressed("mob_move_right"):
 		move_local_x(32, true)
-
-func _ready():
-	if get_parent().get_name() == "Client":
-		get_parent().connect("_on_client_input", self, "_on_client_input")
+		direction = EAST
+		update()
 
 func _on_Mob_draw():
 	if direction == NORTH:
-		pass
-		#rpc("_change_Sprite", sprite_north)
+		rpc("_change_Sprite", sprite_north)
 	elif direction == SOUTH:
-		pass
-		#rpc("_change_Sprite", sprite_south)
+		rpc("_change_Sprite", sprite_south)
 	elif direction == WEST:
-		pass
-		#rpc("_change_Sprite", sprite_west)
+		rpc("_change_Sprite", sprite_west)
 	elif direction == EAST:
-		pass
-		#rpc("_change_Sprite", sprite_east)
+		rpc("_change_Sprite", sprite_east)
 
 sync func _change_Sprite(texture):
-	if typeof(texture) == TYPE_IMAGE:
-		get_node("Sprite").set_texture(texture)
+	get_node("Sprite").set_texture(texture)

@@ -11,6 +11,7 @@
 
 script/script = ExtResource( 2 )
 race = "human"
+direction = 1
 sprite_north = ExtResource( 3 )
 sprite_south = ExtResource( 4 )
 sprite_west = ExtResource( 5 )
