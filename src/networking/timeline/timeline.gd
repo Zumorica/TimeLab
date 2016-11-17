@@ -22,6 +22,8 @@ func host_server(port, max_players):
 		is_busy = false
 		is_online = true
 		prepare_map()
+		get_tree().get_root().add_child(own_client)
+		own_client.set_pos(map.map_pos_to_px(Vector2(0, 0), true))
 		get_node("/root/Menu").queue_free()
 
 func connect_to_server(ip, port):
