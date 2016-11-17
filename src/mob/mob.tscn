@@ -9,7 +9,7 @@ extents = Vector2( 16, 16 )
 
 [node name="Mob" type="KinematicBody2D"]
 
-input/pickable = false
+input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
