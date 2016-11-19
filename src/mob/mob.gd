@@ -13,22 +13,36 @@ export(Texture) var sprite_west
 export(Texture) var sprite_east
 
 func _on_client_input(event):
-	if event.is_action_pressed("mob_move_up"):
-		move_local_y(-32, true)
+	if event.is_action("mob_move_up") and not event.is_action_released("mob_move_up"):
+		_mob_move("up")
+	if event.is_action("mob_move_down") and not event.is_action_released("mob_move_down"):
+		_mob_move("down")
+	if event.is_action("mob_move_left") and not event.is_action_released("mob_move_left"):
+		_mob_move("left")
+	if event.is_action("mob_move_right") and not event.is_action_released("mob_move_right"):
+		_mob_move("right")
+
+func _mob_move(direct):
+	if direct == "up":
+		move(Vector2(0, -32))
 		direction = NORTH
-		update()
-	if event.is_action_pressed("mob_move_down"):
-		move_local_y(32, true)
+		rpc_unreliable("_update_move", Vector2(0, -32))
+	elif direct == "down":
+		move(Vector2(0, 32))
 		direction = SOUTH
-		update()
-	if event.is_action_pressed("mob_move_left"):
-		move_local_x(-32, true)
+		rpc_unreliable("_update_move", Vector2(0, 32))
+	elif direct == "left":
+		move(Vector2(-32, 0))
 		direction = WEST
-		update()
-	if event.is_action_pressed("mob_move_right"):
-		move_local_x(32, true)
+		rpc_unreliable("_update_move", Vector2(-32, 0))
+	else:
+		move(Vector2(32, 0))
 		direction = EAST
-		update()
+		rpc_unreliable("_update_move", Vector2(32, 0))
+	update()
+
+slave func _update_move(move):
+	move(move)
 
 func _on_Mob_draw():
 	if direction == NORTH:
