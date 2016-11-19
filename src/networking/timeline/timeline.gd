@@ -24,6 +24,7 @@ func host_server(port, max_players):
 		prepare_map()
 		get_tree().get_root().add_child(own_client)
 		own_client.set_pos(map.map_pos_to_px(Vector2(0, 0), true))
+		own_client.set_ID(get_tree().get_network_unique_id())
 		get_node("/root/Menu").queue_free()
 
 func connect_to_server(ip, port):
@@ -65,14 +66,19 @@ remote func register_client(id, info):
 	if not client_list.has(id):
 		client_list[id] = info
 		var c = client_base.instance()
+		c.set_pos(Vector2(16, 16))
 		c.set_name(str(id))
-		get_node("/root").add_child(c)
+		c.set_ID(id)
+		get_tree().get_root().add_child(c)
 	
 func _connection_successful():
 	get_tree().set_network_peer(network_handler)
 	own_client.set_name(str(get_tree().get_network_unique_id()))
+	own_client.set_ID(get_tree().get_network_unique_id())
 	get_node("/root/Menu").queue_free()
 	rpc("register_client", get_tree().get_network_unique_id(), own_info)
+	own_client.set_pos(Vector2(16, 16))
+	get_tree().get_root().add_child(own_client)
 	is_busy = false
 	is_online = true
 	
