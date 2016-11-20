@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://src/menu/LobbyClientList.gd" type="Script" id=1]
+[ext_resource path="res://src/menu/readyButton.gd" type="Script" id=2]
+[ext_resource path="res://src/menu/startButton.gd" type="Script" id=3]
+
+[node name="Lobby" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="Panel" type="Panel" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = -984.0
+margin/bottom = -560.0
+
+[node name="LobbyClientList" type="ItemList" parent="Panel"]
+
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 397.0
+margin/bottom = 4.0
+script/script = ExtResource( 1 )
+
+[node name="readyButton" type="Button" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 464.0
+margin/top = 441.0
+margin/right = 514.0
+margin/bottom = 461.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Ready"
+flat = false
+script/script = ExtResource( 2 )
+
+[node name="startButton" type="Button" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 548.0
+margin/top = 440.0
+margin/right = 589.0
+margin/bottom = 460.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Start"
+flat = false
+script/script = ExtResource( 3 )
+
+[connection signal="pressed" from="Panel/readyButton" to="Panel/readyButton" method="_on_Button_pressed"]
+
+[connection signal="pressed" from="Panel/startButton" to="Panel/startButton" method="_on_Button_pressed"]
+
+

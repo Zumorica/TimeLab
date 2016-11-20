@@ -5,6 +5,8 @@ var own_info = {}
 var client_list = {}
 var is_busy = false # When connecting/creating a server, this will be true.
 var is_online = false # When connected to/hosting a server, this will be true.
+var clients_ready = []
+var lobby_client_list
 onready var map_handler = load("res://src/map/map.gd").MapHandler.new()
 onready var network_handler = NetworkedMultiplayerENet.new()
 onready var client_base = preload("res://src/client/client.tscn")
@@ -18,14 +20,12 @@ func host_server(port, max_players):
 		is_busy = true
 		network_handler.create_server(port, max_players)
 		get_tree().set_network_peer(network_handler)
-		own_client.set_name(str(get_tree().get_network_unique_id()))
 		is_busy = false
 		is_online = true
-		prepare_map()
-		get_tree().get_root().add_child(own_client)
-		own_client.set_pos(map.map_pos_to_px(Vector2(0, 0), true))
-		own_client.set_ID(get_tree().get_network_unique_id())
-		get_node("/root/Menu").queue_free()
+		var lobby = load("res://src/menu/Lobby.tscn").instance()
+		get_node("/root").add_child(lobby)
+		get_node("/root/Menu").free()
+		lobby_client_list = get_node("/root/Lobby/Panel/LobbyClientList")
 
 func connect_to_server(ip, port):
 	if not is_busy or not is_online:
@@ -53,34 +53,21 @@ func connect_handlers():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	
 func client_connected(id):
-	print("A new client (", id, ") has connected.")
-	rpc_id(id, "register_client", get_tree().get_network_unique_id(), own_info)
-	if get_tree().get_network_unique_id() == 1:
-		rpc_id(id, "set_map", map.get_data(true))
-		rpc_id(id, "prepare_map")
+	pass
 
 func client_disconnected(id):
 	pass
 	
-remote func register_client(id, info):
-	if not client_list.has(id):
-		client_list[id] = info
-		var c = client_base.instance()
-		c.set_pos(Vector2(16, 16))
-		c.set_name(str(id))
-		c.set_ID(id)
-		get_tree().get_root().add_child(c)
-	
 func _connection_successful():
-	get_tree().set_network_peer(network_handler)
-	own_client.set_name(str(get_tree().get_network_unique_id()))
-	own_client.set_ID(get_tree().get_network_unique_id())
-	get_node("/root/Menu").queue_free()
 	rpc("register_client", get_tree().get_network_unique_id(), own_info)
-	own_client.set_pos(Vector2(16, 16))
-	get_tree().get_root().add_child(own_client)
+	pre_configure_game()
 	is_busy = false
 	is_online = true
+	var lobby = load("res://src/menu/Lobby.tscn").instance()
+	get_node("/root").add_child(lobby)
+	get_node("/root/Menu").free()
+	lobby_client_list = get_node("/root/Lobby/Panel/LobbyClientList")
+	own_client.set_ID(get_tree().get_network_unique_id())
 	
 func _connection_failed():
 	get_tree().set_network_peer(null)
@@ -89,3 +76,34 @@ func _connection_failed():
 func _server_disconnected():
 	get_tree().set_network_peer(null)
 	own_client.set_name("Client")
+
+remote func register_client(id, info):
+	if (get_tree().is_network_server()):
+		rpc_id(id, "register_client", 1, own_info)
+		for client_id in client_list.keys():
+			rpc_id(id, "register_client", client_id, client_list[client_id])
+			rpc_id(client_id, "register_client", id, info)
+	client_list[id] = info
+	refresh_lobby()
+
+func refresh_lobby():
+	lobby_client_list.clear()
+	if own_client.get_ID() in clients_ready:
+		lobby_client_list.add_item(str(own_client.get_ID()) + " (You): Ready")
+	else:
+		lobby_client_list.add_item(str(own_client.get_ID()) + " (You)")
+	for client_id in client_list.keys():
+		if client_id in clients_ready:
+			lobby_client_list.add_item(str(client_id) + ": Ready")
+		else:
+			lobby_client_list.add_item(str(client_id))
+
+func set_client_ready():
+	rpc("add_to_ready", own_client.get_ID())
+
+sync func add_to_ready(id):
+	clients_ready.append(id)
+	refresh_lobby()
+
+remote func pre_configure_game():						# This is where you set the client nodes and the like
+	own_client.set_name(str(get_tree().get_network_unique_id()))
