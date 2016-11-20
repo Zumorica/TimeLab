@@ -17,4 +17,5 @@ func _on_Button_pressed():
 		print("Invalid max players.")
 		return
 		
+	get_node("/root/timeline").chosen_map = map
 	get_node("/root/timeline").host_server(int(port), int(max_players))

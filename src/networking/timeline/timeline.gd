@@ -1,5 +1,6 @@
 extends Node
 
+var chosen_map
 var map
 var own_info = {}
 var client_list = {}
@@ -24,6 +25,7 @@ func host_server(port, max_players):
 		is_online = true
 		var lobby = load("res://src/menu/Lobby.tscn").instance()
 		get_node("/root").add_child(lobby)
+		get_node("/root/Lobby/Panel/startButton").show()
 		get_node("/root/Menu").free()
 		lobby_client_list = get_node("/root/Lobby/Panel/LobbyClientList")
 
@@ -36,12 +38,12 @@ func connect_to_server(ip, port):
 			is_busy = false
 			is_online = true
 
-remote func set_map(new_map):
+sync func set_map(new_map):
 	map = map_handler.get_map(new_map)
 	if map:
 		get_tree().get_root().add_child(map)
 	
-remote func prepare_map():
+sync func prepare_map():
 	if map:
 		map.create_map()
 
@@ -60,7 +62,6 @@ func client_disconnected(id):
 	
 func _connection_successful():
 	rpc("register_client", get_tree().get_network_unique_id(), own_info)
-	pre_configure_game()
 	is_busy = false
 	is_online = true
 	var lobby = load("res://src/menu/Lobby.tscn").instance()
@@ -80,7 +81,7 @@ func _server_disconnected():
 remote func register_client(id, info):
 	if (get_tree().is_network_server()):
 		rpc_id(id, "register_client", 1, own_info)
-		for client_id in client_list.keys():
+		for client_id in client_list:
 			rpc_id(id, "register_client", client_id, client_list[client_id])
 			rpc_id(client_id, "register_client", id, info)
 	client_list[id] = info
@@ -92,7 +93,7 @@ func refresh_lobby():
 		lobby_client_list.add_item(str(own_client.get_ID()) + " (You): Ready")
 	else:
 		lobby_client_list.add_item(str(own_client.get_ID()) + " (You)")
-	for client_id in client_list.keys():
+	for client_id in client_list:
 		if client_id in clients_ready:
 			lobby_client_list.add_item(str(client_id) + ": Ready")
 		else:
@@ -105,5 +106,21 @@ sync func add_to_ready(id):
 	clients_ready.append(id)
 	refresh_lobby()
 
-remote func pre_configure_game():						# This is where you set the client nodes and the like
-	own_client.set_name(str(get_tree().get_network_unique_id()))
+func begin_game():
+	rpc("pre_configure_game")
+
+sync func pre_configure_game():
+	get_node("/root/Lobby").free()
+	own_client.set_name(str(own_client.get_ID()))
+	rpc("set_map", chosen_map)
+	rpc("prepare_map")
+	get_tree().get_root().add_child(own_client)
+	own_client.set_pos(map.map_pos_to_px(Vector2(0, 0), true))
+	own_client.set_network_mode(NETWORK_MODE_MASTER)
+	var client_scene = load("res://src/client/client.tscn")
+	for client_id in client_list:
+		var client = client_scene.instance()
+		client.set_name(str(client_id))
+		get_tree().get_root().add_child(client)
+		client.set_pos(map.map_pos_to_px(Vector2(1, 1), true))
+		client.set_network_mode(NETWORK_MODE_SLAVE)

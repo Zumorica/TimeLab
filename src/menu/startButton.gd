@@ -4,4 +4,4 @@ func _ready():
 	hide()
 
 func _on_Button_pressed():
-	pass
+	get_node("/root/timeline").begin_game()
