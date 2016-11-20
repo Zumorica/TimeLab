@@ -107,13 +107,16 @@ sync func add_to_ready(id):
 	refresh_lobby()
 
 func begin_game():
-	rpc("pre_configure_game")
+	set_map(chosen_map)
+	prepare_map()
+	rpc("pre_configure_game", map.get_data(true))
 
-sync func pre_configure_game():
+sync func pre_configure_game(host_map):
 	get_node("/root/Lobby").free()
 	own_client.set_name(str(own_client.get_ID()))
-	rpc("set_map", chosen_map)
-	rpc("prepare_map")
+	if not get_tree().is_network_server():
+		set_map(host_map)
+		prepare_map()
 	get_tree().get_root().add_child(own_client)
 	own_client.set_pos(map.map_pos_to_px(Vector2(0, 0), true))
 	own_client.set_network_mode(NETWORK_MODE_MASTER)
