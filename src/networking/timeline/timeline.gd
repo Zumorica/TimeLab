@@ -26,8 +26,9 @@ func host_server(port, max_players):
 		var lobby = load("res://src/menu/Lobby.tscn").instance()
 		get_node("/root").add_child(lobby)
 		get_node("/root/Lobby/Panel/startButton").show()
-		get_node("/root/Menu").free()
+		get_node("/root/Menu").queue_free()
 		lobby_client_list = get_node("/root/Lobby/Panel/LobbyClientList")
+		refresh_lobby()
 
 func connect_to_server(ip, port):
 	if not is_busy or not is_online:
@@ -55,7 +56,7 @@ func connect_handlers():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	
 func client_connected(id):
-	pass
+	rpc_id(id, "register_client", get_tree().get_network_unique_id(), own_info)
 
 func client_disconnected(id):
 	pass
@@ -73,17 +74,14 @@ func _connection_successful():
 func _connection_failed():
 	get_tree().set_network_peer(null)
 	own_client.set_name("Client")
+	print("Connection failed!")
 	
 func _server_disconnected():
 	get_tree().set_network_peer(null)
 	own_client.set_name("Client")
+	print("Server disconnected.")
 
 remote func register_client(id, info):
-	if (get_tree().is_network_server()):
-		rpc_id(id, "register_client", 1, own_info)
-		for client_id in client_list:
-			rpc_id(id, "register_client", client_id, client_list[client_id])
-			rpc_id(client_id, "register_client", id, info)
 	client_list[id] = info
 	refresh_lobby()
 
@@ -112,7 +110,7 @@ func begin_game():
 	rpc("pre_configure_game", map.get_data(true))
 
 sync func pre_configure_game(host_map):
-	get_node("/root/Lobby").free()
+	get_node("/root/Lobby").queue_free()
 	own_client.set_name(str(own_client.get_ID()))
 	if not get_tree().is_network_server():
 		set_map(host_map)
@@ -120,9 +118,8 @@ sync func pre_configure_game(host_map):
 	get_tree().get_root().add_child(own_client)
 	own_client.set_pos(map.map_pos_to_px(Vector2(0, 0), true))
 	own_client.set_network_mode(NETWORK_MODE_MASTER)
-	var client_scene = load("res://src/client/client.tscn")
 	for client_id in client_list:
-		var client = client_scene.instance()
+		var client = client_base.instance()
 		client.set_name(str(client_id))
 		get_tree().get_root().add_child(client)
 		client.set_pos(map.map_pos_to_px(Vector2(1, 1), true))
