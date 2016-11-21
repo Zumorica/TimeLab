@@ -47,7 +47,8 @@ sync func set_map(new_map):
 sync func prepare_map():
 	if map:
 		map.create_map()
-
+		map.set_pos(Vector2(0, 0))
+ 
 func connect_handlers():
 	get_tree().connect("network_peer_connected", self, "client_connected")
 	get_tree().connect("network_peer_disconnected", self, "client_disconnected")
@@ -121,6 +122,7 @@ sync func pre_configure_game(host_map):
 	for client_id in client_list:
 		var client = client_base.instance()
 		client.set_name(str(client_id))
+		client.set_ID(int(client_id))
 		get_tree().get_root().add_child(client)
 		client.set_pos(map.map_pos_to_px(Vector2(1, 1), true))
 		client.set_network_mode(NETWORK_MODE_SLAVE)

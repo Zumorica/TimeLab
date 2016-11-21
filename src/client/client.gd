@@ -10,9 +10,10 @@ func _ready():
 	add_to_group("clients")
 	if is_client():
 		set_process_input(true)
+		set_network_mode(NETWORK_MODE_MASTER)
 
 func _input(event):
-	if is_client() and get_mob():
+	if is_network_master() and get_mob():
 		emit_signal("_on_client_input", event)
 
 func get_ID():
@@ -24,7 +25,7 @@ func set_ID(id):
 func is_client():
 	"""This function returns true if currently the code is being
 	   executed by this client's owner."""
-	return (get_ID() == get_tree().get_network_unique_id())
+	return (str(get_ID()) == str(get_tree().get_network_unique_id()))
 	
 func get_mob():
 	#This function returns client's current mob.
@@ -52,7 +53,7 @@ sync func set_mob(mob):
 	else:
 		return
 	connect("_on_client_input", get_mob(), "_on_client_input")
-
+	
 func _set_mob_scene(scene_path):
 	# Do not call this function directly.
 	assert typeof(scene_path) == TYPE_STRING

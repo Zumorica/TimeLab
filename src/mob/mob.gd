@@ -14,35 +14,34 @@ export(Texture) var sprite_east
 
 func _on_client_input(event):
 	if event.is_action("mob_move_up") and not event.is_action_released("mob_move_up"):
-		_mob_move("up")
+		_mob_move(NORTH)
 	if event.is_action("mob_move_down") and not event.is_action_released("mob_move_down"):
-		_mob_move("down")
+		_mob_move(SOUTH)
 	if event.is_action("mob_move_left") and not event.is_action_released("mob_move_left"):
-		_mob_move("left")
+		_mob_move(WEST)
 	if event.is_action("mob_move_right") and not event.is_action_released("mob_move_right"):
-		_mob_move("right")
+		_mob_move(EAST)
 
-func _mob_move(direct):
-	if direct == "up":
-		move(Vector2(0, -32))
-		direction = NORTH
-		rpc_unreliable("_update_move", Vector2(0, -32))
-	elif direct == "down":
-		move(Vector2(0, 32))
-		direction = SOUTH
-		rpc_unreliable("_update_move", Vector2(0, 32))
-	elif direct == "left":
-		move(Vector2(-32, 0))
-		direction = WEST
-		rpc_unreliable("_update_move", Vector2(-32, 0))
-	else:
-		move(Vector2(32, 0))
-		direction = EAST
-		rpc_unreliable("_update_move", Vector2(32, 0))
-	update()
+func _mob_move(where):
+	if true:
+		if where == NORTH:
+			move(Vector2(0, -32))
+		elif where == SOUTH:
+			move(Vector2(0, 32))
+		elif where == WEST:
+			move(Vector2(-32, 0))
+		elif where == EAST:
+			move(Vector2(32, 0))
+		else:
+			return
+		direction = where
+		rpc("_update_pos", get_pos(), direction)
+		update()
 
-slave func _update_move(move):
-	move(move)
+sync func _update_pos(pos, direction):
+	direction = direction
+	show()
+	set_pos(pos)
 
 func _on_Mob_draw():
 	if direction == NORTH:
@@ -55,4 +54,5 @@ func _on_Mob_draw():
 		rpc("_change_Sprite", sprite_east)
 
 sync func _change_Sprite(texture):
-	get_node("Sprite").set_texture(texture)
+	#get_node("Sprite").set_texture(texture)
+	pass
