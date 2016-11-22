@@ -5,6 +5,7 @@ const SOUTH = 1
 const WEST = 2
 const EAST = 3
 
+export(int) var ID = 0
 export(String, "generic", "human") var race
 export(int, "NORTH", "SOUTH", "WEST", "EAST") var direction = 0
 export(Texture) var sprite_north

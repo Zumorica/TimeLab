@@ -10,6 +10,7 @@
 [node name="Mob" instance=ExtResource( 1 )]
 
 script/script = ExtResource( 2 )
+ID = 1
 race = "human"
 direction = 1
 sprite_north = ExtResource( 3 )
