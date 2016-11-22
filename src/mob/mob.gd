@@ -35,13 +35,12 @@ func _mob_move(where):
 		else:
 			return
 		direction = where
-		rpc("_update_pos", get_pos(), direction)
+		if get_network_mode() == NETWORK_MODE_MASTER:
+			rpc("_update_pos", direction)
 		update()
 
-sync func _update_pos(pos, direction):
-	direction = direction
-	show()
-	set_pos(pos)
+slave func _update_pos(direction):
+	_mob_move(direction)
 
 func _on_Mob_draw():
 	if direction == NORTH:

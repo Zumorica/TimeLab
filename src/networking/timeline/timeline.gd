@@ -105,24 +105,36 @@ sync func add_to_ready(id):
 	clients_ready.append(id)
 	refresh_lobby()
 
+func set_spawn_points(clients):
+	var spawn_points = {}
+	var x = 0
+	var y = 0
+	spawn_points[own_client.get_ID()] = Vector2(x, y)
+	for client_id in clients:
+		x += 2
+		y += 2
+		spawn_points[client_id] = Vector2(x, y)
+	return spawn_points
+
 func begin_game():
 	set_map(chosen_map)
 	prepare_map()
-	rpc("pre_configure_game", map.get_data(true))
+	var spawn_points = set_spawn_points(client_list)
+	rpc("pre_configure_game", map.get_data(true), spawn_points)
 
-sync func pre_configure_game(host_map):
+sync func pre_configure_game(host_map, spawn_points):
 	get_node("/root/Lobby").queue_free()
 	own_client.set_name(str(own_client.get_ID()))
 	if not get_tree().is_network_server():
 		set_map(host_map)
 		prepare_map()
 	get_tree().get_root().add_child(own_client)
-	own_client.set_pos(map.map_pos_to_px(Vector2(0, 0), true))
-	own_client.set_network_mode(NETWORK_MODE_MASTER)
+	own_client.configure_network_mode(NETWORK_MODE_MASTER)
+	own_client.set_pos(map.map_pos_to_px(spawn_points[own_client.get_ID()]))
 	for client_id in client_list:
 		var client = client_base.instance()
 		client.set_name(str(client_id))
 		client.set_ID(int(client_id))
 		get_tree().get_root().add_child(client)
-		client.set_pos(map.map_pos_to_px(Vector2(1, 1), true))
-		client.set_network_mode(NETWORK_MODE_SLAVE)
+		client.set_pos(map.map_pos_to_px(spawn_points[client_id]))
+		client.configure_network_mode(NETWORK_MODE_SLAVE)

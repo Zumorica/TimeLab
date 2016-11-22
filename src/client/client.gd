@@ -16,6 +16,14 @@ func _input(event):
 	if is_network_master() and get_mob():
 		emit_signal("_on_client_input", event)
 
+func configure_network_mode(mode):
+	if mode == NETWORK_MODE_MASTER:
+		set_network_mode(NETWORK_MODE_MASTER)
+		get_mob().set_network_mode(NETWORK_MODE_MASTER)
+	else:
+		set_network_mode(NETWORK_MODE_SLAVE)
+		get_mob().set_network_mode(NETWORK_MODE_SLAVE)
+
 func get_ID():
 	return network_id
 
