@@ -107,8 +107,8 @@ sync func add_to_ready(id):
 
 func set_spawn_points(clients):
 	var spawn_points = {}
-	var x = 0
-	var y = 0
+	var x = 1
+	var y = 1
 	spawn_points[own_client.get_ID()] = Vector2(x, y)
 	for client_id in clients:
 		x += 2
@@ -130,11 +130,11 @@ sync func pre_configure_game(host_map, spawn_points):
 		prepare_map()
 	get_tree().get_root().add_child(own_client)
 	own_client.configure_network_mode(NETWORK_MODE_MASTER)
-	own_client.set_pos(map.map_pos_to_px(spawn_points[own_client.get_ID()]))
+	own_client.set_pos(map.map_pos_to_px(spawn_points[own_client.get_ID()], true))
 	for client_id in client_list:
 		var client = client_base.instance()
 		client.set_name(str(client_id))
 		client.set_ID(int(client_id))
 		get_tree().get_root().add_child(client)
-		client.set_pos(map.map_pos_to_px(spawn_points[client_id]))
+		client.set_pos(map.map_pos_to_px(spawn_points[client_id], true))
 		client.configure_network_mode(NETWORK_MODE_SLAVE)
