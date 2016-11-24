@@ -7,6 +7,7 @@ var client_list = {}
 var is_busy = false # When connecting/creating a server, this will be true.
 var is_online = false # When connected to/hosting a server, this will be true.
 var clients_ready = []
+var clients_prepared = []
 var lobby_client_list
 onready var map_handler = load("res://src/map/map.gd").MapHandler.new()
 onready var network_handler = NetworkedMultiplayerENet.new()
@@ -58,6 +59,9 @@ func connect_handlers():
 	
 func client_connected(id):
 	rpc_id(id, "register_client", get_tree().get_network_unique_id(), own_info)
+	if get_tree().is_network_server():
+		for client in clients_ready:
+			rpc_id(id, "modify_ready", client, false)
 
 func client_disconnected(id):
 	pass
@@ -145,3 +149,16 @@ sync func pre_configure_game(host_map, spawn_points):
 		get_tree().get_root().add_child(client)
 		client.set_pos(map.map_pos_to_px(spawn_points[client_id], true))
 		client.configure_network_mode(NETWORK_MODE_SLAVE)
+	if get_tree().is_network_server():
+		post_configure_game(own_client.get_ID())
+	else:
+		rpc_id(1, "post_configure_game", own_client.get_ID())
+		get_tree().set_pause(true)
+
+remote func post_configure_game(id):
+	clients_prepared.append(id)
+	if clients_prepared.size() == clients_ready.size():
+		for client_id in clients_prepared:
+			rpc_id(client_id, "done_preconfig")
+remote func done_preconfig():
+	get_tree().set_pause(false)
