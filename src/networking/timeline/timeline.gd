@@ -98,11 +98,15 @@ func refresh_lobby():
 		else:
 			lobby_client_list.add_item(str(client_id))
 
-func set_client_ready():
-	rpc("add_to_ready", own_client.get_ID())
+func set_client_ready(is_remove=false):
+	rpc("modify_ready", own_client.get_ID(), is_remove)
 
-sync func add_to_ready(id):
-	clients_ready.append(id)
+sync func modify_ready(id, is_remove):
+	if not is_remove:
+		clients_ready.append(id)
+	else:
+		if clients_ready.has(id):
+			clients_ready.erase(id)
 	refresh_lobby()
 
 func set_spawn_points(clients):
@@ -117,6 +121,9 @@ func set_spawn_points(clients):
 	return spawn_points
 
 func begin_game():
+	if clients_ready.size() != (client_list.size() + 1):#+1 because the client list doesn't have the host in it
+		print("Not everybody is ready!")
+		return
 	set_map(chosen_map)
 	prepare_map()
 	var spawn_points = set_spawn_points(client_list)
