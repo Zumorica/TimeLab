@@ -1,5 +1,5 @@
 class Map:
-	extends Node2D
+	extends Area2D
 	
 	const TILE = "tile"
 	const OBJ = "obj"
@@ -31,13 +31,20 @@ class Map:
 	
 	const ENTITIES = {1 : preload("res://src/entity/spawn/spawn.tscn")}
 	
-	var size = false
+	var map_size = Vector2(32, 32)
 	var data = []
 	var _updated_data = []
 	
 	
 	func _ready():
 		set_name("Map")
+		set_pickable(true)
+		var collision = CollisionShape2D.new()
+		var shape = RectangleShape2D.new()
+		shape.set_extents(map_pos_to_px(map_size + Vector2(1,1)))
+		collision.set_shape(shape)
+		collision.set_name("CollisionShape2D")
+		add_child(collision)
 		
 	func map_pos_to_px(vector, central = false):
 		if central:
@@ -47,6 +54,12 @@ class Map:
 		
 	func px_pos_to_map(vector):
 		return Vector2(int(vector.x / 32), int(vector.y / 32))
+		
+	func add_child_from_data(data):
+		assert (typeof(data) == TYPE_DICTIONARY)
+		var instance = create_instance_from_data_entry(data)
+		if typeof(instance) == TYPE_OBJECT:
+			add_child(instance)
 		
 	func _save_instance_variables(instance):
 		assert (typeof(instance) == TYPE_OBJECT)
