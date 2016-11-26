@@ -55,11 +55,36 @@ class Map:
 	func px_pos_to_map(vector):
 		return Vector2(int(vector.x / 32), int(vector.y / 32))
 		
+	func check_entry_in_data(position, ID = false, type = false, original = false, update = false):
+		var list = []
+		var _data
+		if update:
+			update_data()
+		if original:
+			_data = data
+		else:
+			_data = _updated_data
+		for entry in _data:
+			if Vector2(entry["x"], entry["y"]) == position:
+				if ID:
+					if ID == entry["ID"]:
+						pass
+					else:
+						continue
+				if type:
+					if type == entry["type"]:
+						pass
+					else:
+						continue
+				list.append(entry)
+		return list
+		
 	func add_child_from_data(data):
 		assert (typeof(data) == TYPE_DICTIONARY)
 		var instance = create_instance_from_data_entry(data)
 		if typeof(instance) == TYPE_OBJECT:
 			add_child(instance)
+			update_data()
 		
 	func _save_instance_variables(instance):
 		assert (typeof(instance) == TYPE_OBJECT)
@@ -108,13 +133,24 @@ class Map:
 			type = MOB
 		elif instanced extends ENTITY_BASE:
 			type = ENTITY
+		elif instanced extends Camera2D:
+			return
+		elif instanced extends CollisionShape2D:
+			return
 		var map_pos = px_pos_to_map(instanced.get_pos())
 		var data = {"type" : type, "ID" : instanced.get_ID(), "x" : map_pos.x, "y" : map_pos.y, "variables" : _save_instance_variables(instanced)}
 		return data
 		
-	func create_map(original = true):
+	func create_map(original = true, keep_special_nodes = true):
 		for child in get_children():
-			child.queue_free()
+			if not keep_special_nodes:
+				child.queue_free()
+			else:
+				if child extends Camera2D:
+					continue
+				elif child extends CollisionShape2D:
+					continue
+				child.queue_free()
 		if original:
 			for tile in data:
 				add_child(create_instance_from_data_entry(tile))
@@ -126,7 +162,9 @@ class Map:
 	func update_data():
 		_updated_data = []
 		for child in get_children():
-			_updated_data.append(create_data_from_instance(child))
+			var d = create_data_from_instance(child)
+			if typeof(d) == TYPE_DICTIONARY:
+				_updated_data.append(d)
 		return _updated_data
 		
 	func get_data(original = false):
