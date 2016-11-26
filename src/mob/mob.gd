@@ -13,6 +13,9 @@ export(Texture) var sprite_south
 export(Texture) var sprite_west
 export(Texture) var sprite_east
 
+func get_ID():
+	return ID
+
 func _on_client_input(event):
 	if event.is_action("mob_move_up") and not event.is_action_released("mob_move_up"):
 		_mob_move(NORTH)
