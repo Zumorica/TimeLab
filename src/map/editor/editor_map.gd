@@ -21,6 +21,8 @@ func _input(event):
 		camera.set_zoom(camera.get_zoom() + Vector2(0.1, 0.1))
 	if event.is_action_pressed("map_editor_zoom_down") and camera.get_zoom().x >= 0.4:
 		camera.set_zoom(camera.get_zoom() - Vector2(0.1, 0.1))
+	if event.is_action_pressed("map_editor_zoom_reset"):
+		camera.set_zoom(Vector2(1, 1))
 	if event.is_action_pressed("map_editor_mouse_left"):
 		mouse_pressed = true
 		var mpos = get_local_mouse_pos()
