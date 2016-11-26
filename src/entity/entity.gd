@@ -1,9 +1,4 @@
-extends Node2D
-
-export(int) var ID = 0
+extends "res://src/element/element.gd"
 
 func _ready():
 	get_node("Sprite").hide()
-	
-func get_ID():
-	return ID

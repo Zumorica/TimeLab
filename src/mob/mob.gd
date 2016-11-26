@@ -1,20 +1,16 @@
-extends KinematicBody2D
+extends "res://src/element/element.gd"
 
 const NORTH = 0
 const SOUTH = 1
 const WEST = 2
 const EAST = 3
 
-export(int) var ID = 0
 export(String, "generic", "human") var race
 export(int, "NORTH", "SOUTH", "WEST", "EAST") var direction = 0
 export(Texture) var sprite_north
 export(Texture) var sprite_south
 export(Texture) var sprite_west
 export(Texture) var sprite_east
-
-func get_ID():
-	return ID
 
 func _on_client_input(event):
 	if event.is_action("mob_move_up") and not event.is_action_released("mob_move_up"):
