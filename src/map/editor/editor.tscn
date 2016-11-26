@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://src/map/editor/editor.gd" type="Script" id=1]
-[ext_resource path="res://src/map/editor/ShowButton.gd" type="Script" id=2]
-[ext_resource path="res://src/map/editor/editor_map.gd" type="Script" id=3]
+[ext_resource path="res://src/map/editor/cursorchange.gd" type="Script" id=2]
+[ext_resource path="res://src/map/editor/tile_list.gd" type="Script" id=3]
+[ext_resource path="res://src/map/editor/obj_list.gd" type="Script" id=4]
+[ext_resource path="res://src/map/editor/mob_list.gd" type="Script" id=5]
+[ext_resource path="res://src/map/editor/item_list.gd" type="Script" id=6]
+[ext_resource path="res://src/map/editor/entity_list.gd" type="Script" id=7]
+[ext_resource path="res://src/map/editor/ShowButton.gd" type="Script" id=8]
+[ext_resource path="res://src/map/editor/editor_map.gd" type="Script" id=9]
 
 [node name="Editor" type="Node"]
 
@@ -31,6 +37,72 @@ margin/top = 180.0
 margin/right = 0.0
 margin/bottom = 0.0
 
+[node name="ColorFrame" type="ColorFrame" parent="GUI/Selected"]
+
+rect/scale = Vector2( 1.5, 1.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 34.0
+margin/top = 34.0
+margin/right = 74.0
+margin/bottom = 74.0
+color = Color( 0.0820312, 0.0820312, 0.0820312, 1 )
+
+[node name="Sprite" type="Sprite" parent="GUI/Selected"]
+
+transform/pos = Vector2( 64, 64 )
+transform/scale = Vector2( 1.5, 1.5 )
+
+[node name="Selected_label" type="Label" parent="GUI/Selected"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 37.0
+margin/top = 16.0
+margin/right = 92.0
+margin/bottom = 30.0
+text = "Selected"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label" type="Label" parent="GUI/Selected"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 34.0
+margin/top = 100.0
+margin/right = 74.0
+margin/bottom = 114.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="OptionButton" type="OptionButton" parent="GUI/Selected"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 145.0
+margin/top = 34.0
+margin/right = 229.0
+margin/bottom = 54.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+selected = -1
+items = [  ]
+script/script = ExtResource( 2 )
+
 [node name="Selection" type="Panel" parent="GUI"]
 
 anchor/bottom = 1
@@ -41,7 +113,151 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 427.0
-margin/bottom = 0.0
+margin/bottom = -2.0
+
+[node name="TabContainer" type="TabContainer" parent="GUI/Selection"]
+
+anchor/bottom = 1
+rect/min_size = Vector2( 390, 332 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 1.0
+margin/right = 390.0
+margin/bottom = 269.0
+tab_align = 0
+tabs_visible = true
+
+[node name="Tiles" type="Control" parent="GUI/Selection/TabContainer"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="ItemList" type="ItemList" parent="GUI/Selection/TabContainer/Tiles"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 382.0
+margin/bottom = 292.0
+script/script = ExtResource( 3 )
+
+[node name="Objects" type="Control" parent="GUI/Selection/TabContainer"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="ItemList" type="ItemList" parent="GUI/Selection/TabContainer/Objects"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 382.0
+margin/bottom = 292.0
+script/script = ExtResource( 4 )
+
+[node name="Mobs" type="Control" parent="GUI/Selection/TabContainer"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="ItemList" type="ItemList" parent="GUI/Selection/TabContainer/Mobs"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 382.0
+margin/bottom = 292.0
+script/script = ExtResource( 5 )
+
+[node name="Items" type="Control" parent="GUI/Selection/TabContainer"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="ItemList" type="ItemList" parent="GUI/Selection/TabContainer/Items"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 382.0
+margin/bottom = 292.0
+script/script = ExtResource( 6 )
+
+[node name="Entities" type="Control" parent="GUI/Selection/TabContainer"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="ItemList" type="ItemList" parent="GUI/Selection/TabContainer/Entities"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 382.0
+margin/bottom = 292.0
+script/script = ExtResource( 7 )
 
 [node name="ShowButton" type="Button" parent="GUI"]
 
@@ -61,7 +277,7 @@ enabled_focus_mode = 2
 shortcut = null
 text = ">"
 flat = false
-script/script = ExtResource( 2 )
+script/script = ExtResource( 8 )
 
 [node name="Map" type="Area2D" parent="."]
 
@@ -70,7 +286,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 3 )
+script/script = ExtResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="Map"]
 
@@ -91,6 +307,18 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
+
+[connection signal="tab_changed" from="GUI/Selection/TabContainer" to="." method="_on_TabContainer_tab_changed"]
+
+[connection signal="item_selected" from="GUI/Selection/TabContainer/Tiles/ItemList" to="." method="_on_TileList_item_selected"]
+
+[connection signal="item_selected" from="GUI/Selection/TabContainer/Objects/ItemList" to="." method="_on_ObjList_item_selected"]
+
+[connection signal="item_selected" from="GUI/Selection/TabContainer/Mobs/ItemList" to="." method="_on_MobList_item_selected"]
+
+[connection signal="item_selected" from="GUI/Selection/TabContainer/Items/ItemList" to="." method="_on_ItemList_item_selected"]
+
+[connection signal="item_selected" from="GUI/Selection/TabContainer/Entities/ItemList" to="." method="_on_EntityList_item_selected"]
 
 [connection signal="pressed" from="GUI/ShowButton" to="GUI/ShowButton" method="_on_ShowButton_pressed"]
 
