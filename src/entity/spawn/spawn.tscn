@@ -2,8 +2,12 @@
 
 [ext_resource path="res://src/entity/entity.gd" type="Script" id=1]
 
-[node name="Spawn_point" type="Node2D"]
+[node name="Spawn_point" type="KinematicBody2D"]
 
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
 script/script = ExtResource( 1 )
 ID = 1
 
