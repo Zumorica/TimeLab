@@ -259,6 +259,24 @@ margin/right = 382.0
 margin/bottom = 292.0
 script/script = ExtResource( 7 )
 
+[node name="Grid_CheckBox" type="CheckBox" parent="GUI/Selection"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 11.0
+margin/top = 346.0
+margin/right = 97.0
+margin/bottom = 369.0
+toggle_mode = true
+is_pressed = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Draw grid"
+flat = false
+align = 0
+
 [node name="ShowButton" type="Button" parent="GUI"]
 
 anchor/top = 3
@@ -319,6 +337,8 @@ drag_margin/bottom = 0.2
 [connection signal="item_selected" from="GUI/Selection/TabContainer/Items/ItemList" to="." method="_on_ItemList_item_selected"]
 
 [connection signal="item_selected" from="GUI/Selection/TabContainer/Entities/ItemList" to="." method="_on_EntityList_item_selected"]
+
+[connection signal="toggled" from="GUI/Selection/Grid_CheckBox" to="Map" method="_on_Grid_CheckBox_toggled"]
 
 [connection signal="pressed" from="GUI/ShowButton" to="GUI/ShowButton" method="_on_ShowButton_pressed"]
 
