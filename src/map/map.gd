@@ -55,7 +55,7 @@ class Map:
 	func px_pos_to_map(vector):
 		return Vector2(int(vector.x / 32), int(vector.y / 32))
 		
-	func check_entry_in_data(position, ID = false, type = false, original = false, update = false):
+	func check_entry_in_data(position = false, ID = false, type = false, original = false, update = false):
 		var list = []
 		var _data
 		if update:
@@ -65,18 +65,22 @@ class Map:
 		else:
 			_data = _updated_data
 		for entry in _data:
-			if Vector2(entry["x"], entry["y"]) == position:
-				if ID:
-					if ID == entry["ID"]:
-						pass
-					else:
-						continue
-				if type:
-					if type == entry["type"]:
-						pass
-					else:
-						continue
-				list.append(entry)
+			if typeof(position) == TYPE_VECTOR2:
+				if position == Vector2(entry["x"], entry["y"]):
+					pass
+				else:
+					continue
+			if ID:
+				if ID == entry["ID"]:
+					pass
+				else:
+					continue
+			if type:
+				if type == entry["type"]:
+					pass
+				else:
+					continue
+			list.append(entry)
 		return list
 		
 	func add_child_from_data(data):
