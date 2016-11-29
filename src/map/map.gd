@@ -6,12 +6,14 @@ class Map:
 	const ITEM = "item"
 	const MOB = "mob"
 	const ENTITY = "entity"
+	const ELEMENT = "element"
 	
 	const TILE_BASE = preload("res://src/tile/tile.gd")
 	const OBJ_BASE = preload("res://src/obj/obj.gd")
 	const ITEM_BASE = preload("res://src/item/item.gd")
 	const MOB_BASE = preload("res://src/mob/mob.gd")
 	const ENTITY_BASE = preload("res://src/entity/entity.gd")
+	const ELEMENT_BASE = preload("res://src/element/element.gd")
 	
 	const BLUE_FLOOR = 1
 	const GREY_WALL = 2
@@ -31,17 +33,74 @@ class Map:
 	
 	const ENTITIES = {1 : preload("res://src/entity/spawn/spawn.tscn")}
 	
-	var map_size = Vector2(32, 32)
-	var data = []
-	var _updated_data = []
+	var viewable_z = 0 setget set_current_floor,get_current_floor
+	var _map_size = Vector3(32, 32, 1) setget ,get_map_size
+	onready var _map_size_2 = Vector2(_map_size.x, _map_size.y) setget ,get_map_size2
+	var _orig_data = [] setget ,get_original_mapdata
+	var _updated_data = [] setget update_mapdata,get_updated_mapdata
 	
+	var _grid = [] setget update_grid,get_grid
+	
+	func update_mapdata():
+		for z in get_children():
+			for child in z.get_children():
+				var entry = create_data_from_instance(child)
+				if typeof(entry) == TYPE_DICTIONARY:
+					_updated_data[entry["position"].x][entry["position"].y][entry["position"].z] = entry
+					
+	func update_grid():
+		_grid = populate_multidimensional_list(get_map_size())
+		for z in get_children():
+			for child in z.get_children():
+				var cpos = child.get_pos3()
+				_grid[cpos.x][cpos.y][cpos.z] = child
+				
+	func populate_multidimensional_list(vector):
+		var list = []
+		for x in range(0, vector.x + 1):
+			list.append([])
+			for y in range(0, vector.y + 1):
+				list[x].append([])
+				for z in range(0, vector.z + 1):
+					list[x][y].append([])
+		return list
+		
+	func populate_lists():
+		var size = get_map_size()
+		var list = populate_multidimensional_list(size)
+		_orig_data = list
+		_updated_data = list
+		_grid = list
+	
+	func get_original_mapdata():
+		return _orig_data
+	
+	func get_updated_mapdata():
+		return _updated_data
+	
+	func set_current_floor(z):
+		if z <= get_map_size().z:
+			viewable_z = z
+		
+	func get_current_floor():
+		return viewable_z
+	
+	func get_map_size():
+		return _map_size
+		
+	func get_map_size2():
+		return _map_size_2
+		
+	func get_grid():
+		return _grid
 	
 	func _ready():
+		assert typeof(_map_size) == TYPE_VECTOR3
 		set_name("Map")
 		set_pickable(true)
 		var collision = CollisionShape2D.new()
 		var shape = RectangleShape2D.new()
-		shape.set_extents(map_pos_to_px(map_size + Vector2(1,1)))
+		shape.set_extents(map_pos_to_px(get_map_size2() + Vector2(1,1)))
 		collision.set_shape(shape)
 		collision.set_name("CollisionShape2D")
 		add_child(collision)
@@ -55,40 +114,41 @@ class Map:
 	func px_pos_to_map(vector):
 		return Vector2(int(vector.x / 32), int(vector.y / 32))
 		
-	func check_entry_in_data(position = false, ID = false, type = false, original = false, update = false):
+	func find(position = false, ID = false, type = false):
 		var list = []
-		var _data
-		if update:
-			update_data()
-		if original:
-			_data = data
-		else:
-			_data = _updated_data
-		for entry in _data:
-			if typeof(position) == TYPE_VECTOR2:
-				if position == Vector2(entry["x"], entry["y"]):
-					pass
-				else:
-					continue
-			if ID:
-				if ID == entry["ID"]:
-					pass
-				else:
-					continue
-			if type:
-				if type == entry["type"]:
-					pass
-				else:
-					continue
-			list.append(entry)
-		return list
-		
-	func add_child_from_data(data):
-		assert (typeof(data) == TYPE_DICTIONARY)
-		var instance = create_instance_from_data_entry(data)
-		if typeof(instance) == TYPE_OBJECT:
-			add_child(instance)
-			update_data()
+		for z in get_children():
+			for child in z.get_children():
+				if child extends ELEMENT_BASE:
+					if typeof(position) == TYPE_VECTOR3:
+						if position == child.get_pos3():
+							pass
+						else:
+							continue
+					elif typeof(position) == TYPE_VECTOR2:
+						if position == child.get_pos():
+							pass
+						else:
+							continue
+					if typeof(ID) == TYPE_INT:
+						if ID == child.get_ID():
+							pass
+						else:
+							continue
+					if typeof(type) == TYPE_STRING:
+						var lower = type.lower()
+						if lower == TILE and child extends TILE_BASE:
+							pass
+						elif lower == ITEM and child extends ITEM_BASE:
+							pass
+						elif lower == MOB and child extends MOB_BASE:
+							pass
+						elif lower == OBJ and child extends OBJ_BASE:
+							pass
+						elif lower == ENTITY and child extends ENTITY_BASE:
+							pass
+						else:
+							continue
+					list.append(child)
 		
 	func _save_instance_variables(instance):
 		assert (typeof(instance) == TYPE_OBJECT)
@@ -103,6 +163,12 @@ class Map:
 		for variable in variables.keys():
 			instance.set(variable, variables[variable])
 		return
+		
+	func add_child_from_data(data):
+		assert (typeof(data) == TYPE_DICTIONARY)
+		var instance = create_instance_from_data_entry(data)
+		if typeof(instance) == TYPE_OBJECT:
+			get_node(str(instance.get_floor())).add_child(instance)
 		
 	func create_instance_from_data_entry(data):
 		assert (typeof(data) == TYPE_DICTIONARY)
@@ -120,13 +186,16 @@ class Map:
 		else:
 			return
 		var instanced = dict[data["ID"]].instance()
-		instanced.set_pos(map_pos_to_px(Vector2(data["x"], data["y"]), true))
+		instanced.set_pos(map_pos_to_px(Vector2(data["position"].x, data["position"].y), true))
+		instanced.set_floor(data["position"].z, false)
 		_load_instance_variables(data["variables"], instanced)
 		return instanced
 		
 	func create_data_from_instance(instanced):
 		assert (typeof(instanced) == TYPE_OBJECT)
 		var type
+		if not instanced extends ELEMENT_BASE:
+			return false
 		if instanced extends TILE_BASE:
 			type = TILE
 		elif instanced extends OBJ_BASE:
@@ -137,46 +206,22 @@ class Map:
 			type = MOB
 		elif instanced extends ENTITY_BASE:
 			type = ENTITY
-		elif instanced extends Camera2D:
-			return
-		elif instanced extends CollisionShape2D:
-			return
 		var map_pos = px_pos_to_map(instanced.get_pos())
-		var data = {"type" : type, "ID" : instanced.get_ID(), "x" : map_pos.x, "y" : map_pos.y, "variables" : _save_instance_variables(instanced)}
+		var data = {"type" : type, "ID" : instanced.get_ID(), "position" : Vector3(map_pos.x, map_pos.y, instanced.get_floor()), "variables" : _save_instance_variables(instanced)}
 		return data
 		
-	func create_map(original = true, keep_special_nodes = true):
+	func initial_map_preparation():
 		for child in get_children():
-			if not keep_special_nodes:
+			if child extends ELEMENT_BASE:
 				child.queue_free()
-			else:
-				if child extends Camera2D:
-					continue
-				elif child extends CollisionShape2D:
-					continue
-				child.queue_free()
-		if original:
-			for tile in data:
-				add_child(create_instance_from_data_entry(tile))
-		else:
-			update_data()
-			for tile in _updated_data:
-				add_child(create_instance_from_data_entry(tile))
-
-	func update_data():
-		_updated_data = []
-		for child in get_children():
-			var d = create_data_from_instance(child)
-			if typeof(d) == TYPE_DICTIONARY:
-				_updated_data.append(d)
-		return _updated_data
-		
-	func get_data(original = false):
-		if original:
-			return data
-		else:
-			return update_data()
-		
+		for z in get_map_size().z + 1:
+			var node = Node2D.new()
+			node.set_name(str(z))
+			node.hide()
+			add_child(node)
+		for data_entry in get_original_mapdata():
+			add_child_from_data(data_entry)
+			
 class MapHandler:
 	extends Object
 	
@@ -209,5 +254,5 @@ class MapHandler:
 		# Do not call this function directly.
 		assert (typeof(map_data) == TYPE_ARRAY)
 		var map = load("res://src/map/map.gd").Map.new()
-		map.data = map_data
+		map._orig_data = map_data
 		return map
