@@ -4,7 +4,7 @@ const MOUSE_NOTHING = 0
 const MOUSE_MOVEMAP = 1
 const MOUSE_PLACE = 2
 
-const DATA_BASE = {"type" : null, "ID" : null, "x" : null, "y" : null, "variables" : {}}
+const DATA_BASE = {"type" : null, "ID" : null, "position" : null, "variables" : {}}
 
 var current_data = DATA_BASE
 var selection = false

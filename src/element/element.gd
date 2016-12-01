@@ -4,9 +4,12 @@ export(int) var ID = 0
 var z_floor = 0 setget set_floor,get_floor
 
 func set_floor(z, add_to_node=true):
-	if get_node("../..") extends load("res://src/map/map.gd").Map and add_to_node:
-		if z <= get_node("../..").get_map_size().z:
-			get_node("../%s" %(z)).add_child(self)
+	if has_node("../.."):
+		if get_node("../..") extends load("res://src/map/map.gd").Map and add_to_node:
+			if z <= get_node("../..").get_map_size().z:
+				get_node("../%s" %(z)).add_child(self)
+				z_floor = z
+		else:
 			z_floor = z
 	else:
 		z_floor = z

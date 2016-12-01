@@ -34,7 +34,7 @@ class Map:
 	const ENTITIES = {1 : preload("res://src/entity/spawn/spawn.tscn")}
 	
 	var viewable_z = 0 setget set_current_floor,get_current_floor
-	var _map_size = Vector3(32, 32, 1) setget ,get_map_size
+	var _map_size = Vector3(32, 32, 2) setget ,get_map_size
 	onready var _map_size_2 = Vector2(_map_size.x, _map_size.y) setget ,get_map_size2
 	var _orig_data = [] setget ,get_original_mapdata
 	var _updated_data = [] setget update_mapdata,get_updated_mapdata
@@ -53,7 +53,8 @@ class Map:
 		for z in get_children():
 			for child in z.get_children():
 				var cpos = child.get_pos3()
-				_grid[cpos.x][cpos.y][cpos.z] = child
+				var mpos = px_pos_to_map(cpos)
+				_grid[mpos.x][mpos.y][cpos.z] = child
 				
 	func populate_multidimensional_list(vector):
 		var list = []
@@ -81,6 +82,9 @@ class Map:
 	func set_current_floor(z):
 		if z <= get_map_size().z:
 			viewable_z = z
+			for child in get_children():
+				child.hide()
+			get_node("%s" %(z)).show()
 		
 	func get_current_floor():
 		return viewable_z
@@ -98,12 +102,17 @@ class Map:
 		assert typeof(_map_size) == TYPE_VECTOR3
 		set_name("Map")
 		set_pickable(true)
+		set_process(true)
+		set_process_input(true)
 		var collision = CollisionShape2D.new()
 		var shape = RectangleShape2D.new()
 		shape.set_extents(map_pos_to_px(get_map_size2() + Vector2(1,1)))
 		collision.set_shape(shape)
 		collision.set_name("CollisionShape2D")
 		add_child(collision)
+		
+	func _process(dt):
+		update_grid()
 		
 	func map_pos_to_px(vector, central = false):
 		if central:
@@ -149,6 +158,7 @@ class Map:
 						else:
 							continue
 					list.append(child)
+		return list
 		
 	func _save_instance_variables(instance):
 		assert (typeof(instance) == TYPE_OBJECT)
@@ -187,7 +197,7 @@ class Map:
 			return
 		var instanced = dict[data["ID"]].instance()
 		instanced.set_pos(map_pos_to_px(Vector2(data["position"].x, data["position"].y), true))
-		instanced.set_floor(data["position"].z, false)
+		instanced.z_floor = data["position"].z
 		_load_instance_variables(data["variables"], instanced)
 		return instanced
 		
@@ -214,11 +224,12 @@ class Map:
 		for child in get_children():
 			if child extends ELEMENT_BASE:
 				child.queue_free()
-		for z in get_map_size().z + 1:
+		for z in range(0, get_map_size().z + 1):
 			var node = Node2D.new()
 			node.set_name(str(z))
 			node.hide()
 			add_child(node)
+		get_node("0").show()
 		for data_entry in get_original_mapdata():
 			add_child_from_data(data_entry)
 			
