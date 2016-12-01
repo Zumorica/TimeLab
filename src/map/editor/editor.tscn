@@ -90,7 +90,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 145.0
+margin/left = 108.0
 margin/top = 34.0
 margin/right = 229.0
 margin/bottom = 54.0
@@ -102,6 +102,27 @@ align = 0
 selected = -1
 items = [  ]
 script/script = ExtResource( 2 )
+
+[node name="SpinBox" type="SpinBox" parent="GUI/Selected"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 107.0
+margin/top = 66.0
+margin/right = 229.0
+margin/bottom = 90.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+editable = true
+prefix = ""
+suffix = "(z level)"
 
 [node name="Selection" type="Panel" parent="GUI"]
 
@@ -325,6 +346,8 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
+
+[connection signal="value_changed" from="GUI/Selected/SpinBox" to="Map" method="_on_SpinBox_value_changed"]
 
 [connection signal="tab_changed" from="GUI/Selection/TabContainer" to="." method="_on_TabContainer_tab_changed"]
 
