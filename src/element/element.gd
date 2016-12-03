@@ -32,3 +32,4 @@ func get_pos3():
 	
 func _ready():
 	set_pickable(true)
+	set_collision_margin(0.01)

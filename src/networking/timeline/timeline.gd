@@ -159,6 +159,7 @@ remote func post_configure_game(id):
 	clients_prepared.append(id)
 	if clients_prepared.size() == clients_ready.size():
 		for client_id in clients_prepared:
-			rpc_id(client_id, "done_preconfig")
+			if client_id != 1:
+				rpc_id(client_id, "done_preconfig")
 remote func done_preconfig():
 	get_tree().set_pause(false)

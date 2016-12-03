@@ -23,21 +23,29 @@ func _on_client_input(event):
 		_mob_move(EAST)
 
 func _mob_move(where):
+	var timeline = get_node("/root/timeline")
 	if true:
 		if where == NORTH:
-			move(Vector2(0, -32))
+			move(timeline.map.map_pos_to_px(Vector2(0, -1)))
 		elif where == SOUTH:
-			move(Vector2(0, 32))
+			move(timeline.map.map_pos_to_px(Vector2(0, 1)))
 		elif where == WEST:
-			move(Vector2(-32, 0))
+			move(timeline.map.map_pos_to_px(Vector2(-1, 0)))
 		elif where == EAST:
-			move(Vector2(32, 0))
+			move(timeline.map.map_pos_to_px(Vector2(1, 0)))
 		else:
 			return
+		var pos_x = get_pos().x
+		var pos_y = get_pos().y
+		#if typeof(pos_x) != TYPE_INT:
+		#	set_pos(Vector2((pos_x + 0.125), pos_y))
+		#if typeof(pos_y) != TYPE_INT:
+		#	set_pos(Vector2(pos_x, (pos_y + 0.125)))
 		direction = where
 		if get_network_mode() == NETWORK_MODE_MASTER:
 			rpc("_update_pos", direction)
 		update()
+		print(get_pos())
 
 slave func _update_pos(direction):
 	_mob_move(direction)
