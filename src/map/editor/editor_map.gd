@@ -29,7 +29,7 @@ func _input(event):
 		mouse_pressed = true
 		var mpos = get_local_mouse_pos()
 		var mpos_map = px_pos_to_map(mpos)
-		if (mpos_map.x >= 0 and mpos_map.x <= map_size.x) and (mpos_map.y >= 0 and mpos_map.y <= map_size.y):
+		if (mpos_map.x >= 0 and mpos_map.x <= map_size.x - 1) and (mpos_map.y >= 0 and mpos_map.y <= map_size.y - 1):
 			if get_parent().cursor_mode == 2:
 				var data = get_parent().current_data
 				if data["type"] != null and data["ID"] != null:

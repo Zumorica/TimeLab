@@ -47,7 +47,8 @@ class Map:
 				var entry = create_data_from_instance(child)
 				var cpos = child.get_pos3()
 				var mpos = px_pos_to_map(cpos)
-				if mpos <= get_map_size2() and mpos >= Vector2(0,0) and child.get_floor() <= get_map_size().z:
+				var msize = get_map_size()
+				if (mpos.x <= msize.x - 1 and mpos.x >= 0) and (mpos.y <= msize.y - 1 and mpos.y >= 0) and (cpos.z <= msize.z and cpos.z >= 0):
 					if typeof(entry) == TYPE_DICTIONARY:
 						_updated_data[entry["position"].x][entry["position"].y][entry["position"].z] = entry
 				else:
@@ -59,7 +60,8 @@ class Map:
 			for child in z.get_children():
 				var cpos = child.get_pos3()
 				var mpos = px_pos_to_map(cpos)
-				if mpos <= get_map_size2() and mpos >= Vector2(0,0) and child.get_floor() <= get_map_size().z:
+				var msize = get_map_size()
+				if (mpos.x <= msize.x and mpos.x >= 0) and (mpos.y <= msize.y and mpos.y >= 0) and (cpos.z <= msize.z and cpos.z >= 0):
 					_grid[mpos.x][mpos.y][cpos.z] = child
 				else:
 					child.queue_free()
