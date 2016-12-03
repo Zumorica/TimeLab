@@ -376,6 +376,76 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="FileDialog" type="FileDialog" parent="GUI/Selection"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 513.0
+margin/top = 215.0
+margin/right = 728.0
+margin/bottom = 412.0
+popup/exclusive = false
+window/title = "Save map"
+dialog/hide_on_ok = true
+mode = 4
+access = 0
+filters = StringArray(  )
+show_hidden_files = false
+
+[node name="LoadDialog" type="FileDialog" parent="GUI/Selection"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 514.0
+margin/top = 215.0
+margin/right = 729.0
+margin/bottom = 412.0
+popup/exclusive = false
+window/title = "Open a File or Directory"
+dialog/hide_on_ok = true
+mode = 3
+access = 0
+filters = StringArray(  )
+show_hidden_files = false
+
+[node name="Save" type="Button" parent="GUI/Selection"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 117.0
+margin/top = 560.0
+margin/right = 165.0
+margin/bottom = 580.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Save Map"
+flat = false
+
+[node name="Load" type="Button" parent="GUI/Selection"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 117.0
+margin/top = 532.0
+margin/right = 129.0
+margin/bottom = 552.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Load Map"
+flat = false
+
 [node name="ShowButton" type="Button" parent="GUI"]
 
 anchor/top = 3
@@ -452,6 +522,14 @@ drag_margin/bottom = 0.2
 [connection signal="enter_tree" from="GUI/Selection/Z" to="Map" method="_on_Z_enter_tree"]
 
 [connection signal="value_changed" from="GUI/Selection/Z" to="Map" method="_on_Z_value_changed"]
+
+[connection signal="file_selected" from="GUI/Selection/FileDialog" to="Map" method="_on_FileDialog_file_selected"]
+
+[connection signal="file_selected" from="GUI/Selection/LoadDialog" to="Map" method="_on_LoadDialog_file_selected"]
+
+[connection signal="pressed" from="GUI/Selection/Save" to="Map" method="_on_Save_pressed"]
+
+[connection signal="pressed" from="GUI/Selection/Load" to="Map" method="_on_Load_pressed"]
 
 [connection signal="pressed" from="GUI/ShowButton" to="GUI/ShowButton" method="_on_ShowButton_pressed"]
 

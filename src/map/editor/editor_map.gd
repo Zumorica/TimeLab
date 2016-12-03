@@ -83,3 +83,30 @@ func _on_Z_value_changed( value ):
 		set_current_floor(value)
 	get_node("../GUI/Selected/SpinBox").set_max(value)
 	update()
+
+
+func _on_Save_pressed():
+	get_node("../GUI/Selection/FileDialog").popup()
+
+func _on_FileDialog_file_selected( path ):
+	var fmap = File.new()
+	fmap.open(path, fmap.WRITE_READ)
+	update_mapdata()
+	fmap.seek_end()
+	fmap.store_var(get_updated_mapdata())
+	fmap.close()
+
+func _on_Load_pressed():
+	get_node("../GUI/Selection/LoadDialog").popup()
+
+func _on_LoadDialog_file_selected( path ):
+	var fmap = File.new()
+	fmap.open(path, fmap.READ)
+	var data = fmap.get_var()
+	_orig_data = data
+	for z in data:
+		for x in z:
+			for y in z:
+				for entry in y:
+					add_child_from_data(entry, false)
+	fmap.close()

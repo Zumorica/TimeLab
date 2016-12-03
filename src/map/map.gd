@@ -42,6 +42,7 @@ class Map:
 	var is_map_initiated = false
 	
 	func update_mapdata():
+		_updated_data = populate_multidimensional_list(get_map_size())
 		for z in get_children():
 			for child in z.get_children():
 				var entry = create_data_from_instance(child)
@@ -123,12 +124,6 @@ class Map:
 		set_pickable(true)
 		set_process(true)
 		set_process_input(true)
-		var collision = CollisionShape2D.new()
-		var shape = RectangleShape2D.new()
-		shape.set_extents(map_pos_to_px(get_map_size2() + Vector2(1,1)))
-		collision.set_shape(shape)
-		collision.set_name("CollisionShape2D")
-		add_child(collision)
 		
 	func _process(dt):
 		update_grid()
@@ -193,13 +188,13 @@ class Map:
 			instance.set(variable, variables[variable])
 		return
 		
-	func add_child_from_data(data):
-		assert (typeof(data) == TYPE_DICTIONARY)
-		var instance = create_instance_from_data_entry(data)
-		if typeof(instance) == TYPE_OBJECT:
-			get_node(str(instance.get_floor())).add_child(instance)
+	func add_child_from_data(data, loadvars=true):
+		if (typeof(data) == TYPE_DICTIONARY):
+			var instance = create_instance_from_data_entry(data, loadvars)
+			if typeof(instance) == TYPE_OBJECT and instance extends ELEMENT_BASE:
+				get_node(str(instance.get_floor())).add_child(instance)
 		
-	func create_instance_from_data_entry(data):
+	func create_instance_from_data_entry(data, loadvars=true):
 		assert (typeof(data) == TYPE_DICTIONARY)
 		var dict
 		if data["type"] == TILE:
@@ -217,7 +212,8 @@ class Map:
 		var instanced = dict[data["ID"]].instance()
 		instanced.set_pos(map_pos_to_px(Vector2(data["position"].x, data["position"].y), true))
 		instanced.z_floor = data["position"].z
-		_load_instance_variables(data["variables"], instanced)
+		if loadvars:
+			_load_instance_variables(data["variables"], instanced)
 		return instanced
 		
 	func create_data_from_instance(instanced):
@@ -249,8 +245,17 @@ class Map:
 			node.hide()
 			add_child(node)
 		get_node("0").show()
-		for data_entry in get_original_mapdata():
-			add_child_from_data(data_entry)
+		for z in get_original_mapdata():
+			for x in z:
+				for y in z:
+					for entry in y:
+						add_child_from_data(entry, false)
+		var collision = CollisionShape2D.new()
+		var shape = RectangleShape2D.new()
+		shape.set_extents(map_pos_to_px(get_map_size2() + Vector2(1,1)))
+		collision.set_shape(shape)
+		collision.set_name("CollisionShape2D")
+		add_child(collision)
 		is_map_initiated = true
 			
 class MapHandler:
@@ -268,10 +273,12 @@ class MapHandler:
 	func _get_map_from_string(map_string):
 		# Do not call this function directly.
 		assert (typeof(map_string) == TYPE_STRING)
-		var map = load(map_string).new()
-		if map.has_method("create_map"):
-			return map
-		return false
+		var map = load("res://src/map/map.gd").Map.new()
+		var fmap = File.new()
+		fmap.open(map_string, File.READ)
+		var vari = fmap.get_var()
+		map._orig_data = vari
+		return map
 		
 	func _get_map_from_class(map_class):
 		# Do not call this function directly.

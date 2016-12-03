@@ -47,7 +47,7 @@ sync func set_map(new_map):
 	
 sync func prepare_map():
 	if map:
-		map.create_map()
+		map.initial_map_preparation()
 		map.set_pos(Vector2(0, 0))
  
 func connect_handlers():
@@ -131,7 +131,7 @@ func begin_game():
 	set_map(chosen_map)
 	prepare_map()
 	var spawn_points = set_spawn_points(client_list)
-	rpc("pre_configure_game", map.get_data(true), spawn_points)
+	rpc("pre_configure_game", map.get_original_mapdata(), spawn_points)
 
 sync func pre_configure_game(host_map, spawn_points):
 	get_node("/root/Lobby").queue_free()
