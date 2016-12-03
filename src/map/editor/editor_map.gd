@@ -53,3 +53,33 @@ func _on_Grid_CheckBox_toggled( pressed ):
 func _on_SpinBox_value_changed( value ):
 	set_current_floor(value)
 	get_node("../GUI/Selected/SpinBox").set_max(get_map_size().z)
+
+
+func _on_X_enter_tree():
+	get_node("../GUI/Selection/X").set_value(get_map_size().x)
+
+func _on_Y_enter_tree():
+	get_node("../GUI/Selection/Y").set_value(get_map_size().y)
+
+func _on_Z_enter_tree():
+	get_node("../GUI/Selection/Z").set_value(get_map_size().z)
+
+func _on_X_value_changed( value ):
+	var old_size = get_map_size()
+	change_map_size(Vector3(value, old_size.y, old_size.z))
+	update()
+
+func _on_Y_value_changed( value ):
+	var old_size = get_map_size()
+	change_map_size(Vector3(old_size.x, value, old_size.z))
+	update()
+
+func _on_Z_value_changed( value ):
+	var old_size = get_map_size()
+	var current_floor = get_current_floor()
+	change_map_size(Vector3(old_size.x, old_size.y, value))
+	if value < current_floor:
+		get_node("../GUI/Selected/SpinBox").set_value(value)
+		set_current_floor(value)
+	get_node("../GUI/Selected/SpinBox").set_max(value)
+	update()

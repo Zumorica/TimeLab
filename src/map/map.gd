@@ -34,19 +34,24 @@ class Map:
 	const ENTITIES = {1 : preload("res://src/entity/spawn/spawn.tscn")}
 	
 	var viewable_z = 0 setget set_current_floor,get_current_floor
-	var _map_size = Vector3(32, 32, 2) setget ,get_map_size
+	var _map_size = Vector3(32, 32, 2) setget change_map_size,get_map_size
 	onready var _map_size_2 = Vector2(_map_size.x, _map_size.y) setget ,get_map_size2
 	var _orig_data = [] setget ,get_original_mapdata
 	var _updated_data = [] setget update_mapdata,get_updated_mapdata
-	
 	var _grid = [] setget update_grid,get_grid
+	var is_map_initiated = false
 	
 	func update_mapdata():
 		for z in get_children():
 			for child in z.get_children():
 				var entry = create_data_from_instance(child)
-				if typeof(entry) == TYPE_DICTIONARY:
-					_updated_data[entry["position"].x][entry["position"].y][entry["position"].z] = entry
+				var cpos = child.get_pos3()
+				var mpos = px_pos_to_map(cpos)
+				if mpos <= get_map_size2() and mpos >= Vector2(0,0) and child.get_floor() <= get_map_size().z:
+					if typeof(entry) == TYPE_DICTIONARY:
+						_updated_data[entry["position"].x][entry["position"].y][entry["position"].z] = entry
+				else:
+					child.queue_free()
 					
 	func update_grid():
 		_grid = populate_multidimensional_list(get_map_size())
@@ -54,7 +59,10 @@ class Map:
 			for child in z.get_children():
 				var cpos = child.get_pos3()
 				var mpos = px_pos_to_map(cpos)
-				_grid[mpos.x][mpos.y][cpos.z] = child
+				if mpos <= get_map_size2() and mpos >= Vector2(0,0) and child.get_floor() <= get_map_size().z:
+					_grid[mpos.x][mpos.y][cpos.z] = child
+				else:
+					child.queue_free()
 				
 	func populate_multidimensional_list(vector):
 		var list = []
@@ -92,8 +100,17 @@ class Map:
 	func get_map_size():
 		return _map_size
 		
+	func change_map_size(new_size):
+		var old_size = get_map_size()
+		if new_size != old_size:
+			_map_size = new_size
+			populate_lists()
+			update_grid()
+			update_mapdata()
+			_orig_data = get_updated_mapdata()
+		
 	func get_map_size2():
-		return _map_size_2
+		return Vector2(_map_size.x, _map_size.y)
 		
 	func get_grid():
 		return _grid
@@ -232,6 +249,7 @@ class Map:
 		get_node("0").show()
 		for data_entry in get_original_mapdata():
 			add_child_from_data(data_entry)
+		is_map_initiated = true
 			
 class MapHandler:
 	extends Object

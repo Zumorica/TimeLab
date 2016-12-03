@@ -298,6 +298,84 @@ text = "Draw grid"
 flat = false
 align = 0
 
+[node name="X" type="SpinBox" parent="GUI/Selection"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 21.0
+margin/top = 501.0
+margin/right = 95.0
+margin/bottom = 525.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+editable = true
+prefix = ""
+suffix = "X"
+
+[node name="Y" type="SpinBox" parent="GUI/Selection"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 21.0
+margin/top = 529.0
+margin/right = 95.0
+margin/bottom = 553.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+editable = true
+prefix = ""
+suffix = "Y"
+
+[node name="Z" type="SpinBox" parent="GUI/Selection"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 21.0
+margin/top = 557.0
+margin/right = 95.0
+margin/bottom = 581.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+editable = true
+prefix = ""
+suffix = "Z"
+
+[node name="Size" type="Label" parent="GUI/Selection"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 22.0
+margin/top = 478.0
+margin/right = 62.0
+margin/bottom = 492.0
+text = "Map size"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="ShowButton" type="Button" parent="GUI"]
 
 anchor/top = 3
@@ -362,6 +440,18 @@ drag_margin/bottom = 0.2
 [connection signal="item_selected" from="GUI/Selection/TabContainer/Entities/ItemList" to="." method="_on_EntityList_item_selected"]
 
 [connection signal="toggled" from="GUI/Selection/Grid_CheckBox" to="Map" method="_on_Grid_CheckBox_toggled"]
+
+[connection signal="enter_tree" from="GUI/Selection/X" to="Map" method="_on_X_enter_tree"]
+
+[connection signal="value_changed" from="GUI/Selection/X" to="Map" method="_on_X_value_changed"]
+
+[connection signal="enter_tree" from="GUI/Selection/Y" to="Map" method="_on_Y_enter_tree"]
+
+[connection signal="value_changed" from="GUI/Selection/Y" to="Map" method="_on_Y_value_changed"]
+
+[connection signal="enter_tree" from="GUI/Selection/Z" to="Map" method="_on_Z_enter_tree"]
+
+[connection signal="value_changed" from="GUI/Selection/Z" to="Map" method="_on_Z_value_changed"]
 
 [connection signal="pressed" from="GUI/ShowButton" to="GUI/ShowButton" method="_on_ShowButton_pressed"]
 
