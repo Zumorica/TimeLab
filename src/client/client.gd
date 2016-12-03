@@ -10,7 +10,6 @@ func _ready():
 	add_to_group("clients")
 	if is_client():
 		set_process_input(true)
-		set_network_mode(NETWORK_MODE_MASTER)
 
 func _input(event):
 	if is_network_master() and get_mob():
