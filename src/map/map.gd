@@ -143,12 +143,15 @@ class Map:
 			for child in z.get_children():
 				if child extends ELEMENT_BASE:
 					if typeof(position) == TYPE_VECTOR3:
-						if position == child.get_pos3():
+						var cpos3 = child.get_pos3()
+						var mcpos = px_pos_to_map(cpos3)
+						if position == Vector3(mcpos.x, mcpos.y, mcpos.z):
 							pass
 						else:
 							continue
 					elif typeof(position) == TYPE_VECTOR2:
-						if position == child.get_pos():
+						var cpos = child.get_pos()
+						if position == px_pos_to_map(cpos):
 							pass
 						else:
 							continue
