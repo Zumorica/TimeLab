@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export(int) var ID = 0
+export(bool) var dense = false
 var z_floor = 0 setget set_floor,get_floor
 
 func set_floor(z, add_to_node=true):

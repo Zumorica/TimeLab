@@ -22,33 +22,36 @@ func _on_client_input(event):
 	if event.is_action("mob_move_right") and not event.is_action_released("mob_move_right"):
 		_mob_move(EAST)
 
+func would_collide(dir, map):
+	var pos = map.px_pos_to_map(get_pos() + Vector2(16, 16))
+	if dir == NORTH:
+		var result = map.find(pos)
+		if result.size() != 0:
+			print("Current position %s - Position of the object checked %s" % [pos, map.px_pos_to_map(result[0].get_pos())])
+
 func _mob_move(where):
 	var timeline = get_node("/root/timeline")
-	if true:
-		if where == NORTH:
-			move(timeline.map.map_pos_to_px(Vector2(0, -1)))
-		elif where == SOUTH:
-			move(timeline.map.map_pos_to_px(Vector2(0, 1)))
-		elif where == WEST:
-			move(timeline.map.map_pos_to_px(Vector2(-1, 0)))
-		elif where == EAST:
-			move(timeline.map.map_pos_to_px(Vector2(1, 0)))
-		else:
-			return
-		var pos_x = get_pos().x
-		var pos_y = get_pos().y
-		#if typeof(pos_x) != TYPE_INT:
-		#	set_pos(Vector2((pos_x + 0.125), pos_y))
-		#if typeof(pos_y) != TYPE_INT:
-		#	set_pos(Vector2(pos_x, (pos_y + 0.125)))
-		direction = where
-		if get_network_mode() == NETWORK_MODE_MASTER:
-			rpc("_update_pos", direction)
-		update()
-		print(get_pos())
+	var current_pos = get_pos()
+	if would_collide(where, timeline.map):
+		return
+	if where == NORTH:
+		set_pos(current_pos + timeline.map.map_pos_to_px(Vector2(0, -1)))
+	elif where == SOUTH:
+		set_pos(current_pos + timeline.map.map_pos_to_px(Vector2(0, 1)))
+	elif where == WEST:
+		set_pos(current_pos + timeline.map.map_pos_to_px(Vector2(-1, 0)))
+	elif where == EAST:
+		set_pos(current_pos + timeline.map.map_pos_to_px(Vector2(1, 0)))
+	else:
+		return
+	direction = where
+	if get_network_mode() == NETWORK_MODE_MASTER:
+		rpc("_update_pos", get_pos())
+	update()
+	print(get_pos())
 
-slave func _update_pos(direction):
-	_mob_move(direction)
+slave func _update_pos(pos):
+	set_pos(pos)
 
 func _on_Mob_draw():
 	if direction == NORTH:

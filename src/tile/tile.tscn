@@ -18,6 +18,7 @@ collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
 ID = 0
+dense = true
 
 [node name="Sprite" type="Sprite" parent="."]
 
