@@ -29,13 +29,12 @@ func _input(event):
 		mouse_pressed = true
 		var mpos = get_local_mouse_pos()
 		var mpos_map = px_pos_to_map(mpos)
-		if (mpos_map.x >= 0 and mpos_map.x <= map_size.x - 1) and (mpos_map.y >= 0 and mpos_map.y <= map_size.y - 1):
+		if (mpos.x >= 0 and mpos_map.x <= map_size.x - 1) and (mpos.y >= 0 and mpos_map.y <= map_size.y - 1):
 			if get_parent().cursor_mode == 2:
 				var data = get_parent().current_data
 				if data["type"] != null and data["ID"] != null:
 					if not find(mpos_map, false, data["type"]).size():
 						data["position"] = Vector3(mpos_map.x, mpos_map.y, get_current_floor())
-						# Append child to updated data and then create map maybe?
 						add_child_from_data(data)
 
 	if event.is_action_released("map_editor_mouse_left"):
