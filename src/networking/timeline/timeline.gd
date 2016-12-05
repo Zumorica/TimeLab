@@ -48,7 +48,7 @@ sync func set_map(new_map):
 sync func prepare_map():
 	if map:
 		map.initial_map_preparation()
-		map.set_pos(Vector2(0, 0))
+		map.set_pos(Vector2(32, 32))
  
 func connect_handlers():
 	get_tree().connect("network_peer_connected", self, "client_connected")
