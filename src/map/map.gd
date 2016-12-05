@@ -130,7 +130,7 @@ class Map:
 		
 	func map_pos_to_px(vector, central = false):
 		if central:
-			return Vector2(vector.x * 32 + 16, vector.y * 32 + 16)
+			return Vector2((vector.x * 32) + 16, (vector.y * 32) + 16)
 		else:
 			return Vector2(vector.x * 32, vector.y * 32)
 		
@@ -150,8 +150,8 @@ class Map:
 						else:
 							continue
 					elif typeof(position) == TYPE_VECTOR2:
-						var cpos = child.get_pos()
-						if position == px_pos_to_map(cpos):
+						var cpos = px_pos_to_map(child.get_pos())
+						if position == cpos:
 							pass
 						else:
 							continue
@@ -161,7 +161,7 @@ class Map:
 						else:
 							continue
 					if typeof(type) == TYPE_STRING:
-						var lower = type.lower()
+						var lower = type
 						if lower == TILE and child extends TILE_BASE:
 							pass
 						elif lower == ITEM and child extends ITEM_BASE:

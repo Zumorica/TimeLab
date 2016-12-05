@@ -4,6 +4,10 @@ const NORTH = 0
 const SOUTH = 1
 const WEST = 2
 const EAST = 3
+const direction_index = {0 : Vector2(0, -1),
+						 1 : Vector2(0, 1),
+						 2 : Vector2(-1, 0),
+						 3 : Vector2(1, 0)}
 
 export(String, "generic", "human") var race
 export(int, "NORTH", "SOUTH", "WEST", "EAST") var direction = 0
@@ -23,32 +27,23 @@ func _on_client_input(event):
 		_mob_move(EAST)
 
 func would_collide(dir, map):
-	var pos = map.px_pos_to_map(get_pos() + Vector2(16, 16))
-	if dir == NORTH:
-		var result = map.find(pos)
-		if result.size() != 0:
-			print("Current position %s - Position of the object checked %s" % [pos, map.px_pos_to_map(result[0].get_pos())])
+	var pos = map.px_pos_to_map(get_pos()) + direction_index[dir]
+	var result = map.find(pos)
+	if result.size() != 0:
+		for c in result:
+			if c.is_dense():
+				return true
 
 func _mob_move(where):
 	var timeline = get_node("/root/timeline")
 	var current_pos = get_pos()
 	if would_collide(where, timeline.map):
 		return
-	if where == NORTH:
-		set_pos(current_pos + timeline.map.map_pos_to_px(Vector2(0, -1)))
-	elif where == SOUTH:
-		set_pos(current_pos + timeline.map.map_pos_to_px(Vector2(0, 1)))
-	elif where == WEST:
-		set_pos(current_pos + timeline.map.map_pos_to_px(Vector2(-1, 0)))
-	elif where == EAST:
-		set_pos(current_pos + timeline.map.map_pos_to_px(Vector2(1, 0)))
-	else:
-		return
+	set_pos(current_pos + timeline.map.map_pos_to_px(direction_index[where]))
 	direction = where
 	if get_network_mode() == NETWORK_MODE_MASTER:
 		rpc("_update_pos", get_pos())
 	update()
-	print(get_pos())
 
 slave func _update_pos(pos):
 	set_pos(pos)
