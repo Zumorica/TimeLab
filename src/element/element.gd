@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Area2D
 
 export(int) var ID = 0
 export(bool) var dense = false
@@ -14,6 +14,12 @@ func set_floor(z, add_to_node=true):
 			z_floor = z
 	else:
 		z_floor = z
+	
+func set_dense(boolean):
+	dense = boolean
+	
+func is_dense():
+	return dense
 	
 func get_floor():
 	return z_floor
@@ -33,4 +39,3 @@ func get_pos3():
 	
 func _ready():
 	set_pickable(true)
-	set_collision_margin(0.01)

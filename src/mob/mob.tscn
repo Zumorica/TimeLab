@@ -7,24 +7,25 @@
 custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
 
-[node name="Mob" type="KinematicBody2D"]
+[node name="Mob" type="Area2D"]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
 script/script = ExtResource( 1 )
-race = "generic"
+ID = 0
+dense = false
+race = null
 direction = 0
 sprite_north = null
 sprite_south = null
 sprite_west = null
 sprite_east = null
-
-[node name="Sprite" type="Sprite" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -32,6 +33,6 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[connection signal="draw" from="." to="." method="_on_Mob_draw"]
+[node name="Sprite" type="Sprite" parent="."]
 
 
