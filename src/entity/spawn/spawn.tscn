@@ -10,8 +10,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 1 )
-ID = 1
-dense = false
+direction = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 
