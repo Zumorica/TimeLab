@@ -1,7 +1,6 @@
 extends Node2D
 
 signal _on_mob_change(mob)
-signal _on_client_input(event)
 
 var network_id = 1
 
@@ -10,10 +9,6 @@ func _ready():
 	add_to_group("clients")
 	if is_client():
 		set_process_input(true)
-
-func _input(event):
-	if is_network_master() and get_mob():
-		emit_signal("_on_client_input", event)
 
 func configure_network_mode(mode):
 	if mode == NETWORK_MODE_MASTER:
@@ -46,8 +41,6 @@ sync func set_mob(mob):
 	   It can take one argument, and it can
 	   be either the path to a scene, a nodepath,
 	   a node, or a class."""
-	if get_mob():
-		disconnect("_on_client_input", get_mob(), "_on_client_input")
 	var type = typeof(mob)
 	if type == TYPE_STRING:
 		_set_mob_scene(mob)
@@ -59,7 +52,6 @@ sync func set_mob(mob):
 		_set_mob_node(mob)
 	else:
 		return
-	connect("_on_client_input", get_mob(), "_on_client_input")
 	
 func _set_mob_scene(scene_path):
 	# Do not call this function directly.

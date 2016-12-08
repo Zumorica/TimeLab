@@ -10,6 +10,7 @@ var clients_prepared = []
 var lobby_client_list
 onready var network_handler = NetworkedMultiplayerENet.new()
 onready var client_base = preload("res://src/client/client.tscn")
+onready var client_code_base = preload("res://src/client/client.gd")
 onready var own_client = client_base.instance()
 
 func _ready():
@@ -125,13 +126,13 @@ sync func pre_configure_game(spawn_points):
 	own_client.set_name(str(own_client.get_ID()))
 	get_tree().get_root().add_child(own_client)
 	own_client.configure_network_mode(NETWORK_MODE_MASTER)
-	own_client.set_pos(spawn_points[own_client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
+	own_client.get_node("Mob").set_pos(spawn_points[own_client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
 	for client_id in client_list:
 		var client = client_base.instance()
 		client.set_name(str(client_id))
 		client.set_ID(int(client_id))
 		get_tree().get_root().add_child(client)
-		client.set_pos(spawn_points[client_id] * Vector2(32, 32) + Vector2(16, 16))
+		client.get_node("Mob").set_pos(spawn_points[client_id] * Vector2(32, 32) + Vector2(16, 16))
 		client.configure_network_mode(NETWORK_MODE_SLAVE)
 	if get_tree().is_network_server():
 		post_configure_game(own_client.get_ID())

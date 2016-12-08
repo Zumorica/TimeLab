@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://src/mob/mob.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/mob/living/human/human.gd" type="Script" id=2]
@@ -7,16 +7,25 @@
 [ext_resource path="res://res/img/mob/living/human/3.png" type="Texture" id=5]
 [ext_resource path="res://res/img/mob/living/human/2.png" type="Texture" id=6]
 
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 8.89077
+height = 12.6245
+
 [node name="Mob" instance=ExtResource( 1 )]
 
 script/script = ExtResource( 2 )
-ID = 1
-race = "human"
 direction = 1
+race = "human"
 sprite_north = ExtResource( 3 )
 sprite_south = ExtResource( 4 )
 sprite_west = ExtResource( 5 )
 sprite_east = ExtResource( 6 )
+
+[node name="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
 
 [node name="Sprite" parent="."]
 

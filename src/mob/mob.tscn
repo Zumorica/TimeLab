@@ -18,7 +18,6 @@ collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
 direction = 0
-dense = false
 race = null
 sprite_north = null
 sprite_south = null
@@ -32,9 +31,5 @@ trigger = false
 _update_shape_index = 0
 
 [node name="Sprite" type="Sprite" parent="."]
-
-[connection signal="collided" from="." to="." method="_on_collided"]
-
-[connection signal="collision" from="." to="." method="_on_collision"]
 
 
