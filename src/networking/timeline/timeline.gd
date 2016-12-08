@@ -125,6 +125,7 @@ sync func pre_configure_game(spawn_points):
 	get_node("/root/Lobby").queue_free()
 	own_client.set_name(str(own_client.get_ID()))
 	get_tree().get_root().add_child(own_client)
+	get_tree().get_root().add_child(load("res://src/map/maps/test_lab.tscn").instance())
 	own_client.configure_network_mode(NETWORK_MODE_MASTER)
 	own_client.get_node("Mob").set_pos(spawn_points[own_client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
 	for client_id in client_list:

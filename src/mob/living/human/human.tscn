@@ -10,8 +10,8 @@
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 8.89077
-height = 12.6245
+radius = 8.0
+height = 12.0
 
 [node name="Mob" instance=ExtResource( 1 )]
 

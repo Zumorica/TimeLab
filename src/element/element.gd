@@ -1,4 +1,4 @@
-extends PhysicsBody2D
+extends CollisionObject2D
 
 const NORTH = 0
 const SOUTH = 1
@@ -54,5 +54,9 @@ func _fixed_process(dt):
 			last_pos = get_pos()
 			last_move = move_direction
 			move(move_direction * speed * dt)
+			if is_colliding():
+				var normal = get_collision_normal()
+				move_direction = normal.slide(move_direction)
+				move(move_direction * speed * dt)
 			rpc_unreliable("_update_pos", get_pos())
 		
