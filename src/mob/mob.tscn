@@ -18,10 +18,10 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 1 )
+direction = 0
 ID = 0
 dense = false
 race = null
-direction = 0
 sprite_north = null
 sprite_south = null
 sprite_west = null
@@ -34,5 +34,9 @@ trigger = false
 _update_shape_index = 0
 
 [node name="Sprite" type="Sprite" parent="."]
+
+[connection signal="collided" from="." to="." method="_on_collided"]
+
+[connection signal="collision" from="." to="." method="_on_collision"]
 
 

@@ -1,15 +1,13 @@
 extends Node
 
-var chosen_map
-var map
 var own_info = {}
 var client_list = {}
 var is_busy = false # When connecting/creating a server, this will be true.
 var is_online = false # When connected to/hosting a server, this will be true.
+var is_server = false
 var clients_ready = []
 var clients_prepared = []
 var lobby_client_list
-onready var map_handler = load("res://src/map/map.gd").MapHandler.new()
 onready var network_handler = NetworkedMultiplayerENet.new()
 onready var client_base = preload("res://src/client/client.tscn")
 onready var own_client = client_base.instance()
@@ -24,6 +22,7 @@ func host_server(port, max_players):
 		get_tree().set_network_peer(network_handler)
 		is_busy = false
 		is_online = true
+		is_server = true
 		var lobby = load("res://src/menu/Lobby.tscn").instance()
 		get_node("/root").add_child(lobby)
 		get_node("/root/Lobby/Panel/startButton").show()
@@ -39,16 +38,6 @@ func connect_to_server(ip, port):
 		if get_tree().get_network_unique_id():
 			is_busy = false
 			is_online = true
-
-sync func set_map(new_map):
-	map = map_handler.get_map(new_map)
-	if map:
-		get_tree().get_root().add_child(map)
-	
-sync func prepare_map():
-	if map:
-		map.initial_map_preparation()
-		map.set_pos(Vector2(32, 32))
  
 func connect_handlers():
 	get_tree().connect("network_peer_connected", self, "client_connected")
@@ -128,26 +117,21 @@ func begin_game():
 	if clients_ready.size() != (client_list.size() + 1):#+1 because the client list doesn't have the host in it
 		print("Not everybody is ready!")
 		return
-	set_map(chosen_map)
-	prepare_map()
 	var spawn_points = set_spawn_points(client_list)
-	rpc("pre_configure_game", map.get_original_mapdata(), spawn_points)
+	rpc("pre_configure_game", spawn_points)
 
-sync func pre_configure_game(host_map, spawn_points):
+sync func pre_configure_game(spawn_points):
 	get_node("/root/Lobby").queue_free()
 	own_client.set_name(str(own_client.get_ID()))
-	if not get_tree().is_network_server():
-		set_map(host_map)
-		prepare_map()
 	get_tree().get_root().add_child(own_client)
 	own_client.configure_network_mode(NETWORK_MODE_MASTER)
-	own_client.set_pos(map.map_pos_to_px(spawn_points[own_client.get_ID()], true))
+	own_client.set_pos(spawn_points[own_client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
 	for client_id in client_list:
 		var client = client_base.instance()
 		client.set_name(str(client_id))
 		client.set_ID(int(client_id))
 		get_tree().get_root().add_child(client)
-		client.set_pos(map.map_pos_to_px(spawn_points[client_id], true))
+		client.set_pos(spawn_points[client_id] * Vector2(32, 32) + Vector2(16, 16))
 		client.configure_network_mode(NETWORK_MODE_SLAVE)
 	if get_tree().is_network_server():
 		post_configure_game(own_client.get_ID())
