@@ -39,24 +39,25 @@ func _ready():
 	set_fixed_process(true)
 	
 func _fixed_process(dt):
-	if is_network_master() and get_parent() extends get_node("/root/timeline").client_code_base:
-		var move_direction = Vector2(0, 0)
-		if Input.is_action_pressed("ui_up"):
-			move_direction += direction_index[NORTH]
-		if Input.is_action_pressed("ui_down"):
-			move_direction += direction_index[SOUTH]
-		if Input.is_action_pressed("ui_left"):
-			move_direction += direction_index[WEST]
-		if Input.is_action_pressed("ui_right"):
-			move_direction += direction_index[EAST]
-			
-		if move_direction != Vector2(0, 0):
-			last_pos = get_pos()
-			last_move = move_direction
-			move(move_direction * speed * dt)
-			if is_colliding():
-				var normal = get_collision_normal()
-				move_direction = normal.slide(move_direction)
+	if get_node("/root/timeline").is_online:
+		if is_network_master() and get_parent() extends get_node("/root/timeline").client_code_base:
+			var move_direction = Vector2(0, 0)
+			if Input.is_action_pressed("ui_up"):
+				move_direction += direction_index[NORTH]
+			if Input.is_action_pressed("ui_down"):
+				move_direction += direction_index[SOUTH]
+			if Input.is_action_pressed("ui_left"):
+				move_direction += direction_index[WEST]
+			if Input.is_action_pressed("ui_right"):
+				move_direction += direction_index[EAST]
+				
+			if move_direction != Vector2(0, 0):
+				last_pos = get_pos()
+				last_move = move_direction
 				move(move_direction * speed * dt)
-			rpc_unreliable("_update_pos", get_pos())
+				if is_colliding():
+					var normal = get_collision_normal()
+					move_direction = normal.slide(move_direction)
+					move(move_direction * speed * dt)
+				rpc_unreliable("_update_pos", get_pos())
 		

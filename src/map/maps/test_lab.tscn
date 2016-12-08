@@ -12,4 +12,8 @@ tile_data = IntArray( -1, 0, -65536, 0, -65535, 0, -65534, 0, -65533, 0, -65532,
 
 transform/pos = Vector2( 457, 278 )
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
+
 
