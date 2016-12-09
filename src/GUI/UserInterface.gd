@@ -35,7 +35,8 @@ func _input(ev):
 
 func send_message():
 	var msg = text_input.get_text()
-	msg += "\n"
+	if msg == "":
+		return
 	text_input.clear()
 	text_input.hide()
 	chat_window.hide()
@@ -45,10 +46,13 @@ func send_message():
 sync func _update_chat(msg):
 	var messages = get_node("Layer/Container/Chat/ChatWindow/Messages")
 	messages.get_parent().show()
-	messages.add_text(msg)
+	messages.append_bbcode(msg)
+	messages.newline()
 	timer.set_wait_time(5)
 	timer.start()
 
 func close_chat():
+	if get_focus_owner() == text_input:
+		return
 	chat_window.hide()
 	is_chat_visible = false

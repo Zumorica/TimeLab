@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://src/GUI/Chat.gd" type="Script" id=1]
+[ext_resource path="res://res/img/misc/chat_window.tres" type="StyleBox" id=2]
 
 [node name="Chat" type="Control"]
 
@@ -41,6 +42,7 @@ margin/left = 653.0
 margin/top = 335.0
 margin/right = 1023.0
 margin/bottom = 535.0
+custom_styles/panel = ExtResource( 2 )
 
 [node name="Messages" type="RichTextLabel" parent="ChatWindow"]
 
