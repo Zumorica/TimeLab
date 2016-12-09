@@ -14,22 +14,18 @@ func _ready():
 	timer = get_node("Layer/Container/Chat/Timer")
 	timer.connect("timeout", self, "close_chat")
 	timer.set_one_shot(true)
-	text_input.set_editable(false)
 
 func _process(dt):
 	get_node("Layer/Container/FPSCount").set_text(str(OS.get_frames_per_second()))
 
 func _input(ev):
-	if ev.is_action_pressed("chat_open") and !is_chat_visible:
-		accept_event()
-		text_input.clear()
+	if ev.is_action_released("chat_open") and !is_chat_visible:
 		text_input.show()
 		chat_window.show()
 		is_chat_visible = true
-		text_input.set_editable(true)
+		text_input.clear()
 		text_input.grab_focus()
 	if ev.is_action_pressed("chat_close"):
-		text_input.set_editable(false)
 		text_input.clear()
 		text_input.hide()
 		chat_window.hide()
