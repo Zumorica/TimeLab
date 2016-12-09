@@ -30,20 +30,6 @@ focus_mode = 2
 caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
-[node name="Messages" type="RichTextLabel" parent="."]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 655.0
-margin/top = 336.0
-margin/right = 1024.0
-margin/bottom = 536.0
-bbcode/enabled = false
-bbcode/bbcode = ""
-visible_characters = -1
-
 [node name="ChatWindow" type="Panel" parent="."]
 
 visibility/self_opacity = 0.2
@@ -55,5 +41,26 @@ margin/left = 653.0
 margin/top = 335.0
 margin/right = 1023.0
 margin/bottom = 535.0
+
+[node name="Messages" type="RichTextLabel" parent="ChatWindow"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 2.0
+margin/top = 1.0
+margin/right = 371.0
+margin/bottom = 201.0
+bbcode/enabled = false
+bbcode/bbcode = ""
+visible_characters = -1
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
 
 

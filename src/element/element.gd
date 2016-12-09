@@ -40,7 +40,7 @@ func _ready():
 	
 func _fixed_process(dt):
 	if get_node("/root/timeline").is_online:
-		if is_network_master() and get_parent() extends get_node("/root/timeline").client_code_base:
+		if is_network_master() and get_parent() extends get_node("/root/timeline").client_code_base and !get_node("/root/UserInterface").is_chat_visible:
 			var move_direction = Vector2(0, 0)
 			if Input.is_action_pressed("ui_up"):
 				move_direction += direction_index[NORTH]
