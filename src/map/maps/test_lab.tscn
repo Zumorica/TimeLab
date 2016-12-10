@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://src/map/map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entity/spawn/spawn.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/obj/machine/door/door.tscn" type="PackedScene" id=3]
 
 [node name="Map" instance=ExtResource( 1 )]
 
@@ -12,8 +13,13 @@ tile_data = IntArray( -1, 0, -65536, 0, -65535, 0, -65534, 0, -65533, 0, -65532,
 
 transform/pos = Vector2( 457, 278 )
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="Door" parent="." instance=ExtResource( 3 )]
 
-color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
+transform/pos = Vector2( 560, 48 )
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 0
 
 

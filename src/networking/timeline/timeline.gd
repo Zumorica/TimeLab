@@ -122,13 +122,16 @@ func begin_game():
 	rpc("pre_configure_game", spawn_points)
 
 sync func pre_configure_game(spawn_points):
+	var map = load("res://src/map/maps/test_lab.tscn").instance()
+	map.set_pos(Vector2(0, 0))
 	get_node("/root/Lobby").queue_free()
 	own_client.set_name(str(own_client.get_ID()))
 	get_tree().get_root().add_child(own_client)
-	get_tree().get_root().add_child(load("res://src/map/maps/test_lab.tscn").instance())
+	get_tree().get_root().add_child(map)
 	get_tree().get_root().add_child(load("res://src/GUI/UserInterface.tscn").instance())
 	own_client.configure_network_mode(NETWORK_MODE_MASTER)
 	own_client.get_node("Mob").set_pos(spawn_points[own_client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
+	own_client.get_node("Mob/Camera2D").make_current()
 	for client_id in client_list:
 		var client = client_base.instance()
 		client.set_name(str(client_id))
