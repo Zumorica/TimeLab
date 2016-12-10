@@ -18,17 +18,25 @@ height = 12.0
 script/script = ExtResource( 2 )
 direction = 1
 race = "human"
-sprite_north = ExtResource( 3 )
-sprite_south = ExtResource( 4 )
-sprite_west = ExtResource( 5 )
-sprite_east = ExtResource( 6 )
 
 [node name="CollisionShape2D" parent="."]
 
 shape = SubResource( 1 )
 
-[node name="Sprite" parent="."]
+[node name="Base" parent="North"]
+
+texture = ExtResource( 3 )
+
+[node name="Base" parent="South"]
 
 texture = ExtResource( 4 )
+
+[node name="Base" parent="West"]
+
+texture = ExtResource( 5 )
+
+[node name="Base" parent="East"]
+
+texture = ExtResource( 6 )
 
 

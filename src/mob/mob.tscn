@@ -20,10 +20,6 @@ collision/margin = 0.08
 script/script = ExtResource( 1 )
 direction = 0
 race = null
-sprite_north = null
-sprite_south = null
-sprite_west = null
-sprite_east = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -31,7 +27,27 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="North" type="Node2D" parent="."]
+
+visibility/visible = false
+
+[node name="Base" type="Sprite" parent="North"]
+
+[node name="South" type="Node2D" parent="."]
+
+[node name="Base" type="Sprite" parent="South"]
+
+[node name="West" type="Node2D" parent="."]
+
+visibility/visible = false
+
+[node name="Base" type="Sprite" parent="West"]
+
+[node name="East" type="Node2D" parent="."]
+
+visibility/visible = false
+
+[node name="Base" type="Sprite" parent="East"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
