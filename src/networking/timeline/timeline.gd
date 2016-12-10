@@ -9,6 +9,7 @@ var clients_ready = []
 var clients_prepared = []
 var lobby_client_list
 onready var network_handler = NetworkedMultiplayerENet.new()
+onready var element_base = preload("res://src/element/element.gd")
 onready var client_base = preload("res://src/client/client.tscn")
 onready var client_code_base = preload("res://src/client/client.gd")
 onready var own_client = client_base.instance()
