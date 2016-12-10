@@ -10,12 +10,18 @@ var door_state = CLOSED
 func _ready():
 	set_pickable(true)
 	set_process_input(true)
+	if not is_connected("on_collided", self, "_on_collided"):
+		connect("on_collided", self, "_on_collided")
 	
 sync func open():
 	get_node("AnimationPlayer").play("open_animation")
 	
 sync func close():
 	get_node("AnimationPlayer").play("close_animation")
+	
+func _on_collided(other):
+	if door_state == CLOSED:
+		rpc("open")
 	
 func _input(event):
 	if event.is_action("left_click") and not event.is_echo():
