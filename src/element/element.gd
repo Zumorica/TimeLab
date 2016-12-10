@@ -3,6 +3,7 @@ extends CollisionObject2D
 signal on_direction_change(direction)
 signal on_collided(collider)	# When something collides with the element.
 signal on_collide(collider)		# When the element collides with something.
+signal on_clicked()
 
 const NORTH = 0
 const SOUTH = 1
@@ -46,6 +47,7 @@ slave func _update_direction(direction):
 func _ready():
 	set_pickable(true)
 	set_fixed_process(true)
+	set_process_input(true)
 	
 func _fixed_process(dt):
 	if get_node("/root/timeline").is_online:
@@ -87,3 +89,6 @@ func _fixed_process(dt):
 					rpc_unreliable("_update_direction", direction)
 					emit_signal("on_direction_change", direction)
 			
+func _input(event):
+	if event.is_action("left_click") and not event.is_echo():
+		emit_signal("on_clicked")

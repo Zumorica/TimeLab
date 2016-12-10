@@ -18,7 +18,7 @@ margin/top = 300.0
 margin/right = 512.0
 margin/bottom = 300.0
 
-[node name="TabContainer2" type="TabContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -31,7 +31,7 @@ margin/bottom = 566.0
 tab_align = 1
 tabs_visible = true
 
-[node name="Join" type="Control" parent="TabContainer2"]
+[node name="Join" type="Control" parent="TabContainer"]
 
 anchor/right = 1
 anchor/bottom = 1
@@ -44,7 +44,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="Port" type="LineEdit" parent="TabContainer2/Join"]
+[node name="Port" type="LineEdit" parent="TabContainer/Join"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -61,7 +61,7 @@ focus_mode = 2
 caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
-[node name="Ip" type="LineEdit" parent="TabContainer2/Join"]
+[node name="Ip" type="LineEdit" parent="TabContainer/Join"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -78,7 +78,7 @@ focus_mode = 2
 caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
-[node name="Button" type="Button" parent="TabContainer2/Join"]
+[node name="Button" type="Button" parent="TabContainer/Join"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -95,7 +95,7 @@ text = "Join game"
 flat = false
 script/script = ExtResource( 1 )
 
-[node name="Host" type="Control" parent="TabContainer2"]
+[node name="Host" type="Control" parent="TabContainer"]
 
 visibility/visible = false
 anchor/right = 1
@@ -109,7 +109,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="Button" type="Button" parent="TabContainer2/Host"]
+[node name="Button" type="Button" parent="TabContainer/Host"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -126,7 +126,7 @@ text = "Host game"
 flat = false
 script/script = ExtResource( 2 )
 
-[node name="Port" type="LineEdit" parent="TabContainer2/Host"]
+[node name="Port" type="LineEdit" parent="TabContainer/Host"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -143,7 +143,7 @@ focus_mode = 2
 caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
-[node name="Max" type="LineEdit" parent="TabContainer2/Host"]
+[node name="Max" type="LineEdit" parent="TabContainer/Host"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -160,8 +160,8 @@ focus_mode = 2
 caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
-[connection signal="pressed" from="TabContainer2/Join/Button" to="TabContainer2/Join/Button" method="_on_Button_pressed"]
+[connection signal="pressed" from="TabContainer/Join/Button" to="TabContainer/Join/Button" method="_on_Button_pressed"]
 
-[connection signal="pressed" from="TabContainer2/Host/Button" to="TabContainer2/Host/Button" method="_on_Button_pressed"]
+[connection signal="pressed" from="TabContainer/Host/Button" to="TabContainer/Host/Button" method="_on_Button_pressed"]
 
 
