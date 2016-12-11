@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://src/decal/decal.gd" type="Script" id=1]
+[ext_resource path="res://res/img/misc/blood/0.png" type="Texture" id=2]
+[ext_resource path="res://res/img/misc/blood/1.png" type="Texture" id=3]
+[ext_resource path="res://res/img/misc/blood/2.png" type="Texture" id=4]
+[ext_resource path="res://res/img/misc/blood/3.png" type="Texture" id=5]
+
+[node name="Blood" type="Node2D"]
+
+script/script = ExtResource( 1 )
+auto_delete = false
+auto_delete_delay = 150
+
+[node name="0" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+
+[node name="1" type="Sprite" parent="."]
+
+texture = ExtResource( 3 )
+
+[node name="2" type="Sprite" parent="."]
+
+texture = ExtResource( 4 )
+
+[node name="3" type="Sprite" parent="."]
+
+texture = ExtResource( 5 )
+
+
