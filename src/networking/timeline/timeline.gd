@@ -123,8 +123,10 @@ func begin_game():
 	rpc("pre_configure_game", spawn_points)
 
 sync func pre_configure_game(spawn_points):
-	var map = load("res://src/map/maps/test_lab.tscn").instance()
-	map.set_pos(Vector2(0, 0))
+	var map
+	var map_scene = load("res://src/map/maps/test_lab.tscn")
+	if map_scene.can_instance():
+		map = map_scene.instance()
 	get_node("/root/Lobby").queue_free()
 	own_client.set_name(str(own_client.get_ID()))
 	get_tree().get_root().add_child(own_client)

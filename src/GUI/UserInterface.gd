@@ -7,7 +7,6 @@ onready var text_input = get_node("Layer/Container/Chat/TextInput")
 
 func _ready():
 	var container = get_node("Layer/Container")
-	container.set_size(get_tree().get_root().get_rect().size)
 	get_node("Layer/Container/FPSCount").set_pos(Vector2(0, 0))
 	set_process(true)
 	set_process_input(true)
@@ -19,19 +18,26 @@ func _process(dt):
 	get_node("Layer/Container/FPSCount").set_text(str(OS.get_frames_per_second()))
 
 func _input(ev):
+	if ev.type == InputEvent.MOUSE_MOTION:
+		return
+	elif ev.type == InputEvent.MOUSE_BUTTON:
+		return
 	if ev.is_action_released("chat_open") and !is_chat_visible:
 		text_input.show()
 		chat_window.show()
 		is_chat_visible = true
 		text_input.clear()
 		text_input.grab_focus()
+		accept_event()
 	if ev.is_action_pressed("chat_close"):
 		text_input.clear()
 		text_input.hide()
 		chat_window.hide()
 		is_chat_visible = false
+		accept_event()
 	if ev.is_action_pressed("chat_send") and is_chat_visible:
 		send_message()
+		accept_event()
 
 func send_message():
 	var msg = text_input.get_text()
