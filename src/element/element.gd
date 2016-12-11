@@ -35,7 +35,7 @@ const INTENT_INTERACT = 1
 const INTENT_ATTACK = 2
 
 export(int, "NORTH", "SOUTH", "WEST", "EAST") var direction = 0
-export(int, "No intent", "Interact intent", "Attack intent") var intent = 1 setget set_intent, get_intent
+export(int, "No intent", "Interact intent", "Attack intent") var intent = 2 setget set_intent, get_intent
 export(int) var max_health = 100
 export(bool) var invincible = false
 export(float) var damage_factor = 1.0
@@ -87,7 +87,7 @@ sync func damage(damage, other):
 		if (health <= 0):
 			health = 0
 			state |= DEAD
-			emit_signal("on_death")
+			emit_signal("on_death", other)
 
 func attack(other, bonus = 0):
 	if (not (state & DEAD) and not (state & CANT_ATTACK)) and other extends get_node("/root/timeline").element_base:
@@ -145,24 +145,25 @@ func _fixed_process(dt):
 			if is_network_master() and get_parent() extends get_node("/root/timeline").client_code_base and !get_node("/root/UserInterface").is_chat_visible:
 				var move_direction = Vector2(0, 0)
 				var old_direction = direction
-				if Input.is_action_pressed("ui_up"):
-					move_direction += direction_index[NORTH]
-					direction = NORTH
-					last_collider = null
-				if Input.is_action_pressed("ui_down"):
-					move_direction += direction_index[SOUTH]
-					direction = SOUTH
-					last_collider = null
-				if Input.is_action_pressed("ui_left"):
-					move_direction += direction_index[WEST]
-					direction = WEST
-					last_collider = null
-				if Input.is_action_pressed("ui_right"):
-					move_direction += direction_index[EAST]
-					direction = EAST
-					last_collider = null
+				if not (state & CANT_WALK) and not (state & DEAD):
+					if Input.is_action_pressed("ui_up"):
+						move_direction += direction_index[NORTH]
+						direction = NORTH
+						last_collider = null
+					if Input.is_action_pressed("ui_down"):
+						move_direction += direction_index[SOUTH]
+						direction = SOUTH
+						last_collider = null
+					if Input.is_action_pressed("ui_left"):
+						move_direction += direction_index[WEST]
+						direction = WEST
+						last_collider = null
+					if Input.is_action_pressed("ui_right"):
+						move_direction += direction_index[EAST]
+						direction = EAST
+						last_collider = null
 					
-				if move_direction != Vector2(0, 0) and not (state & CANT_WALK):
+				if move_direction != Vector2(0, 0):
 					last_pos = get_pos()
 					last_move = move_direction
 					move(move_direction * speed * dt)
