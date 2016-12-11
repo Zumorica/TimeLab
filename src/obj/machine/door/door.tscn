@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://src/obj/machine/machine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/obj/machine/door/door.gd" type="Script" id=2]
@@ -6,13 +6,36 @@
 [ext_resource path="res://src/obj/machine/door/close_animation.tres" type="Animation" id=4]
 [ext_resource path="res://src/obj/machine/door/open_animation.tres" type="Animation" id=5]
 
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
 [node name="Door" instance=ExtResource( 1 )]
 
 script/script = ExtResource( 2 )
+intent = 0
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 10
+state = 0
+speed = 80
+interact_range = 100
 
 [node name="Sprite" parent="."]
 
 texture = ExtResource( 3 )
+script/script = null
+
+[node name="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+script/script = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
