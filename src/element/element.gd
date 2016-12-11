@@ -162,7 +162,7 @@ func _fixed_process(dt):
 					direction = EAST
 					last_collider = null
 					
-				if move_direction != Vector2(0, 0):
+				if move_direction != Vector2(0, 0) and not (state & CANT_WALK):
 					last_pos = get_pos()
 					last_move = move_direction
 					move(move_direction * speed * dt)
