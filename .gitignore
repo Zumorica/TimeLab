@@ -1,12 +1,4 @@
-# Ignore DM compiled files.
-
-*.mdme
-*.dmb
-*.rsc
-*.lk
-*.int
-*.backup
-*.int
+fontconfig
 
 # https://github.com/github/gitignore/blob/master/Global/Linux.gitignore
 
@@ -41,3 +33,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Godot executable for multiplayer testing
+godot
+godot.exe

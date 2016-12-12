@@ -1,2 +1,0 @@
-ZumoDeManzana=admin
-Krauss=admin

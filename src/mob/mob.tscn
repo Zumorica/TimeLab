@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://src/mob/mob.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 8.0
+height = 12.0
+
+[node name="Mob" type="KinematicBody2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+direction = 0
+intent = 0
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 80
+interact_range = 100
+race = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="North" type="Node2D" parent="."]
+
+visibility/visible = false
+
+[node name="Base" type="Sprite" parent="North"]
+
+[node name="South" type="Node2D" parent="."]
+
+[node name="Base" type="Sprite" parent="South"]
+
+[node name="West" type="Node2D" parent="."]
+
+visibility/visible = false
+
+[node name="Base" type="Sprite" parent="West"]
+
+[node name="East" type="Node2D" parent="."]
+
+visibility/visible = false
+
+[node name="Base" type="Sprite" parent="East"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/smoothed = true
+drag_margin/h_enabled = false
+drag_margin/v_enabled = false
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+
