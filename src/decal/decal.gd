@@ -16,5 +16,9 @@ func _ready():
 		child.hide()
 		count += 1
 	randomize()
-	var show_child = randi()%count
-	get_node(str(show_child)).show()
+	var child = randi()%count
+	if is_network_master():
+		rpc("show_child", str(child))
+		
+sync func show_child(child):
+	get_node(child).show()
