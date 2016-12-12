@@ -11,10 +11,19 @@ const EVENT_ENDED = 2
 var event_state = 0 setget get_event_state
 onready var original_wait_time = get_wait_time()
 export(float) var end_wait_time = 0 # 0 or less for disabled.
+export(bool) var rand_end_wait_time = false
+export(bool) var rand_wait_time = false
 export(bool) var auto_repeat_event = false
+export var event_codename = "generic"
 
-func _init():
+func _ready():
 	connect("timeout", self, "start_event")
+	if rand_wait_time:
+		randomize()
+		set_wait_time(int(rand_range(0, get_wait_time())))
+	if rand_end_wait_time:
+		randomize()
+		end_wait_time = rand_range(0, end_wait_time)
 
 func get_event_state():
 	return event_state

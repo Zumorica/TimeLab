@@ -9,7 +9,10 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 script/script = ExtResource( 1 )
-end_wait_time = 0.0
+end_wait_time = 0
+rand_end_wait_time = false
+rand_wait_time = false
 auto_repeat_event = false
+event_codename = "generic"
 
 
