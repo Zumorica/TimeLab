@@ -17,10 +17,11 @@ export(bool) var auto_repeat_event = false
 export var event_codename = "generic"
 
 func _ready():
+	set_one_shot(false)
 	connect("timeout", self, "start_event")
 	if rand_wait_time:
 		randomize()
-		set_wait_time(int(rand_range(0, get_wait_time())))
+		set_wait_time(int(rand_range(1, get_wait_time())))
 	if rand_end_wait_time:
 		randomize()
 		end_wait_time = rand_range(0, end_wait_time)
@@ -36,13 +37,13 @@ func restart_event():
 		connect("timeout", self, "start_event")
 	set_wait_time(original_wait_time)
 	event_state = 0
-	emit_event("on_event_restart")
+	emit_signal("on_event_restart")
 	start()
 
 func start_event():
 	stop()
 	event_state = 1
-	emit_event("on_event_start")
+	emit_signal("on_event_start")
 	if end_wait_time > 0:
 		disconnect("timeout", self, "start_event")
 		connect("timeout", self, "end_event")
@@ -52,6 +53,6 @@ func start_event():
 func end_event():
 	stop()
 	event_state = 2
-	emit_event("on_event_end")
+	emit_signal("on_event_end")
 	if auto_repeat_event:
 		restart_event()

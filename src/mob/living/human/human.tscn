@@ -17,7 +17,6 @@ height = 12.0
 
 script/script = ExtResource( 2 )
 direction = 1
-attack_delay = 0.5
 race = "human"
 
 [node name="CollisionShape2D" parent="."]
