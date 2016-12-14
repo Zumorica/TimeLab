@@ -1,6 +1,6 @@
 extends 'res://src/event/event.gd'
 
-export(float) var earthquake_force = 15.0
+export(float) var earthquake_force = 10.0
 
 func _process(dt):
 	if get_event_state() == IN_PROGRESS:
