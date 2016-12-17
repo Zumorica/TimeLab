@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/GUI/UserInterface.gd" type="Script" id=1]
 [ext_resource path="res://src/GUI/Chat.tscn" type="PackedScene" id=2]
-[ext_resource path="res://res/img/GUI/healthdisplay/health_display.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://src/GUI/health_bar.gd" type="Script" id=3]
 
 [node name="UserInterface" type="Control"]
 
@@ -43,12 +43,16 @@ max_lines_visible = -1
 
 focus/ignore_mouse = true
 
-[node name="HealthBar" type="AnimatedSprite" parent="Layer"]
+[node name="HealthBar" type="Control" parent="Layer"]
 
-transform/pos = Vector2( 150, 7.5 )
-transform/scale = Vector2( 1.5, 1.5 )
-frames = ExtResource( 3 )
-animation = "default"
-frame = 20
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 216.0
+margin/bottom = 14.0
+script/script = ExtResource( 3 )
 
 
