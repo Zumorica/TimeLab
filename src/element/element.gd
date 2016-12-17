@@ -8,6 +8,7 @@ signal on_interacted(item)
 signal on_damaged(damage, other)
 signal on_attack(other)
 signal on_death()
+signal on_health_change(health)
 
 # State bit flags
 const DEAD = int(pow(2,0))
@@ -84,6 +85,7 @@ sync func damage(damage, other):
 	if (not invincible):
 		health -= round(damage * damage_factor)
 		emit_signal("on_damaged", damage, other)
+		emit_signal("on_health_change", health)
 		if (health <= 0):
 			health = 0
 			state |= DEAD
@@ -142,7 +144,7 @@ func _on_attack(other):
 func _fixed_process(dt):
 	if get_node("/root/timeline").is_online:
 		if self extends KinematicBody2D:
-			if is_network_master() and get_parent() extends get_node("/root/timeline").client_code_base and !get_node("/root/UserInterface").is_chat_visible:
+			if is_network_master() and get_parent() extends get_node("/root/timeline").client_code_base and !get_node("/root/timeline").own_client.get_node("Mob/UserInterface").is_chat_visible:
 				var move_direction = Vector2(0, 0)
 				var old_direction = direction
 				if not (state & CANT_WALK) and not (state & DEAD):

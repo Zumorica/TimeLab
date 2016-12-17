@@ -6,21 +6,17 @@ onready var chat_window = get_node("Layer/Chat/ChatWindow")
 onready var text_input = get_node("Layer/Chat/TextInput")
 
 func _ready():
-	get_node("Layer/FPSCount").set_pos(Vector2(0, 0))
 	set_process(true)
-	set_process_input(true)
+	set_process_unhandled_input(true)
 	timer = get_node("Layer/Chat/Timer")
 	timer.connect("timeout", self, "close_chat")
 	timer.set_one_shot(true)
+	get_parent().connect("on_health_change", self, "update_health")
 
 func _process(dt):
 	get_node("Layer/FPSCount").set_text(str(OS.get_frames_per_second()))
 
-func _input(ev):
-	if ev.type == InputEvent.MOUSE_MOTION:
-		return
-	elif ev.type == InputEvent.MOUSE_BUTTON:
-		return
+func _unhandled_input(ev):
 	if ev.is_action_released("chat_open") and !is_chat_visible:
 		text_input.show()
 		chat_window.show()
@@ -37,6 +33,24 @@ func _input(ev):
 	if ev.is_action_pressed("chat_send") and is_chat_visible:
 		send_message()
 		accept_event()
+
+func update_health(health):
+	var frame
+	var rounded_health
+	var rounder = int(health) % 5
+	if health <= 0:
+		frame = 0
+		get_node("Layer/HealthBar").set_frame(frame)
+		return
+	if rounder == 0:
+		rounded_health = health
+	else:
+		rounded_health = health + (5 - rounder)
+	var frame
+	if rounded_health != 0:
+		frame = rounded_health / 5
+	get_node("Layer/HealthBar").set_frame(frame)
+	
 
 func send_message():
 	var msg = text_input.get_text()
