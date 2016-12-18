@@ -4,10 +4,10 @@ signal on_direction_change(direction)
 signal on_collided(collider)	# When something collides with the element.
 signal on_collide(collider)		# When the element collides with something.
 signal on_clicked()
-signal on_interacted(item)
-signal on_damaged(damage, other)
-signal on_attack(other)
-signal on_death()
+signal on_interacted(other, item)	# When this node is interacted by another one.
+signal on_damaged(damage, other)	# When this node is attacked.
+signal on_attack(other)		# When this node attacks another node.
+signal on_death()	# When this node's health reaches zero.
 
 # State bit flags
 const DEAD = int(pow(2,0))
@@ -18,6 +18,7 @@ const DEAF = int(pow(2,4))
 const CANT_WALK = int(pow(2,5))
 const CANT_ATTACK = int(pow(2,6))
 const CANT_USE_ITEMS = int(pow(2, 7))
+const CANT_INTERACT = int(pow(2, 8))
 
 # Direction constants
 const NORTH = 0
@@ -46,6 +47,7 @@ export(float) var attack_delay = 0.5
 export(int, FLAGS) var state = 0
 export(int) var speed = 80
 export(int) var interact_range = 100
+export(int, "Neutral", "Male", "Female") var gender = 0
 var z_floor = 0 setget set_floor,get_floor # Might get removed in the future.
 var last_pos = Vector2(0, 0)
 var last_move = Vector2(0, 0)
@@ -116,7 +118,7 @@ func _on_clicked():
 	if cmob:
 		var intention = cmob.get_intent()
 		if intention  == INTENT_INTERACT:
-			rpc("emit_on_interacted", false)
+			rpc("emit_on_interacted", cmob, false)
 		elif intention == INTENT_ATTACK:
 			cmob.attack(self)
 			
