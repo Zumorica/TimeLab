@@ -4,4 +4,6 @@
 
 [node name="Machine" instance=ExtResource( 1 )]
 
+is_movable = true
+
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://src/map/map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entity/spawn/spawn.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/obj/machine/door/door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/obj/machine/conveyor/conveyor.tscn" type="PackedScene" id=4]
 
 [node name="Map" instance=ExtResource( 1 )]
 
@@ -13,20 +14,15 @@ tile_data = IntArray( -1048593, 0, -1048592, 0, -1048591, 0, -1048590, 0, -10485
 
 transform/pos = Vector2( 457, 278 )
 intent = 0
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
-speed = 80
-interact_range = 100
 
 [node name="Door" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 560, 48 )
 input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 0
 attack_delay = 0.5
 close_delay = 5
 
@@ -34,6 +30,10 @@ close_delay = 5
 
 transform/pos = Vector2( 784, 48 )
 input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 0
 attack_delay = 0.5
 close_delay = 5
 
@@ -41,7 +41,202 @@ close_delay = 5
 
 transform/pos = Vector2( 1232, 208 )
 input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 0
 attack_delay = 0.5
 close_delay = 5
 
+[node name="Conveyor" parent="." instance=ExtResource( 4 )]
 
+transform/pos = Vector2( 287.924, 126.05 )
+input/pickable = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 0
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 100
+interact_range = 100
+conveyor_velocity = 100.0
+
+[node name="Conveyor2" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 287.924, 96.0499 )
+input/pickable = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 0
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 100
+interact_range = 100
+conveyor_velocity = 100.0
+
+[node name="Conveyor3" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 287.924, 66.0499 )
+input/pickable = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 0
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 100
+interact_range = 100
+conveyor_velocity = 100.0
+
+[node name="Conveyor4" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 287.924, 36.0499 )
+input/pickable = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 3
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 100
+interact_range = 100
+conveyor_velocity = 100.0
+
+[node name="Conveyor5" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 317.924, 36.0499 )
+input/pickable = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 3
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 100
+interact_range = 100
+conveyor_velocity = 100.0
+
+[node name="Conveyor6" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 347.924, 36.0499 )
+input/pickable = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 1
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 100
+interact_range = 100
+conveyor_velocity = 100.0
+
+[node name="Conveyor7" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 347.924, 66.0499 )
+input/pickable = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 1
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 100
+interact_range = 100
+conveyor_velocity = 100.0
+
+[node name="Conveyor8" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 347.924, 96.0499 )
+input/pickable = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 1
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 100
+interact_range = 100
+conveyor_velocity = 100.0
+
+[node name="Conveyor9" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 347.924, 126.05 )
+input/pickable = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 2
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 100
+interact_range = 100
+conveyor_velocity = 100.0
+
+[node name="Conveyor10" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 317.924, 126.05 )
+input/pickable = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 2
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 100
+interact_range = 100
+conveyor_velocity = 100.0
+
+
+[editable path="Conveyor"]
