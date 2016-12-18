@@ -34,7 +34,7 @@ func _on_collided(other):
 		rpc("open")
 
 func _on_interacted(other, item):
-	if ther.get_pos().distance_to(get_pos()) < 100 and other.get_intent() == INTENT_INTERACT:
+	if other.get_pos().distance_to(get_pos()) < 100 and other.get_intent() == INTENT_INTERACT:
 		if door_state != OPENING or door_state != CLOSING:
 			if door_state == OPEN:
 				rpc("close")
