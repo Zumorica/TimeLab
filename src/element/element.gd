@@ -17,6 +17,7 @@ const BLIND = int(pow(2,3))
 const DEAF = int(pow(2,4))
 const CANT_WALK = int(pow(2,5))
 const CANT_ATTACK = int(pow(2,6))
+const CANT_USE_ITEMS = int(pow(2, 7))
 
 # Direction constants
 const NORTH = 0
