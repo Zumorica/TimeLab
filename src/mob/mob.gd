@@ -16,13 +16,17 @@ func _on_death(cause):
 	state |= DEAD
 func _on_damaged(damage, other):
 	randomize()
-	if rand_range(0, 1) < 0.25:
-		var blood_decal
-		var blood_decal_scn = load("res://src/decal/blood.tscn")
-		if blood_decal_scn.can_instance():
-			blood_decal = blood_decal_scn.instance()
-			blood_decal.set_pos(get_pos())
-			get_node("/root/Map").add_child(blood_decal)
+	if rand_range(0, 1) < 0.25 and is_network_master():
+		rpc("create_blood_decal", get_global_pos())
+		create_blood_decal(get_global_pos())
+		
+remote func create_blood_decal(where):
+	var blood_decal
+	var blood_decal_scn = load("res://src/decal/blood.tscn")
+	blood_decal = blood_decal_scn.instance()
+	blood_decal.set_global_pos(where)
+	get_node("/root/Map").add_child(blood_decal)
+		
 		
 func _on_direction_change(direction):
 	get_node("North").hide()
