@@ -41,3 +41,6 @@ func _on_direction_change(direction):
 		get_node("West").show()
 	elif direction == EAST:
 		get_node("East").show()
+
+func _on_Area2D_input_event( viewport, event, shape_idx ):
+	_input_event(viewport, event, shape_idx)
