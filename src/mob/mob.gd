@@ -12,7 +12,7 @@ func _ready():
 		connect("on_death", self, "_on_death")
 		
 func _on_death(cause):
-	set_rot(90)
+	set_rotd(90)
 	state |= DEAD
 func _on_damaged(damage, other):
 	randomize()
