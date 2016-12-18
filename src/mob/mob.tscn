@@ -84,7 +84,7 @@ visibility/visible = false
 
 [node name="Base" type="Sprite" parent="East"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=[ "cameras" ]]
 
 anchor_mode = 1
 rotating = false
