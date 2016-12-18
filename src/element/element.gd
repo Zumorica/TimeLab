@@ -5,20 +5,21 @@ signal on_collided(collider)	# When something collides with the element.
 signal on_collide(collider)		# When the element collides with something.
 signal on_clicked()
 signal on_interacted(other, item)	# When this node is interacted by another one.
-signal on_damaged(damage, other)	# When this node is attacked.
+signal on_damaged(damage, other)	# When this node is attacked/damaged.
 signal on_attack(other)		# When this node attacks another node.
 signal on_death()	# When this node's health reaches zero.
 
 # State bit flags
-const DEAD = int(pow(2,0))
-const BURNING = int(pow(2,1))
-const MUTE = int(pow(2,2))
-const BLIND = int(pow(2,3))
-const DEAF = int(pow(2,4))
-const CANT_WALK = int(pow(2,5))
-const CANT_ATTACK = int(pow(2,6))
-const CANT_USE_ITEMS = int(pow(2, 7))
-const CANT_INTERACT = int(pow(2, 8))
+const DEAD = int(pow(2,0)) # When this element is dead/destroyed.
+const BURNING = int(pow(2,1)) # When this element is on fire.
+const MUTE = int(pow(2,2)) # When this element can't talk.
+const BLIND = int(pow(2,3)) # When this element can't see.
+const DEAF = int(pow(2,4)) # When this element can't hear.
+const CANT_WALK = int(pow(2,5)) # When this element can't walk.
+const CANT_ATTACK = int(pow(2,6)) # When this element can't attack.
+const CANT_USE_ITEMS = int(pow(2, 7)) # When this element can't use items.
+const CANT_INTERACT = int(pow(2, 8)) # When this element can't interact with others.
+const CANT_BE_INTERACTED = int(pow(2, 9)) # When others can't interact with this element.
 
 # Direction constants
 const NORTH = 0
