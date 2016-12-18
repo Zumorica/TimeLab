@@ -7,6 +7,7 @@ var bodies = []
 func _ready():
 	get_node("CollisionShape2D").set_trigger(true)
 	set_fixed_process(true)
+	get_node("AnimationPlayer").play("move_conveyor", -1, conveyor_velocity/2.5)
 	if direction == NORTH:
 		set_rotd(0)
 		conveyor_direction = Vector2(0, -1)
