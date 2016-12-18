@@ -33,9 +33,8 @@ func _on_collided(other):
 	if door_state == CLOSED:
 		rpc("open")
 
-func _on_interacted(item):
-	var mob = get_node("/root/timeline").own_client.get_mob()
-	if mob.get_pos().distance_to(get_pos()) < 100 and mob.get_intent() == INTENT_INTERACT:
+func _on_interacted(other, item):
+	if other.get_pos().distance_to(get_pos()) < 100 and other.get_intent() == INTENT_INTERACT:
 		if door_state != OPENING or door_state != CLOSING:
 			if door_state == OPEN:
 				rpc("close")
