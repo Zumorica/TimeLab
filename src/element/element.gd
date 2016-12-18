@@ -1,4 +1,4 @@
-extends CollisionObject2D
+extends KinematicBody2D
 
 signal on_direction_change(direction)
 signal on_collided(collider)	# When something collides with the element.
@@ -35,6 +35,7 @@ const INTENT_INTERACT = 1
 const INTENT_ATTACK = 2
 
 export(int, "NORTH", "SOUTH", "WEST", "EAST") var direction = 0
+export(bool) var is_movable = true
 export(int, "No intent", "Interact intent", "Attack intent") var intent = 2 setget set_intent, get_intent
 export(int) var max_health = 100
 export(bool) var invincible = false
@@ -56,7 +57,7 @@ func set_floor(z):
 
 func get_floor():
 	return z_floor
-	
+
 func set_pos3(vector):
 	assert (typeof(vector) == TYPE_VECTOR3)
 	set_floor(vector.z)
