@@ -33,7 +33,7 @@ tracks/0/keys = { "times":FloatArray( 0, 1, 2, 3 ), "transitions":FloatArray( 1,
 
 script/script = ExtResource( 2 )
 is_movable = false
-intent = 2
+required_watts = 500
 conveyor_velocity = 1.0
 
 [node name="Sprite" parent="."]
@@ -46,6 +46,10 @@ script/script = null
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+script/script = null
+
+[node name="Timer" parent="."]
+
 script/script = null
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -71,10 +75,14 @@ playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
 anims/move_conveyor = SubResource( 3 )
-playback/active = true
+playback/active = false
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[connection signal="on_power_off" from="." to="." method="_on_Conveyor_on_power_off"]
+
+[connection signal="on_power_on" from="." to="." method="_on_Conveyor_on_power_on"]
 
 [connection signal="body_enter" from="Area2D" to="." method="_on_Area2D_body_enter"]
 

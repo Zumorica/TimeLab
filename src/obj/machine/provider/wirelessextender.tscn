@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://src/obj/machine/provider/provider.tscn" type="PackedScene" id=1]
+[ext_resource path="res://res/img/obj/machine/extender/0.png" type="Texture" id=2]
+
+[node name="Wireless Extender" instance=ExtResource( 1 )]
+
+max_store_capacity = 10000000
+generated_output = 5000
+
+[node name="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+
+[connection signal="timeout" from="Timer" to="." method="consume_electricity"]
+
+

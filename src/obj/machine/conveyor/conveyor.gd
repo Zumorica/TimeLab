@@ -8,6 +8,7 @@ func _ready():
 	get_node("CollisionShape2D").set_trigger(true)
 	set_fixed_process(true)
 	get_node("AnimationPlayer").play("move_conveyor", -1, conveyor_velocity/2.5)
+	get_node("AnimationPlayer").set_active(false)
 	if direction == NORTH:
 		set_rotd(0)
 		conveyor_direction = Vector2(0, -1)
@@ -23,10 +24,12 @@ func _ready():
 		
 func _fixed_process(dt):
 	for body in bodies:
-		if body extends get_node("/root/timeline").element_base and not body extends self.get_script():
+		if body extends get_node("/root/timeline").element_base and not body extends self.get_script() and is_powered():
 			if body.is_movable:
 				body.move(conveyor_direction * conveyor_velocity * dt)
 				body.rpc_unreliable("_update_pos", body.get_pos())
+	if not is_powered() and get_node("AnimationPlayer").is_active():
+		get_node("AnimationPlayer").set_active(false)
 
 func _on_Area2D_body_enter( body ):
 	if body == self:
@@ -37,3 +40,10 @@ func _on_Area2D_body_exit( body ):
 	if not bodies.has(body):
 		return
 	bodies.remove(bodies.find(body))
+
+func _on_Conveyor_on_power_off():
+	get_node("AnimationPlayer").set_active(false)
+
+
+func _on_Conveyor_on_power_on():
+	get_node("AnimationPlayer").set_active(true)
