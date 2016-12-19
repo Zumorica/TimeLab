@@ -1,10 +1,25 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://src/obj/machine/provider/provider.tscn" type="PackedScene" id=1]
 [ext_resource path="res://res/img/obj/machine/extender/0.png" type="Texture" id=2]
+[ext_resource path="res://src/obj/machine/provider/area.gd" type="Script" id=3]
 
 [node name="Wireless Extender" instance=ExtResource( 1 )]
 
+input/pickable = true
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+direction = 0
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 80
+interact_range = 100
 max_store_capacity = 10000000
 generated_output = 5000
 
@@ -12,6 +27,8 @@ generated_output = 5000
 
 texture = ExtResource( 2 )
 
-[connection signal="timeout" from="Timer" to="." method="consume_electricity"]
+[node name="Area2D" parent="."]
+
+script/script = ExtResource( 3 )
 
 

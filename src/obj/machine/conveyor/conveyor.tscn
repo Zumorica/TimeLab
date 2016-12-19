@@ -32,8 +32,7 @@ tracks/0/keys = { "times":FloatArray( 0, 1, 2, 3 ), "transitions":FloatArray( 1,
 [node name="Conveyor" instance=ExtResource( 1 )]
 
 script/script = ExtResource( 2 )
-is_movable = false
-required_watts = 500
+required_watts = 50
 conveyor_velocity = 1.0
 
 [node name="Sprite" parent="."]

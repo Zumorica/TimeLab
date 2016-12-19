@@ -6,7 +6,7 @@
 [node name="Machine" instance=ExtResource( 1 )]
 
 script/script = ExtResource( 2 )
-is_movable = true
+is_movable = false
 intent = 2
 gender = 0
 required_watts = 0
