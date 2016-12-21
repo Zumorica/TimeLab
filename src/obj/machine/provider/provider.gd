@@ -2,6 +2,7 @@ extends 'res://src/obj/machine/machine.gd'
 
 export(bool) var can_be_provided = false
 export(int) var generated_output = 0
+var can_generate_electricity = true
 var providing_list = []
 
 func _ready():
@@ -32,5 +33,5 @@ sync func request_electricity(joules):
 func generate_electricity():
 	if is_network_master():
 		print(stored_joules, "J (", generated_output, "J/s)")
-		if is_powered():
+		if is_powered() and can_generate_electricity:
 			rpc_unreliable("set_stored_joules", get_stored_joules() + generated_output)

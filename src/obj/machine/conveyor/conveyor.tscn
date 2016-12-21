@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/obj/machine/machine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/obj/machine/conveyor/conveyor.gd" type="Script" id=2]
-[ext_resource path="res://res/img/obj/machine/conveyor/1.png" type="Texture" id=3]
-[ext_resource path="res://res/img/obj/machine/conveyor/0.png" type="Texture" id=4]
+[ext_resource path="res://res/img/obj/machine/conveyor/0.png" type="Texture" id=3]
+[ext_resource path="res://res/img/obj/machine/conveyor/1.png" type="Texture" id=4]
 [ext_resource path="res://res/img/obj/machine/conveyor/2.png" type="Texture" id=5]
 [ext_resource path="res://res/img/obj/machine/conveyor/3.png" type="Texture" id=6]
 
@@ -19,7 +19,6 @@ extents = Vector2( 16.5, 16.5 )
 
 [sub_resource type="Animation" id=3]
 
-resource/name = "move_conveyor"
 length = 4.0
 loop = true
 step = 0.1
@@ -27,7 +26,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 1, 2, 3 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ] }
+tracks/0/keys = { "times":FloatArray( 0, 1, 2, 3 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ] }
 
 [node name="Conveyor" instance=ExtResource( 1 )]
 
