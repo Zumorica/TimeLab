@@ -9,6 +9,7 @@ signal on_interacted(other, item)	# When this node is interacted by another one.
 signal on_damaged(damage, other)	# When this node is attacked/damaged.
 signal on_attack(other)		# When this node attacks another node.
 signal on_death()	# When this node's health reaches zero.
+signal on_client_change(client) # Called when this element's client is changed.
 
 # State bit flags
 const DEAD = int(pow(2,0)) # When this element is dead/destroyed.
@@ -51,7 +52,9 @@ export(int, FLAGS) var state = 0
 export(int) var speed = 80
 export(int) var interact_range = 100
 export(int, "Neutral", "Male", "Female") var gender = 0
+onready var orig_name = get_name()
 var z_floor = 0 setget set_floor,get_floor # Might get removed in the future.
+var client = null setget get_client,_set_client # Do not change from this node. Call set_mob from client instead.
 var last_pos = Vector2(0, 0)
 var last_move = Vector2(0, 0)
 var last_collider = null
@@ -63,7 +66,7 @@ func set_floor(z):
 func get_floor():
 	return z_floor
 
-func set_pos3(vector):
+sync func set_pos3(vector):
 	assert (typeof(vector) == TYPE_VECTOR3)
 	set_floor(vector.z)
 	if get_floor() == vector.z:
@@ -73,10 +76,23 @@ func get_pos3():
 	var pos = get_pos()
 	return Vector3(pos.x, pos.y, get_floor())
 
+func get_client():
+	return client
+
+sync func _set_client(new_client):
+	emit_signal("on_client_change", new_client)
+	if client:
+		client.set_mob(null)
+	client = new_client
+	if client != null:
+		set_name(str(client.get_ID()))
+	else:
+		set_name(orig_name)
+
 func get_intent():
 	return intent
 	
-func set_intent(new_intent):
+sync func set_intent(new_intent):
 	if new_intent != INTENT_NONE or new_intent != INTENT_INTERACT or new_intent != INTENT_ATTACK:
 		return
 	else:
@@ -100,21 +116,29 @@ func attack(other, bonus = 0):
 	if (not (state & DEAD) and not (state & CANT_ATTACK)) and other extends get_node("/root/timeline").element_base:
 		var damage = (randi()%11) * (attack_factor + bonus)
 		other.rpc("damage", damage, self)
-		rpc("emit_on_attack", other)
+		rpc("sync_emit_signal", "on_attack", [other])
 		state |= CANT_ATTACK
 		get_node("AttackTimer").start()
 
-sync func emit_on_attack(other):
-	emit_signal("on_attack", other)
-
-sync func emit_on_interacted(item):
-	emit_signal("on_interacted", item)
+sync func sync_emit_signal(str_signal, args=[]):
+	if args.size() == 0:
+		emit_signal(str_signal)
+	elif args.size() == 1:
+		emit_signal(str_signal, args[0])
+	elif args.size() == 2:
+		emit_signal(str_signal, args[0], args[1])
+	elif args.size() == 3:
+		emit_signal(str_signal, args[0], args[1], args[2])
+	elif args.size() == 4:
+		emit_signal(str_signal, args[0], args[1], args[2], args[3])
+	elif args.size() >= 5:
+		emit_signal(str_signal, args[0], args[1], args[2], args[3], args[4])
 
 slave func _update_pos(pos):
 	set_pos(pos)
 
-slave func _update_direction(direction):
-	direction = direction
+slave func _update_direction(new_direction):
+	direction = new_direction
 	emit_signal("on_direction_change", direction)
 
 func _on_clicked():
@@ -122,11 +146,12 @@ func _on_clicked():
 	if cmob:
 		var intention = cmob.get_intent()
 		if intention  == INTENT_INTERACT:
-			rpc("emit_on_interacted", cmob, false)
+			rpc("sync_emit_signal", "on_interacted", [cmob, false])
 		elif intention == INTENT_ATTACK:
 			cmob.attack(self)
 			
 func _ready():
+	set_pause_mode(PAUSE_MODE_STOP)
 	set_pickable(true)
 	set_fixed_process(true)
 	set_process_input(true)
@@ -149,7 +174,7 @@ func _on_attack(other):
 func _fixed_process(dt):
 	if get_node("/root/timeline").is_online:
 		if self extends KinematicBody2D:
-			if is_network_master() and get_parent() extends get_node("/root/timeline").client_code_base and !get_node("/root/timeline").own_client.get_node("Mob/UserInterface").is_chat_visible:
+			if is_network_master() and get_node("/root/timeline").own_client.get_mob() == self and !get_node("/root/timeline").own_client.get_node("UserInterface").is_chat_visible:
 				var move_direction = Vector2(0, 0)
 				var old_direction = direction
 				if not (state & CANT_WALK) and not (state & DEAD):
@@ -184,7 +209,7 @@ func _fixed_process(dt):
 						move(move_direction * speed * dt)
 					rpc_unreliable("_update_pos", get_pos())
 				if old_direction != direction:
-					rpc_unreliable("_update_direction", direction)
+					rpc("_update_direction", direction)
 					emit_signal("on_direction_change", direction)
 			
 func _input_event(viewport, event, shape):

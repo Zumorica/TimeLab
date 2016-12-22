@@ -8,7 +8,6 @@
 script/script = ExtResource( 2 )
 is_movable = false
 intent = 2
-gender = 0
 required_watts = 0
 max_store_capacity = 1000
 

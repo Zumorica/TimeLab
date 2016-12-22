@@ -6,7 +6,7 @@ var can_generate_electricity = true
 var providing_list = []
 
 func _ready():
-	rpc("_set_powered", true)
+	_set_powered(true)
 	is_movable = false
 	if not can_be_provided:
 		provider = self
@@ -32,6 +32,5 @@ sync func request_electricity(joules):
 
 func generate_electricity():
 	if is_network_master():
-		print(stored_joules, "J (", generated_output, "J/s)")
 		if is_powered() and can_generate_electricity:
 			rpc_unreliable("set_stored_joules", get_stored_joules() + generated_output)
