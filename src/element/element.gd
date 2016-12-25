@@ -60,6 +60,9 @@ var last_move = Vector2(0, 0)
 var last_collider = null
 var health = max_health
 
+func get_timeline():
+	return get_tree().get_root().get_node("timeline")
+
 func set_floor(z):
 		z_floor = z
 

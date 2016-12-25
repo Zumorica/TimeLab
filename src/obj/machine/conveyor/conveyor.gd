@@ -21,11 +21,12 @@ func _ready():
 		conveyor_direction = Vector2(1, 0)
 		
 func _fixed_process(dt):
-	for body in bodies:
-		if body extends get_node("/root/timeline").element_base and not body extends self.get_script() and is_powered():
-			if body.is_movable != false:
-				body.move(conveyor_direction * conveyor_velocity * dt)
-				body.rpc_unreliable("_update_pos", body.get_pos())
+	if is_powered():
+		for body in bodies:
+			if body extends get_node("/root/timeline").element_base and not body extends self.get_script():
+				if body.is_movable != false:
+					body.move(conveyor_direction * conveyor_velocity * dt)
+					body.rpc_unreliable("_update_pos", body.get_pos())
 
 func _on_Area2D_body_enter( body ):
 	if body == self:

@@ -1,5 +1,6 @@
 extends Node
 
+
 var own_info = {}
 var client_list = {}
 var is_busy = false # When connecting/creating a server, this will be true.
@@ -14,8 +15,12 @@ onready var client_base = preload("res://src/client/client.tscn")
 onready var client_code_base = preload("res://src/client/client.gd")
 onready var human_scene = preload("res://src/mob/living/human/human.tscn")
 onready var own_client = client_base.instance()
+var random_seed
 
 func _ready():
+	randomize()
+	random_seed = randi()
+	rand_seed(random_seed)
 	connect_handlers()
 	
 func host_server(port, max_players):
