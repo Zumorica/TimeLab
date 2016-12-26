@@ -6,43 +6,46 @@ signal on_power_on()
 
 export(int) var required_watts = 0
 export(int) var max_store_capacity = 1000
-var stored_joules = 0 setget get_stored_joules,set_stored_joules
-var provider = null setget get_provider,set_provider
-var powered = false setget is_powered,_set_powered
+sync var stored_joules = 0 setget get_stored_joules,set_stored_joules
+sync var provider = null setget get_provider,set_provider
+sync var powered = false setget is_powered,_set_powered
 	
 func get_provider():
 	return provider
 	
-sync func set_provider(new_provider):
-	if new_provider != null:
-		if new_provider extends load("res://src/obj/machine/provider/provider.gd"):
+func set_provider(new_provider):
+	if is_network_master():
+		if new_provider != null:
+			if new_provider extends load("res://src/obj/machine/provider/provider.gd"):
+				rset("provider", new_provider)
+				rpc("emit_signal", "on_new_provider", provider)
+		else:
 			provider = new_provider
-			emit_signal("on_new_provider", provider)
-	else:
-		provider = new_provider
-		emit_signal("on_new_provider", provider)
+			rpc("emit_signal", "on_new_provider", provider)
 	
 func is_powered():
 	return powered
 	
-sync func _set_powered(value):
-	assert typeof(value) == TYPE_BOOL
-	powered = value
-	if value:
-		emit_signal("on_power_on")
-	else:
-		emit_signal("on_power_off")
+func _set_powered(value):
+	if is_network_master():
+		assert typeof(value) == TYPE_BOOL
+		rset("powered", value)
+		if value:
+			rpc("emit_signal", "on_power_on")
+		else:
+			rpc("emit_signal", "on_power_off")
 	
 func get_stored_joules():
 	return stored_joules
 	
-sync func set_stored_joules(value):
-	if value > max_store_capacity:
-		stored_joules = max_store_capacity
-	elif value < 0:
-		stored_joules = 0
-	else:
-		stored_joules = value
+func set_stored_joules(value):
+	if is_network_master():
+		if value > max_store_capacity:
+			rset("stored_joules", max_store_capacity)
+		elif value < 0:
+			rset("stored_joules", 0)
+		else:
+			rset("stored_joules", value)
 	
 func consume_electricity():
 	if is_network_master():
@@ -52,14 +55,14 @@ func consume_electricity():
 				if not joules:
 					joules = provider.request_electricity(required_watts)
 				if joules:
-					stored_joules += joules
-					stored_joules -= required_watts
+					rset("stored_joules", stored_joules + joules)
+					rset("stored_joules", stored_joules - required_watts)
 					rpc("_set_powered", true)
 				else:
 					if stored_joules >= required_watts:
-						stored_joules -= required_watts
-						rpc("_set_powered", true)
+						rset("stored_joules", stored_joules - required_watts)
+						_set_powered(true)
 					else:
-						rpc("_set_powered", false)
+						_set_powered(false)
 		else:
-			rpc("_set_powered", false)
+			_set_powered(false)

@@ -13,7 +13,9 @@ func _ready():
 		
 func _on_death(cause):
 	set_rotd(90)
-	state |= DEAD
+	if is_network_master():
+		rset("state", state | DEAD)
+	
 func _on_damaged(damage, other):
 	randomize()
 	if rand_range(0, 1) < 0.25 and is_network_master():

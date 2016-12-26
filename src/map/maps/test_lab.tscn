@@ -21,10 +21,6 @@ gender = 0
 
 transform/pos = Vector2( 560, 48 )
 input/pickable = false
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-direction = 0
 is_movable = true
 attack_delay = 0.5
 close_delay = 5
@@ -33,10 +29,6 @@ close_delay = 5
 
 transform/pos = Vector2( 784, 48 )
 input/pickable = false
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-direction = 0
 is_movable = true
 attack_delay = 0.5
 close_delay = 5
@@ -45,10 +37,6 @@ close_delay = 5
 
 transform/pos = Vector2( 1232, 208 )
 input/pickable = false
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-direction = 0
 is_movable = true
 attack_delay = 0.5
 close_delay = 5
@@ -56,275 +44,98 @@ close_delay = 5
 [node name="Conveyor" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 352, 160 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-direction = 0
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 100.0
 
 [node name="Conveyor2" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 352, 160 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-direction = 0
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Conveyor3" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 352, 160 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-direction = 0
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Conveyor4" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 352, 128 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-direction = 0
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Conveyor5" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 352, 96 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-direction = 0
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Conveyor6" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 352, 64 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
 direction = 3
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Conveyor7" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 384, 64 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
 direction = 3
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Conveyor8" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 416, 64 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
 direction = 3
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Conveyor9" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 448, 64 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
 direction = 1
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Conveyor10" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 448, 96 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
 direction = 1
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Conveyor11" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 448, 128 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
 direction = 1
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Conveyor12" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 448, 160 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
 direction = 2
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Conveyor13" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 416, 160 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
 direction = 2
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Conveyor14" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 384, 160 )
-input/pickable = true
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
 direction = 2
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
 speed = 100
-interact_range = 100
 conveyor_velocity = 30.0
 
 [node name="Wireless Extender" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 384, 128 )
-is_movable = true
-intent = 2
-gender = 0
-required_watts = 0
 
 
