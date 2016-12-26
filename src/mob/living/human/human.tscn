@@ -23,6 +23,11 @@ race = "human"
 transform/pos = Vector2( -0.5, 12.5 )
 shape = SubResource( 1 )
 
+[node name="CollisionShape2D" parent="Area2D"]
+
+transform/pos = Vector2( -0.56742, 0 )
+transform/scale = Vector2( 1.16723, 1 )
+
 [node name="Base" parent="North"]
 
 texture = ExtResource( 3 )
