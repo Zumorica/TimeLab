@@ -2,14 +2,18 @@ extends 'res://src/obj/machine/machine.gd'
 
 export(bool) var can_be_provided = false
 export(int) var generated_output = 0
-sync var can_generate_electricity = true
-sync var providing_list = []
+remote var can_generate_electricity = true
+remote var providing_list = []
 
 func _ready():
 	_set_powered(true)
 	is_movable = false
 	if not can_be_provided:
 		provider = self
+	if has_node("Timer"):
+		var timer = get_node("Timer")
+		if not timer.is_connected("timeout", self, "generate_electricity"):
+			timer.connect("timeout", self, "generate_electricity")
 
 func _on_providing_range_body_enter(body):
 	if body extends preload("res://src/obj/machine/machine.gd"):
@@ -27,7 +31,8 @@ func _on_providing_range_body_exit(body):
 
 sync func request_electricity(joules):
 	if joules > 0 and joules <= stored_joules:
-		rset("stored_joules", stored_joules - joules)
+		stored_joules -= joules
+		rset("stored_joules", stored_joules)
 		return joules
 	else:
 		return false

@@ -39,26 +39,26 @@ const INTENT_NONE = 0
 const INTENT_INTERACT = 1
 const INTENT_ATTACK = 2
 
-export(int, "NORTH", "SOUTH", "WEST", "EAST") sync var direction = 0
+export(int, "NORTH", "SOUTH", "WEST", "EAST") remote var direction = 0
 export(bool) var is_movable = true
-export(int, "No intent", "Interact intent", "Attack intent") sync var intent = 2 setget set_intent, get_intent
+export(int, "No intent", "Interact intent", "Attack intent") remote var intent = 2 setget set_intent, get_intent
 export(int) var max_health = 100
 export(bool) var invincible = false
 export(float) var damage_factor = 1.0
 export(float) var burn_damage_factor = 1.0
 export(float) var attack_factor = 1.0
 export(float) var attack_delay = 0.5
-export(int, FLAGS) sync var state = 0
+export(int, FLAGS) remote var state = 0
 export(int) var speed = 80
 export(int) var interact_range = 100
 export(int, "Neutral", "Male", "Female") var gender = 0
 onready var orig_name = get_name()
 #var z_floor = 0 setget set_floor,get_floor # Might get removed in the future.
 var client = null setget get_client,_set_client # Do not change from this node. Call set_mob from client instead.
-sync var last_pos = Vector2(0, 0)
-sync var last_move = Vector2(0, 0)
-sync var last_collider = null
-sync var health = max_health
+remote var last_pos = Vector2(0, 0)
+remote var last_move = Vector2(0, 0)
+remote var last_collider = null
+remote var health = max_health
 
 func _ready():
 	set_pause_mode(PAUSE_MODE_STOP)
@@ -109,16 +109,18 @@ sync func _set_client(new_client):
 
 func get_intent():
 	return intent
-	
+
 func set_intent(new_intent):
 	if not (intent < 0 or intent > 2) :
 		return
 	else:
 		rset("intent", new_intent)
+		intent = new_intent
 
 func reset_attack_timer():
 	if ((state & CANT_ATTACK) == CANT_ATTACK):
 		rset("state", state ^ CANT_ATTACK)
+		state ^= CANT_ATTACK
 
 sync func damage(damage, other):
 	if (not invincible):
@@ -136,6 +138,7 @@ func attack(other, bonus = 0):
 		other.rpc("damage", damage, self)
 		rpc("emit_signal", "on_attack", other)
 		rset("state", state | CANT_ATTACK)
+		state |= CANT_ATTACK
 		get_node("AttackTimer").start()
 
 func _on_clicked():
@@ -170,7 +173,7 @@ func _fixed_process(dt):
 						move_direction += direction_index[EAST]
 						direction = EAST
 						last_collider = null
-					
+
 				if move_direction != Vector2(0, 0):
 					last_pos = get_pos()
 					last_move = move_direction
@@ -189,7 +192,7 @@ func _fixed_process(dt):
 					if old_direction != direction:
 						rset("direction", direction)
 						rpc("emit_signal", "on_direction_change", direction)
-			
+
 func _input_event(viewport, event, shape):
 	if event.is_action_pressed("left_click") and not event.is_echo():
 		emit_signal("on_clicked")
