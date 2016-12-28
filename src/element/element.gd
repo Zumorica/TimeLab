@@ -142,7 +142,7 @@ func attack(other, bonus = 0):
 		get_node("AttackTimer").start()
 
 func _on_clicked():
-	var cmob = get_node("/root/timeline").own_client.get_mob()
+	var cmob = get_node("/root/timeline").get_current_client().get_mob()
 	if cmob:
 		var intention = cmob.get_intent()
 		if intention  == INTENT_INTERACT:
@@ -153,7 +153,7 @@ func _on_clicked():
 func _fixed_process(dt):
 	if get_node("/root/timeline").is_online:
 		if self extends KinematicBody2D:
-			if is_network_master() and get_node("/root/timeline").own_client.get_mob() == self and !get_node("/root/timeline").own_client.get_node("UserInterface").is_chat_visible:
+			if is_network_master() and get_node("/root/timeline").get_current_client().get_mob() == self and !get_node("/root/timeline").get_current_client().get_node("UserInterface").is_chat_visible:
 				var move_direction = Vector2(0, 0)
 				var old_direction = direction
 				if not (state & CANT_WALK) and not (state & DEAD):
