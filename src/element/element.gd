@@ -99,7 +99,7 @@ func get_client():
 
 sync func _set_client(new_client):
 	emit_signal("on_client_change", new_client)
-	if client:
+	if client and new_client != null:
 		client.set_mob(null)
 	client = new_client
 	if client != null:

@@ -67,6 +67,7 @@ sync func set_mob(mob):
 	"""This function changes client's mob.
 	   It can take one argument, and it can
 	   be either a nodepath or a node."""
+	var old_mob = get_mob()
 	var type = typeof(mob)
 	if type == TYPE_NODE_PATH:
 		return _set_mob_nodepath(mob)
@@ -74,6 +75,8 @@ sync func set_mob(mob):
 		return _set_mob_node(mob)
 	elif type == TYPE_NIL:
 		emit_signal("on_mob_change", null, mob)
+		if get_mob():
+			get_mob()._set_client(null)
 		mob = null
 		var camera = get_active_camera()
 		if camera:
