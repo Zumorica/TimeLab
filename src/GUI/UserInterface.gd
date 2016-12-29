@@ -4,6 +4,7 @@ var is_chat_visible = false
 var timer
 onready var chat_window = get_node("Layer/Chat/ChatWindow")
 onready var text_input = get_node("Layer/Chat/TextInput")
+onready var inventory = get_node("Layer/Inventory")
 
 func _ready():
 	set_process(true)
@@ -32,6 +33,13 @@ func _unhandled_input(ev):
 		accept_event()
 	if ev.is_action_pressed("chat_send") and is_chat_visible:
 		send_message()
+		accept_event()
+	if ev.is_action_pressed("inventory_toggle"):
+		if inventory.is_visible():
+			inventory.hide()
+		else:
+			inventory.show()
+			inventory.update()
 		accept_event()
 
 func send_message():
