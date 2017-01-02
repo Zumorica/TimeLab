@@ -1,7 +1,5 @@
 extends Node
 
-
-var own_info = {}
 var client_list = {}
 var is_busy = false # When connecting/creating a server, this will be true.
 var is_online = false # When connected to/hosting a server, this will be true.
@@ -14,14 +12,21 @@ onready var element_base = preload("res://src/element/element.gd")
 onready var client_base = preload("res://src/client/client.tscn")
 onready var client_code_base = preload("res://src/client/client.gd")
 onready var human_scene = preload("res://src/mob/living/human/human.tscn")
-onready var own_client = client_base.instance()
+onready var client = client_base.instance() setget get_current_client
 var random_seed
 
 func _ready():
 	randomize()
 	random_seed = randi()
 	rand_seed(random_seed)
+	var clients_node = Node2D.new()
+	clients_node.set_name("Clients")
+	add_child(clients_node)
+	clients_node.add_child(client)
 	connect_handlers()
+	
+func get_current_client():
+	return client
 	
 func host_server(port, max_players):
 	if not is_busy or not is_online:
@@ -54,53 +59,61 @@ func connect_handlers():
 	get_tree().connect("connection_failed", self, "_connection_failed")
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	
+remote func create_new_client(id):
+	var new_client = client_base.instance()
+	new_client.set_ID(id)
+	get_node("Clients").add_child(new_client)
+	#new_client.request_info()
+	new_client.configure_network_mode(NETWORK_MODE_SLAVE)
+	
 func client_connected(id):
-	rpc_id(id, "register_client", get_tree().get_network_unique_id(), own_info)
-	if get_tree().is_network_server():
-		for client in clients_ready:
-			rpc_id(id, "modify_ready", client, false)
+	create_new_client(id)
+	refresh_lobby()
 
 func client_disconnected(id):
-	pass
-	
+	for child in get_node("Clients").get_children():
+		if child.get_name() == str(id):
+			child.queue_free()
+
 func _connection_successful():
-	rpc("register_client", get_tree().get_network_unique_id(), own_info)
 	is_busy = false
 	is_online = true
+	get_current_client().set_ID(get_tree().get_network_unique_id())
+	get_current_client().configure_network_mode(NETWORK_MODE_MASTER)
 	var lobby = load("res://src/menu/Lobby.tscn").instance()
 	get_node("/root").add_child(lobby)
 	get_node("/root/Menu").free()
 	lobby_client_list = get_node("/root/Lobby/Panel/LobbyClientList")
-	own_client.set_ID(get_tree().get_network_unique_id())
+	refresh_lobby()
 	
 func _connection_failed():
 	get_tree().set_network_peer(null)
-	own_client.set_name("Client")
+	get_current_client().set_name("Client")
 	print("Connection failed!")
 	
 func _server_disconnected():
 	get_tree().set_network_peer(null)
-	own_client.set_name("Client")
+	get_current_client().set_name("Client")
 	print("Server disconnected.")
 
-remote func register_client(id, info):
-	client_list[id] = info
-	refresh_lobby()
-
 func refresh_lobby():
-	lobby_client_list.clear()
-	if own_client.get_ID() in clients_ready:
-		lobby_client_list.add_item(str(own_client.get_ID()) + " (You): Ready")
-	else:
-		lobby_client_list.add_item(str(own_client.get_ID()) + " (You)")
-	for client_id in client_list:
-		if client_id in clients_ready:
-			lobby_client_list.add_item(str(client_id) + ": Ready")
-		else:
-			lobby_client_list.add_item(str(client_id))
+	if has_node("/root/Lobby/Panel/LobbyClientList"):
+		lobby_client_list = get_node("/root/Lobby/Panel/LobbyClientList")
+		lobby_client_list.clear()
+		for client in get_node("Clients").get_children():
+			if client.is_client():
+				if client.get_ID() in clients_ready:
+					lobby_client_list.add_item(str(client.get_ID()) + " (You): Ready to party!")
+				else:
+					lobby_client_list.add_item(str(client.get_ID()) + " (You)")
+			else:
+				if client.get_ID() in clients_ready:
+					lobby_client_list.add_item(str(client.get_ID()) + ": Ready to party!")
+				else:
+					lobby_client_list.add_item(str(client.get_ID()))
 
 func set_client_ready(is_remove=false):
-	rpc("modify_ready", own_client.get_ID(), is_remove)
+	rpc("modify_ready", get_current_client().get_ID(), is_remove)
 
 sync func modify_ready(id, is_remove):
 	if not is_remove:
@@ -114,15 +127,15 @@ func set_spawn_points(clients):
 	var spawn_points = {}
 	var x = 1
 	var y = 1
-	spawn_points[own_client.get_ID()] = Vector2(x, y)
-	for client_id in clients:
+	spawn_points[get_current_client().get_ID()] = Vector2(x, y)
+	for client in get_node("Clients").get_children():
 		x += 2
 		y += 2
-		spawn_points[client_id] = Vector2(x, y)
+		spawn_points[client.get_ID()] = Vector2(x, y)
 	return spawn_points
 
 func begin_game():
-	if clients_ready.size() != (client_list.size() + 1):#+1 because the client list doesn't have the host in it
+	if clients_ready.size() != (get_node("Clients").get_children().size()):
 		print("Not everybody is ready!")
 		return
 	var spawn_points = set_spawn_points(client_list)
@@ -133,29 +146,19 @@ sync func pre_configure_game(spawn_points):
 	var map_scene = load("res://src/map/maps/test_lab.tscn")
 	map = map_scene.instance()
 	get_node("/root/Lobby").queue_free()
-	own_client.set_name(str(own_client.get_ID()))
 	get_tree().get_root().add_child(map)
-	get_tree().get_root().add_child(own_client)
-	var human = human_scene.instance()
-	get_node("/root/Map").add_child(human)
-	own_client.add_child(load("res://src/GUI/UserInterface.tscn").instance())
-	own_client.set_mob(human)
-	own_client.configure_network_mode(NETWORK_MODE_MASTER)
-	own_client.get_mob().set_pos(spawn_points[own_client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
-	for client_id in client_list:
+	get_current_client().add_child(load("res://src/GUI/UserInterface.tscn").instance())
+	for client in get_node("Clients").get_children():
+		print(client)
 		var human = human_scene.instance()
-		var client = client_base.instance()
-		get_tree().get_root().add_child(client)
 		get_node("/root/Map").add_child(human)
-		client.set_name(str(client_id))
-		client.set_ID(int(client_id))
 		client.set_mob(human)
-		client.get_mob().set_pos(spawn_points[client_id] * Vector2(32, 32) + Vector2(16, 16))
-		client.configure_network_mode(NETWORK_MODE_SLAVE)
+		client.get_mob().set_pos(spawn_points[client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
+
 	if get_tree().is_network_server():
-		post_configure_game(own_client.get_ID())
+		post_configure_game(get_current_client().get_ID())
 	else:
-		rpc_id(1, "post_configure_game", own_client.get_ID())
+		rpc_id(1, "post_configure_game", get_current_client().get_ID())
 		get_tree().set_pause(true)
 
 remote func post_configure_game(id):
@@ -164,5 +167,6 @@ remote func post_configure_game(id):
 		for client_id in clients_prepared:
 			if client_id != 1:
 				rpc_id(client_id, "done_preconfig")
+
 remote func done_preconfig():
 	get_tree().set_pause(false)

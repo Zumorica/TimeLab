@@ -12,7 +12,7 @@ func _ready():
 	timer = get_node("Layer/Chat/Timer")
 	timer.connect("timeout", self, "close_chat")
 	timer.set_one_shot(true)
-	var client = get_node("/root/timeline").own_client
+	var client = get_node("/root/timeline").get_current_client()
 	if client:
 		client.connect("on_mob_change", self, "_on_mob_change")
 
