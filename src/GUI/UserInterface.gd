@@ -45,10 +45,9 @@ func _unhandled_input(ev):
 		accept_event()
 	if ev.is_action_pressed("inventory_toggle"):
 		if inventory.is_visible():
-			inventory.hide()
+			inventory.hide_display()
 		else:
-			inventory.show()
-			inventory.update()
+			inventory.display()
 		accept_event()
 
 func send_message():

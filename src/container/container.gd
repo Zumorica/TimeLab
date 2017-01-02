@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 signal on_item_stored(container, item)
 
@@ -10,6 +10,7 @@ var storage = {}
 var slot_list = []
 
 func _ready():
+	display_node = get_node(display_node)
 	display_node.hide()
 	for c in display_node.get_children():
 		slot_list.append(c)
@@ -17,18 +18,21 @@ func _ready():
 func is_full():
 	return storage.size() == storage_size
 
-func store_item(item, slot=null):
+func add_item(item, slot=null):
 	if is_full():
 		return
 	if !slot:
 		# If no slot is provided, by default the item will be stored in the first empty slot
-		for s in display_node.get_children():
+		for s in display_node.get_child(0).get_children():
 			if not s.has_item():
 				slot = s
 				break
 	
 	storage[slot] = item
+	get_node("/root/Map").remove_child(item)
 	slot.add_child(item)
+	item.set_pos(Vector2(2, 2))
+	emit_signal("on_item_stored", self, item)
 
 func remove_item(item):
 	for k in storage:
@@ -39,3 +43,7 @@ func remove_item(item):
 
 func display():
 	display_node.show()
+	display_node.update()
+
+func hide_display():
+	display_node.hide()

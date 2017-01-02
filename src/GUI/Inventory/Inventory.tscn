@@ -19,6 +19,8 @@ margin/top = 300.0
 margin/right = -88.0
 margin/bottom = -100.0
 script/script = ExtResource( 1 )
+storage_size = 10
+display_node = NodePath(".")
 
 [node name="Background" type="TextureFrame" parent="."]
 
@@ -104,7 +106,6 @@ transform/pos = Vector2( 381, 332 )
 [node name="BSlot7" parent="Background" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 417, 332 )
-transform/scale = Vector2( 1, 1 )
 
 [node name="BSlot8" parent="Background" instance=ExtResource( 3 )]
 

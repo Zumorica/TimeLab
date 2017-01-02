@@ -1,7 +1,4 @@
-extends Control
-
-func _ready():
-	hide()
+extends "res://src/container/container.gd"
 
 func _draw():
 	var cur_size = get_size()
