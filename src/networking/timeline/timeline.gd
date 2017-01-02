@@ -14,6 +14,7 @@ onready var client_code_base = preload("res://src/client/client.gd")
 onready var human_scene = preload("res://src/mob/living/human/human.tscn")
 onready var client = client_base.instance() setget get_current_client
 onready var right_click_menu = PopupMenu.new()
+var right_click_menu_pointer = null
 var random_seed
 
 func _ready():
@@ -150,6 +151,7 @@ sync func pre_configure_game(spawn_points):
 	get_node("/root/Lobby").queue_free()
 	get_tree().get_root().add_child(map)
 	get_current_client().add_child(load("res://src/GUI/UserInterface.tscn").instance())
+	get_current_client().get_node("UserInterface").add_child(right_click_menu)
 	for client in get_node("Clients").get_children():
 		print(client)
 		var human = human_scene.instance()

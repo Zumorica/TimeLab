@@ -11,6 +11,7 @@ remote var provider = null setget get_provider,set_provider
 remote var powered = false setget is_powered,_set_powered
 
 func _ready():
+	verbs["Print info"] = "print_info"
 	if has_node("Timer"):
 		var timer = get_node("Timer")
 		if not timer.is_connected("timeout", self, "consume_electricity"):
@@ -22,7 +23,7 @@ func get_provider():
 func print_info():
 	print("Provider: ", get_provider())
 	print("Is powered: ", is_powered())
-	print("Stored joules: ", stored_joules, "J/", max_stored_capacity, "J")
+	print("Stored joules: ", stored_joules, "J/", max_store_capacity, "J")
 
 func set_provider(new_provider):
 	if is_network_master():

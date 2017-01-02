@@ -75,6 +75,8 @@ func _ready():
 	attack_timer.set_name("AttackTimer")
 	attack_timer.set_one_shot(true)
 	add_child(attack_timer)
+	if not get_node("/root/timeline").right_click_menu.is_connected("item_pressed", self, "verb_pressed"):
+		get_node("/root/timeline").right_click_menu.connect("item_pressed", self, "verb_pressed")
 	if not is_connected("on_clicked", self, "_on_clicked"):
 		connect("on_clicked", self, "_on_clicked")
 	if not is_connected("input_event", self, "_input_event"):
@@ -195,10 +197,22 @@ func _fixed_process(dt):
 						rset("direction", direction)
 						rpc("emit_signal", "on_direction_change", direction)
 
+func verb_pressed(id):
+	var menu = get_node("/root/timeline").right_click_menu
+	if get_node("/root/timeline").right_click_menu_pointer == self:
+		get_node("/root/timeline").right_click_menu_pointer = null
+		call(verbs.values()[id])
+		menu.hide()
+
 func _input_event(viewport, event, shape):
 	if event.is_action_pressed("left_click") and not event.is_echo():
 		emit_signal("on_clicked")
 		get_tree().set_input_as_handled()
-	if event.is_action_pressed("right_click") and not event.is_echo():
-		menu = get_node("/root/timeline").right_click_menu
-		
+	if event.is_action_pressed("right_click") and not event.is_echo() and verbs.values().size():
+		var menu = get_node("/root/timeline").right_click_menu
+		get_node("/root/timeline").right_click_menu_pointer = self
+		menu.clear()
+		for key in verbs:
+			menu.add_item(key)
+		menu.set_pos(get_pos())
+		menu.show()
