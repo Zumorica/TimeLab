@@ -1,5 +1,6 @@
 extends Node
 
+
 var own_info = {}
 var client_list = {}
 var is_busy = false # When connecting/creating a server, this will be true.
@@ -12,9 +13,14 @@ onready var network_handler = NetworkedMultiplayerENet.new()
 onready var element_base = preload("res://src/element/element.gd")
 onready var client_base = preload("res://src/client/client.tscn")
 onready var client_code_base = preload("res://src/client/client.gd")
+onready var human_scene = preload("res://src/mob/living/human/human.tscn")
 onready var own_client = client_base.instance()
+var random_seed
 
 func _ready():
+	randomize()
+	random_seed = randi()
+	rand_seed(random_seed)
 	connect_handlers()
 	
 func host_server(port, max_players):
@@ -125,22 +131,26 @@ func begin_game():
 sync func pre_configure_game(spawn_points):
 	var map
 	var map_scene = load("res://src/map/maps/test_lab.tscn")
-	if map_scene.can_instance():
-		map = map_scene.instance()
+	map = map_scene.instance()
 	get_node("/root/Lobby").queue_free()
 	own_client.set_name(str(own_client.get_ID()))
-	get_tree().get_root().add_child(own_client)
 	get_tree().get_root().add_child(map)
-	own_client.get_node("Mob").add_child(load("res://src/GUI/UserInterface.tscn").instance())
+	get_tree().get_root().add_child(own_client)
+	var human = human_scene.instance()
+	get_node("/root/Map").add_child(human)
+	own_client.add_child(load("res://src/GUI/UserInterface.tscn").instance())
+	own_client.set_mob(human)
 	own_client.configure_network_mode(NETWORK_MODE_MASTER)
-	own_client.get_node("Mob").set_pos(spawn_points[own_client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
-	own_client.get_node("Mob/Camera2D").make_current()
+	own_client.get_mob().set_pos(spawn_points[own_client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
 	for client_id in client_list:
+		var human = human_scene.instance()
 		var client = client_base.instance()
+		get_tree().get_root().add_child(client)
+		get_node("/root/Map").add_child(human)
 		client.set_name(str(client_id))
 		client.set_ID(int(client_id))
-		get_tree().get_root().add_child(client)
-		client.get_node("Mob").set_pos(spawn_points[client_id] * Vector2(32, 32) + Vector2(16, 16))
+		client.set_mob(human)
+		client.get_mob().set_pos(spawn_points[client_id] * Vector2(32, 32) + Vector2(16, 16))
 		client.configure_network_mode(NETWORK_MODE_SLAVE)
 	if get_tree().is_network_server():
 		post_configure_game(own_client.get_ID())

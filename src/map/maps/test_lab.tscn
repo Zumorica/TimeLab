@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://src/map/map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entity/spawn/spawn.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/obj/machine/door/door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/obj/machine/conveyor/conveyor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/obj/machine/provider/wirelessextender.tscn" type="PackedScene" id=5]
 
 [node name="Map" instance=ExtResource( 1 )]
 
@@ -14,11 +15,13 @@ tile_data = IntArray( -1048593, 0, -1048592, 0, -1048591, 0, -1048590, 0, -10485
 
 transform/pos = Vector2( 457, 278 )
 intent = 0
+gender = 0
 
 [node name="Door" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 560, 48 )
 input/pickable = false
+is_movable = true
 attack_delay = 0.5
 close_delay = 5
 
@@ -26,6 +29,7 @@ close_delay = 5
 
 transform/pos = Vector2( 784, 48 )
 input/pickable = false
+is_movable = true
 attack_delay = 0.5
 close_delay = 5
 
@@ -33,6 +37,7 @@ close_delay = 5
 
 transform/pos = Vector2( 1232, 208 )
 input/pickable = false
+is_movable = true
 attack_delay = 0.5
 close_delay = 5
 
@@ -128,5 +133,9 @@ transform/pos = Vector2( 384, 160 )
 direction = 2
 speed = 100
 conveyor_velocity = 30.0
+
+[node name="Wireless Extender" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 384, 128 )
 
 

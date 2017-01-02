@@ -12,7 +12,16 @@ func _ready():
 	timer = get_node("Layer/Chat/Timer")
 	timer.connect("timeout", self, "close_chat")
 	timer.set_one_shot(true)
-	get_parent().connect("on_health_change", get_node("Layer/HealthBar"), "update_health")
+	var client = get_node("/root/timeline").own_client
+	if client:
+		client.connect("on_mob_change", self, "_on_mob_change")
+
+func _on_mob_change(new_mob, old_mob):
+	if old_mob != null:
+		if old_mob.is_connected("on_health_change", get_node("Layer/HealthBar"), "update_health"):
+			old_mob.disconnect("on_health_change", get_node("Layer/HealthBar"), "update_health")
+	if new_mob != null:
+		new_mob.connect("on_health_change", get_node("Layer/HealthBar"), "update_health")
 
 func _process(dt):
 	get_node("Layer/FPSCount").set_text(str(OS.get_frames_per_second()))

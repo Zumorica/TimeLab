@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://src/obj/machine/machine.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/obj/machine/provider/provider.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 512.0
+
+[node name="Provider" instance=ExtResource( 1 )]
+
+script/script = ExtResource( 2 )
+can_be_provided = false
+generated_output = 0
+
+[node name="Sprite" parent="."]
+
+script/script = null
+
+[node name="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+script/script = null
+
+[node name="Timer" parent="."]
+
+script/script = null
+
+[node name="Area2D" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 0.865143, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+transform/scale = Vector2( 1, 0.865143 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[connection signal="timeout" from="Timer" to="." method="generate_electricity"]
+
+[connection signal="body_enter" from="Area2D" to="." method="_on_providing_range_body_enter"]
+
+[connection signal="body_exit" from="Area2D" to="." method="_on_providing_range_body_exit"]
+
+
