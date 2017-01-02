@@ -151,6 +151,7 @@ sync func pre_configure_game(spawn_points):
 	get_node("/root/Lobby").queue_free()
 	get_tree().get_root().add_child(map)
 	get_current_client().add_child(load("res://src/GUI/UserInterface.tscn").instance())
+	#get_current_client().get_node("UserInterface/Layer").add_child(right_click_menu)
 	get_current_client().get_node("UserInterface").add_child(right_click_menu)
 	for client in get_node("Clients").get_children():
 		print(client)

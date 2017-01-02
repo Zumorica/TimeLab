@@ -39,6 +39,7 @@ const INTENT_NONE = 0
 const INTENT_INTERACT = 1
 const INTENT_ATTACK = 2
 
+export var show_name = "Unknown"
 export(int, "NORTH", "SOUTH", "WEST", "EAST") remote var direction = 0
 export(bool) var is_movable = true
 export(int, "No intent", "Interact intent", "Attack intent") remote var intent = 2 setget set_intent, get_intent
@@ -199,9 +200,9 @@ func _fixed_process(dt):
 
 func verb_pressed(id):
 	var menu = get_node("/root/timeline").right_click_menu
-	if get_node("/root/timeline").right_click_menu_pointer == self:
+	if get_node("/root/timeline").right_click_menu_pointer == self and id > 0:
 		get_node("/root/timeline").right_click_menu_pointer = null
-		call(verbs.values()[id])
+		call(verbs.values()[id - 1])
 		menu.hide()
 
 func _input_event(viewport, event, shape):
@@ -212,6 +213,7 @@ func _input_event(viewport, event, shape):
 		var menu = get_node("/root/timeline").right_click_menu
 		get_node("/root/timeline").right_click_menu_pointer = self
 		menu.clear()
+		menu.add_item(show_name)
 		for key in verbs:
 			menu.add_item(key)
 		menu.set_pos(get_pos())

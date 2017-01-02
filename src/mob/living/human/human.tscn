@@ -15,6 +15,7 @@ extents = Vector2( 6.77335, 3.71569 )
 [node name="Mob" instance=ExtResource( 1 )]
 
 script/script = ExtResource( 2 )
+show_name = "Human"
 direction = 1
 race = "human"
 
