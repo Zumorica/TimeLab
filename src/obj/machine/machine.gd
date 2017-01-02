@@ -19,6 +19,11 @@ func _ready():
 func get_provider():
 	return provider
 
+func print_info():
+	print("Provider: ", get_provider())
+	print("Is powered: ", is_powered())
+	print("Stored joules: ", stored_joules, "J/", max_stored_capacity, "J")
+
 func set_provider(new_provider):
 	if is_network_master():
 		if new_provider != null:

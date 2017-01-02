@@ -52,6 +52,8 @@ export(int, FLAGS) remote var state = 0
 export(int) var speed = 80
 export(int) var interact_range = 100
 export(int, "Neutral", "Male", "Female") var gender = 0
+var verbs = {}
+
 onready var orig_name = get_name()
 #var z_floor = 0 setget set_floor,get_floor # Might get removed in the future.
 var client = null setget get_client,_set_client # Do not change from this node. Call set_mob from client instead.
@@ -197,3 +199,6 @@ func _input_event(viewport, event, shape):
 	if event.is_action_pressed("left_click") and not event.is_echo():
 		emit_signal("on_clicked")
 		get_tree().set_input_as_handled()
+	if event.is_action_pressed("right_click") and not event.is_echo():
+		menu = get_node("/root/timeline").right_click_menu
+		

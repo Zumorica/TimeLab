@@ -13,9 +13,11 @@ onready var client_base = preload("res://src/client/client.tscn")
 onready var client_code_base = preload("res://src/client/client.gd")
 onready var human_scene = preload("res://src/mob/living/human/human.tscn")
 onready var client = client_base.instance() setget get_current_client
+onready var right_click_menu = PopupMenu.new()
 var random_seed
 
 func _ready():
+	right_click_menu.hide()
 	randomize()
 	random_seed = randi()
 	rand_seed(random_seed)
