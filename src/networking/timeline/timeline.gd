@@ -14,6 +14,7 @@ onready var client_code_base = preload("res://src/client/client.gd")
 onready var human_scene = preload("res://src/mob/living/human/human.tscn")
 onready var client = client_base.instance() setget get_current_client
 onready var right_click_menu = PopupMenu.new()
+onready var user_interface = preload("res://src/GUI/UserInterface.tscn").instance()
 var right_click_menu_pointer = null
 var random_seed
 
@@ -150,7 +151,7 @@ sync func pre_configure_game(spawn_points):
 	map = map_scene.instance()
 	get_node("/root/Lobby").queue_free()
 	get_tree().get_root().add_child(map)
-	get_current_client().add_child(load("res://src/GUI/UserInterface.tscn").instance())
+	get_current_client().add_child(user_interface)
 	#get_current_client().get_node("UserInterface/Layer").add_child(right_click_menu)
 	get_current_client().get_node("UserInterface").add_child(right_click_menu)
 	for client in get_node("Clients").get_children():
@@ -175,3 +176,7 @@ remote func post_configure_game(id):
 
 remote func done_preconfig():
 	get_tree().set_pause(false)
+	
+func send_global_message(msg):
+	for client in get_node("Clients").get_children():
+		client.rpc("update_chat", msg)
