@@ -21,7 +21,7 @@ remote func send_info(id):
 	rset_id(id, "info", info)
 
 func request_info():
-	rpc("send_info", get_node("/root/timeline").get_current_client().get_ID())
+	rpc("send_info", timeline.get_current_client().get_ID())
 
 func configure_network_mode(mode):
 	if mode == NETWORK_MODE_MASTER:
@@ -60,7 +60,7 @@ func set_active_camera(camera):
 func is_client():
 	"""This function returns true if currently the code is being
 	   executed by this client's owner."""
-	if get_node("/root/timeline").is_online:
+	if timeline.is_online:
 		return (str(get_ID()) == str(get_tree().get_network_unique_id()))
 	else:
 		return true
@@ -76,7 +76,7 @@ sync func set_mob(mob):
 	var type = typeof(mob)
 	if type == TYPE_NODE_PATH:
 		return _set_mob_nodepath(mob)
-	elif type == TYPE_OBJECT and mob extends get_node("/root/timeline").element_base:
+	elif type == TYPE_OBJECT and mob extends timeline.element_base:
 		return _set_mob_node(mob)
 	elif type == TYPE_NIL:
 		emit_signal("on_mob_change", null, mob)
@@ -95,7 +95,7 @@ func _set_mob_nodepath(mob_nodepath):
 	# Do not call this function directly.
 	assert typeof(mob_nodepath) == TYPE_NODE_PATH
 	var mob = get_node(mob_nodepath)
-	if mob extends get_node("/root/timeline").element_base:
+	if mob extends timeline.element_base:
 		return _set_mob_node(mob)
 	else:
 		return false

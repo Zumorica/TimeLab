@@ -11,7 +11,7 @@ func _ready():
 	timer = get_node("Layer/Chat/Timer")
 	timer.connect("timeout", self, "close_chat")
 	timer.set_one_shot(true)
-	var client = get_node("/root/timeline").get_current_client()
+	var client = timeline.get_current_client()
 	if client:
 		client.connect("on_mob_change", self, "_on_mob_change")
 
@@ -51,11 +51,11 @@ func send_message():
 	text_input.hide()
 	chat_window.hide()
 	is_chat_visible = false
-	var client = get_node("/root/timeline").get_current_client()
+	var client = timeline.get_current_client()
 	if client.get_mob():
 		client.get_mob().speak(msg)
 	else:
-		get_node("/root/timeline").update_global_chat("%s: %s" % [client.get_ID(),msg])
+		timeline.update_global_chat("%s: %s" % [client.get_ID(),msg])
 
 func _update_chat(msg):
 	var messages = get_node("Layer/Chat/ChatWindow/Messages")

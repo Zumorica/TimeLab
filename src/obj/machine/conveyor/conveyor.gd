@@ -23,7 +23,7 @@ func _ready():
 func _fixed_process(dt):
 	if is_powered():
 		for body in bodies:
-			if body extends get_node("/root/timeline").element_base and not body extends self.get_script():
+			if body extends timeline.element_base and not body extends self.get_script():
 				if body.is_movable != false:
 					body.move(conveyor_direction * conveyor_velocity * dt)
 					body.rpc_unreliable("set_pos", body.get_pos())

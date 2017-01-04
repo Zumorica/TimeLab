@@ -10,4 +10,4 @@ func _on_Button_pressed():
 		print("Invalid max players.")
 		return
 		
-	get_node("/root/timeline").host_server(int(port), int(max_players))
+	timeline.host_server(int(port), int(max_players))
