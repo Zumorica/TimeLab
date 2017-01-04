@@ -172,7 +172,7 @@ func _fixed_process(dt):
 						move_direction = normal.slide(move_direction)
 						last_collider = get_collider()
 						emit_signal("on_collide", get_collider())
-						if get_collider() extends timeline.element_base:
+						if get_collider() extends s_base.element:
 							get_collider().emit_signal("on_collided", self)
 						move(move_direction * speed * dt)
 					var new_pos = get_pos()

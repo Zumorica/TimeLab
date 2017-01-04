@@ -76,7 +76,7 @@ sync func set_mob(mob):
 	var type = typeof(mob)
 	if type == TYPE_NODE_PATH:
 		return _set_mob_nodepath(mob)
-	elif type == TYPE_OBJECT and mob extends timeline.element_base:
+	elif type == TYPE_OBJECT and mob extends s_base.element:
 		return _set_mob_node(mob)
 	elif type == TYPE_NIL:
 		emit_signal("on_mob_change", null, mob)
