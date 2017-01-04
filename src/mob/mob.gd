@@ -14,8 +14,8 @@ func _ready():
 func _on_death(cause):
 	set_rotd(90)
 	if is_network_master():
-		rset("state", state | DEAD)
-		state = state | DEAD
+		rset("state", state | s_flag.DEAD)
+		state = state | s_flag.DEAD
 
 func _on_damaged(damage, other):
 	randomize()
@@ -36,13 +36,13 @@ func _on_direction_change(direction):
 	get_node("South").hide()
 	get_node("West").hide()
 	get_node("East").hide()
-	if direction == NORTH:
+	if direction == s_direction.NORTH:
 		get_node("North").show()
-	elif direction == SOUTH:
+	elif direction == s_direction.SOUTH:
 		get_node("South").show()
-	elif direction == WEST:
+	elif direction == s_direction.WEST:
 		get_node("West").show()
-	elif direction == EAST:
+	elif direction == s_direction.EAST:
 		get_node("East").show()
 
 func _on_Area2D_input_event( viewport, event, shape_idx ):
