@@ -7,6 +7,8 @@ var is_server = false
 var clients_ready = []
 var clients_prepared = []
 var lobby_client_list
+remote var gamemode = "No gamemode"
+var gamemode_list = {"Sandbox" : "", "Mystery" : "res://src/gamemode/mystery.gd"}
 onready var network_handler = NetworkedMultiplayerENet.new()
 onready var client = s_base.client_scene.instance() setget get_current_client
 onready var right_click_menu = PopupMenu.new()
@@ -39,6 +41,7 @@ func host_server(port, max_players):
 		var lobby = load("res://src/menu/Lobby.tscn").instance()
 		get_node("/root").add_child(lobby)
 		get_node("/root/Lobby/Panel/startButton").show()
+		get_node("/root/Lobby/Panel/gamemodeSelection").show()
 		get_node("/root/Menu").queue_free()
 		lobby_client_list = get_node("/root/Lobby/Panel/LobbyClientList")
 		refresh_lobby()
@@ -163,16 +166,31 @@ sync func pre_configure_game(spawn_points):
 		rpc_id(1, "post_configure_game", get_current_client().get_ID())
 		get_tree().set_pause(true)
 
+sync func set_gamemode(path):
+	var new_gamemode = load(path).new()
+	assert new_gamemode extends s_base.gamemode
+	gamemode = new_gamemode
+
 remote func post_configure_game(id):
 	clients_prepared.append(id)
 	if clients_prepared.size() == clients_ready.size():
+		rpc("set_gamemode", gamemode_list["Mystery"])
+		gamemode.emit_signal("on_game_start")
+		gamemode.emit_signal("gamemode_prepare")
+		for element in get_tree().get_nodes_in_group("elements"):
+			element.emit_signal("on_game_start")
 		for client_id in clients_prepared:
 			if client_id != 1:
 				rpc_id(client_id, "done_preconfig")
 
 remote func done_preconfig():
+	gamemode.emit_signal("on_game_start")
+	gamemode.emit_signal("gamemode_prepare")
+	for element in get_tree().get_nodes_in_group("elements"):
+		element.emit_signal("on_game_start")
 	get_tree().set_pause(false)
 	
 func send_global_message(msg):
+	get_current_client().update_chat(msg)
 	for client in get_node("Clients").get_children():
 		client.rpc("update_chat", msg)

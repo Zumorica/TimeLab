@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+signal on_game_start()
 signal on_direction_change(direction)
 signal on_collided(collider)	# When something collides with the element.
 signal on_collide(collider)		# When the element collides with something.
@@ -38,6 +39,7 @@ remote var last_collider = null
 remote var health = max_health
 
 func _ready():
+	add_to_group("elements")
 	set_pause_mode(PAUSE_MODE_STOP)
 	set_pickable(true)
 	set_fixed_process(true)
@@ -201,8 +203,7 @@ sync func hear(msg):
 func speak(msg):
 	if not state & s_flag.MUTE:
 		for child in get_node("SpeakArea2D").get_overlapping_bodies():
-			if child extends timeline.element_base:
-				print(child.show_name)
+			if child extends s_base.element:
 				child.rpc("hear", "%s: %s" % [show_name, msg])
 
 func _input_event(viewport, event, shape):
