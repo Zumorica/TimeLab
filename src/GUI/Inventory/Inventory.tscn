@@ -11,7 +11,7 @@ anchor/top = 3
 anchor/right = 3
 anchor/bottom = 3
 focus/ignore_mouse = false
-focus/stop_mouse = true
+focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 512.0
@@ -24,8 +24,8 @@ display_node = NodePath(".")
 
 [node name="Background" type="TextureFrame" parent="."]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
@@ -37,86 +37,149 @@ stretch_mode = 0
 
 [node name="HeadSlot" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 60.1824, 34.3677 )
+margin/left = 60.0
+margin/top = 42.0
+margin/right = 96.0
+margin/bottom = 78.0
 
 [node name="MaskSlot" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 60.329, 81.1238 )
+margin/left = 60.0
+margin/top = 88.0
+margin/right = 96.0
+margin/bottom = 124.0
 
 [node name="ChestSlot" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 60.6909, 151.414 )
+margin/left = 60.0
+margin/top = 152.0
+margin/right = 96.0
+margin/bottom = 188.0
 
 [node name="BeltSlot" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 60.1651, 219.727 )
+margin/left = 60.0
+margin/top = 224.0
+margin/right = 96.0
+margin/bottom = 260.0
 
 [node name="LegsSlot" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 59.3616, 278.001 )
+margin/left = 60.0
+margin/top = 276.0
+margin/right = 96.0
+margin/bottom = 312.0
 
 [node name="FeetSlot" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 59.7767, 331.814 )
+margin/left = 60.0
+margin/top = 335.0
+margin/right = 96.0
+margin/bottom = 371.0
 
 [node name="RHandSlot" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 16.4896, 176 )
+margin/left = 20.0
+margin/top = 172.0
+margin/right = 56.0
+margin/bottom = 208.0
 
 [node name="LHandSlot" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 104.451, 176 )
+margin/left = 100.0
+margin/top = 172.0
+margin/right = 136.0
+margin/bottom = 208.0
 
 [node name="LPocketSlot" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 111.848, 331.932 )
+margin/left = 108.0
+margin/top = 335.0
+margin/right = 144.0
+margin/bottom = 371.0
 
 [node name="BackSlot" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 133.577, 292.211 )
+margin/left = 128.0
+margin/top = 296.0
+margin/right = 164.0
+margin/bottom = 332.0
 
 [node name="RPocketSlot" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 155.717, 331.56 )
+margin/left = 148.0
+margin/top = 335.0
+margin/right = 184.0
+margin/bottom = 371.0
 
 [node name="BSlot1" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 201, 332 )
+margin/left = 199.0
+margin/top = 335.0
+margin/right = 235.0
+margin/bottom = 371.0
 
 [node name="BSlot2" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 237, 332 )
+margin/left = 235.0
+margin/top = 335.0
+margin/right = 271.0
+margin/bottom = 371.0
 
 [node name="BSlot3" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 273, 332 )
+margin/left = 271.0
+margin/top = 335.0
+margin/right = 307.0
+margin/bottom = 371.0
 
 [node name="BSlot4" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 309, 332 )
+margin/left = 307.0
+margin/top = 335.0
+margin/right = 343.0
+margin/bottom = 371.0
 
 [node name="BSlot5" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 345, 332 )
+margin/left = 343.0
+margin/top = 335.0
+margin/right = 379.0
+margin/bottom = 371.0
 
 [node name="BSlot6" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 381, 332 )
+margin/left = 379.0
+margin/top = 335.0
+margin/right = 415.0
+margin/bottom = 371.0
 
 [node name="BSlot7" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 417, 332 )
+margin/left = 415.0
+margin/top = 335.0
+margin/right = 451.0
+margin/bottom = 371.0
 
 [node name="BSlot8" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 453, 332 )
+margin/left = 451.0
+margin/top = 335.0
+margin/right = 487.0
+margin/bottom = 371.0
 
 [node name="BSlot9" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 489, 332 )
+margin/left = 487.0
+margin/top = 335.0
+margin/right = 523.0
+margin/bottom = 371.0
 
 [node name="BSlot10" parent="Background" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 525, 332 )
+margin/left = 523.0
+margin/top = 335.0
+margin/right = 559.0
+margin/bottom = 371.0
 
 

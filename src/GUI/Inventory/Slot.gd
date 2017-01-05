@@ -1,4 +1,7 @@
-extends Area2D
+extends TextureButton
 
 func has_item():
-	return get_node("Texture").get_child_count() == 1
+	return get_child_count() == 1
+
+func _on_Slot_pressed():
+	print("Hey does this work")

@@ -12,8 +12,9 @@ var slot_list = []
 func _ready():
 	display_node = get_node(display_node)
 	display_node.hide()
-	for c in display_node.get_children():
+	for c in display_node.get_node("Background").get_children():
 		slot_list.append(c)
+	print(slot_list)
 
 func is_full():
 	return storage.size() == storage_size
