@@ -7,8 +7,8 @@ var is_server = false
 var clients_ready = []
 var clients_prepared = []
 var lobby_client_list
-remote var gamemode = "No gamemode"
-var gamemode_list = {"Sandbox" : "", "Mystery" : "res://src/gamemode/mystery.gd"}
+remote var gamemode = null
+var gamemode_list = {"Sandbox" : "res://src/gamemode/sandbox.gd", "Mystery" : "res://src/gamemode/mystery.gd"}
 onready var network_handler = NetworkedMultiplayerENet.new()
 onready var client = s_base.client_scene.instance() setget get_current_client
 onready var right_click_menu = PopupMenu.new()
@@ -174,7 +174,7 @@ sync func set_gamemode(path):
 remote func post_configure_game(id):
 	clients_prepared.append(id)
 	if clients_prepared.size() == clients_ready.size():
-		rpc("set_gamemode", gamemode_list["Mystery"])
+		rpc("set_gamemode", gamemode_list.values()[get_node("/root/Lobby/Panel/gamemodeSelection").get_selected()])
 		gamemode.emit_signal("on_game_start")
 		gamemode.emit_signal("gamemode_prepare")
 		for element in get_tree().get_nodes_in_group("elements"):
