@@ -7,15 +7,17 @@ var is_server = false
 var clients_ready = []
 var clients_prepared = []
 var lobby_client_list
+remote var gamemode = null
+var gamemode_list = {"Sandbox" : "res://src/gamemode/sandbox.gd", "Mystery" : "res://src/gamemode/mystery.gd"}
 onready var network_handler = NetworkedMultiplayerENet.new()
-onready var element_base = preload("res://src/element/element.gd")
-onready var client_base = preload("res://src/client/client.tscn")
-onready var client_code_base = preload("res://src/client/client.gd")
-onready var human_scene = preload("res://src/mob/living/human/human.tscn")
-onready var client = client_base.instance() setget get_current_client
+onready var client = s_base.client_scene.instance() setget get_current_client
+onready var right_click_menu = PopupMenu.new()
+onready var user_interface = s_base.user_interface_scene.instance()
+var right_click_menu_pointer = null
 var random_seed
 
 func _ready():
+	right_click_menu.hide()
 	randomize()
 	random_seed = randi()
 	rand_seed(random_seed)
@@ -39,6 +41,7 @@ func host_server(port, max_players):
 		var lobby = load("res://src/menu/Lobby.tscn").instance()
 		get_node("/root").add_child(lobby)
 		get_node("/root/Lobby/Panel/startButton").show()
+		get_node("/root/Lobby/Panel/gamemodeSelection").show()
 		get_node("/root/Menu").queue_free()
 		lobby_client_list = get_node("/root/Lobby/Panel/LobbyClientList")
 		refresh_lobby()
@@ -60,7 +63,7 @@ func connect_handlers():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	
 remote func create_new_client(id):
-	var new_client = client_base.instance()
+	var new_client = s_base.client_scene.instance()
 	new_client.set_ID(id)
 	get_node("Clients").add_child(new_client)
 	#new_client.request_info()
@@ -147,10 +150,12 @@ sync func pre_configure_game(spawn_points):
 	map = map_scene.instance()
 	get_node("/root/Lobby").queue_free()
 	get_tree().get_root().add_child(map)
-	get_current_client().add_child(load("res://src/GUI/UserInterface.tscn").instance())
+	get_current_client().add_child(user_interface)
+	#get_current_client().get_node("UserInterface/Layer").add_child(right_click_menu)
+	get_current_client().get_node("UserInterface").add_child(right_click_menu)
 	for client in get_node("Clients").get_children():
 		print(client)
-		var human = human_scene.instance()
+		var human = s_base.human_scene.instance()
 		get_node("/root/Map").add_child(human)
 		client.set_mob(human)
 		client.get_mob().set_pos(spawn_points[client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
@@ -161,12 +166,31 @@ sync func pre_configure_game(spawn_points):
 		rpc_id(1, "post_configure_game", get_current_client().get_ID())
 		get_tree().set_pause(true)
 
+sync func set_gamemode(path):
+	var new_gamemode = load(path).new()
+	assert new_gamemode extends s_base.gamemode
+	gamemode = new_gamemode
+
 remote func post_configure_game(id):
 	clients_prepared.append(id)
 	if clients_prepared.size() == clients_ready.size():
+		rpc("set_gamemode", gamemode_list.values()[get_node("/root/Lobby/Panel/gamemodeSelection").get_selected()])
+		gamemode.emit_signal("on_game_start")
+		gamemode.emit_signal("gamemode_prepare")
+		for element in get_tree().get_nodes_in_group("elements"):
+			element.emit_signal("on_game_start")
 		for client_id in clients_prepared:
 			if client_id != 1:
 				rpc_id(client_id, "done_preconfig")
 
 remote func done_preconfig():
+	gamemode.emit_signal("on_game_start")
+	gamemode.emit_signal("gamemode_prepare")
+	for element in get_tree().get_nodes_in_group("elements"):
+		element.emit_signal("on_game_start")
 	get_tree().set_pause(false)
+	
+func send_global_message(msg):
+	get_current_client().update_chat(msg)
+	for client in get_node("Clients").get_children():
+		client.rpc("update_chat", msg)

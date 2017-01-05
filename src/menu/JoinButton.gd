@@ -10,4 +10,4 @@ func _on_Button_pressed():
 		print("Invalid ip address.")
 		return
 
-	get_node("/root/timeline").connect_to_server(ip, int(port))
+	timeline.connect_to_server(ip, int(port))
