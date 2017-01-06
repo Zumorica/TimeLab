@@ -22,5 +22,5 @@ sync func set_inventory_texture(texture):
 	inventory_image = texture
 	emit_signal("on_inventory_texture_change", inventory_image)
 
-func _on_Area2D_input_event(viewport, event, shape_idx):
+func _on_Area2D_input_event( viewport, event, shape_idx ):
 	_input_event(viewport, event, shape_idx)

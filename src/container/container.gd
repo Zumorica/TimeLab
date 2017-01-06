@@ -30,7 +30,7 @@ func add_item(item, slot=null):
 				break
 	
 	storage[slot] = item
-	get_node("/root/Map").remove_child(item)
+	item.get_parent().remove_child(item)
 	slot.add_child(item)
 	item.set_pos(Vector2(2, 2))
 	emit_signal("on_item_stored", self, item)

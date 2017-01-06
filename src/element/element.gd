@@ -38,14 +38,7 @@ remote var last_move = Vector2(0, 0)
 remote var last_collider = null
 remote var health = max_health
 
-func _ready():
-	add_to_group("elements")
-	set_pause_mode(PAUSE_MODE_STOP)
-	set_pickable(true)
-	set_fixed_process(true)
-	set_process_input(true)
-	rpc_config("emit_signal", RPC_MODE_SYNC)
-	rpc_config("set_pos", RPC_MODE_SYNC)
+func _init():
 	var speak_area = Area2D.new()
 	var speak_shape = CircleShape2D.new()
 	speak_shape.set_radius(speaking_radius)
@@ -59,6 +52,15 @@ func _ready():
 	attack_timer.set_name("AttackTimer")
 	attack_timer.set_one_shot(true)
 	add_child(attack_timer)
+
+func _ready():
+	add_to_group("elements")
+	set_pause_mode(PAUSE_MODE_STOP)
+	set_pickable(true)
+	set_fixed_process(true)
+	set_process_input(true)
+	rpc_config("emit_signal", RPC_MODE_SYNC)
+	rpc_config("set_pos", RPC_MODE_SYNC)
 	if not timeline.right_click_menu.is_connected("item_pressed", self, "verb_pressed"):
 		timeline.right_click_menu.connect("item_pressed", self, "verb_pressed")
 	if not is_connected("on_clicked", self, "_on_clicked"):
