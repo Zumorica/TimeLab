@@ -148,6 +148,8 @@ sync func pre_configure_game(spawn_points):
 	var map
 	var map_scene = load("res://src/map/maps/test_lab.tscn")
 	map = map_scene.instance()
+	if is_server:
+		rpc("set_gamemode", gamemode_list.values()[get_node("/root/Lobby/Panel/gamemodeSelection").get_selected()])
 	get_node("/root/Lobby").queue_free()
 	get_tree().get_root().add_child(map)
 	get_current_client().add_child(user_interface)
@@ -174,7 +176,6 @@ sync func set_gamemode(path):
 remote func post_configure_game(id):
 	clients_prepared.append(id)
 	if clients_prepared.size() == clients_ready.size():
-		rpc("set_gamemode", gamemode_list.values()[get_node("/root/Lobby/Panel/gamemodeSelection").get_selected()])
 		gamemode.emit_signal("on_game_start")
 		gamemode.emit_signal("gamemode_prepare")
 		for element in get_tree().get_nodes_in_group("elements"):
@@ -184,11 +185,12 @@ remote func post_configure_game(id):
 				rpc_id(client_id, "done_preconfig")
 
 remote func done_preconfig():
+	get_tree().set_pause(false)
 	gamemode.emit_signal("on_game_start")
 	gamemode.emit_signal("gamemode_prepare")
 	for element in get_tree().get_nodes_in_group("elements"):
 		element.emit_signal("on_game_start")
-	get_tree().set_pause(false)
+	
 	
 func send_global_message(msg):
 	get_current_client().update_chat(msg)
