@@ -198,8 +198,7 @@ speaking_radius = 1000
 
 [node name="TestItem" parent="." instance=ExtResource( 6 )]
 
+transform/pos = Vector2( 1, 0 )
 show_name = "Unknown"
-description = "[REDACTED]"
-speaking_radius = 1000
 
 

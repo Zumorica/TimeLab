@@ -5,46 +5,19 @@
 
 [node name="Item" instance=ExtResource( 1 )]
 
-inventory_image = ExtResource( 2 )
+transform/pos = Vector2( 0.35849, 0 )
 
 [node name="Sprite" parent="."]
 
-<<<<<<< HEAD
-input/pickable = false
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-script/script = ExtResource( 1 )
-show_name = "Unknown"
-description = "[REDACTED]"
-direction = 0
-is_movable = true
-intent = 2
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 0.5
-state = 0
-speed = 80
-interact_range = 100
-speaking_radius = 1000
-gender = 0
-inventory_image = null
-
-[node name="TextureFrame" type="TextureFrame" parent="."]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 32.0
-margin/bottom = 32.0
-=======
->>>>>>> origin/inventory
+transform/pos = Vector2( 15.8113, 16.0748 )
 texture = ExtResource( 2 )
+
+[node name="Area2D" parent="."]
+
+transform/pos = Vector2( 0.358482, 0 )
+
+[node name="CollisionShape2D" parent="Area2D"]
+
+transform/pos = Vector2( 16.0748, 15.8113 )
 
 
