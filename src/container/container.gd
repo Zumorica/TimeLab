@@ -9,7 +9,6 @@ var storage = {}
 # Contains the slot nodes
 var slot_list = []
 var bound_item
-var bound_slot
 
 func _ready():
 	display_node = get_node(display_node)
@@ -24,7 +23,7 @@ func get_item(slot):
 	if storage.has(slot):
 		return storage[slot]
 
-func add_item(item, slot=null, on_map=true):
+func add_item(item, slot=null):
 	if is_full():
 		return
 	if !slot:
@@ -35,8 +34,7 @@ func add_item(item, slot=null, on_map=true):
 				break
 	
 	storage[slot] = item
-	if on_map:
-		get_node("/root/Map").remove_child(item)
+	item.get_parent().remove_child(item)
 	slot.add_child(item)
 	item.set_pos(Vector2(2, 2))
 	emit_signal("on_item_stored", self, item)
@@ -58,12 +56,9 @@ func bind_to_cursor(slot):
 	var item = storage[slot]
 	item.set_process(true)
 	bound_item = item
-	bound_slot = slot
 
 func bind_to_slot(slot):
 	if bound_item:
 		bound_item.set_process(false)
-		remove_item(bound_slot)
-		bound_slot = null
-		add_item(bound_item, slot, false)
+		add_item(bound_item, slot)
 		bound_item = null
