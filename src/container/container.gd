@@ -14,7 +14,8 @@ func _ready():
 	display_node = get_node(display_node)
 	display_node.hide()
 	for c in display_node.get_node("Background").get_children():
-		slot_list.append(c)
+		if not c.get_name() == "BindLayer":
+			slot_list.append(c)
 
 func is_full():
 	return storage.size() == storage_size
@@ -34,7 +35,8 @@ func add_item(item, slot=null):
 				break
 	
 	storage[slot] = item
-	item.get_parent().remove_child(item)
+	if item.get_parent():
+		item.get_parent().remove_child(item)
 	slot.add_child(item)
 	item.set_pos(Vector2(2, 2))
 	emit_signal("on_item_stored", self, item)
@@ -60,5 +62,6 @@ func bind_to_cursor(slot):
 func bind_to_slot(slot):
 	if bound_item:
 		bound_item.set_process(false)
+		storage.erase(bound_item.get_parent())
 		add_item(bound_item, slot)
 		bound_item = null

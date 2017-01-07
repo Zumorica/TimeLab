@@ -49,6 +49,8 @@ func _unhandled_input(ev):
 		else:
 			inventory.display()
 		accept_event()
+	if ev.is_action_pressed("drop"):
+		inventory.drop(inventory.get_node("Background/RHandSlot"))
 
 func send_message():
 	var msg = text_input.get_text()
