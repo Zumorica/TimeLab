@@ -8,18 +8,23 @@ export(NodePath) var display_node
 var storage = {}
 # Contains the slot nodes
 var slot_list = []
+var bound_item
+var bound_slot
 
 func _ready():
 	display_node = get_node(display_node)
 	display_node.hide()
 	for c in display_node.get_node("Background").get_children():
 		slot_list.append(c)
-	print(slot_list)
 
 func is_full():
 	return storage.size() == storage_size
 
-func add_item(item, slot=null):
+func get_item(slot):
+	if storage.has(slot):
+		return storage[slot]
+
+func add_item(item, slot=null, on_map=true):
 	if is_full():
 		return
 	if !slot:
@@ -30,17 +35,15 @@ func add_item(item, slot=null):
 				break
 	
 	storage[slot] = item
-	get_node("/root/Map").remove_child(item)
+	if on_map:
+		get_node("/root/Map").remove_child(item)
 	slot.add_child(item)
 	item.set_pos(Vector2(2, 2))
 	emit_signal("on_item_stored", self, item)
 
-func remove_item(item):
-	for k in storage:
-		if storage[k] == item:
-			k.remove_child(item)
-			storage.erase(k)
-			break
+func remove_item(slot):
+		slot.remove_child(slot.get_child(0))
+		storage.erase(slot)
 
 func display():
 	display_node.show()
@@ -48,3 +51,19 @@ func display():
 
 func hide_display():
 	display_node.hide()
+
+func bind_to_cursor(slot):
+	if !storage.has(slot):
+		return
+	var item = storage[slot]
+	item.set_process(true)
+	bound_item = item
+	bound_slot = slot
+
+func bind_to_slot(slot):
+	if bound_item:
+		bound_item.set_process(false)
+		remove_item(bound_slot)
+		bound_slot = null
+		add_item(bound_item, slot, false)
+		bound_item = null

@@ -24,3 +24,7 @@ sync func set_inventory_texture(texture):
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	_input_event(viewport, event, shape_idx)
+
+func _process(dt):
+	var mouse_pos = get_parent().get_local_mouse_pos()
+	set_pos(mouse_pos)
