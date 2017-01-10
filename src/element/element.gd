@@ -39,26 +39,26 @@ remote var last_collider = null
 remote var health = max_health
 
 func _init():
-	var speak_area = Area2D.new()
-	var speak_shape = CircleShape2D.new()
-	speak_shape.set_radius(speaking_radius)
-	speak_area.add_shape(speak_shape)
-	speak_area.set_name("SpeakArea2D")
-	speak_area.set_enable_monitoring(true)
-	add_child(speak_area)
-	var attack_timer = Timer.new()
-	attack_timer.set_wait_time(attack_delay)
-	attack_timer.connect("timeout", self, "reset_attack_timer")
-	attack_timer.set_name("AttackTimer")
-	attack_timer.set_one_shot(true)
-	add_child(attack_timer)
+	add_speak_area()
+	if not has_node("AttackTimer"):
+		var attack_timer = Timer.new()
+		attack_timer.set_wait_time(attack_delay)
+		attack_timer.connect("timeout", self, "reset_attack_timer")
+		attack_timer.set_name("AttackTimer")
+		attack_timer.set_one_shot(true)
+		add_child(attack_timer)
 
 func _ready():
-	add_to_group("elements")
-	set_pause_mode(PAUSE_MODE_STOP)
-	set_pickable(true)
-	set_fixed_process(true)
-	set_process_input(true)
+	if not is_in_group("elements"):
+		add_to_group("elements")
+	if get_pause_mode() != PAUSE_MODE_STOP:
+		set_pause_mode(PAUSE_MODE_STOP)
+	if not is_pickable():
+		set_pickable(true)
+	if not is_fixed_processing():
+		set_fixed_process(true)
+	if not is_processing_input():
+		set_process_input(true)
 	rpc_config("emit_signal", RPC_MODE_SYNC)
 	rpc_config("set_pos", RPC_MODE_SYNC)
 	if not timeline.right_click_menu.is_connected("item_pressed", self, "verb_pressed"):
@@ -84,6 +84,22 @@ func _ready():
 #	var pos = get_pos()
 #	return Vector3(pos.x, pos.y, get_floor())
 
+func add_speak_area():
+	if not has_node("SpeakArea2D"):
+		var speak_area = Area2D.new()
+		var speak_shape = CircleShape2D.new()
+		add_child(speak_area)
+		speak_shape.set_radius(speaking_radius)
+		speak_area.add_shape(speak_shape)
+		speak_area.set_name("SpeakArea2D")
+		speak_area.set_enable_monitoring(true)
+		speak_area.set_pickable(false)
+		
+		
+func remove_speak_area():
+	if has_node("SpeakArea2D"):
+		get_node("SpeakArea2D").free()
+	
 func examine_element():
 	timeline.get_current_client().update_chat(description)
 
@@ -210,9 +226,10 @@ func speak(msg):
 
 func _input_event(viewport, event, shape):
 	if event.is_action_pressed("left_click") and not event.is_echo():
-		emit_signal("on_clicked")
 		get_tree().set_input_as_handled()
+		emit_signal("on_clicked")
 	if event.is_action_pressed("right_click") and not event.is_echo() and not verbs.empty():
+		get_tree().set_input_as_handled()
 		var menu = timeline.right_click_menu
 		timeline.right_click_menu_pointer = self
 		menu.clear()

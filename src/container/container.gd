@@ -37,7 +37,9 @@ func add_item(item, slot=null):
 	storage[slot] = item
 	var item_path = item.get_path()
 	timeline.rpc("_sync_adding", item_path)
+	item.remove_speak_area()
 	slot.add_child(item)
+	item.add_speak_area()
 	item.set_pos(Vector2(2, 2))
 	emit_signal("on_item_stored", self, item)
 
