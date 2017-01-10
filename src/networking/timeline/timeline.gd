@@ -38,6 +38,8 @@ func host_server(port, max_players):
 		is_busy = false
 		is_online = true
 		is_server = true
+		get_current_client().set_ID(get_tree().get_network_unique_id())
+		get_current_client().configure_network_mode(NETWORK_MODE_MASTER)
 		var lobby = load("res://src/menu/Lobby.tscn").instance()
 		get_node("/root").add_child(lobby)
 		get_node("/root/Lobby/Panel/startButton").show()
@@ -196,3 +198,12 @@ func send_global_message(msg):
 	get_current_client().update_chat(msg)
 	for client in get_node("Clients").get_children():
 		client.rpc("update_chat", msg)
+
+sync func _sync_adding(item_path):
+	var item = get_node(item_path)
+	item.get_parent().remove_child(item)
+
+sync func _sync_drop(item_path, mob):
+	var item = get_node(item_path)
+	get_node("/root/Map").add_child(item)
+	item.set_pos(mob.get_pos())

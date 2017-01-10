@@ -5,10 +5,10 @@ func drop(slot):
 		return
 	var item = storage[slot]
 	remove_item(slot)
-	var client = get_parent().get_parent().get_parent()#This has to be changed eventually, pfft.
+	var client = timeline.get_current_client()
 	var mob = client.get_mob()
-	get_node("/root/Map").add_child(item)
-	item.set_pos(mob.get_pos())
+	var item_path = item.get_path()
+	timeline.rpc("_sync_drop", item_path, mob)
 
 func _draw():
 	var cur_size = get_size()

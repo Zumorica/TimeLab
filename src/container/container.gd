@@ -35,8 +35,8 @@ func add_item(item, slot=null):
 				break
 	
 	storage[slot] = item
-	if item.get_parent():
-		item.get_parent().remove_child(item)
+	var item_path = item.get_path()
+	timeline.rpc("_sync_adding", item_path)
 	slot.add_child(item)
 	item.set_pos(Vector2(2, 2))
 	emit_signal("on_item_stored", self, item)
