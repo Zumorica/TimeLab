@@ -11,34 +11,6 @@ signal on_attack(other)		# When this node attacks another node.
 signal on_death()	# When this node's health reaches zero.
 signal on_client_change(client) # Called when this element's client is changed.
 
-# State bit flags
-const DEAD = int(pow(2,0)) # When this element is dead/destroyed.
-const BURNING = int(pow(2,1)) # When this element is on fire.
-const MUTE = int(pow(2,2)) # When this element can't talk.
-const BLIND = int(pow(2,3)) # When this element can't see.
-const DEAF = int(pow(2,4)) # When this element can't hear.
-const CANT_WALK = int(pow(2,5)) # When this element can't walk.
-const CANT_ATTACK = int(pow(2,6)) # When this element can't attack.
-const CANT_USE_ITEMS = int(pow(2, 7)) # When this element can't use items.
-const CANT_INTERACT = int(pow(2, 8)) # When this element can't interact with others.
-const CANT_BE_INTERACTED = int(pow(2, 9)) # When others can't interact with this element.
-
-# Direction constants
-const NORTH = 0
-const SOUTH = 1
-const WEST = 2
-const EAST = 3
-const direction_index = {0 : Vector2(0, -1),
-						 1 : Vector2(0, 1),
-						 2 : Vector2(-1, 0),
-						 3 : Vector2(1, 0)}
-
-# Intents.
-
-const INTENT_NONE = 0
-const INTENT_INTERACT = 1
-const INTENT_ATTACK = 2
-
 export var show_name = "Unknown"
 export var description = "[REDACTED]"
 export(int, "NORTH", "SOUTH", "WEST", "EAST") remote var direction = 0
@@ -135,9 +107,9 @@ func set_intent(new_intent):
 		intent = new_intent
 
 func reset_attack_timer():
-	if ((state & CANT_ATTACK) == CANT_ATTACK):
-		rset("state", state ^ CANT_ATTACK)
-		state ^= CANT_ATTACK
+	if ((state & s_flag.CANT_ATTACK) == s_flag.CANT_ATTACK):
+		rset("state", state ^ s_flag.CANT_ATTACK)
+		state ^= s_flag.CANT_ATTACK
 
 sync func damage(damage, other):
 	if (not invincible):
@@ -146,25 +118,25 @@ sync func damage(damage, other):
 		emit_signal("on_health_change", health)
 		if (health <= 0):
 			health = 0
-			state |= DEAD
+			state |= s_flag.DEAD
 			emit_signal("on_death", other)
 
 func attack(other, bonus = 0):
-	if (not (state & DEAD) and not (state & CANT_ATTACK)) and other extends timeline.element_base:
+	if (not (state & s_flag.DEAD) and not (state & s_flag.CANT_ATTACK)) and other extends s_base.element:
 		var damage = (randi()%11) * (attack_factor + bonus)
 		other.rpc("damage", damage, self)
 		rpc("emit_signal", "on_attack", other)
-		rset("state", state | CANT_ATTACK)
-		state |= CANT_ATTACK
+		rset("state", state | s_flag.CANT_ATTACK)
+		state |= s_flag.CANT_ATTACK
 		get_node("AttackTimer").start()
 
 func _on_clicked():
 	var cmob = timeline.get_current_client().get_mob()
 	if cmob:
 		var intention = cmob.get_intent()
-		if intention  == INTENT_INTERACT:
+		if intention  == s_intent.INTERACT:
 			rpc("emit_signal", "on_interacted", cmob, false)
-		elif intention == INTENT_ATTACK:
+		elif intention == s_intent.ATTACK:
 			cmob.attack(self)
 
 func _fixed_process(dt):
@@ -173,22 +145,22 @@ func _fixed_process(dt):
 			if is_network_master() and timeline.get_current_client().get_mob() == self and !timeline.get_current_client().get_node("UserInterface").is_chat_visible:
 				var move_direction = Vector2(0, 0)
 				var old_direction = direction
-				if not (state & CANT_WALK) and not (state & DEAD):
+				if not (state & s_flag.CANT_WALK) and not (state & s_flag.DEAD):
 					if Input.is_action_pressed("ui_up"):
-						move_direction += direction_index[NORTH]
-						direction = NORTH
+						move_direction += s_direction.index[s_direction.NORTH]
+						direction = s_direction.NORTH
 						last_collider = null
 					if Input.is_action_pressed("ui_down"):
-						move_direction += direction_index[SOUTH]
-						direction = SOUTH
+						move_direction += s_direction.index[s_direction.SOUTH]
+						direction = s_direction.SOUTH
 						last_collider = null
 					if Input.is_action_pressed("ui_left"):
-						move_direction += direction_index[WEST]
-						direction = WEST
+						move_direction += s_direction.index[s_direction.WEST]
+						direction = s_direction.WEST
 						last_collider = null
 					if Input.is_action_pressed("ui_right"):
-						move_direction += direction_index[EAST]
-						direction = EAST
+						move_direction += s_direction.index[s_direction.EAST]
+						direction = s_direction.EAST
 						last_collider = null
 
 				if move_direction != Vector2(0, 0):
@@ -223,11 +195,11 @@ func receive_message(msg):
 		client.update_chat(msg)
 
 sync func hear(msg):
-	if not state & DEAF:
+	if not state & s_flag.DEAF:
 		receive_message(msg)
 
 func speak(msg):
-	if not state & MUTE:
+	if not state & s_flag.MUTE:
 		for child in get_node("SpeakArea2D").get_overlapping_bodies():
 			if child extends timeline.element_base:
 				print(child.show_name)
