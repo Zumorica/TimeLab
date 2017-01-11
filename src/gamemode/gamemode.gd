@@ -5,7 +5,6 @@ var notify_mode = true
 
 signal on_game_start()
 signal gamemode_prepare()
-signal gamemode_check_win()
 
 func _init():
 	connect("on_game_start", self, "notify_gamemode")

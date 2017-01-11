@@ -169,6 +169,8 @@ sync func set_gamemode(path):
 	var new_gamemode = load(path).new()
 	assert new_gamemode extends s_base.gamemode
 	gamemode = new_gamemode
+	gamemode.set_name(gamemode.name)
+	add_child(gamemode)
 
 remote func post_configure_game(id):
 	clients_prepared.append(id)
