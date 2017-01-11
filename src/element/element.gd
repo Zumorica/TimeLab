@@ -73,6 +73,8 @@ func _ready():
 	attack_timer.set_name("AttackTimer")
 	attack_timer.set_one_shot(true)
 	add_child(attack_timer)
+	if not timeline.right_click_menu.is_connected("item_pressed", self, "verb_pressed"):
+		timeline.right_click_menu.connect("item_pressed", self, "verb_pressed")
 	if not is_connected("on_clicked", self, "_on_clicked"):
 		connect("on_clicked", self, "_on_clicked")
 	if not is_connected("input_event", self, "_input_event"):
@@ -93,6 +95,9 @@ func _ready():
 #func get_pos3():
 #	var pos = get_pos()
 #	return Vector3(pos.x, pos.y, get_floor())
+
+func examine_element():
+	timeline.get_current_client().update_chat(description)
 
 func get_client():
 	return client
@@ -133,7 +138,7 @@ sync func damage(damage, other):
 			emit_signal("on_death", other)
 
 func attack(other, bonus = 0):
-	if (not (state & DEAD) and not (state & CANT_ATTACK)) and other extends get_node("/root/timeline").element_base:
+	if (not (state & DEAD) and not (state & CANT_ATTACK)) and other extends timeline.element_base:
 		var damage = (randi()%11) * (attack_factor + bonus)
 		other.rpc("damage", damage, self)
 		rpc("emit_signal", "on_attack", other)
@@ -142,7 +147,7 @@ func attack(other, bonus = 0):
 		get_node("AttackTimer").start()
 
 func _on_clicked():
-	var cmob = get_node("/root/timeline").get_current_client().get_mob()
+	var cmob = timeline.get_current_client().get_mob()
 	if cmob:
 		var intention = cmob.get_intent()
 		if intention  == INTENT_INTERACT:
@@ -151,9 +156,9 @@ func _on_clicked():
 			cmob.attack(self)
 
 func _fixed_process(dt):
-	if get_node("/root/timeline").is_online:
+	if timeline.is_online:
 		if self extends KinematicBody2D:
-			if is_network_master() and get_node("/root/timeline").get_current_client().get_mob() == self and !get_node("/root/timeline").get_current_client().get_node("UserInterface").is_chat_visible:
+			if is_network_master() and timeline.get_current_client().get_mob() == self and !timeline.get_current_client().get_node("UserInterface").is_chat_visible:
 				var move_direction = Vector2(0, 0)
 				var old_direction = direction
 				if not (state & CANT_WALK) and not (state & DEAD):
@@ -183,7 +188,7 @@ func _fixed_process(dt):
 						move_direction = normal.slide(move_direction)
 						last_collider = get_collider()
 						emit_signal("on_collide", get_collider())
-						if get_collider() extends get_node("/root/timeline").element_base:
+						if get_collider() extends timeline.element_base:
 							get_collider().emit_signal("on_collided", self)
 						move(move_direction * speed * dt)
 					var new_pos = get_pos()
@@ -193,7 +198,39 @@ func _fixed_process(dt):
 						rset("direction", direction)
 						rpc("emit_signal", "on_direction_change", direction)
 
+func verb_pressed(id):
+	var menu = timeline.right_click_menu
+	if timeline.right_click_menu_pointer == self and id > 0:
+		timeline.right_click_menu_pointer = null
+		call(verbs.values()[id - 1])
+		menu.hide()
+
+func receive_message(msg):
+	if get_client():
+		var client = get_client()
+		client.update_chat(msg)
+
+sync func hear(msg):
+	if not state & DEAF:
+		receive_message(msg)
+
+func speak(msg):
+	if not state & MUTE:
+		for child in get_node("SpeakArea2D").get_overlapping_bodies():
+			if child extends timeline.element_base:
+				print(child.show_name)
+				child.rpc("hear", "%s: %s" % [show_name, msg])
+
 func _input_event(viewport, event, shape):
 	if event.is_action_pressed("left_click") and not event.is_echo():
 		emit_signal("on_clicked")
 		get_tree().set_input_as_handled()
+	if event.is_action_pressed("right_click") and not event.is_echo() and not verbs.empty():
+		var menu = timeline.right_click_menu
+		timeline.right_click_menu_pointer = self
+		menu.clear()
+		menu.add_item(show_name)
+		for key in verbs:
+			menu.add_item(key)
+		menu.set_pos(get_pos())
+		menu.show()
