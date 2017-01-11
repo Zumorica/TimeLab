@@ -12,6 +12,11 @@ func _ready():
 	if is_client():
 		set_process_input(true)
 
+remote func update_chat(msg):
+	if has_node("UserInterface") and is_client():
+		var UI = get_node("UserInterface")
+		UI._update_chat(msg)
+
 remote func send_info(id):
 	rset_id(id, "info", info)
 

@@ -57,7 +57,7 @@ func send_message():
 	else:
 		timeline.update_global_chat("%s: %s" % [client.get_ID(),msg])
 
-sync func _update_chat(msg):
+func _update_chat(msg):
 	var messages = get_node("Layer/Chat/ChatWindow/Messages")
 	messages.get_parent().show()
 	messages.append_bbcode(msg)

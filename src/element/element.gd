@@ -39,6 +39,8 @@ const INTENT_NONE = 0
 const INTENT_INTERACT = 1
 const INTENT_ATTACK = 2
 
+export var show_name = "Unknown"
+export var description = "[REDACTED]"
 export(int, "NORTH", "SOUTH", "WEST", "EAST") remote var direction = 0
 export(bool) var is_movable = true
 export(int, "No intent", "Interact intent", "Attack intent") remote var intent = 2 setget set_intent, get_intent
@@ -51,7 +53,10 @@ export(float) var attack_delay = 0.5
 export(int, FLAGS) remote var state = 0
 export(int) var speed = 80
 export(int) var interact_range = 100
+export(int) var speaking_radius = 1000
 export(int, "Neutral", "Male", "Female") var gender = 0
+var verbs = {"Examine" : "examine_element"}
+
 onready var orig_name = get_name()
 #var z_floor = 0 setget set_floor,get_floor # Might get removed in the future.
 var client = null setget get_client,_set_client # Do not change from this node. Call set_mob from client instead.
@@ -67,6 +72,13 @@ func _ready():
 	set_process_input(true)
 	rpc_config("emit_signal", RPC_MODE_SYNC)
 	rpc_config("set_pos", RPC_MODE_SYNC)
+	var speak_area = Area2D.new()
+	var speak_shape = CircleShape2D.new()
+	speak_shape.set_radius(speaking_radius)
+	speak_area.add_shape(speak_shape)
+	speak_area.set_name("SpeakArea2D")
+	speak_area.set_enable_monitoring(true)
+	add_child(speak_area)
 	var attack_timer = Timer.new()
 	attack_timer.set_wait_time(attack_delay)
 	attack_timer.connect("timeout", self, "reset_attack_timer")
