@@ -8,13 +8,9 @@ var clients_ready = []
 var clients_prepared = []
 var lobby_client_list
 onready var network_handler = NetworkedMultiplayerENet.new()
-onready var element_base = preload("res://src/element/element.gd")
-onready var client_base = preload("res://src/client/client.tscn")
-onready var client_code_base = preload("res://src/client/client.gd")
-onready var human_scene = preload("res://src/mob/living/human/human.tscn")
-onready var client = client_base.instance() setget get_current_client
+onready var client = s_base.client_scene.instance() setget get_current_client
 onready var right_click_menu = PopupMenu.new()
-onready var user_interface = preload("res://src/GUI/UserInterface.tscn").instance()
+onready var user_interface = s_base.user_interface_scene.instance()
 var right_click_menu_pointer = null
 var random_seed
 
@@ -63,7 +59,7 @@ func connect_handlers():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	
 remote func create_new_client(id):
-	var new_client = client_base.instance()
+	var new_client = s_base.client_scene.instance()
 	new_client.set_ID(id)
 	get_node("Clients").add_child(new_client)
 	#new_client.request_info()
@@ -155,7 +151,7 @@ sync func pre_configure_game(spawn_points):
 	get_current_client().get_node("UserInterface").add_child(right_click_menu)
 	for client in get_node("Clients").get_children():
 		print(client)
-		var human = human_scene.instance()
+		var human = s_base.human_scene.instance()
 		get_node("/root/Map").add_child(human)
 		client.set_mob(human)
 		client.get_mob().set_pos(spawn_points[client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
