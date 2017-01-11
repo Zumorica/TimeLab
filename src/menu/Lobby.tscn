@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://src/menu/LobbyClientList.gd" type="Script" id=1]
 [ext_resource path="res://src/menu/readyButton.gd" type="Script" id=2]
 [ext_resource path="res://src/menu/startButton.gd" type="Script" id=3]
+[ext_resource path="res://src/menu/gamemodeSelection.gd" type="Script" id=4]
 
 [node name="Lobby" type="Control"]
 
@@ -74,6 +75,26 @@ shortcut = null
 text = "Start"
 flat = false
 script/script = ExtResource( 3 )
+
+[node name="gamemodeSelection" type="OptionButton" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 464.0
+margin/top = 485.0
+margin/right = 591.0
+margin/bottom = 505.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Gamemode"
+flat = false
+align = 0
+selected = -1
+items = [  ]
+script/script = ExtResource( 4 )
 
 [connection signal="pressed" from="Panel/readyButton" to="Panel/readyButton" method="_on_Button_pressed"]
 
