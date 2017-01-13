@@ -147,6 +147,8 @@ sync func pre_configure_game(spawn_points):
 	var map
 	var map_scene = load("res://src/map/maps/test_lab.tscn")
 	map = map_scene.instance()
+	if is_server:
+		rpc("set_gamemode", gamemode_list.values()[get_node("/root/Lobby/Panel/gamemodeSelection").get_selected()])
 	get_node("/root/Lobby").queue_free()
 	get_tree().get_root().add_child(map)
 	get_current_client().add_child(user_interface)
@@ -175,7 +177,6 @@ sync func set_gamemode(path):
 remote func post_configure_game(id):
 	clients_prepared.append(id)
 	if clients_prepared.size() == clients_ready.size():
-		rpc("set_gamemode", gamemode_list.values()[get_node("/root/Lobby/Panel/gamemodeSelection").get_selected()])
 		gamemode.emit_signal("on_game_start")
 		gamemode.emit_signal("gamemode_prepare")
 		for element in get_tree().get_nodes_in_group("elements"):
@@ -183,6 +184,28 @@ remote func post_configure_game(id):
 		for client_id in clients_prepared:
 			if client_id != 1:
 				rpc_id(client_id, "done_preconfig")
+
+sync func synced_instance(thing, parent_path, variables={}, call_functions=[]):
+	assert typeof(parent_path) == TYPE_NODE_PATH
+	assert typeof(variables) == TYPE_DICTIONARY
+	if typeof(thing) == TYPE_STRING:
+		thing = load(thing)
+		assert typeof(thing) == TYPE_OBJECT and thing.has_method("instance")
+		thing = thing.instance()
+	elif typeof(thing) == TYPE_OBJECT:
+		if thing.has_method("instance"):
+			thing = thing.instance()
+		elif thing.has_method("new"):
+			thing = thing.new()
+		else:
+			raise()
+	assert typeof(thing) == TYPE_OBJECT and thing extends Node
+	for variable in variables.keys():
+		thing.set(variable, variables[variable])
+	for method in call_functions:
+		thing.call(method)
+	get_node(parent_path).add_child(thing)
+	
 
 remote func done_preconfig():
 	gamemode.emit_signal("on_game_start")
