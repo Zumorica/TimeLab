@@ -1,9 +1,15 @@
-[gd_resource type="TileSet" load_steps=7 format=1]
+[gd_resource type="TileSet" load_steps=13 format=1]
 
 [ext_resource path="res://res/img/tile/wall/generic.png" type="Texture" id=1]
 [ext_resource path="res://res/img/tile/floor/blue.png" type="Texture" id=2]
 [ext_resource path="res://res/img/tile/floor/rock.png" type="Texture" id=3]
 [ext_resource path="res://res/img/tile/wall/rock.png" type="Texture" id=4]
+[ext_resource path="res://res/img/tile/floor/black.png" type="Texture" id=5]
+[ext_resource path="res://res/img/tile/floor/white.png" type="Texture" id=6]
+[ext_resource path="res://res/img/tile/floor/red.png" type="Texture" id=7]
+[ext_resource path="res://res/img/tile/floor/wood.png" type="Texture" id=8]
+[ext_resource path="res://res/img/tile/floor/chess.png" type="Texture" id=9]
+[ext_resource path="res://res/img/tile/wall/glass.png" type="Texture" id=10]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 
@@ -52,4 +58,53 @@ extents = Vector2( 16, 16 )
 3/navigation_offset = Vector2( 16, 16 )
 3/shape_offset = Vector2( 16, 16 )
 3/shapes = [ SubResource( 2 ) ]
+4/name = "BlackFloor"
+4/texture = ExtResource( 5 )
+4/tex_offset = Vector2( 0, 0 )
+4/region = Rect2( 0, 0, 32, 32 )
+4/occluder_offset = Vector2( 16, 16 )
+4/navigation_offset = Vector2( 16, 16 )
+4/shape_offset = Vector2( 0, 0 )
+4/shapes = [  ]
+5/name = "WhiteFloor"
+5/texture = ExtResource( 6 )
+5/tex_offset = Vector2( 0, 0 )
+5/region = Rect2( 0, 0, 32, 32 )
+5/occluder_offset = Vector2( 16, 16 )
+5/navigation_offset = Vector2( 16, 16 )
+5/shape_offset = Vector2( 0, 0 )
+5/shapes = [  ]
+6/name = "RedFloor"
+6/texture = ExtResource( 7 )
+6/tex_offset = Vector2( 0, 0 )
+6/region = Rect2( 0, 0, 32, 32 )
+6/occluder_offset = Vector2( 16, 16 )
+6/navigation_offset = Vector2( 16, 16 )
+6/shape_offset = Vector2( 0, 0 )
+6/shapes = [  ]
+7/name = "WoodenFloor"
+7/texture = ExtResource( 8 )
+7/tex_offset = Vector2( 0, 0 )
+7/region = Rect2( 0, 0, 32, 32 )
+7/occluder_offset = Vector2( 16, 16 )
+7/navigation_offset = Vector2( 16, 16 )
+7/shape_offset = Vector2( 0, 0 )
+7/shapes = [  ]
+8/name = "ChessFloor"
+8/texture = ExtResource( 9 )
+8/tex_offset = Vector2( 0, 0 )
+8/region = Rect2( 0, 0, 32, 32 )
+8/occluder_offset = Vector2( 16, 16 )
+8/navigation_offset = Vector2( 16, 16 )
+8/shape_offset = Vector2( 0, 0 )
+8/shapes = [  ]
+9/name = "GlassWall"
+9/texture = ExtResource( 10 )
+9/tex_offset = Vector2( 0, 0 )
+9/region = Rect2( 0, 0, 32, 32 )
+9/occluder_offset = Vector2( 16, 16 )
+9/occluder = SubResource( 1 )
+9/navigation_offset = Vector2( 16, 16 )
+9/shape_offset = Vector2( 16, 16 )
+9/shapes = [ SubResource( 2 ) ]
 
