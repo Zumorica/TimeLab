@@ -209,20 +209,29 @@ func verb_pressed(id):
 		call(verbs.values()[id - 1])
 		menu.hide()
 
-func receive_message(msg):
+sync func receive_message(msg):
 	if get_client():
 		var client = get_client()
 		client.update_chat(msg)
 
-sync func hear(msg):
+func send_message(msg):
+	if get_client():
+		get_client().send_message(msg)
+
+func hear(msg):
 	if not state & s_flag.DEAF:
-		receive_message(msg)
+		rpc("receive_message", msg)
 
 func speak(msg):
 	if not state & s_flag.MUTE:
 		for child in get_node("SpeakArea2D").get_overlapping_bodies():
 			if child extends s_base.element:
 				child.rpc("hear", "%s: %s" % [show_name, msg])
+
+func emote(emotion):
+	for child in get_node("SpeakArea2D").get_overlapping_bodies():
+		if child extends s_base.element and child.get_client():
+			child.rpc("receive_message", "%s %s" %[show_name, emotion])
 
 func _input_event(viewport, event, shape):
 	if event.is_action_pressed("left_click") and not event.is_echo():
