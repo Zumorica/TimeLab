@@ -30,9 +30,28 @@ func _on_death(cause):
 
 func _on_damaged(damage, other):
 	randomize()
-	if rand_range(0, 1) < 0.25 and is_network_master():
+	if rand_range(0, 1) < 0.25 and is_network_master() and not other extends s_base.disease:
 		timeline.rpc("synced_instance", "res://src/decal/blood.tscn", NodePath("/root/Map"), {"transform/pos" : get_pos(), "decay_child" : randi()%4})
 
+func contract_disease(disease):
+	if typeof(disease) == TYPE_STRING:
+		var disease = load(disease)
+		if disease.has_method("instance"):
+			disease = disease.instance()
+		else:
+			raise()
+	elif typeof(disease) == TYPE_OBJECT:
+		if disease.has_method("instance"):
+			disease = disease.instance()
+	assert typeof(disease) == TYPE_OBJECT
+	if has_node("Diseases"):
+		get_node("Diseases").add_child(disease)
+	else:
+		var diseases = Node2D.new()
+		diseases.set_name("Diseases")
+		add_child(diseases)
+		diseases.add_child(disease)
+	
 func _on_direction_change(direction):
 	get_node("North").hide()
 	get_node("South").hide()
