@@ -17,6 +17,12 @@ remote func update_chat(msg):
 		var UI = get_node("UserInterface")
 		UI._update_chat(msg)
 
+func send_message(msg):
+	if not is_client():
+		rpc("update_chat", msg)
+	else:
+		update_chat(msg)
+
 remote func send_info(id):
 	rset_id(id, "info", info)
 
