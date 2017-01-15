@@ -25,7 +25,6 @@ collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
-show_name = "Unknown"
 description = "[REDACTED]"
 direction = 0
 is_movable = true

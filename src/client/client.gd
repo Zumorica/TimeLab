@@ -6,9 +6,12 @@ remote var info = {}
 var mob = null setget get_mob,set_mob
 var active_camera = null setget get_active_camera,set_active_camera
 var network_id setget get_ID,set_ID
+var character_name = "Unknown"
+var character_gender = s_gender.MALE
 
 func _ready():
 	add_to_group("clients")
+	timeline.connect("on_game_start", self, "_on_game_start")
 	if is_client():
 		set_process_input(true)
 
@@ -125,3 +128,20 @@ func _set_mob_node(mob_node):
 		mob.add_child(camera)
 		set_active_camera(mob.get_node("Camera2D"))
 	return true
+	
+func _on_game_start():
+	if is_client():
+		get_mob().show_name = character_name
+		get_mob().gender = character_gender
+		get_mob().rset("show_name", get_mob().show_name)
+		get_mob().rset("gender", get_mob().gender)
+	
+func change_character_name(name):
+	character_name = name
+	print(name)
+	print(get_ID(), " END")
+	
+func change_character_gender(button):
+	character_gender = button.get_position_in_parent() + 1
+	print(button)
+	print(get_ID(), " END")

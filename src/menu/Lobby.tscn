@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://src/menu/LobbyClientList.gd" type="Script" id=1]
 [ext_resource path="res://src/menu/readyButton.gd" type="Script" id=2]
 [ext_resource path="res://src/menu/startButton.gd" type="Script" id=3]
 [ext_resource path="res://src/menu/gamemodeSelection.gd" type="Script" id=4]
+[ext_resource path="res://src/menu/CharacterCreation.gd" type="Script" id=5]
 
 [node name="Lobby" type="Control"]
 
@@ -94,6 +95,100 @@ align = 0
 selected = -1
 items = [  ]
 script/script = ExtResource( 4 )
+
+[node name="TabContainer" type="TabContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 409.0
+margin/top = 16.0
+margin/right = 1011.0
+margin/bottom = 416.0
+tab_align = 0
+tabs_visible = true
+
+[node name="Character Creation" type="Control" parent="TabContainer"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 558.0
+margin/bottom = 328.0
+script/script = ExtResource( 5 )
+
+[node name="Name" type="LineEdit" parent="TabContainer/Character Creation"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 19.0
+margin/top = 30.0
+margin/right = 164.0
+margin/bottom = 54.0
+placeholder/text = "Character Name"
+placeholder/alpha = 0.6
+max_length = 15
+expand_to_len = false
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="ButtonGroup" type="ButtonGroup" parent="TabContainer/Character Creation"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 19.0
+margin/top = 62.0
+margin/right = 92.0
+margin/bottom = 108.0
+alignment = 0
+
+[node name="CheckBox" type="CheckBox" parent="TabContainer/Character Creation/ButtonGroup"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 73.0
+margin/bottom = 23.0
+toggle_mode = true
+is_pressed = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Male"
+flat = false
+align = 0
+
+[node name="CheckBox2" type="CheckBox" parent="TabContainer/Character Creation/ButtonGroup"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 23.0
+margin/right = 73.0
+margin/bottom = 46.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Female"
+flat = false
+align = 0
 
 [connection signal="pressed" from="Panel/readyButton" to="Panel/readyButton" method="_on_Button_pressed"]
 
