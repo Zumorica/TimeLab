@@ -1,5 +1,7 @@
 extends Node
 
+signal on_game_start()
+
 var client_list = {}
 var is_busy = false # When connecting/creating a server, this will be true.
 var is_online = false # When connected to/hosting a server, this will be true.
@@ -37,6 +39,7 @@ func host_server(port, max_players):
 		is_busy = false
 		is_online = true
 		is_server = true
+		get_current_client().set_name("1")
 		var lobby = load("res://src/menu/Lobby.tscn").instance()
 		get_node("/root").add_child(lobby)
 		get_node("/root/Lobby/Panel/startButton").show()
@@ -177,6 +180,7 @@ sync func set_gamemode(path):
 remote func post_configure_game(id):
 	clients_prepared.append(id)
 	if clients_prepared.size() == clients_ready.size():
+		emit_signal("on_game_start")
 		gamemode.emit_signal("on_game_start")
 		gamemode.emit_signal("gamemode_prepare")
 		for element in get_tree().get_nodes_in_group("elements"):
@@ -208,6 +212,7 @@ sync func synced_instance(thing, parent_path, variables={}, call_functions=[]):
 	
 
 remote func done_preconfig():
+	emit_signal("on_game_start")
 	gamemode.emit_signal("on_game_start")
 	gamemode.emit_signal("gamemode_prepare")
 	for element in get_tree().get_nodes_in_group("elements"):
