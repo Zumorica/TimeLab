@@ -12,7 +12,7 @@ signal on_attack(other)		# When this node attacks another node.
 signal on_death()	# When this node's health reaches zero.
 signal on_client_change(client) # Called when this element's client is changed.
 
-export var show_name = "Unknown"
+export remote var show_name = "Unknown"
 export var description = "[REDACTED]"
 export(int, "NORTH", "SOUTH", "WEST", "EAST") remote var direction = 0
 export(bool) var is_movable = true
@@ -27,7 +27,7 @@ export(int, FLAGS) remote var state = 0
 export(int) var speed = 80
 export(int) var interact_range = 100
 export(int) var speaking_radius = 1000
-export(int, "Neutral", "Male", "Female") var gender = 0
+export(int, "Neutral", "Male", "Female") var gender = s_gender.NEUTRAL
 var verbs = {"Examine" : "examine_element"}
 
 onready var orig_name = get_name()
@@ -132,20 +132,22 @@ func reset_attack_timer():
 		state ^= s_flag.CANT_ATTACK
 
 sync func damage(damage, other):
+	if typeof(other) == TYPE_STRING:
+		other = get_node(other)
 	if (not invincible):
 		health -= round(damage * damage_factor)
-		emit_signal("on_damaged", damage, other)
+		emit_signal("on_damaged", damage, str(other.get_path()))
 		emit_signal("on_health_change", health)
 		if (health <= 0):
 			health = 0
 			state |= s_flag.DEAD
-			emit_signal("on_death", other)
+			emit_signal("on_death", str(other.get_path()))
 
 func attack(other, bonus = 0):
 	if (not (state & s_flag.DEAD) and not (state & s_flag.CANT_ATTACK)) and other extends s_base.element:
 		var damage = (randi()%11) * (attack_factor + bonus)
-		other.rpc("damage", damage, self)
-		rpc("emit_signal", "on_attack", other)
+		other.rpc("damage", damage, str(get_path()))
+		rpc("emit_signal", "on_attack", str(other.get_path()))
 		rset("state", state | s_flag.CANT_ATTACK)
 		state |= s_flag.CANT_ATTACK
 		get_node("AttackTimer").start()
@@ -155,7 +157,7 @@ func _on_clicked():
 	if cmob:
 		var intention = cmob.get_intent()
 		if intention  == s_intent.INTERACT:
-			rpc("emit_signal", "on_interacted", cmob, false)
+			rpc("emit_signal", "on_interacted", str(cmob.get_path()), false)
 		elif intention == s_intent.ATTACK:
 			cmob.attack(self)
 
@@ -191,9 +193,9 @@ func _fixed_process(dt):
 						var normal = get_collision_normal()
 						move_direction = normal.slide(move_direction)
 						last_collider = get_collider()
-						emit_signal("on_collide", get_collider())
+						rpc("emit_signal", "on_collide", str(get_collider().get_path()))
 						if get_collider() extends s_base.element:
-							get_collider().emit_signal("on_collided", self)
+							get_collider().rpc("emit_signal", "on_collided", str(get_path()))
 						move(move_direction * speed * dt)
 					var new_pos = get_pos()
 					if last_pos != new_pos:
@@ -226,7 +228,7 @@ func speak(msg):
 	if not state & s_flag.MUTE:
 		for child in get_node("SpeakArea2D").get_overlapping_bodies():
 			if child extends s_base.element:
-				child.rpc("hear", "%s: %s" % [show_name, msg])
+				child.hear("%s: %s" % [show_name, msg])
 
 func emote(emotion):
 	for child in get_node("SpeakArea2D").get_overlapping_bodies():
