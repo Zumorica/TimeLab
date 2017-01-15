@@ -13,6 +13,8 @@ func _ready():
 		connect("on_damaged", self, "_on_damaged")
 	if not is_connected("on_death", self, "_on_death"):
 		connect("on_death", self, "_on_death")
+	if not is_connected("on_attack", self, "_on_attack"):
+		connect("on_attack", self, "_on_attack")
 
 func _start_role_check():
 	if role != s_role.none and get_client() != null:
@@ -21,6 +23,15 @@ func _start_role_check():
 				get_client().rpc_id(get_client().get_ID(), "update_chat", s_role.description[role])
 			else:
 				get_client().update_chat(s_role.description[role])
+
+func _on_attack(other):
+	if not (state & s_flag.DEAD):
+		var player = get_node("AnimationPlayer")
+		if player.has_animation("attack"):
+			player.queue("attack")
+		else:
+			player.add_animation("attack", "res://res/anim/mob/attack_animation.tres")
+			player.queue("attack")
 
 func _on_death(cause):
 	set_rotd(90)
@@ -53,18 +64,18 @@ func contract_disease(disease):
 		diseases.add_child(disease)
 	
 func _on_direction_change(direction):
-	get_node("North").hide()
-	get_node("South").hide()
-	get_node("West").hide()
-	get_node("East").hide()
+	get_node("Sprites/North").hide()
+	get_node("Sprites/South").hide()
+	get_node("Sprites/West").hide()
+	get_node("Sprites/East").hide()
 	if direction == s_direction.NORTH:
-		get_node("North").show()
+		get_node("Sprites/North").show()
 	elif direction == s_direction.SOUTH:
-		get_node("South").show()
+		get_node("Sprites/South").show()
 	elif direction == s_direction.WEST:
-		get_node("West").show()
+		get_node("Sprites/West").show()
 	elif direction == s_direction.EAST:
-		get_node("East").show()
+		get_node("Sprites/East").show()
 
 func _on_Area2D_input_event( viewport, event, shape_idx ):
 	_input_event(viewport, event, shape_idx)

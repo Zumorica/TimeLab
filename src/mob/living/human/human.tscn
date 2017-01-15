@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://src/mob/mob.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/mob/living/human/human.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://res/img/mob/living/human/0.png" type="Texture" id=4]
 [ext_resource path="res://res/img/mob/living/human/3.png" type="Texture" id=5]
 [ext_resource path="res://res/img/mob/living/human/2.png" type="Texture" id=6]
+[ext_resource path="res://res/anim/mob/attack_animation.tres" type="Animation" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -28,20 +29,24 @@ shape = SubResource( 1 )
 transform/pos = Vector2( -0.56742, 0 )
 transform/scale = Vector2( 1.16723, 1 )
 
-[node name="Base" parent="North"]
+[node name="Base" parent="Sprites/North"]
 
 texture = ExtResource( 3 )
 
-[node name="Base" parent="South"]
+[node name="Base" parent="Sprites/South"]
 
 texture = ExtResource( 4 )
 
-[node name="Base" parent="West"]
+[node name="Base" parent="Sprites/West"]
 
 texture = ExtResource( 5 )
 
-[node name="Base" parent="East"]
+[node name="Base" parent="Sprites/East"]
 
 texture = ExtResource( 6 )
+
+[node name="AnimationPlayer" parent="."]
+
+anims/attack_animation = ExtResource( 7 )
 
 
