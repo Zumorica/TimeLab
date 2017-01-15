@@ -25,6 +25,17 @@ func _start_role_check():
 				get_client().update_chat(s_role.description[role])
 
 func _on_attack(other):
+	if typeof(other) == TYPE_STRING:
+		other = get_node(other)
+	if other == self:
+		if gender == s_gender.NEUTRAL:
+			emote("attacks itself!")
+		elif gender == s_gender.MALE:
+			emote("attacks himself!")
+		elif gender == s_gender.FEMALE:
+			emote("attacks herself!")
+	else:
+		emote("attacks %s!" % other.show_name)
 	if not (state & s_flag.DEAD):
 		var player = get_node("AnimationPlayer")
 		if player.has_animation("attack"):
@@ -41,7 +52,9 @@ func _on_death(cause):
 
 func _on_damaged(damage, other):
 	randomize()
-	if rand_range(0, 1) < 0.25 and is_network_master() and not other extends s_base.disease:
+	if typeof(other) == TYPE_STRING:
+		other = get_node(other)
+	if rand_range(0, 1) < 0.25 and is_network_master() and not (other extends s_base.disease):
 		timeline.rpc("synced_instance", "res://src/decal/blood.tscn", NodePath("/root/Map"), {"transform/pos" : get_pos(), "decay_child" : randi()%4})
 
 func contract_disease(disease):
