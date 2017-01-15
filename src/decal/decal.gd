@@ -15,5 +15,4 @@ func _ready():
 	for node in get_children():
 		node.hide()
 	get_node(str(decay_child)).show()
-	print(decay_child)
 	
