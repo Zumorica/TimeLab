@@ -55,7 +55,7 @@ func _on_damaged(damage, other):
 	if typeof(other) == TYPE_STRING:
 		other = get_node(other)
 	if rand_range(0, 1) < 0.25 and is_network_master() and not (other extends s_base.disease):
-		timeline.rpc("synced_instance", "res://src/decal/blood.tscn", NodePath("/root/Map"), {"transform/pos" : get_pos(), "decay_child" : randi()%4})
+		timeline.rpc("synced_instance", "res://src/decal/blood.tscn", NodePath("/root/Map"), {"transform/pos" : get_pos() + Vector2(0, 18), "decay_child" : randi()%4})
 
 func contract_disease(disease):
 	if typeof(disease) == TYPE_STRING:
