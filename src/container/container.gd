@@ -60,6 +60,8 @@ func bind_to_cursor(slot):
 	var item = storage[slot]
 	item.set_process(true)
 	bound_item = item
+	# Fix item appearing behind slots
+	slot.get_parent().move_child(slot, slot.get_parent().get_child_count()-1)
 
 func bind_to_slot(slot):
 	if bound_item:
