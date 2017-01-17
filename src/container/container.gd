@@ -63,6 +63,14 @@ func bind_to_cursor(slot):
 	if !storage.has(slot):
 		return
 	var item = storage[slot]
+	# bind_to_cursor is called when there's an item in the slot we clicked so we can add some custom logic, for swapping items for example
+	if bound_item:
+		if slot == bound_item.get_parent():
+			bound_item.set_process(false)
+			bound_item.set_pos(Vector2(18, 18))
+			bound_item = null
+			return
+		bind_to_slot(slot)
 	item.set_process(true)
 	bound_item = item
 	# Fix item appearing behind slots
