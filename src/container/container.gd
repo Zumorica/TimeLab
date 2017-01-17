@@ -43,7 +43,8 @@ sync func _add_item(item_path, slot_path):
 	item.get_parent().remove_child(item)
 	slot.add_child(item)
 	item.add_speak_area()
-	item.set_pos(Vector2(16, 16))
+	# 18 instead of 16 to account for the slot border
+	item.set_pos(Vector2(18, 18))
 	emit_signal("on_item_stored", self, item)
 
 func remove_item(slot):
