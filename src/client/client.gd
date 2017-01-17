@@ -138,10 +138,6 @@ func _on_game_start():
 	
 func change_character_name(name):
 	character_name = name
-	print(name)
-	print(get_ID(), " END")
 	
 func change_character_gender(button):
 	character_gender = button.get_position_in_parent() + 1
-	print(button)
-	print(get_ID(), " END")
