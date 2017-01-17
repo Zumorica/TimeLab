@@ -12,8 +12,9 @@ func _ready():
 
 func _on_interacted(other, item):
 	var client = other.get_client()
-	var inv = client.get_mob().get_node("Inventory")
+	var inv = client.get_mob().get_node("Layer/Inventory")
 	inv.add_item(self, inv.get_node("Background/RHandSlot"))
+	
 
 func get_inventory_texture():
 	return inventory_image

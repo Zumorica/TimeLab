@@ -32,11 +32,15 @@ func add_item(item, slot=null):
 			if not s.has_item():
 				slot = s
 				break
+	rpc("_add_item", item.get_path(), slot.get_path())
 	
+
+sync func _add_item(item_path, slot_path):
+	var item = get_node(item_path)
+	var slot = get_node(slot_path)
 	storage[slot] = item
-	var item_path = item.get_path()
-	timeline.rpc("_sync_adding", item_path)
 	item.remove_speak_area()
+	item.get_parent().remove_child(item)
 	slot.add_child(item)
 	item.add_speak_area()
 	item.set_pos(Vector2(2, 2))
@@ -60,7 +64,7 @@ func bind_to_cursor(slot):
 	item.set_process(true)
 	bound_item = item
 	# Fix item appearing behind slots
-	slot.get_parent().move_child(slot, slot.get_parent().get_child_count()-1)
+	slot.raise()
 
 func bind_to_slot(slot):
 	if bound_item:

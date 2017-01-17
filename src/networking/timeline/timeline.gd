@@ -161,7 +161,10 @@ sync func pre_configure_game(spawn_points):
 		get_node("/root/Map").add_child(human)
 		client.set_mob(human)
 		var inv = inventory.instance()
-		client.get_mob().add_child(inv)
+		var layer = CanvasLayer.new()
+		layer.set_name("Layer")
+		client.get_mob().add_child(layer)
+		client.get_mob().get_node("Layer").add_child(inv)
 		client.get_mob().set_pos(spawn_points[client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
 	get_current_client().add_child(user_interface)
 	get_current_client().get_node("UserInterface").add_child(right_click_menu)
@@ -200,12 +203,3 @@ func send_global_message(msg):
 	get_current_client().update_chat(msg)
 	for client in get_node("Clients").get_children():
 		client.rpc("update_chat", msg)
-
-sync func _sync_adding(item_path):
-	var item = get_node(item_path)
-	item.get_parent().remove_child(item)
-
-sync func _sync_drop(item_path, mob):
-	var item = get_node(item_path)
-	get_node("/root/Map").add_child(item)
-	item.set_pos(mob.get_pos())
