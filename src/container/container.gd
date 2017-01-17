@@ -14,14 +14,15 @@ func _ready():
 	display_node = get_node(display_node)
 	display_node.hide()
 	for c in display_node.get_node("Background").get_children():
-		slot_list.append(c)
+		slot_list.append(c.get_name())
 
 func is_full():
 	return storage.size() == storage_size
 
-func get_item(slot):
-	if storage.has(slot):
-		return storage[slot]
+func get_item(slot_name):
+	for s in storage:
+		if s.get_name() == slot_name:
+			return storage[s]
 
 func add_item(item, slot=null):
 	if is_full():
