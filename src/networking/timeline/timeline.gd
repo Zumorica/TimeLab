@@ -1,5 +1,7 @@
 extends Node
 
+signal on_game_start()
+
 var client_list = {}
 var is_busy = false # When connecting/creating a server, this will be true.
 var is_online = false # When connected to/hosting a server, this will be true.
@@ -39,8 +41,7 @@ func host_server(port, max_players):
 		is_busy = false
 		is_online = true
 		is_server = true
-		get_current_client().set_ID(get_tree().get_network_unique_id())
-		get_current_client().configure_network_mode(NETWORK_MODE_MASTER)
+		get_current_client().set_name("1")
 		var lobby = load("res://src/menu/Lobby.tscn").instance()
 		get_node("/root").add_child(lobby)
 		get_node("/root/Lobby/Panel/startButton").show()
@@ -179,10 +180,13 @@ sync func set_gamemode(path):
 	var new_gamemode = load(path).new()
 	assert new_gamemode extends s_base.gamemode
 	gamemode = new_gamemode
+	gamemode.set_name(gamemode.name)
+	add_child(gamemode)
 
 remote func post_configure_game(id):
 	clients_prepared.append(id)
 	if clients_prepared.size() == clients_ready.size():
+		emit_signal("on_game_start")
 		gamemode.emit_signal("on_game_start")
 		gamemode.emit_signal("gamemode_prepare")
 		for element in get_tree().get_nodes_in_group("elements"):
@@ -191,13 +195,35 @@ remote func post_configure_game(id):
 			if client_id != 1:
 				rpc_id(client_id, "done_preconfig")
 
+sync func synced_instance(thing, parent_path, variables={}, call_functions=[]):
+	assert typeof(parent_path) == TYPE_NODE_PATH
+	assert typeof(variables) == TYPE_DICTIONARY
+	if typeof(thing) == TYPE_STRING:
+		thing = load(thing)
+		assert typeof(thing) == TYPE_OBJECT and thing.has_method("instance")
+		thing = thing.instance()
+	elif typeof(thing) == TYPE_OBJECT:
+		if thing.has_method("instance"):
+			thing = thing.instance()
+		elif thing.has_method("new"):
+			thing = thing.new()
+		else:
+			raise()
+	assert typeof(thing) == TYPE_OBJECT and thing extends Node
+	for variable in variables.keys():
+		thing.set(variable, variables[variable])
+	for method in call_functions:
+		thing.call(method)
+	get_node(parent_path).add_child(thing)
+	
+
 remote func done_preconfig():
-	get_tree().set_pause(false)
+	emit_signal("on_game_start")
 	gamemode.emit_signal("on_game_start")
 	gamemode.emit_signal("gamemode_prepare")
 	for element in get_tree().get_nodes_in_group("elements"):
 		element.emit_signal("on_game_start")
-	
+	get_tree().set_pause(false)
 	
 func send_global_message(msg):
 	get_current_client().update_chat(msg)

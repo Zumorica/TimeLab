@@ -11,6 +11,7 @@
 script/script = ExtResource( 1 )
 auto_delete = false
 auto_delete_delay = 150
+decay_child = 0
 
 [node name="0" type="Sprite" parent="."]
 
