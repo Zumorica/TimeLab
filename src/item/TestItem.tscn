@@ -9,15 +9,6 @@ transform/pos = Vector2( 0.35849, 0 )
 
 [node name="Sprite" parent="."]
 
-transform/pos = Vector2( 15.8113, 16.0748 )
 texture = ExtResource( 2 )
-
-[node name="Area2D" parent="."]
-
-transform/pos = Vector2( 0.358482, 0 )
-
-[node name="CollisionShape2D" parent="Area2D"]
-
-transform/pos = Vector2( 16.0748, 15.8113 )
 
 
