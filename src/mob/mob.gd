@@ -2,9 +2,11 @@ extends "res://src/element/element.gd"
 
 
 remote var role = s_role.none
+var draw_show_name = true
 export(String, "generic", "human") var race
 
 func _ready():
+	set_process(true)
 	if not is_connected("on_game_start", self, "_start_role_check"):
 		connect("on_game_start", self, "_start_role_check")
 	if not is_connected("on_direction_change", self, "_on_direction_change"):
@@ -15,6 +17,19 @@ func _ready():
 		connect("on_death", self, "_on_death")
 	if not is_connected("on_attack", self, "_on_attack"):
 		connect("on_attack", self, "_on_attack")
+
+func _draw():
+	if draw_show_name:
+		set_draw_behind_parent(false)
+		var label = Label.new()
+		var font = label.get_font("")
+		var size = font.get_string_size(show_name)
+		draw_string(font, Vector2(-size.x / 2, -16 -size.y/2), show_name)
+		label.free()
+	
+func _process(dt):
+	if draw_show_name:
+		update()
 
 func _start_role_check():
 	if role != s_role.none and get_client() != null:
