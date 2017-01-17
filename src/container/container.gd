@@ -14,8 +14,7 @@ func _ready():
 	display_node = get_node(display_node)
 	display_node.hide()
 	for c in display_node.get_node("Background").get_children():
-		if not c.get_name() == "BindLayer":
-			slot_list.append(c)
+		slot_list.append(c)
 
 func is_full():
 	return storage.size() == storage_size
