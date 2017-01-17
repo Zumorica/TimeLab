@@ -3,12 +3,18 @@ extends "res://src/container/container.gd"
 func drop(slot):
 	if !storage.has(slot):
 		return
+	
+	rpc("_drop", slot.get_path(), timeline.get_current_client().get_mob().get_path())
+
+sync func _drop(slot_path, mob_path):
+	var slot = get_node(slot_path)
+	var mob = get_node(mob_path)
 	var item = storage[slot]
+	item.remove_speak_area()
 	remove_item(slot)
-	var client = timeline.get_current_client()
-	var mob = client.get_mob()
-	var item_path = item.get_path()
-	timeline.rpc("_sync_drop", item_path, mob)
+	get_node("/root/Map").add_child(item)
+	item.add_speak_area()
+	item.set_pos(mob.get_pos())
 
 func _draw():
 	var cur_size = get_size()
