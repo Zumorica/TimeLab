@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://src/map/map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entity/spawn/spawn.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/obj/machine/conveyor/conveyor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/obj/machine/provider/wirelessextender.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/item/TestItem.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/item/weapon/Knife.tscn" type="PackedScene" id=7]
 
 [node name="Map" instance=ExtResource( 1 )]
 
@@ -15,7 +16,6 @@ tile_data = IntArray( -1048593, 0, -1048592, 0, -1048591, 0, -1048590, 0, -10485
 [node name="Spawn_point" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 457, 278 )
-show_name = "Unknown"
 description = "[REDACTED]"
 intent = 0
 speaking_radius = 1000
@@ -25,7 +25,6 @@ gender = 0
 
 transform/pos = Vector2( 560, 48 )
 input/pickable = false
-show_name = "Unknown"
 description = "[REDACTED]"
 is_movable = true
 attack_delay = 0.5
@@ -36,7 +35,6 @@ close_delay = 5
 
 transform/pos = Vector2( 784, 48 )
 input/pickable = false
-show_name = "Unknown"
 description = "[REDACTED]"
 is_movable = true
 attack_delay = 0.5
@@ -47,7 +45,6 @@ close_delay = 5
 
 transform/pos = Vector2( 1232, 208 )
 input/pickable = false
-show_name = "Unknown"
 description = "[REDACTED]"
 is_movable = true
 attack_delay = 0.5
@@ -57,7 +54,6 @@ close_delay = 5
 [node name="Conveyor" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 352, 160 )
-show_name = "Unknown"
 description = "[REDACTED]"
 speed = 100
 speaking_radius = 1000
@@ -66,7 +62,6 @@ conveyor_velocity = 100.0
 [node name="Conveyor2" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 352, 160 )
-show_name = "Unknown"
 description = "[REDACTED]"
 speed = 100
 speaking_radius = 1000
@@ -75,7 +70,6 @@ conveyor_velocity = 30.0
 [node name="Conveyor3" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 352, 160 )
-show_name = "Unknown"
 description = "[REDACTED]"
 speed = 100
 speaking_radius = 1000
@@ -84,7 +78,6 @@ conveyor_velocity = 30.0
 [node name="Conveyor4" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 352, 128 )
-show_name = "Unknown"
 description = "[REDACTED]"
 speed = 100
 speaking_radius = 1000
@@ -93,7 +86,6 @@ conveyor_velocity = 30.0
 [node name="Conveyor5" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 352, 96 )
-show_name = "Unknown"
 description = "[REDACTED]"
 speed = 100
 speaking_radius = 1000
@@ -102,7 +94,6 @@ conveyor_velocity = 30.0
 [node name="Conveyor6" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 352, 64 )
-show_name = "Unknown"
 description = "[REDACTED]"
 direction = 3
 speed = 100
@@ -112,7 +103,6 @@ conveyor_velocity = 30.0
 [node name="Conveyor7" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 384, 64 )
-show_name = "Unknown"
 description = "[REDACTED]"
 direction = 3
 speed = 100
@@ -122,7 +112,6 @@ conveyor_velocity = 30.0
 [node name="Conveyor8" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 416, 64 )
-show_name = "Unknown"
 description = "[REDACTED]"
 direction = 3
 speed = 100
@@ -132,7 +121,6 @@ conveyor_velocity = 30.0
 [node name="Conveyor9" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 448, 64 )
-show_name = "Unknown"
 description = "[REDACTED]"
 direction = 1
 speed = 100
@@ -142,7 +130,6 @@ conveyor_velocity = 30.0
 [node name="Conveyor10" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 448, 96 )
-show_name = "Unknown"
 description = "[REDACTED]"
 direction = 1
 speed = 100
@@ -152,7 +139,6 @@ conveyor_velocity = 30.0
 [node name="Conveyor11" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 448, 128 )
-show_name = "Unknown"
 description = "[REDACTED]"
 direction = 1
 speed = 100
@@ -162,7 +148,6 @@ conveyor_velocity = 30.0
 [node name="Conveyor12" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 448, 160 )
-show_name = "Unknown"
 description = "[REDACTED]"
 direction = 2
 speed = 100
@@ -172,7 +157,6 @@ conveyor_velocity = 30.0
 [node name="Conveyor13" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 416, 160 )
-show_name = "Unknown"
 description = "[REDACTED]"
 direction = 2
 speed = 100
@@ -182,7 +166,6 @@ conveyor_velocity = 30.0
 [node name="Conveyor14" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 384, 160 )
-show_name = "Unknown"
 description = "[REDACTED]"
 direction = 2
 speed = 100
@@ -192,13 +175,15 @@ conveyor_velocity = 30.0
 [node name="Wireless Extender" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 384, 128 )
-show_name = "Unknown"
 description = "[REDACTED]"
 speaking_radius = 1000
 
 [node name="TestItem" parent="." instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 1, 0 )
-show_name = "Unknown"
+transform/pos = Vector2( 65, 64 )
+
+[node name="Knife" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 192, 64 )
 
 

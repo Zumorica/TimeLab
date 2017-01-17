@@ -154,16 +154,20 @@ func attack(other, bonus = 0):
 
 func _on_clicked():
 	var cmob = timeline.get_current_client().get_mob()
+	var item = cmob.get_node("Layer/Inventory").get_item("RHandSlot")
 	if cmob:
 		var intention = cmob.get_intent()
 		if intention  == s_intent.INTERACT:
-			var item = cmob.get_node("Layer/Inventory").get_item("RHandSlot")
 			if item:
 				rpc("emit_signal", "on_interacted", str(cmob.get_path()), item.get_path())
 			else:
 				rpc("emit_signal", "on_interacted", str(cmob.get_path()), false)
 		elif intention == s_intent.ATTACK:
-			cmob.attack(self)
+			if item:
+				if item extends s_base.element:
+					cmob.attack(self, item.attack_factor)
+				else:
+					cmob.attack(self)
 
 func _fixed_process(dt):
 	if timeline.is_online:
