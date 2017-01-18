@@ -13,6 +13,7 @@ var bound_item = null
 func _ready():
 	display_node = get_node(display_node)
 	display_node.hide()
+	display_node.set_inactive()
 	for c in display_node.get_node("Background").get_children():
 		slot_list.append(c.get_name())
 
@@ -85,4 +86,3 @@ func bind_to_slot(slot):
 			storage.erase(bound_item.get_parent())
 		add_item(bound_item, slot, true)
 		bound_item = null
-		print(storage)
