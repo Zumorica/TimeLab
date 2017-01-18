@@ -105,70 +105,70 @@ margin/top = 335.0
 margin/right = 184.0
 margin/bottom = 371.0
 
-[node name="BSlot1" parent="Background" instance=ExtResource( 3 )]
+[node name="BSlot1" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
 
 margin/left = 199.0
 margin/top = 335.0
 margin/right = 235.0
 margin/bottom = 371.0
 
-[node name="BSlot2" parent="Background" instance=ExtResource( 3 )]
+[node name="BSlot2" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
 
 margin/left = 235.0
 margin/top = 335.0
 margin/right = 271.0
 margin/bottom = 371.0
 
-[node name="BSlot3" parent="Background" instance=ExtResource( 3 )]
+[node name="BSlot3" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
 
 margin/left = 271.0
 margin/top = 335.0
 margin/right = 307.0
 margin/bottom = 371.0
 
-[node name="BSlot4" parent="Background" instance=ExtResource( 3 )]
+[node name="BSlot4" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
 
 margin/left = 307.0
 margin/top = 335.0
 margin/right = 343.0
 margin/bottom = 371.0
 
-[node name="BSlot5" parent="Background" instance=ExtResource( 3 )]
+[node name="BSlot5" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
 
 margin/left = 343.0
 margin/top = 335.0
 margin/right = 379.0
 margin/bottom = 371.0
 
-[node name="BSlot6" parent="Background" instance=ExtResource( 3 )]
+[node name="BSlot6" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
 
 margin/left = 379.0
 margin/top = 335.0
 margin/right = 415.0
 margin/bottom = 371.0
 
-[node name="BSlot7" parent="Background" instance=ExtResource( 3 )]
+[node name="BSlot7" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
 
 margin/left = 415.0
 margin/top = 335.0
 margin/right = 451.0
 margin/bottom = 371.0
 
-[node name="BSlot8" parent="Background" instance=ExtResource( 3 )]
+[node name="BSlot8" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
 
 margin/left = 451.0
 margin/top = 335.0
 margin/right = 487.0
 margin/bottom = 371.0
 
-[node name="BSlot9" parent="Background" instance=ExtResource( 3 )]
+[node name="BSlot9" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
 
 margin/left = 487.0
 margin/top = 335.0
 margin/right = 523.0
 margin/bottom = 371.0
 
-[node name="BSlot10" parent="Background" instance=ExtResource( 3 )]
+[node name="BSlot10" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
 
 margin/left = 523.0
 margin/top = 335.0

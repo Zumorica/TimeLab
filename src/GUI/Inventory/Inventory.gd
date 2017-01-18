@@ -1,5 +1,9 @@
 extends "res://src/container/container.gd"
 
+func set_inactive():
+	for s in get_tree().get_nodes_in_group("belt_slots"):
+		s.set_disabled(true)
+
 func drop(slot):
 	if !storage.has(slot):
 		return
