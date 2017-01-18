@@ -8,7 +8,7 @@ export(NodePath) var display_node
 var storage = {}
 # Contains the slot nodes
 var slot_list = []
-var bound_item
+var bound_item = null
 
 func _ready():
 	display_node = get_node(display_node)
@@ -24,8 +24,10 @@ func get_item(slot_name):
 		if s.get_name() == slot_name:
 			return storage[s]
 
-func add_item(item, slot=null):
+func add_item(item, slot=null, is_swapping=false):
 	if is_full():
+		return
+	if storage.has(slot) && !is_swapping:
 		return
 	if !slot:
 		# If no slot is provided, by default the item will be stored in the first empty slot
@@ -79,6 +81,8 @@ func bind_to_cursor(slot):
 func bind_to_slot(slot):
 	if bound_item:
 		bound_item.set_process(false)
-		storage.erase(bound_item.get_parent())
-		add_item(bound_item, slot)
+		if storage[bound_item.get_parent()] == bound_item:
+			storage.erase(bound_item.get_parent())
+		add_item(bound_item, slot, true)
 		bound_item = null
+		print(storage)
