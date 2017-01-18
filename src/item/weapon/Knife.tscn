@@ -7,6 +7,7 @@
 [node name="Knife" instance=ExtResource( 1 )]
 
 script/script = ExtResource( 2 )
+attack_factor = 2.0
 
 [node name="Sprite" parent="."]
 
