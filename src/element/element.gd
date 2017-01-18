@@ -8,6 +8,7 @@ signal on_clicked()
 signal on_health_change(health)	    # When the health changes.
 signal on_interacted(other, item)	# When this node is interacted by another one.
 signal on_damaged(damage, other)	# When this node is attacked/damaged.
+signal on_healed(hp, other)
 signal on_attack(other)		# When this node attacks another node.
 signal on_death()	# When this node's health reaches zero.
 signal on_client_change(client) # Called when this element's client is changed.
@@ -132,10 +133,21 @@ func reset_attack_timer():
 		rset("state", state ^ s_flag.CANT_ATTACK)
 		state ^= s_flag.CANT_ATTACK
 
+sync func heal(hp, other):
+	if typeof(other) == TYPE_STRING:
+		other = get_node(other)
+	if hp > 0 and not ((state & s_flag.DEAD) or (state & s_flag.CANT_BE_HEALED)):
+		health += hp
+		if health > max_health:
+			health = max_health
+		emit_signal("on_healed", hp, other)
+		emit_signal("on_health_change", health)
+	
+
 sync func damage(damage, other):
 	if typeof(other) == TYPE_STRING:
 		other = get_node(other)
-	if (not invincible):
+	if not invincible and damage > 0:
 		health -= round(damage * damage_factor)
 		emit_signal("on_damaged", damage, str(other.get_path()))
 		emit_signal("on_health_change", health)
