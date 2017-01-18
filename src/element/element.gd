@@ -16,7 +16,7 @@ export remote var show_name = "Unknown"
 export var description = "[REDACTED]"
 export(int, "NORTH", "SOUTH", "WEST", "EAST") remote var direction = 0
 export(bool) var is_movable = true
-export(int, "No intent", "Interact intent", "Attack intent") remote var intent = 1 setget set_intent, get_intent
+export(int, "No intent", "Interact intent", "Attack intent") remote var intent = 2 setget set_intent, get_intent
 export(int) var max_health = 100
 export(bool) var invincible = false
 export(float) var damage_factor = 1.0
@@ -167,7 +167,9 @@ func _on_clicked():
 				if item extends s_base.element:
 					cmob.attack(self, item.attack_factor)
 				else:
-					cmob.attack(self)
+					raise()
+			else:
+				cmob.attack(self, 0)
 
 func _fixed_process(dt):
 	if timeline.is_online:
