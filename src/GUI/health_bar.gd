@@ -12,6 +12,5 @@ func _draw():
 		draw_rect(Rect2(hb_pos + Vector2(1, 1), Vector2((hb_size.x - 2) * (hb_porc / 100.0), hb_size.y - 2)), Color(0,255,0,255))
 
 func update_health(h):
-	print(h)
 	health = h
 	update()

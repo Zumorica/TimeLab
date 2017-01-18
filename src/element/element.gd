@@ -120,7 +120,7 @@ func get_intent():
 	return intent
 
 func set_intent(new_intent):
-	if not (intent < 0 or intent > 2) :
+	if not (intent > 0 or intent <= 2):
 		return
 	else:
 		rset("intent", new_intent)
@@ -194,6 +194,12 @@ func _fixed_process(dt):
 						move_direction += s_direction.index[s_direction.EAST]
 						direction = s_direction.EAST
 						last_collider = null
+					if Input.is_action_pressed("debug_interact_intent"):
+						set_intent(s_intent.INTERACT)
+						print("Interact intent set.")
+					if Input.is_action_pressed("debug_attack_intent"):
+						set_intent(s_intent.ATTACK)
+						print("Attack intent set.")
 
 				if move_direction != Vector2(0, 0):
 					last_pos = get_pos()

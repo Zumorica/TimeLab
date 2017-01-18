@@ -2,7 +2,7 @@ extends "res://src/element/element.gd"
 
 
 remote var role = s_role.none
-var draw_show_name = true
+var draw_show_name = false
 export(String, "generic", "human") var race
 
 func _ready():
