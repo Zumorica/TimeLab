@@ -122,7 +122,7 @@ func get_intent():
 
 func set_intent(new_intent):
 	if is_inside_tree():
-		if not (intent > 0 or intent <= 2):
+		if not (intent > 0 or intent <= 3):
 			return
 		else:
 			rset("intent", new_intent)
@@ -173,7 +173,6 @@ func _on_clicked():
 		if intention  == s_intent.INTERACT:
 			if item:
 				rpc("emit_signal", "on_interacted", str(cmob.get_path()), item.get_path())
-				item.emit_signal("on_used", self, cmob)
 			else:
 				rpc("emit_signal", "on_interacted", str(cmob.get_path()), false)
 		elif intention == s_intent.ATTACK:
@@ -184,6 +183,9 @@ func _on_clicked():
 					raise()
 			else:
 				cmob.attack(self, 0)
+		elif intention == s_intent.USE_ITEM:
+			if item:
+				item.rpc("emit_signal", "on_used", self, cmob)
 
 func _fixed_process(dt):
 	if timeline.is_online:
@@ -214,6 +216,9 @@ func _fixed_process(dt):
 					if Input.is_action_pressed("debug_attack_intent"):
 						set_intent(s_intent.ATTACK)
 						print("Attack intent set.")
+					if Input.is_action_pressed("debug_useitem_intent"):
+						set_intent(s_intent.USE_ITEM)
+						print("Use item intent set.")
 
 				if move_direction != Vector2(0, 0):
 					last_pos = get_pos()
