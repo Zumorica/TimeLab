@@ -3,6 +3,7 @@ extends "res://src/element/element.gd"
 signal on_pickup(mob)
 signal on_stored(container)
 signal on_inventory_texture_change(new_texture)
+signal on_used(other, holder)
 
 export(Texture) var inventory_image setget get_inventory_texture, set_inventory_texture
 

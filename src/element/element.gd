@@ -173,6 +173,7 @@ func _on_clicked():
 		if intention  == s_intent.INTERACT:
 			if item:
 				rpc("emit_signal", "on_interacted", str(cmob.get_path()), item.get_path())
+				item.emit_signal("on_used", self, cmob)
 			else:
 				rpc("emit_signal", "on_interacted", str(cmob.get_path()), false)
 		elif intention == s_intent.ATTACK:
