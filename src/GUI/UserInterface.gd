@@ -57,7 +57,13 @@ func _unhandled_input(ev):
 
 func send_message():
 	var msg = text_input.get_text()
-	if msg == "":
+	var re = RegEx.new()
+	re.compile("^\\s+$")
+	if msg == "" or re.search(msg):
+		text_input.clear()
+		text_input.hide()
+		chat_window.hide()
+		is_chat_visible = false
 		return
 	text_input.clear()
 	text_input.hide()
