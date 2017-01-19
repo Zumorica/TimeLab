@@ -13,7 +13,7 @@ signal on_attack(other)		# When this node attacks another node.
 signal on_death()	# When this node's health reaches zero.
 signal on_client_change(client) # Called when this element's client is changed.
 
-export remote var show_name = "Unknown"
+export var show_name = "Unknown"
 export var description = "[REDACTED]"
 export(int, "NORTH", "SOUTH", "WEST", "EAST") remote var direction = 0
 export(bool) var is_movable = true
@@ -41,6 +41,7 @@ remote var health = max_health
 
 func _init():
 	add_speak_area()
+	rset_config("show_name", RPC_MODE_REMOTE)
 	if not has_node("AttackTimer"):
 		var attack_timer = Timer.new()
 		attack_timer.set_wait_time(attack_delay)

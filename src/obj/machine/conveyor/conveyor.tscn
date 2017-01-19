@@ -31,6 +31,9 @@ tracks/0/keys = { "times":FloatArray( 0, 1, 2, 3 ), "transitions":FloatArray( 1,
 [node name="Conveyor" instance=ExtResource( 1 )]
 
 script/script = ExtResource( 2 )
+show_name = "Conveyor belt"
+description = "Moves items around."
+speaking_radius = 1000
 required_watts = 50
 conveyor_velocity = 1.0
 

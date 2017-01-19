@@ -21,3 +21,5 @@ func _on_used(other, holder):
 				elif holder.gender == s_gender.FEMALE:
 					holder.emote("heals herself using the health pack.")
 			uses_left -= 1
+		elif not uses_left:
+			emote("has no more uses left.")

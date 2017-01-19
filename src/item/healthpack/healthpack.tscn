@@ -7,6 +7,8 @@
 [node name="Health Pack" instance=ExtResource( 1 )]
 
 script/script = ExtResource( 2 )
+show_name = "Health pack"
+description = "A health pack."
 gender = null
 heal_value = 75
 

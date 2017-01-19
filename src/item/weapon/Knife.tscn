@@ -7,6 +7,8 @@
 [node name="Knife" instance=ExtResource( 1 )]
 
 script/script = ExtResource( 2 )
+show_name = "Knife"
+description = "Can be used for cooking or..."
 attack_factor = 2.0
 
 [node name="Sprite" parent="."]

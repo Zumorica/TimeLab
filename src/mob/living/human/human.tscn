@@ -16,7 +16,10 @@ extents = Vector2( 6.77335, 3.71569 )
 [node name="Mob" instance=ExtResource( 1 )]
 
 script/script = ExtResource( 2 )
+show_name = "Human"
+description = "A human being."
 direction = 1
+intent = 1
 race = "human"
 
 [node name="CollisionShape2D" parent="."]
