@@ -5,17 +5,21 @@ signal on_item_stored(container, item)
 export(int) var storage_size = 10
 export(NodePath) var display_node
 
+
+var is_initialized = false
 var storage = {}
 # Contains the slot nodes
 var slot_list = []
 var bound_item = null
 
 func _ready():
-	display_node = get_node(display_node)
-	display_node.hide()
-	display_node.set_inactive()
-	for c in display_node.get_node("Background").get_children():
-		slot_list.append(c.get_name())
+	if not is_initialized:
+		display_node = get_node(display_node)
+		display_node.hide()
+		display_node.set_inactive()
+		for c in display_node.get_node("Background").get_children():
+			slot_list.append(c.get_name())
+		is_initialized = true
 
 func is_full():
 	return storage.size() == storage_size
