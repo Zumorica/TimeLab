@@ -1,6 +1,6 @@
 extends "res://src/item/item.gd"
 
-export var heal_value = 75
+export var heal_value = 15
 var uses_left = 2
 
 func _ready():
