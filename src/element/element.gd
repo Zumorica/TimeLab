@@ -31,6 +31,7 @@ export(int) var speaking_radius = 1000
 export(int, "Neutral", "Male", "Female") var gender = s_gender.NEUTRAL
 var verbs = {"Examine" : "examine_element"}
 
+var old_mappos = Vector2(0, 0)
 onready var orig_name = get_name()
 #var z_floor = 0 setget set_floor,get_floor # Might get removed in the future.
 var client = null setget get_client,_set_client # Do not change from this node. Call set_mob from client instead.
@@ -220,6 +221,7 @@ func _fixed_process(dt):
 					if Input.is_action_pressed("debug_useitem_intent"):
 						set_intent(s_intent.USE_ITEM)
 						print("Use item intent set.")
+						
 
 				if move_direction != Vector2(0, 0):
 					last_pos = get_pos()
@@ -239,6 +241,11 @@ func _fixed_process(dt):
 					if old_direction != direction:
 						rset("direction", direction)
 						rpc("emit_signal", "on_direction_change", direction)
+					var mappos = sight.world_to_map(get_pos())
+					if old_mappos != mappos:
+						old_mappos = mappos
+						get_node("/root/Map/Sight").set_sight(sight.world_to_map(get_pos()))
+					
 
 func verb_pressed(id):
 	var menu = timeline.right_click_menu
