@@ -4,7 +4,7 @@
 [ext_resource path="res://res/img/GUI/invbg.png" type="Texture" id=2]
 [ext_resource path="res://src/GUI/Inventory/Slot.tscn" type="PackedScene" id=3]
 
-[node name="Inventory" type="Control"]
+[node name="Inventory" type="WindowDialog"]
 
 anchor/left = 3
 anchor/top = 3
@@ -18,6 +18,8 @@ margin/left = 300.0
 margin/top = 250.0
 margin/right = -300.0
 margin/bottom = -150.0
+popup/exclusive = false
+window/title = ""
 script/script = ExtResource( 1 )
 storage_size = 10
 display_node = NodePath(".")

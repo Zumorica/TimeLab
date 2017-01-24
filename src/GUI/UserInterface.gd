@@ -47,10 +47,7 @@ func _unhandled_input(ev):
 		send_message()
 		accept_event()
 	if ev.is_action_pressed("inventory_toggle"):
-		if inventory.is_visible():
-			inventory.hide_display()
-		else:
-			inventory.display()
+		inventory.popup()
 		accept_event()
 	if ev.is_action_pressed("drop"):
 		inventory.drop(inventory.get_node("Background/RHandSlot"))

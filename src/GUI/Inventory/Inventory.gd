@@ -1,5 +1,9 @@
 extends "res://src/container/container.gd"
 
+func _ready():
+	var char_name = timeline.get_current_client().character_name
+	set_title("%s's inventory" % char_name)
+
 func set_inactive():
 	for s in get_tree().get_nodes_in_group("belt_slots"):
 		s.set_disabled(true)

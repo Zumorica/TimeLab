@@ -1,4 +1,4 @@
-extends Control
+extends WindowDialog
 
 signal on_item_stored(container, item)
 
@@ -15,7 +15,6 @@ var bound_item = null
 func _ready():
 	if not is_initialized:
 		display_node = get_node(display_node)
-		display_node.hide()
 		display_node.set_inactive()
 		for c in display_node.get_node("Background").get_children():
 			slot_list.append(c.get_name())
