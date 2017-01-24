@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://src/module/movement/movement.gd" type="Script" id=1]
+
+[node name="Movement" type="Node2D"]
+
+script/script = ExtResource( 1 )
+speed_per_tick = 2
+
+

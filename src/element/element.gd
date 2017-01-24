@@ -63,7 +63,6 @@ func _ready():
 	if not is_processing_input():
 		set_process_input(true)
 	rpc_config("emit_signal", RPC_MODE_SYNC)
-	rpc_config("set_pos", RPC_MODE_SYNC)
 	if not timeline.right_click_menu.is_connected("item_pressed", self, "verb_pressed"):
 		timeline.right_click_menu.connect("item_pressed", self, "verb_pressed")
 	if not is_connected("on_clicked", self, "_on_clicked"):
@@ -197,19 +196,19 @@ func _fixed_process(dt):
 				var old_direction = direction
 				if not (state & s_flag.CANT_WALK) and not (state & s_flag.DEAD):
 					if Input.is_action_pressed("ui_up"):
-						move_direction += s_direction.index[s_direction.NORTH]
+						get_node("Movement").move_tiles(s_direction.index[s_direction.NORTH], true)
 						direction = s_direction.NORTH
 						last_collider = null
 					if Input.is_action_pressed("ui_down"):
-						move_direction += s_direction.index[s_direction.SOUTH]
+						get_node("Movement").move_tiles(s_direction.index[s_direction.SOUTH], true)
 						direction = s_direction.SOUTH
 						last_collider = null
 					if Input.is_action_pressed("ui_left"):
-						move_direction += s_direction.index[s_direction.WEST]
+						get_node("Movement").move_tiles(s_direction.index[s_direction.WEST], true)
 						direction = s_direction.WEST
 						last_collider = null
 					if Input.is_action_pressed("ui_right"):
-						move_direction += s_direction.index[s_direction.EAST]
+						get_node("Movement").move_tiles(s_direction.index[s_direction.EAST], true)
 						direction = s_direction.EAST
 						last_collider = null
 					if Input.is_action_pressed("debug_interact_intent"):
@@ -221,30 +220,29 @@ func _fixed_process(dt):
 					if Input.is_action_pressed("debug_useitem_intent"):
 						set_intent(s_intent.USE_ITEM)
 						print("Use item intent set.")
-						
-
-				if move_direction != Vector2(0, 0):
-					last_pos = get_pos()
-					last_move = move_direction
-					move(move_direction * speed * dt)
-					if is_colliding():
-						var normal = get_collision_normal()
-						move_direction = normal.slide(move_direction)
-						last_collider = get_collider()
-						rpc("emit_signal", "on_collide", str(get_collider().get_path()))
-						if get_collider() extends s_base.element:
-							get_collider().rpc("emit_signal", "on_collided", str(get_path()))
-						move(move_direction * speed * dt)
-					var new_pos = get_pos()
-					if last_pos != new_pos:
-						rpc("set_pos", new_pos)
 					if old_direction != direction:
 						rset("direction", direction)
-						rpc("emit_signal", "on_direction_change", direction)
-					var mappos = sight.world_to_map(get_pos())
-					if old_mappos != mappos:
-						old_mappos = mappos
-						get_node("/root/Map/Sight").set_sight(sight.world_to_map(get_pos()))
+#						
+#				if move_direction != Vector2(0, 0):
+#					last_pos = get_pos()
+#					last_move = move_direction
+#					move(move_direction * speed * dt)
+#					if is_colliding():
+#						var normal = get_collision_normal()
+#						move_direction = normal.slide(move_direction)
+#						last_collider = get_collider()
+#						rpc("emit_signal", "on_collide", str(get_collider().get_path()))
+#						if get_collider() extends s_base.element:
+#							get_collider().rpc("emit_signal", "on_collided", str(get_path()))
+#						move(move_direction * speed * dt)
+#					var new_pos = get_pos()
+#					if last_pos != new_pos:
+#						rpc("set_pos", new_pos)
+#						
+#					var mappos = sight.world_to_map(get_pos())
+#					if old_mappos != mappos:
+#						old_mappos = mappos
+						#get_node("/root/Map/Sight").set_sight(sight.world_to_map(get_pos() - Vector2(0, -16)))
 					
 
 func verb_pressed(id):
