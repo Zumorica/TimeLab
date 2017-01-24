@@ -1,58 +1,148 @@
 [gd_scene load_steps=10 format=1]
 
-[ext_resource path="res://src/mob/mob.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/mob/living/human/human.gd" type="Script" id=2]
-[ext_resource path="res://res/img/mob/living/human/0.png" type="Texture" id=3]
-[ext_resource path="res://res/img/mob/living/human/1.png" type="Texture" id=4]
-[ext_resource path="res://res/img/mob/living/human/2.png" type="Texture" id=5]
-[ext_resource path="res://res/img/mob/living/human/3.png" type="Texture" id=6]
-[ext_resource path="res://res/anim/mob/attack_animation.tres" type="Animation" id=7]
-[ext_resource path="res://src/module/movement/movement.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/mob/living/human/human.gd" type="Script" id=1]
+[ext_resource path="res://res/img/mob/living/human/0.png" type="Texture" id=2]
+[ext_resource path="res://res/img/mob/living/human/1.png" type="Texture" id=3]
+[ext_resource path="res://res/img/mob/living/human/2.png" type="Texture" id=4]
+[ext_resource path="res://res/img/mob/living/human/3.png" type="Texture" id=5]
+[ext_resource path="res://res/anim/mob/attack_animation.tres" type="Animation" id=6]
+[ext_resource path="res://src/module/movement/movement.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 6.77335, 3.71569 )
+extents = Vector2( 15.9, 15.9 )
 
-[node name="Mob" instance=ExtResource( 1 )]
+[sub_resource type="CapsuleShape2D" id=2]
 
-script/script = ExtResource( 2 )
+custom_solver_bias = 0.0
+radius = 8.0
+height = 16.0
+
+[node name="Mob" type="KinematicBody2D"]
+
+z/z = 1
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
 show_name = "Human"
 description = "A human being."
 direction = 1
+is_movable = true
 intent = 1
+max_health = 100
+invincible = false
+damage_factor = 1.0
+burn_damage_factor = 1.0
+attack_factor = 1.0
+attack_delay = 0.5
+state = 0
+speed = 80
+interact_range = 100
+speaking_radius = 1000
+gender = 0
 race = "human"
 
-[node name="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-transform/pos = Vector2( -0.5, 12.5 )
+process/pause_mode = 2
 shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
 
-[node name="CollisionShape2D" parent="Area2D"]
+[node name="Area2D" type="Area2D" parent="."]
 
+process/pause_mode = 2
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+process/pause_mode = 2
 transform/pos = Vector2( -0.56742, 0 )
 transform/scale = Vector2( 1.16723, 1 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
 
-[node name="Base" parent="Sprites/North"]
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="North" type="Node2D" parent="Sprites"]
+
+visibility/visible = false
+
+[node name="Base" type="Sprite" parent="Sprites/North"]
+
+texture = ExtResource( 2 )
+
+[node name="South" type="Node2D" parent="Sprites"]
+
+[node name="Base" type="Sprite" parent="Sprites/South"]
 
 texture = ExtResource( 3 )
 
-[node name="Base" parent="Sprites/South"]
+[node name="West" type="Node2D" parent="Sprites"]
+
+visibility/visible = false
+
+[node name="Base" type="Sprite" parent="Sprites/West"]
 
 texture = ExtResource( 4 )
 
-[node name="Base" parent="Sprites/West"]
+[node name="East" type="Node2D" parent="Sprites"]
+
+visibility/visible = false
+
+[node name="Base" type="Sprite" parent="Sprites/East"]
 
 texture = ExtResource( 5 )
 
-[node name="Base" parent="Sprites/East"]
+[node name="Camera2D" type="Camera2D" parent="." groups=[ "cameras" ]]
 
-texture = ExtResource( 6 )
+process/pause_mode = 2
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/smoothed = true
+drag_margin/h_enabled = false
+drag_margin/v_enabled = false
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
 
-[node name="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-anims/attack_animation = ExtResource( 7 )
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/attack = ExtResource( 6 )
+anims/attack_animation = ExtResource( 6 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
 
-[node name="Movement" parent="." instance=ExtResource( 8 )]
+[node name="Movement" parent="." instance=ExtResource( 7 )]
+
+[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
 
 

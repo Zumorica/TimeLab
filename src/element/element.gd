@@ -62,6 +62,7 @@ func _ready():
 		set_fixed_process(true)
 	if not is_processing_input():
 		set_process_input(true)
+	set_collision_margin(0.0)
 	rpc_config("emit_signal", RPC_MODE_SYNC)
 	if not timeline.right_click_menu.is_connected("item_pressed", self, "verb_pressed"):
 		timeline.right_click_menu.connect("item_pressed", self, "verb_pressed")
@@ -192,7 +193,6 @@ func _fixed_process(dt):
 	if timeline.is_online:
 		if self extends KinematicBody2D:
 			if is_network_master() and timeline.get_current_client().get_mob() == self and !timeline.get_current_client().get_node("UserInterface").is_chat_visible:
-				var move_direction = Vector2(0, 0)
 				var old_direction = direction
 				if not (state & s_flag.CANT_WALK) and not (state & s_flag.DEAD):
 					if Input.is_action_pressed("ui_up"):
@@ -222,6 +222,7 @@ func _fixed_process(dt):
 						print("Use item intent set.")
 					if old_direction != direction:
 						rset("direction", direction)
+						rpc("emit_signal", "on_direction_change", direction)
 #						
 #				if move_direction != Vector2(0, 0):
 #					last_pos = get_pos()
