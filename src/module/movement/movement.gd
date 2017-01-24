@@ -41,7 +41,6 @@ func _fixed_process(delta):
 				get_parent().rpc("move_to", goal_destination)
 				if get_parent().is_colliding():
 					var collider = get_parent().get_collider()
-					get_parent().last_collider = collider
 					get_parent().rpc("emit_signal", "on_collide", str(collider.get_path()))
 					if collider extends s_base.element:
 						collider.rpc("emit_signal", "on_collided", str(get_parent().get_path()))
