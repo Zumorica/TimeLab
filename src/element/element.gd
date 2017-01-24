@@ -223,7 +223,7 @@ func _fixed_process(dt):
 					if old_direction != direction:
 						rset("direction", direction)
 						rpc("emit_signal", "on_direction_change", direction)
-#						
+							
 #				if move_direction != Vector2(0, 0):
 #					last_pos = get_pos()
 #					last_move = move_direction

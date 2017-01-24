@@ -33,6 +33,13 @@ func _fixed_process(delta):
 		if is_sliding:
 			if get_parent().test_move(old_transform, goal_destination - old_pos):
 				is_sliding = false
+				get_parent().rpc("move_to", goal_destination)
+				if get_parent().is_colliding():
+					var collider = get_parent().get_collider()
+					get_parent().last_collider = collider
+					get_parent().rpc("emit_signal", "on_collide", str(collider.get_path()))
+					if collider extends s_base.element:
+						collider.rpc("emit_signal", "on_collided", str(get_parent().get_path()))
 				get_parent().rpc("move_to", old_pos)
 			else:
 				var delta_movement = goal_destination - get_parent().get_pos()
@@ -44,3 +51,5 @@ func _fixed_process(delta):
 				else:
 					is_sliding = false
 					get_parent().rpc("move_to", goal_destination)
+		elif not (int(get_parent().get_pos().x) % 32) or not (int(get_parent().get_pos().y) % 32):
+			get_parent().rpc("move_to", old_pos)

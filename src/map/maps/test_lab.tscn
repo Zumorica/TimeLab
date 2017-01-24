@@ -17,7 +17,7 @@ tile_data = IntArray( -1048593, 0, -1048592, 0, -1048591, 0, -1048590, 0, -10485
 
 [node name="Locker" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 224, 64 )
+transform/pos = Vector2( 272, 80 )
 
 [node name="Spawn_point" parent="." instance=ExtResource( 3 )]
 
