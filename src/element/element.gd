@@ -31,13 +31,9 @@ export(int) var speaking_radius = 1000
 export(int, "Neutral", "Male", "Female") var gender = s_gender.NEUTRAL
 var verbs = {"Examine" : "examine_element"}
 
-var old_mappos = Vector2(0, 0)
 onready var orig_name = get_name()
 #var z_floor = 0 setget set_floor,get_floor # Might get removed in the future.
 var client = null setget get_client,_set_client # Do not change from this node. Call set_mob from client instead.
-remote var last_pos = Vector2(0, 0)
-remote var last_move = Vector2(0, 0)
-remote var last_collider = null
 remote var health = max_health
 
 func _init():
@@ -198,19 +194,15 @@ func _fixed_process(dt):
 					if Input.is_action_pressed("ui_up"):
 						get_node("Movement").move_tiles(s_direction.index[s_direction.NORTH], true)
 						direction = s_direction.NORTH
-						last_collider = null
 					if Input.is_action_pressed("ui_down"):
 						get_node("Movement").move_tiles(s_direction.index[s_direction.SOUTH], true)
 						direction = s_direction.SOUTH
-						last_collider = null
 					if Input.is_action_pressed("ui_left"):
 						get_node("Movement").move_tiles(s_direction.index[s_direction.WEST], true)
 						direction = s_direction.WEST
-						last_collider = null
 					if Input.is_action_pressed("ui_right"):
 						get_node("Movement").move_tiles(s_direction.index[s_direction.EAST], true)
 						direction = s_direction.EAST
-						last_collider = null
 					if Input.is_action_pressed("debug_interact_intent"):
 						set_intent(s_intent.INTERACT)
 						print("Interact intent set.")
@@ -223,28 +215,6 @@ func _fixed_process(dt):
 					if old_direction != direction:
 						rset("direction", direction)
 						rpc("emit_signal", "on_direction_change", direction)
-							
-#				if move_direction != Vector2(0, 0):
-#					last_pos = get_pos()
-#					last_move = move_direction
-#					move(move_direction * speed * dt)
-#					if is_colliding():
-#						var normal = get_collision_normal()
-#						move_direction = normal.slide(move_direction)
-#						last_collider = get_collider()
-#						rpc("emit_signal", "on_collide", str(get_collider().get_path()))
-#						if get_collider() extends s_base.element:
-#							get_collider().rpc("emit_signal", "on_collided", str(get_path()))
-#						move(move_direction * speed * dt)
-#					var new_pos = get_pos()
-#					if last_pos != new_pos:
-#						rpc("set_pos", new_pos)
-#						
-#					var mappos = sight.world_to_map(get_pos())
-#					if old_mappos != mappos:
-#						old_mappos = mappos
-						#get_node("/root/Map/Sight").set_sight(sight.world_to_map(get_pos() - Vector2(0, -16)))
-					
 
 func verb_pressed(id):
 	var menu = timeline.right_click_menu
