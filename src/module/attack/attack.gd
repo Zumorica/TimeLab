@@ -49,15 +49,6 @@ func attack(other):
 				rpc("emit_signal", "on_attack", other)
 				get_node("AttackTimer").start()
 
-#func attack(other, bonus = 0):
-#	if (not (state & s_flag.DEAD) and not (state & s_flag.CANT_ATTACK)) and other extends s_base.element:
-#		var damage = (randi()%11) * (attack_factor + bonus)
-#		other.rpc("damage", damage, str(get_path()))
-#		rpc("emit_signal", "on_attack", str(other.get_path()))
-#		rset("state", state | s_flag.CANT_ATTACK)
-#		state |= s_flag.CANT_ATTACK
-#		get_node("AttackTimer").start()
-
 func get_attack():
 	return (weapon_attack + attack_modifier)
 
