@@ -27,17 +27,14 @@ export(float) var attack_delay = 0.5
 export(int, FLAGS) remote var state = 0
 export(int) var speed = 80
 export(int) var interact_range = 100
-export(int) var speaking_radius = 1000
 export(int, "Neutral", "Male", "Female") var gender = s_gender.NEUTRAL
 var verbs = {"Examine" : "examine_element"}
 
 onready var orig_name = get_name()
-#var z_floor = 0 setget set_floor,get_floor # Might get removed in the future.
 var client = null setget get_client,_set_client # Do not change from this node. Call set_mob from client instead.
 remote var health = max_health
 
 func _init():
-	add_speak_area()
 	rset_config("show_name", RPC_MODE_REMOTE)
 	if not has_node("AttackTimer"):
 		var attack_timer = Timer.new()
@@ -82,22 +79,6 @@ func _ready():
 #func get_pos3():
 #	var pos = get_pos()
 #	return Vector3(pos.x, pos.y, get_floor())
-
-func add_speak_area():
-	if not has_node("SpeakArea2D"):
-		var speak_area = Area2D.new()
-		var speak_shape = CircleShape2D.new()
-		add_child(speak_area)
-		speak_shape.set_radius(speaking_radius)
-		speak_area.add_shape(speak_shape)
-		speak_area.set_name("SpeakArea2D")
-		speak_area.set_enable_monitoring(true)
-		speak_area.set_pickable(false)
-		
-		
-func remove_speak_area():
-	if has_node("SpeakArea2D"):
-		get_node("SpeakArea2D").free()
 	
 func examine_element():
 	timeline.get_current_client().update_chat(description)
@@ -222,30 +203,6 @@ func verb_pressed(id):
 		timeline.right_click_menu_pointer = null
 		call(verbs.values()[id - 1])
 		menu.hide()
-
-sync func receive_message(msg):
-	if get_client():
-		var client = get_client()
-		client.update_chat(msg)
-
-func send_message(msg):
-	if get_client():
-		get_client().send_message(msg)
-
-func hear(msg):
-	if not state & s_flag.DEAF:
-		rpc("receive_message", msg)
-
-func speak(msg):
-	if not state & s_flag.MUTE:
-		for child in get_node("SpeakArea2D").get_overlapping_bodies():
-			if child extends s_base.element:
-				child.hear("%s: %s" % [show_name, msg])
-
-func emote(emotion):
-	for child in get_node("SpeakArea2D").get_overlapping_bodies():
-		if child extends s_base.element and child.get_client():
-			child.rpc("receive_message", "%s %s" %[show_name, emotion])
 
 func _input_event(viewport, event, shape):
 	if event.is_action_pressed("left_click") and not event.is_echo():

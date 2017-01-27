@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://src/mob/living/human/human.gd" type="Script" id=1]
 [ext_resource path="res://res/img/mob/living/human/0.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://res/img/mob/living/human/3.png" type="Texture" id=5]
 [ext_resource path="res://res/anim/mob/attack_animation.tres" type="Animation" id=6]
 [ext_resource path="res://src/module/movement/movement.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/module/chat/chat.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -44,7 +45,6 @@ attack_delay = 0.5
 state = 0
 speed = 80
 interact_range = 100
-speaking_radius = 1000
 gender = 0
 race = "human"
 
@@ -142,6 +142,8 @@ blend_times = [  ]
 autoplay = ""
 
 [node name="Movement" parent="." instance=ExtResource( 7 )]
+
+[node name="Chat" parent="." instance=ExtResource( 8 )]
 
 [connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
 

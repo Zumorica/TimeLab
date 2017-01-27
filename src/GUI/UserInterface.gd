@@ -66,11 +66,25 @@ func send_message():
 	text_input.hide()
 	chat_window.hide()
 	is_chat_visible = false
+	var is_command = msg.begins_with("/")
 	var client = timeline.get_current_client()
-	if client.get_mob():
-		client.get_mob().speak(msg)
+	if not is_command:
+		if client.get_mob():
+			var mob = client.get_mob()
+			if mob.has_node("Chat"):
+				var chat = mob.get_node("Chat")
+				if chat.has_method("speak"):
+					chat.speak(msg)
+		else:
+			timeline.update_global_chat("%s: %s" % [client.get_ID(),msg])
 	else:
-		timeline.update_global_chat("%s: %s" % [client.get_ID(),msg])
+		if msg.begins_with("/me"):
+			if client.get_mob():
+				var mob = client.get_mob()
+				if mob.has_node("Chat"):
+					var chat = mob.get_node("Chat")
+					if chat.has_method("emote"):
+						chat.emote(msg.replace("/me ", ""))
 
 func _update_chat(msg):
 	var messages = get_node("Layer/Chat/ChatWindow/Messages")

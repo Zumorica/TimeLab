@@ -15,7 +15,7 @@ func _ready():
 	if is_client():
 		set_process_input(true)
 
-remote func update_chat(msg):
+sync func update_chat(msg):
 	if has_node("UserInterface") and is_client():
 		var UI = get_node("UserInterface")
 		UI._update_chat(msg)
