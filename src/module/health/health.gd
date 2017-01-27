@@ -3,7 +3,7 @@ extends Node2D
 signal on_health_change(new_hp)
 signal on_healed(hp_gained, other)
 signal on_damaged(hp_lost, other)
-signal on_death
+signal on_death(other)
 
 export(bool) var is_invincible = false
 export(int) var max_health = 100
@@ -24,11 +24,11 @@ func get_health():
 	return health
 	
 func set_health(hp):
-	health = int(hp)
+	health = round(hp)
 	if health <= 0:
 		health = 0
 		get_parent().state |= s_flag.DEAD
-		rpc("emit_signal", "on_death")
+		rpc("emit_signal", "on_death", null)
 	elif health > max_health:
 		health = max_health
 	rset("health", health)
@@ -44,15 +44,18 @@ func heal(hp, other=null):
 func damage(dmg, other=null):
 	if not is_invincible and dmg > 0 and not (get_parent().state & s_flag.DEAD):
 		dmg = dmg - get_defense()
-		if dmg <= 0:
+		var armor_fail = s_function.probability(25)
+		if dmg <= 0 and not armor_fail:
 			if get_parent().has_node("Chat"):
 				var chat = get_parent().get_node("Chat")
 				chat.emote("'s armor protects its wearer from the blow.", false)
-		else:
-			set_health(get_health() - dmg)
-			if typeof(other) == TYPE_OBJECT:
-				other = str(other.get_path())
-			rpc("emit_signal", "on_damaged", dmg, other)
+				return
+		elif dmg <= 0 and armor_fail:
+			dmg = abs(dmg)
+		set_health(get_health() - dmg)
+		if typeof(other) == TYPE_OBJECT:
+			other = str(other.get_path())
+		rpc("emit_signal", "on_damaged", dmg, other)
 
 func get_defense():
 	return armor_defense + defense_modifier
