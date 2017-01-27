@@ -6,7 +6,7 @@ remote var can_attack = true
 export var attack_delay = 1
 
 var attack setget get_attack
-remote var weapon_attack = 1.0 setget ,set_weapon_attack
+remote var weapon
 export(float) var attack_modifier = 5.0
 
 func _ready():
@@ -28,21 +28,24 @@ func attack(other):
 				var atk = get_attack()
 				var dmg = round(atk * effectiveness)
 				if get_parent().has_node("Chat"):
+					var verb = "punches"
 					var chat = get_parent().get_node("Chat")
+					if weapon:
+						verb = weapon.verb
 					if other != get_parent():
 						if effectiveness < 0.4:
-							chat.emote("punches %s without any strength..."% other.show_name)
+							chat.emote("%s %s without any strength..."% [verb, other.show_name])
 						elif effectiveness < 0.8:
-							chat.emote("punches %s" % other.show_name)
+							chat.emote("%s %s" % other.show_name)
 						else:
-							chat.emote("punches %s with all %s strength!" % [other.show_name, s_gender.possesive[get_parent().gender]])
+							chat.emote("%s %s with all %s strength!" % [verb, other.show_name, s_gender.possesive[get_parent().gender]])
 					else:
 						if effectiveness < 0.4:
-							chat.emote("punches %s without any strength..." % s_gender.reflexive[get_parent().gender])
+							chat.emote("%s %s without any strength..." % [verb, s_gender.reflexive[get_parent().gender]])
 						elif effectiveness < 0.8:
-							chat.emote("punches %s" % s_gender.reflexive[get_parent().gender])
+							chat.emote("%s %s" % [verb, s_gender.reflexive[get_parent().gender]])
 						else:
-							chat.emote("punches %s with all %s strength!" % [s_gender.reflexive[get_parent().gender], s_gender.possesive[get_parent().gender]])
+							chat.emote("%s %s with all %s strength!" % [verb, s_gender.reflexive[get_parent().gender], s_gender.possesive[get_parent().gender]])
 				other.get_node("Health").damage(dmg, get_parent())
 				can_attack = false
 				rset("can_attack", can_attack)
@@ -50,8 +53,14 @@ func attack(other):
 				get_node("AttackTimer").start()
 
 func get_attack():
-	return (weapon_attack + attack_modifier)
-
-func set_weapon_attack(atk):
-	weapon_attack = atk
-	rset("weapon_attack", weapon_attack)
+	if weapon:
+		return (weapon.attack + attack_modifier)
+	else:
+		return attack_modifier
+	
+func process_weapon(wpn):
+	assert wpn extends s_base.weapon
+	weapon = wpn
+	
+func remove_weapon():
+	weapon = null
