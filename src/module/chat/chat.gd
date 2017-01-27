@@ -23,6 +23,12 @@ func destroy_speak_area():
 	if area.has_node("CollisionShape2D"):
 		area.get_node("CollisionShape2D").free()
 		
+func get_listeners():
+	if has_node("SpeakArea2D"):
+		var listeners = get_node("SpeakArea2D").get_overlapping_bodies()
+		listeners.append(get_parent())
+		return listeners
+		
 func new_message(msg):
 	if get_parent().get_client():
 		var client = get_parent().get_client()
@@ -34,7 +40,7 @@ func hear(msg):
 
 func speak(msg):
 	if not (get_parent().state & s_flag.MUTE):
-		for child in get_node("SpeakArea2D").get_overlapping_bodies():
+		for child in get_listeners():
 			if child extends s_base.element:
 				if child.has_node("Chat"):
 					var ochat = child.get_node("Chat")
@@ -42,7 +48,7 @@ func speak(msg):
 						ochat.hear('%s says "%s"' % [get_parent().show_name, msg])
 
 func emote(emotion, leave_space=true):
-	for child in get_node("SpeakArea2D").get_overlapping_bodies():
+	for child in get_listeners():
 		if child extends s_base.element:
 			if child.has_node("Chat"):
 				var ochat = child.get_node("Chat")
