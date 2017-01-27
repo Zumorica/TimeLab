@@ -20,11 +20,15 @@ func _ready():
 
 func _on_mob_change(new_mob, old_mob):
 	if old_mob != null:
-		if old_mob.is_connected("on_health_change", get_node("Layer/HealthBar"), "update_health"):
-			old_mob.disconnect("on_health_change", get_node("Layer/HealthBar"), "update_health")
+		if old_mob.has_node("Health"):
+			var health = old_mob.get_node("Health")
+			if health.is_connected("on_health_change", get_node("Layer/HealthBar"), "update_health"):
+				health.disconnect("on_health_change", get_node("Layer/HealthBar"), "update_health")
 	if new_mob != null:
-		new_mob.connect("on_health_change", get_node("Layer/HealthBar"), "update_health")
-		print(new_mob.is_connected("on_health_change", get_node("Layer/HealthBar"), "update_health"))
+		if new_mob.has_node("Health"):
+			var health = new_mob.get_node("Health")
+			if not health.is_connected("on_health_change", get_node("Layer/HealthBar"), "update_health"):
+				health.connect("on_health_change", get_node("Layer/HealthBar"), "update_health")
 
 func _process(dt):
 	get_node("Layer/FPSCount").set_text(str(OS.get_frames_per_second()))
