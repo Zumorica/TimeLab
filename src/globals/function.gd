@@ -1,5 +1,10 @@
 extends Node
 
+func probability(percent):
+	randomize()
+	var rand = rand_range(0, 100)
+	return rand <= percent
+
 func sight(initial, final):
     var coordinates = []
     var x0 = initial.x
