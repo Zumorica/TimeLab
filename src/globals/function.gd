@@ -5,7 +5,7 @@ func probability(percent):
 	var rand = rand_range(0, 100)
 	return rand <= percent
 
-func sight(initial, final):
+func bresenham(initial, final):
     var coordinates = []
     var x0 = initial.x
     var y0 = initial.y
@@ -36,10 +36,4 @@ func sight(initial, final):
                 err += dy
             y += sy        
     coordinates.append(Vector2(x, y))
-    var new_coords = []
-    for pos in coordinates:
-        new_coords.append(pos)
-        if pos in get_node("/root/Map").blocking_sight:
-            break
-    coordinates = new_coords
     return coordinates

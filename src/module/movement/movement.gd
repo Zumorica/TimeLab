@@ -1,5 +1,7 @@
 extends Node2D
 
+signal on_move_new_tile(mappos)
+
 export remote var speed_per_tick = 2
 
 remote var is_sliding = false
@@ -8,6 +10,7 @@ remote var old_pos = Vector2(0, 0)
 remote var old_transform = Matrix32()
 
 func _ready():
+	rpc_config("emit_signal", RPC_MODE_SYNC)
 	get_parent().rpc_config("move", RPC_MODE_SYNC)
 	get_parent().rpc_config("move_to", RPC_MODE_SYNC)
 	set_fixed_process(true)
@@ -56,5 +59,7 @@ func _fixed_process(delta):
 					is_sliding = false
 					rset("is_sliding", is_sliding)
 					get_parent().rpc("move_to", goal_destination)
+					rpc("emit_signal", "on_move_new_tile", get_node("/root/Map").world_to_map(goal_destination))
 		elif not (int(get_parent().get_pos().x) % 32) or not (int(get_parent().get_pos().y) % 32):
 			get_parent().rpc("move_to", old_pos)
+			rpc("emit_signal", "on_move_new_tile", get_node("/root/Map").world_to_map(goal_destination))
