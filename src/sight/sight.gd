@@ -2,7 +2,7 @@ extends TileMap
 
 const rays = 360 # Should always be 360!
 var step = 1     # Step of for cycle.
-var rad = 32     # FOV radius.
+var rad = 64     # FOV radius.
 
 const sintable = [
     0.00000, 0.01745, 0.03490, 0.05234, 0.06976, 0.08716, 0.10453,
@@ -136,8 +136,10 @@ func set_sight(position, is_mappos=true):
 			var rounded = Vector2(int(round(p.x)), int(round(p.y)))
 			set_cell(int(round(p.x)), int(round(p.y)), -1)
 			
-			if get_parent().get_cell(rounded.x, rounded.y) in [0, 3]:
+			if get_node("Bitmap").get_cell(rounded.x, rounded.y) != -1:
 				break
+				
+				
 	
 	return
 

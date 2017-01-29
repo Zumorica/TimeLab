@@ -16,8 +16,7 @@ extents = Vector2( 16, 16 )
 script/script = ExtResource( 2 )
 show_name = "Door"
 description = "An automatic door. It needs electricity to work"
-intent = 0
-speaking_radius = 1000
+opaque = true
 close_delay = 5
 
 [node name="Sprite" parent="."]

@@ -21,13 +21,16 @@ func _ready():
 		connect("on_collided", self, "_on_collided")
 	if not is_connected("on_interacted", self, "_on_interacted"):
 		connect("on_interacted", self, "_on_interacted")
+		
 	
 sync func open():
 	get_node("AnimationPlayer").play("open_animation")
 	get_node("CloseTimer").start()
+	set_opacity(false)
 	
 sync func close():
 	get_node("AnimationPlayer").play("close_animation")
+	set_opacity(true)
 	
 func _on_collided(other):
 	if door_state == CLOSED:

@@ -16,6 +16,7 @@ export(bool) var is_movable = true
 export(int, FLAGS) remote var state = 0
 export(int) var interact_range = 100
 export(int, "Neutral", "Male", "Female") var gender = s_gender.NEUTRAL
+export(bool) var opaque = false
 var verbs = {"Examine" : "examine_element"}
 
 onready var orig_name = get_name()
@@ -23,6 +24,7 @@ var client = null setget get_client,_set_client # Do not change from this node. 
 
 func _init():
 	rset_config("show_name", RPC_MODE_REMOTE)
+	rset_config("opaque", RPC_MODE_REMOTE)
 
 func _ready():
 	if not is_in_group("elements"):
@@ -43,9 +45,29 @@ func _ready():
 		connect("on_clicked", self, "_on_clicked")
 	if not is_connected("input_event", self, "_input_event"):
 			connect("input_event", self, "_input_event")
+	update_opacity()
+
+sync func update_opacity(old_pos=null):
+	if has_node("/root/Map/Sight/Bitmap"):
+		var bitmap = get_node("/root/Map/Sight/Bitmap")
+		var mappos = bitmap.world_to_map(get_pos())
+		if opaque:
+			bitmap.set_cell(mappos.x, mappos.y, 0)
+		else:
+			bitmap.set_cell(mappos.x, mappos.y, -1)
+		if typeof(old_pos) == TYPE_VECTOR2:
+			bitmap.set_cell(old_pos.x, old_pos.y, -1)
 	
 func examine_element():
 	timeline.get_current_client().update_chat(description)
+
+func is_opaque():
+	return opaque
+	
+func set_opacity(is_opaque):
+	opaque = is_opaque
+	rset("opaque", is_opaque)
+	rpc("update_opacity")
 
 func get_client():
 	return client
