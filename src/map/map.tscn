@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://res/tilesets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/map/map.gd" type="Script" id=2]
+[ext_resource path="res://src/sight/sight.tscn" type="PackedScene" id=3]
 
 [node name="Map" type="TileMap"]
 
@@ -21,5 +22,7 @@ collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray(  )
 script/script = ExtResource( 2 )
+
+[node name="Sight" parent="." instance=ExtResource( 3 )]
 
 
