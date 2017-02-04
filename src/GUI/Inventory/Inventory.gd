@@ -1,4 +1,4 @@
-extends "res://src/container/container.gd"
+extends "res://src/module/container/container.gd"
 
 func _ready():
 	var char_name = timeline.get_current_client().character_name

@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://src/module/container/container.gd" type="Script" id=1]
+[ext_resource path="res://src/GUI/Inventory/Slot.tscn" type="PackedScene" id=2]
+
+[node name="Container" type="WindowDialog"]
+
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 300.0
+margin/top = 250.0
+margin/right = -300.0
+margin/bottom = -150.0
+popup/exclusive = false
+window/title = ""
+script/script = ExtResource( 1 )
+storage_size = 10
+display_node = NodePath(".")
+
+[node name="Background" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 600.0
+margin/bottom = 400.0
+stretch_mode = 0
+
+[node name="Slot" parent="Background" instance=ExtResource( 2 )]
+
+margin/left = 152.0
+margin/top = 167.0
+margin/right = 188.0
+margin/bottom = 203.0
+
+[node name="Slot2" parent="Background" instance=ExtResource( 2 )]
+
+margin/left = 215.0
+margin/top = 167.0
+margin/right = 251.0
+margin/bottom = 203.0
+
+[node name="Slot3" parent="Background" instance=ExtResource( 2 )]
+
+margin/left = 277.0
+margin/top = 167.0
+margin/right = 313.0
+margin/bottom = 203.0
+
+[node name="Slot4" parent="Background" instance=ExtResource( 2 )]
+
+margin/left = 336.0
+margin/top = 168.0
+margin/right = 372.0
+margin/bottom = 204.0
+
+[node name="Slot5" parent="Background" instance=ExtResource( 2 )]
+
+margin/left = 403.0
+margin/top = 170.0
+margin/right = 439.0
+margin/bottom = 206.0
+
+
