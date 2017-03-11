@@ -21,8 +21,8 @@ func on_timeout():
 
 func attack(other):
 	var state = get_parent().state
-	if not (state & s_flag.DEAD) and not (state & s_flag.CANT_ATTACK) and can_attack:
-		if other extends s_base.element:
+	if not (state & timelab.flag.DEAD) and not (state & timelab.flag.CANT_ATTACK) and can_attack:
+		if other extends timelab.base.element:
 			if other.has_node("Health"):
 				var effectiveness = rand_range(0.1, 1.0)
 				var atk = get_attack()
@@ -38,14 +38,14 @@ func attack(other):
 						elif effectiveness < 0.8:
 							chat.emote("%s %s" % other.show_name)
 						else:
-							chat.emote("%s %s with all %s strength!" % [verb, other.show_name, s_gender.possesive[get_parent().gender]])
+							chat.emote("%s %s with all %s strength!" % [verb, other.show_name, timelab.gender.possesive[get_parent().gender]])
 					else:
 						if effectiveness < 0.4:
-							chat.emote("%s %s without any strength..." % [verb, s_gender.reflexive[get_parent().gender]])
+							chat.emote("%s %s without any strength..." % [verb, timelab.gender.reflexive[get_parent().gender]])
 						elif effectiveness < 0.8:
-							chat.emote("%s %s" % [verb, s_gender.reflexive[get_parent().gender]])
+							chat.emote("%s %s" % [verb, timelab.gender.reflexive[get_parent().gender]])
 						else:
-							chat.emote("%s %s with all %s strength!" % [verb, s_gender.reflexive[get_parent().gender], s_gender.possesive[get_parent().gender]])
+							chat.emote("%s %s with all %s strength!" % [verb, timelab.gender.reflexive[get_parent().gender], timelab.gender.possesive[get_parent().gender]])
 				other.get_node("Health").damage(dmg, get_parent())
 				can_attack = false
 				rset("can_attack", can_attack)
@@ -59,7 +59,7 @@ func get_attack():
 		return attack_modifier
 	
 func process_weapon(wpn):
-	assert wpn extends s_base.weapon
+	assert wpn extends timelab.base.weapon
 	weapon = wpn
 	
 func remove_weapon():

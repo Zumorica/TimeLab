@@ -16,16 +16,16 @@ func _ready():
 sync func close():
 	var area = get_node("Area2D")
 	for body in area.get_overlapping_bodies():
-		if body.get_parent() == get_parent() and (body extends s_base.item or body extends s_base.mob):
+		if body.get_parent() == get_parent() and (body extends timelab.base.item or body extends timelab.base.mob):
 			body.remove_speak_area()
 			body.get_parent().remove_child(body)
 			get_node("Contents").add_child(body)
 			body.add_speak_area()
-			body.state |= s_flag.CANT_ATTACK
-			body.state |= s_flag.CANT_WALK
-			body.state |= s_flag.CANT_USE_ITEMS
-			body.state |= s_flag.CANT_INTERACT
-			body.state |= s_flag.CANT_BE_INTERACTED
+			body.state |= timelab.flag.CANT_ATTACK
+			body.state |= timelab.flag.CANT_WALK
+			body.state |= timelab.flag.CANT_USE_ITEMS
+			body.state |= timelab.flag.CANT_INTERACT
+			body.state |= timelab.flag.CANT_BE_INTERACTED
 	get_node("CollisionShape2D").set_trigger(false)
 	get_node("Open").hide()
 	get_node("Sprite").show()
@@ -38,11 +38,11 @@ sync func open():
 		get_node("Contents").remove_child(child)
 		get_parent().add_child(child)
 		child.add_speak_area()
-		child.state ^= s_flag.CANT_ATTACK
-		child.state ^= s_flag.CANT_WALK
-		child.state ^= s_flag.CANT_USE_ITEMS
-		child.state ^= s_flag.CANT_INTERACT
-		child.state ^= s_flag.CANT_BE_INTERACTED
+		child.state ^= timelab.flag.CANT_ATTACK
+		child.state ^= timelab.flag.CANT_WALK
+		child.state ^= timelab.flag.CANT_USE_ITEMS
+		child.state ^= timelab.flag.CANT_INTERACT
+		child.state ^= timelab.flag.CANT_BE_INTERACTED
 	get_node("CollisionShape2D").set_trigger(true)
 	get_node("Open").show()
 	get_node("Sprite").hide()

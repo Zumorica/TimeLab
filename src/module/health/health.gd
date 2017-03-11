@@ -27,7 +27,7 @@ func set_health(hp):
 	health = round(hp)
 	if health <= 0:
 		health = 0
-		get_parent().state |= s_flag.DEAD
+		get_parent().state |= timelab.flag.DEAD
 		rpc("emit_signal", "on_death", null)
 	elif health > max_health:
 		health = max_health
@@ -35,16 +35,16 @@ func set_health(hp):
 	rpc("emit_signal", "on_health_change", health)
 
 func heal(hp, other=null):
-	if hp > 0 and not ((get_parent().state & s_flag.DEAD) or (get_parent().state & s_flag.CANT_BE_HEALED)):
+	if hp > 0 and not ((get_parent().state & timelab.flag.DEAD) or (get_parent().state & timelab.flag.CANT_BE_HEALED)):
 		set_health(get_health() + hp)
 		if typeof(other) == TYPE_OBJECT:
 			other = str(other.get_path())
 		rpc("emit_signal", "on_healed", hp, other)
 
 func damage(dmg, other=null):
-	if not is_invincible and dmg > 0 and not (get_parent().state & s_flag.DEAD):
+	if not is_invincible and dmg > 0 and not (get_parent().state & timelab.flag.DEAD):
 		dmg = dmg - get_defense()
-		var armor_fail = s_function.probability(25)
+		var armor_fail = timelab.probability(25)
 		if dmg <= 0 and not armor_fail:
 			if get_parent().has_node("Chat"):
 				var chat = get_parent().get_node("Chat")

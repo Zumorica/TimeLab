@@ -1,1 +1,0 @@
-Search.setIndex({docnames:["index"],envversion:50,filenames:["index.txt"],objects:{},objnames:{},objtypes:{},terms:{THE:[],caption:[],content:[],doc:[],index:0,indic:[],maxdepth:[],modul:0,page:0,search:0,tabl:[],toctre:[]},titles:["Welcome to Time-Lab&#8217;s documentation!"],titleterms:{document:0,indic:0,lab:0,tabl:0,time:0,welcom:0}})

@@ -4,7 +4,7 @@ var is_chat_visible = false
 var timer
 onready var chat_window = get_node("Layer/Chat/ChatWindow")
 onready var text_input = get_node("Layer/Chat/TextInput")
-onready var inventory = timeline.get_current_client().get_mob().get_node("Layer/Inventory")
+onready var inventory =timelab.timeline.get_current_client().get_mob().get_node("Layer/Inventory")
 
 func _ready():
 	set_process(true)
@@ -12,7 +12,7 @@ func _ready():
 	timer = get_node("Layer/Chat/Timer")
 	timer.connect("timeout", self, "close_chat")
 	timer.set_one_shot(true)
-	var client = timeline.get_current_client()
+	var client =timelab.timeline.get_current_client()
 	if client:
 		client.connect("on_mob_change", self, "_on_mob_change")
 		if client.get_mob():
@@ -71,7 +71,7 @@ func send_message():
 	chat_window.hide()
 	is_chat_visible = false
 	var is_command = msg.begins_with("/")
-	var client = timeline.get_current_client()
+	var client =timelab.timeline.get_current_client()
 	if not is_command:
 		if client.get_mob():
 			var mob = client.get_mob()
@@ -80,7 +80,7 @@ func send_message():
 				if chat.has_method("speak"):
 					chat.speak(msg)
 		else:
-			timeline.update_global_chat("%s: %s" % [client.get_ID(),msg])
+			timelab.timeline.update_global_chat("%s: %s" % [client.get_ID(),msg])
 	else:
 		if msg.begins_with("/me"):
 			if client.get_mob():

@@ -154,12 +154,12 @@ func set_sight(position, is_mappos=true):
 #	#fill_non_visible(minpos, maxpos, false)
 #	var visible_positions = []
 #	for x in range(minpos.x, maxpos.y):
-#		var array_one = s_function.sight(position, Vector2(x, minpos.y))
-#		var array_two = s_function.sight(position, Vector2(x, maxpos.y))
+#		var array_one = timelab.sight(position, Vector2(x, minpos.y))
+#		var array_two = timelab.sight(position, Vector2(x, maxpos.y))
 #		visible_positions += array_one + array_two
 #	for y in range(minpos.y, maxpos.y):
-#		var array_one = s_function.sight(position, Vector2(minpos.x, y))
-#		var array_two = s_function.sight(position, Vector2(maxpos.x, y))
+#		var array_one = timelab.sight(position, Vector2(minpos.x, y))
+#		var array_two = timelab.sight(position, Vector2(maxpos.x, y))
 #		visible_positions += array_one + array_two
 #	set_visible(visible_positions, false)
 

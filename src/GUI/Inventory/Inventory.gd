@@ -1,7 +1,7 @@
 extends "res://src/module/container/container.gd"
 
 func _ready():
-	var char_name = timeline.get_current_client().character_name
+	var char_name =timelab.timeline.get_current_client().character_name
 	set_title("%s's inventory" % char_name)
 
 func set_inactive():
@@ -12,7 +12,7 @@ func drop(slot):
 	if !storage.has(slot):
 		return
 	
-	rpc("_drop", slot.get_path(), timeline.get_current_client().get_mob().get_path())
+	rpc("_drop", slot.get_path(),timelab.timeline.get_current_client().get_mob().get_path())
 
 sync func _drop(slot_path, mob_path):
 	var slot = get_node(slot_path)

@@ -35,13 +35,13 @@ func new_message(msg):
 		client.rpc("update_chat", msg)
 		
 func hear(msg):
-	if not (get_parent().state & s_flag.DEAF):
+	if not (get_parent().state & timelab.flag.DEAF):
 		new_message(msg)
 
 func speak(msg):
-	if not (get_parent().state & s_flag.MUTE):
+	if not (get_parent().state & timelab.flag.MUTE):
 		for child in get_listeners():
-			if child extends s_base.element:
+			if child extends timelab.base.element:
 				if child.has_node("Chat"):
 					var ochat = child.get_node("Chat")
 					if ochat.has_method("hear"):
@@ -49,7 +49,7 @@ func speak(msg):
 
 func emote(emotion, leave_space=true):
 	for child in get_listeners():
-		if child extends s_base.element:
+		if child extends timelab.base.element:
 			if child.has_node("Chat"):
 				var ochat = child.get_node("Chat")
 				if ochat.has_method("hear"):

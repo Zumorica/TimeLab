@@ -1,7 +1,7 @@
 extends "res://src/element/element.gd"
 
 export(int, "No intent", "Interact intent", "Attack intent", "Use item intent") remote var intent = 1 setget set_intent, get_intent
-remote var role = s_role.none
+remote var role = timelab.role.none
 var draw_show_name = false
 export(String, "generic", "human") var race
 
@@ -34,12 +34,12 @@ func _process(dt):
 		update()
 
 func _start_role_check():
-	if role != s_role.none and get_client() != null:
+	if role != timelab.role.none and get_client() != null:
 		if get_tree().is_network_server():
-			if get_client().get_ID() != timeline.get_current_client().get_ID():
-				get_client().rpc_id(get_client().get_ID(), "update_chat", s_role.description[role])
+			if get_client().get_ID() != timelab.timeline.get_current_client().get_ID():
+				get_client().rpc_id(get_client().get_ID(), "update_chat", timelab.role.description[role])
 			else:
-				get_client().update_chat(s_role.description[role])
+				get_client().update_chat(timelab.role.description[role])
 
 func get_intent():
 	return intent
@@ -55,7 +55,7 @@ func set_intent(new_intent):
 func _on_attack(other):
 	if typeof(other) == TYPE_STRING:
 		other = get_node(other)
-	if not (state & s_flag.DEAD):
+	if not (state & timelab.flag.DEAD):
 		if has_node("AnimationPlayer"):
 			var player = get_node("AnimationPlayer")
 			if player.has_animation("attack"):
@@ -67,19 +67,19 @@ func _on_attack(other):
 func _on_death(cause):
 	set_rotd(90)
 	if is_network_master():
-		rset("state", state | s_flag.DEAD)
-		state = state | s_flag.DEAD
+		rset("state", state | timelab.flag.DEAD)
+		state = state | timelab.flag.DEAD
 
 func _on_damaged(damage, other):
 	randomize()
 	if typeof(other) == TYPE_STRING:
 		other = get_node(other)
-	if rand_range(0, 1) < 0.25 and is_network_master() and not (other extends s_base.disease):
-		timeline.rpc("synced_instance", "res://src/decal/blood.tscn", NodePath("/root/Map"), {"transform/pos" : get_pos() + Vector2(0, 18), "decay_child" : randi()%4})
+	if rand_range(0, 1) < 0.25 and is_network_master() and not (other extends timelab.base.disease):
+		timelab.timeline.rpc("synced_instance", "res://src/decal/blood.tscn", NodePath("/root/Map"), {"transform/pos" : get_pos() + Vector2(0, 18), "decay_child" : randi()%4})
 
 func contract_disease(disease):
 	if typeof(disease) == TYPE_STRING:
-		var disease = load(disease)
+		disease = load(disease)
 		if disease.has_method("instance"):
 			disease = disease.instance()
 		else:
@@ -101,13 +101,13 @@ func _on_direction_change(direction):
 	get_node("Sprites/South").hide()
 	get_node("Sprites/West").hide()
 	get_node("Sprites/East").hide()
-	if direction == s_direction.NORTH:
+	if direction == timelab.direction.NORTH:
 		get_node("Sprites/North").show()
-	elif direction == s_direction.SOUTH:
+	elif direction == timelab.direction.SOUTH:
 		get_node("Sprites/South").show()
-	elif direction == s_direction.WEST:
+	elif direction == timelab.direction.WEST:
 		get_node("Sprites/West").show()
-	elif direction == s_direction.EAST:
+	elif direction == timelab.direction.EAST:
 		get_node("Sprites/East").show()
 
 func _on_Area2D_input_event( viewport, event, shape_idx ):
