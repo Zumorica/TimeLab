@@ -1,3 +1,6 @@
+config_version=3
+config_version=null
+
 [Time Lab]
 
 version="v0.0.0"
@@ -10,13 +13,7 @@ icon="res://icon.png"
 
 [autoload]
 
-s_base="*res://src/globals/base.gd"
-s_direction="*res://src/globals/direction.gd"
-s_gender="*res://src/globals/gender.gd"
-s_function="*res://src/globals/function.gd"
-s_flag="*res://src/globals/flag.gd"
-s_intent="*res://src/globals/intent.gd"
-s_role="*res://src/globals/role.gd"
+timelab="*res://src/timelab.gd"
 timeline="*res://src/networking/timeline/timeline.gd"
 
 [display]
@@ -26,28 +23,35 @@ width=1024
 height=600
 use_vsync=false
 use_2d_pixel_snap=true
-
-[grid]
-
-=true
+window/resizable=false
+stretch/mode="2d"
+stretch/aspect="keep"
 
 [input]
 
-ui_left=[key(Left), jbutton(0, 14), key(A)]
-ui_right=[key(Right), jbutton(0, 15), key(D)]
-ui_up=[key(Up), jbutton(0, 12), key(W)]
-ui_down=[key(Down), jbutton(0, 13), key(S)]
-debug_useitem_intent=[key(3)]
-debug_interact_intent=[key(1)]
-debug_attack_intent=[key(2)]
-drop=[key(Q)]
-inventory_toggle=[key(I)]
-right_click=[mbutton(0, 2)]
-left_click=[mbutton(0, 1)]
-chat_send=[key(Return)]
-chat_close=[key(Escape)]
-chat_open=[key(T)]
+ui_left=[ InputEvent(KEY,0), InputEvent(JBUTTON,0), InputEvent(KEY,0) ]
+ui_right=[ InputEvent(KEY,0), InputEvent(JBUTTON,0), InputEvent(KEY,0) ]
+ui_up=[ InputEvent(KEY,0), InputEvent(JBUTTON,0), InputEvent(KEY,0) ]
+ui_down=[ InputEvent(KEY,0), InputEvent(JBUTTON,0), InputEvent(KEY,0) ]
+debug_useitem_intent=[ InputEvent(KEY,0) ]
+debug_interact_intent=[ InputEvent(KEY,0) ]
+debug_attack_intent=[ InputEvent(KEY,0) ]
+drop=[ InputEvent(KEY,0) ]
+inventory_toggle=[ InputEvent(KEY,0) ]
+right_click=[ InputEvent(MBUTTON,0) ]
+left_click=[ InputEvent(MBUTTON,0) ]
+chat_send=[ InputEvent(KEY,0) ]
+chat_close=[ InputEvent(KEY,0) ]
+chat_open=[ InputEvent(KEY,0) ]
+
+[memory]
+
+multithread/thread_rid_pool_prealloc=60
 
 [render]
 
-default_clear_color=#ff000000
+default_clear_color=Color( 0, 0, 0, 1 )
+
+[rendering]
+
+viewport/default_clear_color=Color( 0, 0, 0, 1 )
