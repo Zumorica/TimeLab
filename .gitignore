@@ -39,6 +39,6 @@ godot
 godot.exe
 
 .import/
-
+*.stex
 *.import
 *.flags
