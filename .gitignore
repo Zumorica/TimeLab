@@ -42,3 +42,7 @@ godot.exe
 
 *.import
 *.flags
+
+*.os
+lib/
+*.dblite
