@@ -73,7 +73,10 @@ func is_client():
 		return (str(get_ID()) == str(get_tree().get_network_unique_id()))
 	else:
 		return true
-	
+
+func has_mob():
+	return typeof(mob) == TYPE_OBJECT
+
 func get_mob():
 	return mob
 

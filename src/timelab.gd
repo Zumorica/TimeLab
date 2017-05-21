@@ -1,6 +1,6 @@
 extends Node2D
 
-var timeline = load("res://src/networking/timeline/timeline.gd").new()
+onready var timeline = $"/root/timeline"
 var base = load("res://src/globals/base.gd").new()
 var direction = load("res://src/globals/direction.gd").new()
 var flag = load("res://src/globals/flag.gd").new()

@@ -116,16 +116,16 @@ func _ready():
 	timeline.connect("on_game_start", self, "show")
 	set_non_visible(get_parent().get_used_cells(), false)
 
-func set_sight(position, is_mappos=true):
+func set_sight(sposition, is_mappos=true):
 	set_non_visible(get_parent().get_used_cells(), false)
 	#clear()
-	set_cell(position.x, position.y, -1)
+	set_cell(sposition.x, sposition.y, -1)
 	if not is_mappos:
-		position = world_to_map(position)
-	var size = world_to_map(get_viewport_rect().size) + position
+		sposition = world_to_map(sposition)
+	var size = world_to_map(get_viewport_rect().size) + sposition
 	for i in range(0, rays + 1, step):
 		var a = Vector2(sintable[i], costable[i])
-		var p = position
+		var p = sposition
 		
 		for z in range(rad):
 			p += a

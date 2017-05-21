@@ -12,7 +12,7 @@ var lobby_client_list
 remote var gamemode = null
 var gamemode_list = {"Sandbox" : "res://src/gamemode/sandbox.gd", "Mystery" : "res://src/gamemode/mystery.gd"}
 onready var network_handler = NetworkedMultiplayerENet.new()
-onready var client = timelab.base.client_scene.instance() setget get_current_client
+onready var client = timelab.base.client.new() setget get_current_client
 onready var right_click_menu = PopupMenu.new()
 onready var user_interface = timelab.base.user_interface_scene.instance()
 onready var inventory = timelab.base.inventory_scene
@@ -160,6 +160,7 @@ sync func pre_configure_game(spawn_points):
 		print(client)
 		var human = timelab.base.human_scene.instance()
 		get_node("/root/Map").add_child(human)
+		print(human)
 		client.set_mob(human)
 		var inv = inventory.instance()
 		var layer = CanvasLayer.new()
