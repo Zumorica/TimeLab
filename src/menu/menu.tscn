@@ -1,4 +1,7 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/menu/JoinButton.gd" type="Script" id=1]
+[ext_resource path="res://src/menu/HostButton.gd" type="Script" id=2]
 
 [node name="Menu" type="Control"]
 
@@ -7,6 +10,8 @@ mouse_filter = 0
 
 [node name="TabContainer" type="TabContainer" parent="."]
 
+margin_right = 1022.0
+margin_bottom = 597.0
 rect_clip_content = false
 mouse_filter = 0
 tab_align = 1
@@ -17,7 +22,7 @@ tabs_visible = true
 anchor_right = 1
 anchor_bottom = 1
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 38.0
 margin_right = 4.0
 margin_bottom = 4.0
 rect_clip_content = false
@@ -25,26 +30,40 @@ mouse_filter = 0
 
 [node name="Port" type="LineEdit" parent="TabContainer/Join"]
 
+margin_left = 408.0
+margin_top = 222.0
+margin_right = 468.0
+margin_bottom = 244.0
 rect_clip_content = false
 mouse_filter = 0
 expand_to_len = false
 focus_mode = 2
+placeholder_text = "Port"
 placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 
 [node name="Ip" type="LineEdit" parent="TabContainer/Join"]
 
+margin_left = 409.0
+margin_top = 251.0
+margin_right = 469.0
+margin_bottom = 273.0
 rect_clip_content = false
 mouse_filter = 0
 expand_to_len = false
 focus_mode = 2
+placeholder_text = "IP"
 placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 
 [node name="Button" type="Button" parent="TabContainer/Join"]
 
+margin_left = 403.0
+margin_top = 295.0
+margin_right = 477.0
+margin_bottom = 317.0
 rect_clip_content = false
 mouse_filter = 0
 toggle_mode = false
@@ -53,6 +72,7 @@ shortcut = null
 group = null
 text = "Join game"
 flat = false
+script = ExtResource( 1 )
 
 [node name="Host" type="Control" parent="TabContainer"]
 
@@ -60,7 +80,7 @@ visible = false
 anchor_right = 1
 anchor_bottom = 1
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 38.0
 margin_right = 4.0
 margin_bottom = 4.0
 rect_clip_content = false
@@ -68,6 +88,10 @@ mouse_filter = 0
 
 [node name="Button" type="Button" parent="TabContainer/Host"]
 
+margin_left = 394.0
+margin_top = 291.0
+margin_right = 475.0
+margin_bottom = 313.0
 rect_clip_content = false
 mouse_filter = 0
 toggle_mode = false
@@ -76,23 +100,34 @@ shortcut = null
 group = null
 text = "Host game"
 flat = false
+script = ExtResource( 2 )
 
 [node name="Port" type="LineEdit" parent="TabContainer/Host"]
 
+margin_left = 404.0
+margin_top = 217.0
+margin_right = 464.0
+margin_bottom = 239.0
 rect_clip_content = false
 mouse_filter = 0
 expand_to_len = false
 focus_mode = 2
+placeholder_text = "Port"
 placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 
 [node name="Max" type="LineEdit" parent="TabContainer/Host"]
 
+margin_left = 406.0
+margin_top = 247.0
+margin_right = 466.0
+margin_bottom = 269.0
 rect_clip_content = false
 mouse_filter = 0
 expand_to_len = false
 focus_mode = 2
+placeholder_text = "Max players"
 placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
