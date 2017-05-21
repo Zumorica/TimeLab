@@ -7,23 +7,23 @@ var bodies = []
 func _ready():
 	get_node("CollisionShape2D").set_trigger(true)
 	set_fixed_process(true)
-	if direction == s_direction.NORTH:
+	if direction == timelab.direction.NORTH:
 		set_rotd(0)
 		conveyor_direction = Vector2(0, -1)
-	elif direction == s_direction.SOUTH:
+	elif direction == timelab.direction.SOUTH:
 		set_rotd(180)
 		conveyor_direction = Vector2(0, 1)
-	elif direction == s_direction.WEST:
+	elif direction == timelab.direction.WEST:
 		set_rotd(90)
 		conveyor_direction = Vector2(-1, 0)
-	elif direction == s_direction.EAST:
+	elif direction == timelab.direction.EAST:
 		set_rotd(270)
 		conveyor_direction = Vector2(1, 0)
 		
 func _fixed_process(dt):
 	if is_powered():
 		for body in bodies:
-			if body extends s_base.element and not body extends self.get_script():
+			if body extends timelab.base.element and not body extends self.get_script():
 				if body.is_movable != false:
 					body.move(conveyor_direction * conveyor_velocity * dt)
 					body.rpc_unreliable("set_pos", body.get_pos())

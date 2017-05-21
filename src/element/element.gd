@@ -5,48 +5,26 @@ signal on_direction_change(direction)
 signal on_collided(collider)	# When something collides with the element.
 signal on_collide(collider)		# When the element collides with something.
 signal on_clicked()
-signal on_health_change(health)	    # When the health changes.
 signal on_interacted(other, item)	# When this node is interacted by another one.
-signal on_damaged(damage, other)	# When this node is attacked/damaged.
 signal on_attack(other)		# When this node attacks another node.
-signal on_death()	# When this node's health reaches zero.
 signal on_client_change(client) # Called when this element's client is changed.
 
-export remote var show_name = "Unknown"
+export var show_name = "Unknown"
 export var description = "[REDACTED]"
 export(int, "NORTH", "SOUTH", "WEST", "EAST") remote var direction = 0
 export(bool) var is_movable = true
-export(int, "No intent", "Interact intent", "Attack intent") remote var intent = 2 setget set_intent, get_intent
-export(int) var max_health = 100
-export(bool) var invincible = false
-export(float) var damage_factor = 1.0
-export(float) var burn_damage_factor = 1.0
-export(float) var attack_factor = 1.0
-export(float) var attack_delay = 0.5
 export(int, FLAGS) remote var state = 0
-export(int) var speed = 80
 export(int) var interact_range = 100
-export(int) var speaking_radius = 1000
-export(int, "Neutral", "Male", "Female") var gender = s_gender.NEUTRAL
+export(int, "Neutral", "Male", "Female") var gender = timelab.gender.NEUTRAL
+export(bool) var opaque = false
 var verbs = {"Examine" : "examine_element"}
 
 onready var orig_name = get_name()
-#var z_floor = 0 setget set_floor,get_floor # Might get removed in the future.
 var client = null setget get_client,_set_client # Do not change from this node. Call set_mob from client instead.
-remote var last_pos = Vector2(0, 0)
-remote var last_move = Vector2(0, 0)
-remote var last_collider = null
-remote var health = max_health
 
 func _init():
-	add_speak_area()
-	if not has_node("AttackTimer"):
-		var attack_timer = Timer.new()
-		attack_timer.set_wait_time(attack_delay)
-		attack_timer.connect("timeout", self, "reset_attack_timer")
-		attack_timer.set_name("AttackTimer")
-		attack_timer.set_one_shot(true)
-		add_child(attack_timer)
+	rset_config("show_name", RPC_MODE_REMOTE)
+	rset_config("opaque", RPC_MODE_REMOTE)
 
 func _ready():
 	if not is_in_group("elements"):
@@ -59,49 +37,37 @@ func _ready():
 		set_fixed_process(true)
 	if not is_processing_input():
 		set_process_input(true)
+	set_collision_margin(0.0)
 	rpc_config("emit_signal", RPC_MODE_SYNC)
-	rpc_config("set_pos", RPC_MODE_SYNC)
-	if not timeline.right_click_menu.is_connected("item_pressed", self, "verb_pressed"):
-		timeline.right_click_menu.connect("item_pressed", self, "verb_pressed")
+	if not timelab.timeline.right_click_menu.is_connected("item_pressed", self, "verb_pressed"):
+		timelab.timeline.right_click_menu.connect("item_pressed", self, "verb_pressed")
 	if not is_connected("on_clicked", self, "_on_clicked"):
 		connect("on_clicked", self, "_on_clicked")
 	if not is_connected("input_event", self, "_input_event"):
 			connect("input_event", self, "_input_event")
+	update_opacity()
 
-#func set_floor(z):
-#		z_floor = z
-#
-#func get_floor():
-#	return z_floor
-#
-#sync func set_pos3(vector):
-#	assert (typeof(vector) == TYPE_VECTOR3)
-#	set_floor(vector.z)
-#	if get_floor() == vector.z:
-#		set_pos(vector.x, vector.y)
-#
-#func get_pos3():
-#	var pos = get_pos()
-#	return Vector3(pos.x, pos.y, get_floor())
-
-func add_speak_area():
-	if not has_node("SpeakArea2D"):
-		var speak_area = Area2D.new()
-		var speak_shape = CircleShape2D.new()
-		add_child(speak_area)
-		speak_shape.set_radius(speaking_radius)
-		speak_area.add_shape(speak_shape)
-		speak_area.set_name("SpeakArea2D")
-		speak_area.set_enable_monitoring(true)
-		speak_area.set_pickable(false)
-		
-		
-func remove_speak_area():
-	if has_node("SpeakArea2D"):
-		get_node("SpeakArea2D").free()
+sync func update_opacity(old_pos=null):
+	if has_node("/root/Map/Sight/Bitmap"):
+		var bitmap = get_node("/root/Map/Sight/Bitmap")
+		var mappos = bitmap.world_to_map(get_pos())
+		if opaque:
+			bitmap.set_cell(mappos.x, mappos.y, 0)
+		else:
+			bitmap.set_cell(mappos.x, mappos.y, -1)
+		if typeof(old_pos) == TYPE_VECTOR2:
+			bitmap.set_cell(old_pos.x, old_pos.y, -1)
 	
 func examine_element():
-	timeline.get_current_client().update_chat(description)
+	timelab.timeline.get_current_client().update_chat(description)
+
+func is_opaque():
+	return opaque
+	
+func set_opacity(is_opaque):
+	opaque = is_opaque
+	rset("opaque", is_opaque)
+	rpc("update_opacity")
 
 func get_client():
 	return client
@@ -116,124 +82,66 @@ sync func _set_client(new_client):
 	else:
 		set_name(orig_name)
 
-func get_intent():
-	return intent
-
-func set_intent(new_intent):
-	if not (intent < 0 or intent > 2) :
-		return
-	else:
-		rset("intent", new_intent)
-		intent = new_intent
-
 func reset_attack_timer():
-	if ((state & s_flag.CANT_ATTACK) == s_flag.CANT_ATTACK):
-		rset("state", state ^ s_flag.CANT_ATTACK)
-		state ^= s_flag.CANT_ATTACK
-
-sync func damage(damage, other):
-	if typeof(other) == TYPE_STRING:
-		other = get_node(other)
-	if (not invincible):
-		health -= round(damage * damage_factor)
-		emit_signal("on_damaged", damage, str(other.get_path()))
-		emit_signal("on_health_change", health)
-		if (health <= 0):
-			health = 0
-			state |= s_flag.DEAD
-			emit_signal("on_death", str(other.get_path()))
-
-func attack(other, bonus = 0):
-	if (not (state & s_flag.DEAD) and not (state & s_flag.CANT_ATTACK)) and other extends s_base.element:
-		var damage = (randi()%11) * (attack_factor + bonus)
-		other.rpc("damage", damage, str(get_path()))
-		rpc("emit_signal", "on_attack", str(other.get_path()))
-		rset("state", state | s_flag.CANT_ATTACK)
-		state |= s_flag.CANT_ATTACK
-		get_node("AttackTimer").start()
+	if ((state & timelab.flag.CANT_ATTACK) == timelab.flag.CANT_ATTACK):
+		rset("state", state ^ timelab.flag.CANT_ATTACK)
+		state ^= timelab.flag.CANT_ATTACK
 
 func _on_clicked():
-	var cmob = timeline.get_current_client().get_mob()
+	var cmob = timelab.timeline.get_current_client().get_mob()
+	var item = cmob.get_node("Layer/Inventory").get_item("RHandSlot")
 	if cmob:
-		var intention = cmob.get_intent()
-		if intention  == s_intent.INTERACT:
-			rpc("emit_signal", "on_interacted", str(cmob.get_path()), false)
-		elif intention == s_intent.ATTACK:
-			cmob.attack(self)
+		if cmob extends timelab.base.mob:
+			var intention = cmob.get_intent()
+			if intention  == timelab.intent.INTERACT:
+				if item:
+					rpc("emit_signal", "on_interacted", str(cmob.get_path()), item.get_path())
+				else:
+					rpc("emit_signal", "on_interacted", str(cmob.get_path()), false)
+			elif intention == timelab.intent.ATTACK:
+				if cmob.has_node("Attack"):
+					cmob.get_node("Attack").attack(self)
+			elif intention == timelab.intent.USE_ITEM:
+				if item:
+					item.rpc("emit_signal", "on_used", self, cmob)
 
 func _fixed_process(dt):
-	if timeline.is_online:
+	if timelab.timeline.is_online:
 		if self extends KinematicBody2D:
-			if is_network_master() and timeline.get_current_client().get_mob() == self and !timeline.get_current_client().get_node("UserInterface").is_chat_visible:
-				var move_direction = Vector2(0, 0)
+			if is_network_master() and timelab.timeline.get_current_client().get_mob() == self and !timelab.timeline.get_current_client().get_node("UserInterface").is_chat_visible:
 				var old_direction = direction
-				if not (state & s_flag.CANT_WALK) and not (state & s_flag.DEAD):
+				if not (state & timelab.flag.CANT_WALK) and not (state & timelab.flag.DEAD):
 					if Input.is_action_pressed("ui_up"):
-						move_direction += s_direction.index[s_direction.NORTH]
-						direction = s_direction.NORTH
-						last_collider = null
+						get_node("Movement").move_tiles(timelab.direction.index[timelab.direction.NORTH], true)
+						direction = timelab.direction.NORTH
 					if Input.is_action_pressed("ui_down"):
-						move_direction += s_direction.index[s_direction.SOUTH]
-						direction = s_direction.SOUTH
-						last_collider = null
+						get_node("Movement").move_tiles(timelab.direction.index[timelab.direction.SOUTH], true)
+						direction = timelab.direction.SOUTH
 					if Input.is_action_pressed("ui_left"):
-						move_direction += s_direction.index[s_direction.WEST]
-						direction = s_direction.WEST
-						last_collider = null
+						get_node("Movement").move_tiles(timelab.direction.index[timelab.direction.WEST], true)
+						direction = timelab.direction.WEST
 					if Input.is_action_pressed("ui_right"):
-						move_direction += s_direction.index[s_direction.EAST]
-						direction = s_direction.EAST
-						last_collider = null
-
-				if move_direction != Vector2(0, 0):
-					last_pos = get_pos()
-					last_move = move_direction
-					move(move_direction * speed * dt)
-					if is_colliding():
-						var normal = get_collision_normal()
-						move_direction = normal.slide(move_direction)
-						last_collider = get_collider()
-						rpc("emit_signal", "on_collide", str(get_collider().get_path()))
-						if get_collider() extends s_base.element:
-							get_collider().rpc("emit_signal", "on_collided", str(get_path()))
-						move(move_direction * speed * dt)
-					var new_pos = get_pos()
-					if last_pos != new_pos:
-						rpc("set_pos", new_pos)
+						get_node("Movement").move_tiles(timelab.direction.index[timelab.direction.EAST], true)
+						direction = timelab.direction.EAST
+					if Input.is_action_pressed("debug_interact_intent"):
+						set_intent(timelab.intent.INTERACT)
+						print("Interact intent set.")
+					if Input.is_action_pressed("debug_attack_intent"):
+						set_intent(timelab.intent.ATTACK)
+						print("Attack intent set.")
+					if Input.is_action_pressed("debug_useitem_intent"):
+						set_intent(timelab.intent.USE_ITEM)
+						print("Use item intent set.")
 					if old_direction != direction:
 						rset("direction", direction)
 						rpc("emit_signal", "on_direction_change", direction)
 
 func verb_pressed(id):
-	var menu = timeline.right_click_menu
-	if timeline.right_click_menu_pointer == self and id > 0:
-		timeline.right_click_menu_pointer = null
+	var menu = timelab.timeline.right_click_menu
+	if timelab.timeline.right_click_menu_pointer == self and id > 0:
+		timelab.timeline.right_click_menu_pointer = null
 		call(verbs.values()[id - 1])
 		menu.hide()
-
-sync func receive_message(msg):
-	if get_client():
-		var client = get_client()
-		client.update_chat(msg)
-
-func send_message(msg):
-	if get_client():
-		get_client().send_message(msg)
-
-func hear(msg):
-	if not state & s_flag.DEAF:
-		rpc("receive_message", msg)
-
-func speak(msg):
-	if not state & s_flag.MUTE:
-		for child in get_node("SpeakArea2D").get_overlapping_bodies():
-			if child extends s_base.element:
-				child.hear("%s: %s" % [show_name, msg])
-
-func emote(emotion):
-	for child in get_node("SpeakArea2D").get_overlapping_bodies():
-		if child extends s_base.element and child.get_client():
-			child.rpc("receive_message", "%s %s" %[show_name, emotion])
 
 func _input_event(viewport, event, shape):
 	if event.is_action_pressed("left_click") and not event.is_echo():
@@ -241,8 +149,8 @@ func _input_event(viewport, event, shape):
 		emit_signal("on_clicked")
 	if event.is_action_pressed("right_click") and not event.is_echo() and not verbs.empty():
 		get_tree().set_input_as_handled()
-		var menu = timeline.right_click_menu
-		timeline.right_click_menu_pointer = self
+		var menu = timelab.timeline.right_click_menu
+		timelab.timeline.right_click_menu_pointer = self
 		menu.clear()
 		menu.add_item(show_name)
 		for key in verbs:

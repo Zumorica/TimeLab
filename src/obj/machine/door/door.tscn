@@ -14,16 +14,10 @@ extents = Vector2( 16, 16 )
 [node name="Door" instance=ExtResource( 1 )]
 
 script/script = ExtResource( 2 )
-intent = 0
-max_health = 100
-invincible = false
-damage_factor = 1.0
-burn_damage_factor = 1.0
-attack_factor = 1.0
-attack_delay = 10
-state = 0
-speed = 80
-interact_range = 100
+show_name = "Door"
+description = "An automatic door. It needs electricity to work"
+opaque = true
+close_delay = 5
 
 [node name="Sprite" parent="."]
 
@@ -35,6 +29,10 @@ script/script = null
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+script/script = null
+
+[node name="Timer" parent="."]
+
 script/script = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

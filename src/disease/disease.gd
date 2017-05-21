@@ -13,7 +13,7 @@ func _init():
 
 func _ready():
 	if get_parent().get_parent():
-		if get_parent().get_parent() extends s_base.mob:
+		if get_parent().get_parent() extends timelab.base.mob:
 			emit_signal("on_disease_contract")
 			affected = get_parent().get_parent()
 		

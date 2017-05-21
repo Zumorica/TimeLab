@@ -37,3 +37,8 @@ $RECYCLE.BIN/
 # Godot executable for multiplayer testing
 godot
 godot.exe
+
+.import/
+
+*.import
+*.flags

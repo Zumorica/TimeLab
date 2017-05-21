@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://res/img/GUI/slot.png" type="Texture" id=1]
+[ext_resource path="res://res/img/GUI/slot_disabled.png" type="Texture" id=2]
+[ext_resource path="res://src/GUI/Inventory/Slot.gd" type="Script" id=3]
+
+[node name="Slot" type="TextureButton"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+textures/disabled = ExtResource( 2 )
+script/script = ExtResource( 3 )
+
+[connection signal="pressed" from="." to="." method="_on_Slot_pressed"]
+
+

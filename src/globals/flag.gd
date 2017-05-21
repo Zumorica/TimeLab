@@ -10,3 +10,4 @@ const CANT_ATTACK = int(pow(2,6)) # When the element can't attack.
 const CANT_USE_ITEMS = int(pow(2, 7)) # When the element can't use items.
 const CANT_INTERACT = int(pow(2, 8)) # When the element can't interact with others.
 const CANT_BE_INTERACTED = int(pow(2, 9)) # When others can't interact with the element.
+const CANT_BE_HEALED = int(pow(2, 10)) # When an element can't be healed.

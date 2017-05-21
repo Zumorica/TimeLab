@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://src/disease/disease.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/disease/healing.gd" type="Script" id=2]
+
+[node name="Healing disease" instance=ExtResource( 1 )]
+
+script/script = ExtResource( 2 )
+
+[node name="HealTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[connection signal="timeout" from="HealTimer" to="." method="_on_HealTimer_timeout"]
+
+

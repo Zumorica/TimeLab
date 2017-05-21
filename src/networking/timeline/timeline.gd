@@ -12,13 +12,15 @@ var lobby_client_list
 remote var gamemode = null
 var gamemode_list = {"Sandbox" : "res://src/gamemode/sandbox.gd", "Mystery" : "res://src/gamemode/mystery.gd"}
 onready var network_handler = NetworkedMultiplayerENet.new()
-onready var client = s_base.client_scene.instance() setget get_current_client
+onready var client = timelab.base.client_scene.instance() setget get_current_client
 onready var right_click_menu = PopupMenu.new()
-onready var user_interface = s_base.user_interface_scene.instance()
+onready var user_interface = timelab.base.user_interface_scene.instance()
+onready var inventory = timelab.base.inventory_scene
 var right_click_menu_pointer = null
 var random_seed
 
 func _ready():
+	right_click_menu.hide()
 	randomize()
 	random_seed = randi()
 	rand_seed(random_seed)
@@ -65,7 +67,7 @@ func connect_handlers():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	
 remote func create_new_client(id):
-	var new_client = s_base.client_scene.instance()
+	var new_client = timelab.base.client_scene.instance()
 	new_client.set_ID(id)
 	get_node("Clients").add_child(new_client)
 	#new_client.request_info()
@@ -154,15 +156,19 @@ sync func pre_configure_game(spawn_points):
 		rpc("set_gamemode", gamemode_list.values()[get_node("/root/Lobby/Panel/gamemodeSelection").get_selected()])
 	get_node("/root/Lobby").queue_free()
 	get_tree().get_root().add_child(map)
-	get_current_client().add_child(user_interface)
-	#get_current_client().get_node("UserInterface/Layer").add_child(right_click_menu)
-	get_current_client().get_node("UserInterface").add_child(right_click_menu)
 	for client in get_node("Clients").get_children():
 		print(client)
-		var human = s_base.human_scene.instance()
+		var human = timelab.base.human_scene.instance()
 		get_node("/root/Map").add_child(human)
 		client.set_mob(human)
+		var inv = inventory.instance()
+		var layer = CanvasLayer.new()
+		layer.set_name("Layer")
+		client.get_mob().add_child(layer)
+		client.get_mob().get_node("Layer").add_child(inv)
 		client.get_mob().set_pos(spawn_points[client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
+	get_current_client().add_child(user_interface)
+	get_current_client().get_node("UserInterface").add_child(right_click_menu)
 
 	if get_tree().is_network_server():
 		post_configure_game(get_current_client().get_ID())
@@ -172,7 +178,7 @@ sync func pre_configure_game(spawn_points):
 
 sync func set_gamemode(path):
 	var new_gamemode = load(path).new()
-	assert new_gamemode extends s_base.gamemode
+	assert new_gamemode extends timelab.base.gamemode
 	gamemode = new_gamemode
 	gamemode.set_name(gamemode.name)
 	add_child(gamemode)

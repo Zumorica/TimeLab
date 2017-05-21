@@ -7,15 +7,15 @@ var mob = null setget get_mob,set_mob
 var active_camera = null setget get_active_camera,set_active_camera
 var network_id setget get_ID,set_ID
 var character_name = "Unknown"
-var character_gender = s_gender.MALE
+var character_gender = timelab.gender.MALE
 
 func _ready():
 	add_to_group("clients")
-	timeline.connect("on_game_start", self, "_on_game_start")
+	timelab.timeline.connect("on_game_start", self, "_on_game_start")
 	if is_client():
 		set_process_input(true)
 
-remote func update_chat(msg):
+sync func update_chat(msg):
 	if has_node("UserInterface") and is_client():
 		var UI = get_node("UserInterface")
 		UI._update_chat(msg)
@@ -30,7 +30,7 @@ remote func send_info(id):
 	rset_id(id, "info", info)
 
 func request_info():
-	rpc("send_info", timeline.get_current_client().get_ID())
+	rpc("send_info", timelab.timeline.get_current_client().get_ID())
 
 func configure_network_mode(mode):
 	if mode == NETWORK_MODE_MASTER:
@@ -69,7 +69,7 @@ func set_active_camera(camera):
 func is_client():
 	"""This function returns true if currently the code is being
 	   executed by this client's owner."""
-	if timeline.is_online:
+	if timelab.timeline.is_online:
 		return (str(get_ID()) == str(get_tree().get_network_unique_id()))
 	else:
 		return true
@@ -85,7 +85,7 @@ sync func set_mob(mob):
 	var type = typeof(mob)
 	if type == TYPE_NODE_PATH:
 		return _set_mob_nodepath(mob)
-	elif type == TYPE_OBJECT and mob extends s_base.element:
+	elif type == TYPE_OBJECT and mob extends timelab.base.element:
 		return _set_mob_node(mob)
 	elif type == TYPE_NIL:
 		emit_signal("on_mob_change", null, mob)
@@ -104,7 +104,7 @@ func _set_mob_nodepath(mob_nodepath):
 	# Do not call this function directly.
 	assert typeof(mob_nodepath) == TYPE_NODE_PATH
 	var mob = get_node(mob_nodepath)
-	if mob extends timeline.element_base:
+	if mob extends timelab.timeline.element_base:
 		return _set_mob_node(mob)
 	else:
 		return false

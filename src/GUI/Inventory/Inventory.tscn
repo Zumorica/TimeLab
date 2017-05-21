@@ -1,0 +1,187 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://src/GUI/Inventory/Inventory.gd" type="Script" id=1]
+[ext_resource path="res://res/img/GUI/invbg.png" type="Texture" id=2]
+[ext_resource path="res://src/GUI/Inventory/Slot.tscn" type="PackedScene" id=3]
+
+[node name="Inventory" type="WindowDialog"]
+
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 300.0
+margin/top = 250.0
+margin/right = -300.0
+margin/bottom = -150.0
+popup/exclusive = false
+window/title = ""
+script/script = ExtResource( 1 )
+storage_size = 10
+display_node = NodePath(".")
+
+[node name="Background" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 600.0
+margin/bottom = 400.0
+texture = ExtResource( 2 )
+stretch_mode = 0
+
+[node name="HeadSlot" parent="Background" instance=ExtResource( 3 )]
+
+margin/left = 60.0
+margin/top = 42.0
+margin/right = 96.0
+margin/bottom = 78.0
+
+[node name="MaskSlot" parent="Background" instance=ExtResource( 3 )]
+
+margin/left = 60.0
+margin/top = 88.0
+margin/right = 96.0
+margin/bottom = 124.0
+
+[node name="ChestSlot" parent="Background" instance=ExtResource( 3 )]
+
+margin/left = 60.0
+margin/top = 152.0
+margin/right = 96.0
+margin/bottom = 188.0
+
+[node name="BeltSlot" parent="Background" instance=ExtResource( 3 )]
+
+margin/left = 60.0
+margin/top = 224.0
+margin/right = 96.0
+margin/bottom = 260.0
+
+[node name="LegsSlot" parent="Background" instance=ExtResource( 3 )]
+
+margin/left = 60.0
+margin/top = 276.0
+margin/right = 96.0
+margin/bottom = 312.0
+
+[node name="FeetSlot" parent="Background" instance=ExtResource( 3 )]
+
+margin/left = 60.0
+margin/top = 335.0
+margin/right = 96.0
+margin/bottom = 371.0
+
+[node name="LHandSlot" parent="Background" instance=ExtResource( 3 )]
+
+margin/left = 100.0
+margin/top = 172.0
+margin/right = 136.0
+margin/bottom = 208.0
+
+[node name="LPocketSlot" parent="Background" instance=ExtResource( 3 )]
+
+margin/left = 108.0
+margin/top = 335.0
+margin/right = 144.0
+margin/bottom = 371.0
+
+[node name="BackSlot" parent="Background" instance=ExtResource( 3 )]
+
+margin/left = 128.0
+margin/top = 296.0
+margin/right = 164.0
+margin/bottom = 332.0
+
+[node name="RPocketSlot" parent="Background" instance=ExtResource( 3 )]
+
+margin/left = 148.0
+margin/top = 335.0
+margin/right = 184.0
+margin/bottom = 371.0
+
+[node name="BSlot1" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
+
+margin/left = 199.0
+margin/top = 335.0
+margin/right = 235.0
+margin/bottom = 371.0
+
+[node name="BSlot2" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
+
+margin/left = 235.0
+margin/top = 335.0
+margin/right = 271.0
+margin/bottom = 371.0
+
+[node name="BSlot3" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
+
+margin/left = 271.0
+margin/top = 335.0
+margin/right = 307.0
+margin/bottom = 371.0
+
+[node name="BSlot4" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
+
+margin/left = 307.0
+margin/top = 335.0
+margin/right = 343.0
+margin/bottom = 371.0
+
+[node name="BSlot5" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
+
+margin/left = 343.0
+margin/top = 335.0
+margin/right = 379.0
+margin/bottom = 371.0
+
+[node name="BSlot6" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
+
+margin/left = 379.0
+margin/top = 335.0
+margin/right = 415.0
+margin/bottom = 371.0
+
+[node name="BSlot7" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
+
+margin/left = 415.0
+margin/top = 335.0
+margin/right = 451.0
+margin/bottom = 371.0
+
+[node name="BSlot8" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
+
+margin/left = 451.0
+margin/top = 335.0
+margin/right = 487.0
+margin/bottom = 371.0
+
+[node name="BSlot9" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
+
+margin/left = 487.0
+margin/top = 335.0
+margin/right = 523.0
+margin/bottom = 371.0
+
+[node name="BSlot10" parent="Background" groups=[ "belt_slots" ] instance=ExtResource( 3 )]
+
+margin/left = 523.0
+margin/top = 335.0
+margin/right = 559.0
+margin/bottom = 371.0
+
+[node name="RHandSlot" parent="Background" instance=ExtResource( 3 )]
+
+margin/left = 20.0
+margin/top = 172.0
+margin/right = 56.0
+margin/bottom = 208.0
+
+
