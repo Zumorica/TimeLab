@@ -1,4 +1,6 @@
 config_version=3
+config_version=null
+
 [application]
 
 name="Time Lab"
@@ -6,7 +8,7 @@ icon="res://icon.png"
 
 [autoload]
 
-TimeLab="*res://src/timelab.gd"
+timelab="*res://src/timelab.gd"
 
 [display]
 
