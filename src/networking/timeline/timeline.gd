@@ -12,7 +12,7 @@ var lobby_client_list
 remote var gamemode = null
 var gamemode_list = {"Sandbox" : "res://src/gamemode/sandbox.gd", "Mystery" : "res://src/gamemode/mystery.gd"}
 onready var network_handler = NetworkedMultiplayerENet.new()
-onready var client = timelab.base.client.new() setget get_current_client
+onready var client = timelab.base.client_scene.instance() setget get_current_client
 onready var right_click_menu = PopupMenu.new()
 onready var user_interface = timelab.base.user_interface_scene.instance()
 onready var inventory = timelab.base.inventory_scene
@@ -167,7 +167,7 @@ sync func pre_configure_game(spawn_points):
 		layer.set_name("Layer")
 		client.get_mob().add_child(layer)
 		client.get_mob().get_node("Layer").add_child(inv)
-		client.get_mob().set_pos(spawn_points[client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
+		client.get_mob().position = Vector2(spawn_points[client.get_ID()] * Vector2(32, 32) + Vector2(16, 16))
 	get_current_client().add_child(user_interface)
 	get_current_client().get_node("UserInterface").add_child(right_click_menu)
 

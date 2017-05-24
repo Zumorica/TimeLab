@@ -8,7 +8,7 @@ export remote var speed_per_tick = 2
 remote var is_sliding = false
 remote var goal_destination = Vector2(0, 0)
 remote var old_pos = Vector2(0, 0)
-remote var old_transform = Matrix32()
+remote var old_transform = null
 
 func _ready():
 	rpc_config("emit_signal", RPC_MODE_SYNC)

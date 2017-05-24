@@ -4,7 +4,7 @@ var is_chat_visible = false
 var timer
 onready var chat_window = get_node("Layer/Chat/ChatWindow")
 onready var text_input = get_node("Layer/Chat/TextInput")
-onready var inventory =timelab.timeline.get_current_client().get_mob().get_node("Layer/Inventory")
+onready var inventory = timelab.timeline.get_current_client().get_mob().get_node("Layer/Inventory")
 
 func _ready():
 	set_process(true)

@@ -39,8 +39,8 @@ func _ready():
 		set_process_input(true)
 	set_collision_margin(0.0)
 	rpc_config("emit_signal", RPC_MODE_SYNC)
-	if not timelab.timeline.right_click_menu.is_connected("item_pressed", self, "verb_pressed"):
-		timelab.timeline.right_click_menu.connect("item_pressed", self, "verb_pressed")
+	if not timelab.timeline.right_click_menu.is_connected("index_pressed", self, "verb_pressed"):
+		timelab.timeline.right_click_menu.connect("index_pressed", self, "verb_pressed")
 	if not is_connected("on_clicked", self, "_on_clicked"):
 		connect("on_clicked", self, "_on_clicked")
 	if not is_connected("input_event", self, "_input_event"):
@@ -50,7 +50,7 @@ func _ready():
 sync func update_opacity(old_pos=null):
 	if has_node("/root/Map/Sight/Bitmap"):
 		var bitmap = get_node("/root/Map/Sight/Bitmap")
-		var mappos = bitmap.world_to_map(get_pos())
+		var mappos = bitmap.world_to_map(position)
 		if opaque:
 			bitmap.set_cell(mappos.x, mappos.y, 0)
 		else:

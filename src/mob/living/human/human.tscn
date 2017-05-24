@@ -1,14 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://res/img/mob/living/human/0.png" type="Texture" id=1]
-[ext_resource path="res://res/img/mob/living/human/1.png" type="Texture" id=2]
-[ext_resource path="res://res/img/mob/living/human/2.png" type="Texture" id=3]
-[ext_resource path="res://res/img/mob/living/human/3.png" type="Texture" id=4]
-[ext_resource path="res://res/anim/mob/attack_animation.tres" type="Animation" id=5]
-[ext_resource path="res://src/module/movement/movement.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/module/chat/chat.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/module/attack/attack.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/module/health/health.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/mob/living/human/human.gd" type="Script" id=1]
+[ext_resource path="res://res/img/mob/living/human/0.png" type="Texture" id=2]
+[ext_resource path="res://res/img/mob/living/human/1.png" type="Texture" id=3]
+[ext_resource path="res://res/img/mob/living/human/2.png" type="Texture" id=4]
+[ext_resource path="res://res/img/mob/living/human/3.png" type="Texture" id=5]
+[ext_resource path="res://res/anim/mob/attack_animation.tres" type="Animation" id=6]
+[ext_resource path="res://src/module/movement/movement.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/module/chat/chat.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/module/attack/attack.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/module/health/health.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -30,6 +31,17 @@ shapes/0/trigger = false
 collision_layer = 1
 collision_mask = 1
 collision/margin = 0.08
+script = ExtResource( 1 )
+show_name = "Unknown"
+description = "[REDACTED]"
+direction = 0
+is_movable = true
+state = 0
+interact_range = 100
+gender = null
+opaque = false
+intent = 1
+race = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -60,25 +72,25 @@ _update_shape_index = 0
 
 [node name="Base" type="Sprite" parent="Sprites/North"]
 
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="South" type="Node2D" parent="Sprites"]
 
 [node name="Base" type="Sprite" parent="Sprites/South"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="West" type="Node2D" parent="Sprites"]
 
 [node name="Base" type="Sprite" parent="Sprites/West"]
 
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="East" type="Node2D" parent="Sprites"]
 
 [node name="Base" type="Sprite" parent="Sprites/East"]
 
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="." groups=[
 "cameras",
@@ -107,20 +119,20 @@ drag_margin_bottom = 0.2
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 root_node = NodePath("..")
-anims/attack = ExtResource( 5 )
-anims/attack_animation = ExtResource( 5 )
+anims/attack = ExtResource( 6 )
+anims/attack_animation = ExtResource( 6 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="Movement" parent="." instance=ExtResource( 6 )]
+[node name="Movement" parent="." instance=ExtResource( 7 )]
 
-[node name="Chat" parent="." instance=ExtResource( 7 )]
+[node name="Chat" parent="." instance=ExtResource( 8 )]
 
-[node name="Attack" parent="." instance=ExtResource( 8 )]
+[node name="Attack" parent="." instance=ExtResource( 9 )]
 
-[node name="Health" parent="." instance=ExtResource( 9 )]
+[node name="Health" parent="." instance=ExtResource( 10 )]
 
 [connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
 
