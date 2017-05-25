@@ -45,39 +45,34 @@ func queue_free():
 		timelab.map.rpc("tracked_element_remove", self)
 	.queue_free()
 
+func cell_move(destination, relative=false):
+	# Do not call with RPC. This teleports the element.
+	if relative:
+		destination += cell_position
+	if not timelab.map.grid.has(destination):
+		return false
+	rset("position", timelab.map.map_to_world(destination))
+	return true
+	
 func cell_slide(destination, relative=false):
 	# Do not call with RPC.
 	if not is_sliding:
 		if relative:
-			var final = destination + cell_position
-			if timelab.map.grid.has(final.x):
-				if timelab.map.grid[final.x].has(final.y):
-					pass
-				else:
-					return
-			else:
-				return
-			rset("goal_destination", destination + cell_position)
-		else:
-			if timelab.map:
-				if timelab.map.grid.has(destination.x):
-					if timelab.map.grid[destination.x].has(destination.y):
-						pass
-					else:
-						return
-				else:
-					return
-			rset("goal_destination", destination)
+			destination += cell_position
+		if not timelab.map.grid.has(destination):
+			return false
+		rset("goal_destination", destination)
 		rset("last_cell_position",  cell_position)
 		rset("old_cell_position", cell_position)
 		rset("old_transform", get_transform())
 		rset("is_sliding", true)
+		return true
 	
 func _fixed_process(dt):
 	cell_position = timelab.map.world_to_map(position) # This should already be synced, so no rset here.
 	if is_sliding:
 		var delta_movement = timelab.map.map_to_world(goal_destination - last_cell_position)
-		var goal_distance = delta_movement.length()
+		var goal_distance = sqrt(pow(delta_movement.x, 2) + pow(delta_movement.y, 2))
 		if test_move(old_transform, delta_movement):
 			is_sliding = false
 			if is_colliding():
