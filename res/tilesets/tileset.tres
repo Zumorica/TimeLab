@@ -11,7 +11,7 @@
 [ext_resource path="res://res/img/tile/wall/rock.png" type="Texture" id=9]
 [ext_resource path="res://res/img/tile/wall/glass.png" type="Texture" id=10]
 
-[sub_resource type="OccluderPolygon2D" id=3]
+[sub_resource type="OccluderPolygon2D" id=1]
 
 closed = true
 cull_mode = 0
@@ -93,7 +93,7 @@ extents = Vector2( 16, 16 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 0, 0, 32, 32 )
 7/occluder_offset = Vector2( 16, 16 )
-7/occluder = SubResource( 3 )
+7/occluder = SubResource( 1 )
 7/navigation_offset = Vector2( 16, 16 )
 7/shape_offset = Vector2( 16, 16 )
 7/shapes = [ SubResource( 2 ) ]
@@ -103,7 +103,7 @@ extents = Vector2( 16, 16 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 0, 0, 32, 32 )
 8/occluder_offset = Vector2( 16, 16 )
-8/occluder = SubResource( 3 )
+8/occluder = SubResource( 1 )
 8/navigation_offset = Vector2( 16, 16 )
 8/shape_offset = Vector2( 16, 16 )
 8/shapes = [ SubResource( 2 ) ]
@@ -113,7 +113,7 @@ extents = Vector2( 16, 16 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 0, 0, 32, 32 )
 9/occluder_offset = Vector2( 16, 16 )
-9/occluder = SubResource( 3 )
+9/occluder = SubResource( 1 )
 9/navigation_offset = Vector2( 16, 16 )
 9/shape_offset = Vector2( 16, 16 )
 9/shapes = [ SubResource( 2 ) ]
