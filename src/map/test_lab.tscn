@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://res/tilesets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/map/map.gd" type="Script" id=2]
 [ext_resource path="res://src/element/element.gd" type="Script" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
 
 [node name="TileMap" type="TileMap"]
 
@@ -15,8 +20,8 @@ cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 cell_half_offset = 2
 cell_tile_origin = 0
-cell_y_sort = true
-collision_use_kinematic = false
+cell_y_sort = false
+collision_use_kinematic = true
 collision_friction = 1.0
 collision_bounce = 0.0
 collision_layers = 1
@@ -27,17 +32,27 @@ script = ExtResource( 2 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 
-position = Vector2( 64, 64 )
+position = Vector2( 144, 80 )
 input_pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
 collision_layer = 1
 collision_mask = 1
 collision/margin = 0.08
 script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D"]
 
 position = Vector2( -16, -16 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+centered = false
 
 
