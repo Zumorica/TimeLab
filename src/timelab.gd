@@ -10,7 +10,7 @@ func _ready():
 	rpc_config("emit_signal", RPC_MODE_SYNC)
 
 func has_game_started():
-	return true # Returns true for debugging reasons.
+	return game_started
 
 func set_current_map(new_map):
 	rset("map", new_map)
