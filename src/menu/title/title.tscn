@@ -1,0 +1,280 @@
+[gd_scene format=2]
+
+[node name="CenterContainer" type="CenterContainer"]
+
+anchor_right = 1
+anchor_bottom = 1
+margin_right = 146.0
+margin_bottom = 168.0
+rect_min_size = Vector2( 1280, 700 )
+rect_clip_content = false
+mouse_filter = 0
+use_top_left = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Panel" type="Panel" parent="."]
+
+margin_left = 128.0
+margin_top = 94.0
+margin_right = 1152.0
+margin_bottom = 606.0
+rect_min_size = Vector2( 1024, 512 )
+rect_clip_content = false
+mouse_filter = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel"]
+
+anchor_right = 1
+anchor_bottom = 1
+rect_min_size = Vector2( 1024, 512 )
+rect_clip_content = false
+mouse_filter = 0
+split_offset = 0
+collapsed = false
+dragger_visibility = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Left" type="Control" parent="Panel/HSplitContainer"]
+
+margin_right = 506.0
+margin_bottom = 512.0
+rect_min_size = Vector2( 506, 512 )
+rect_clip_content = false
+mouse_filter = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/HSplitContainer/Left"]
+
+margin_right = 506.0
+margin_bottom = 80.0
+rect_clip_content = false
+mouse_filter = 0
+use_top_left = false
+
+[node name="Label" type="Label" parent="Panel/HSplitContainer/Left/CenterContainer"]
+
+margin_left = 222.0
+margin_top = 33.0
+margin_right = 284.0
+margin_bottom = 47.0
+rect_clip_content = false
+mouse_filter = 2
+size_flags_vertical = 0
+text = "Join game"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Separator" type="HSeparator" parent="Panel/HSplitContainer/Left"]
+
+margin_top = 80.0
+margin_right = 506.0
+margin_bottom = 120.0
+rect_clip_content = false
+mouse_filter = 0
+
+[node name="CenterContainer2" type="CenterContainer" parent="Panel/HSplitContainer/Left"]
+
+margin_top = 120.0
+margin_right = 506.0
+margin_bottom = 512.0
+rect_clip_content = false
+mouse_filter = 0
+use_top_left = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer/Left/CenterContainer2"]
+
+margin_left = 193.0
+margin_top = 159.0
+margin_right = 313.0
+margin_bottom = 233.0
+rect_clip_content = false
+mouse_filter = 1
+alignment = 0
+
+[node name="Port" type="LineEdit" parent="Panel/HSplitContainer/Left/CenterContainer2/VBoxContainer"]
+
+margin_right = 120.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 120, 22 )
+rect_clip_content = false
+mouse_filter = 0
+max_length = 6
+expand_to_len = false
+focus_mode = 2
+placeholder_text = "Port"
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+
+[node name="Address" type="LineEdit" parent="Panel/HSplitContainer/Left/CenterContainer2/VBoxContainer"]
+
+margin_top = 26.0
+margin_right = 120.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 120, 22 )
+rect_clip_content = false
+mouse_filter = 0
+expand_to_len = false
+focus_mode = 2
+placeholder_text = "Address"
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+
+[node name="Button" type="Button" parent="Panel/HSplitContainer/Left/CenterContainer2/VBoxContainer"]
+
+margin_top = 52.0
+margin_right = 120.0
+margin_bottom = 74.0
+rect_clip_content = false
+mouse_filter = 0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Join"
+flat = false
+
+[node name="Right" type="Control" parent="Panel/HSplitContainer"]
+
+margin_left = 518.0
+margin_right = 1024.0
+margin_bottom = 512.0
+rect_min_size = Vector2( 506, 512 )
+rect_clip_content = false
+mouse_filter = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/HSplitContainer/Right"]
+
+margin_right = 506.0
+margin_bottom = 80.0
+rect_clip_content = false
+mouse_filter = 0
+use_top_left = false
+
+[node name="Label" type="Label" parent="Panel/HSplitContainer/Right/CenterContainer"]
+
+margin_left = 218.0
+margin_top = 33.0
+margin_right = 287.0
+margin_bottom = 47.0
+rect_clip_content = false
+mouse_filter = 2
+size_flags_vertical = 0
+text = "Host game"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Separator" type="HSeparator" parent="Panel/HSplitContainer/Right"]
+
+margin_top = 89.0
+margin_right = 506.0
+margin_bottom = 129.0
+rect_clip_content = false
+mouse_filter = 0
+
+[node name="CenterContainer2" type="CenterContainer" parent="Panel/HSplitContainer/Right"]
+
+margin_top = 120.0
+margin_right = 506.0
+margin_bottom = 512.0
+rect_clip_content = false
+mouse_filter = 0
+use_top_left = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer/Right/CenterContainer2"]
+
+margin_left = 193.0
+margin_top = 159.0
+margin_right = 313.0
+margin_bottom = 233.0
+rect_clip_content = false
+mouse_filter = 1
+alignment = 0
+
+[node name="Port" type="LineEdit" parent="Panel/HSplitContainer/Right/CenterContainer2/VBoxContainer"]
+
+margin_right = 120.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 120, 22 )
+rect_clip_content = false
+focus_neighbour_bottom = NodePath("../LineEdit")
+mouse_filter = 0
+expand_to_len = false
+focus_mode = 2
+placeholder_text = "Port"
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+
+[node name="LineEdit" type="LineEdit" parent="Panel/HSplitContainer/Right/CenterContainer2/VBoxContainer"]
+
+margin_top = 26.0
+margin_right = 120.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 120, 22 )
+rect_clip_content = false
+focus_neighbour_top = NodePath("../Port")
+mouse_filter = 0
+expand_to_len = false
+focus_mode = 2
+placeholder_text = "Max players"
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+
+[node name="Button" type="Button" parent="Panel/HSplitContainer/Right/CenterContainer2/VBoxContainer"]
+
+margin_top = 52.0
+margin_right = 120.0
+margin_bottom = 74.0
+rect_clip_content = false
+mouse_filter = 0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Host"
+flat = false
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+
+editor/display_folded = true
+anchor_right = 1
+margin_bottom = 80.0
+rect_clip_content = false
+mouse_filter = 0
+use_top_left = false
+
+[node name="Label" type="Label" parent="Panel/CenterContainer"]
+
+margin_left = 483.0
+margin_top = 24.0
+margin_right = 541.0
+margin_bottom = 55.0
+rect_clip_content = false
+mouse_filter = 2
+size_flags_vertical = 0
+text = "Time Lab
+Alpha"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+
