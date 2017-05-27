@@ -37,13 +37,19 @@ func get_client(ID):
 func get_current_client():
 	return get_client(get_tree().get_network_unique_id())
 	
-sync func instance(object, parent_path, variables={}, call_functions=[]):
+sync func instance(object, parent_path, variables={}, call_functions=[], name=""):
 	assert typeof(parent_path) == TYPE_NODE_PATH
 	assert typeof(variables) == TYPE_DICTIONARY
 	if typeof(object) == TYPE_STRING:
 		object = load(object)
-		assert typeof(object) == TYPE_OBJECT and object.has_method("instance")
-		object = object.instance()
+		print(typeof(object))
+		assert typeof(object) == TYPE_OBJECT
+		if object.has_method("instance"):
+			object = object.instance()
+		elif object.has_method("new"):
+			object = object.new()
+		else:
+			raise()
 	elif typeof(object) == TYPE_OBJECT:
 		if object.has_method("instance"):
 			object = object.instance()
@@ -53,14 +59,23 @@ sync func instance(object, parent_path, variables={}, call_functions=[]):
 			raise()
 	assert typeof(object) == TYPE_OBJECT and object extends Node
 	for variable in variables.keys():
-		object.set(variable, variables[variable])
+		if variable != "script":
+			object.set(variable, variables[variable])
 	for method in call_functions:
 		object.call(method)
-	get_node(parent_path).add_child(object)
+	assert typeof(name) == TYPE_STRING
+	if name.strip_edges().length() > 0:
+		object.set_name(name)
+	get_node(parent_path).add_child(object, true)
 
 func create_server(port=7777, max_players=32):
 	network.create_server(port, max_players)
 	get_tree().set_network_peer(network)
+	get_tree().change_scene("res://src/game.tscn")
+	var server = load("res://src/client.gd").new()
+	server.ID = get_tree().get_network_unique_id()
+	server.set_name("Host")
+	add_child(server)
 	
 func join_game(ip="127.0.0.1", port=7777):
 	network.create_client(ip, port)
@@ -75,12 +90,23 @@ func _on_connection_success():
 	get_tree().change_scene("res://src/game.tscn")
 	
 func _on_server_disconnect():
-	pass
-
+	print("Server disconnected!")
+	get_tree().quit()
+	
 func _on_peer_connect(ID):
 	prints(ID, "connected.")
-	rpc("instance", "res://src/client.gd", get_path(), {"ID" : ID})
-	
+	if get_tree().is_network_server():
+		for client in get_tree().get_nodes_in_group("clients"):
+			var variables = {}
+			for i in client.get_property_list():
+				variables[i["name"]] = client.get(i["name"])
+			rpc_id(ID, "instance", "res://src/client.gd", get_path(), variables, [], client.get_name())
+		rpc("instance", "res://src/client.gd", get_path(), {"ID" : ID}, [], "Scientist")
+
 func _on_peer_disconnect(ID):
 	prints(ID, "disconnected.")
 	get_client(ID).rset("is_alive", false)
+	
+sync func rename(path, name):
+	assert typeof(path) == TYPE_NODE_PATH
+	get_node(path).set_name(name)
