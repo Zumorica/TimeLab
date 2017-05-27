@@ -9,7 +9,6 @@ func _ready():
 		rpc_config("_on_tracked_element_move", RPC_MODE_SLAVE)
 	_grid_populate(get_used_rect().size)
 	timelab.set_current_map(self)
-	timelab.set_game_started(true)
 
 func _grid_populate(grid_size):
 	# Clears the whole grid and populates it with
