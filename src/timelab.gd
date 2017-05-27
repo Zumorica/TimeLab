@@ -9,6 +9,11 @@ onready var network = NetworkedMultiplayerENet.new()
 
 func _ready():
 	rpc_config("emit_signal", RPC_MODE_SYNC)
+	network.connect("connection_failed", self, "_on_connection_failed")
+	network.connect("connection_succeeded", self, "_on_connection_success")
+	network.connect("server_disconnected", self, "_on_server_disconnect")
+	network.connect("peer_connected", self, "_on_peer_connect")
+	network.connect("peer_disconnected", self, "_on_peer_disconnect")
 
 func has_game_started():
 	return game_started
@@ -52,3 +57,30 @@ sync func instance(object, parent_path, variables={}, call_functions=[]):
 	for method in call_functions:
 		object.call(method)
 	get_node(parent_path).add_child(object)
+
+func create_server(port=7777, max_players=32):
+	network.create_server(port, max_players)
+	get_tree().set_network_peer(network)
+	
+func join_game(ip="127.0.0.1", port=7777):
+	network.create_client(ip, port)
+	get_tree().set_network_peer(network)
+	
+func _on_connection_failed():
+	print("Connection failed.")
+	print(network.get_packet_error())
+	get_tree().change_scene("res://src/menu/title/title.tscn")
+	
+func _on_connection_success():
+	get_tree().change_scene("res://src/game.tscn")
+	
+func _on_server_disconnect():
+	pass
+
+func _on_peer_connect(ID):
+	prints(ID, "connected.")
+	rpc("instance", "res://src/client.gd", get_path(), {"ID" : ID})
+	
+func _on_peer_disconnect(ID):
+	prints(ID, "disconnected.")
+	get_client(ID).rset("is_alive", false)
