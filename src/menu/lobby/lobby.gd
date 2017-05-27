@@ -15,11 +15,10 @@ func _ready():
 	assert get_node(chat_label) extends RichTextLabel
 	assert get_node(chat_lineedit) extends LineEdit
 	assert get_node(nickname_lineedit) extends LineEdit
-	assert get_node(nickname_button) extends Button
 	assert get_node(ready_button) extends Button
 	assert get_node(start_button) extends Button
 	get_node(chat_lineedit).connect("text_entered", self, "_on_chat_text_entered")
-	get_node(nickname_button).connect("pressed", self, "_on_nickname_submit")
+	get_node(nickname_lineedit).connect("text_entered", self, "_on_nickname_submit")
 	get_node(ready_button).connect("toggled", self, "_on_ready_button_toggle")
 	get_node(start_button).connect("pressed", self, "_on_start_button_pressed")
 	
@@ -39,15 +38,15 @@ func _player_list_refresh():
 	for node in get_tree().get_nodes_in_group("clients"):
 		assert node extends preload("res://src/client.gd")
 		if node == timelab.get_current_client():
-			list.add_item("%s (%s - YOU)"%[node.get_name(), node.ID], null, false)
+			list.add_item("%s >>%s (You)"%[node.get_name(), node.ID], null, false)
 		else:
-			list.add_item("%s (%s)"%[node.get_name(), node.ID], null, false)
+			list.add_item("%s >>%s"%[node.get_name(), node.ID], null, false)
 
-func _on_nickname_submit():
+func _on_nickname_submit(text):
 	var old_nick = timelab.get_current_client().get_name()
-	var nick = get_node(chat_lineedit).text
-	timelab.get_current_client().rpc("set_name", nick)
-	rpc("add_chat_message", "[i]%s changed their nickname to %s[/i]" %[old_nick, nick])
+	if text.strip_edges().length():
+		timelab.rpc("rename", timelab.get_current_client().get_path(), text)
+		rpc("add_chat_message", "[i]%s changed their nickname to %s[/i]" %[old_nick, text])
 
 func _on_ready_button_toggle(toggle):
 	if toggle:
@@ -57,9 +56,10 @@ func _on_ready_button_toggle(toggle):
 	timelab.get_current_client().rset("preround_ready", toggle)
 
 func _on_chat_text_entered(text):
-	get_node(chat_lineedit).clear()
-	var final_text = "[b]%s[/b]: %s" %[timelab.get_current_client().get_name()]
-	rpc("add_chat_message", final_text)
+	if text.strip_edges().length():
+		get_node(chat_lineedit).clear()
+		var final_text = "[b]%s[/b]: %s" %[timelab.get_current_client().get_name(), text]
+		rpc("add_chat_message", final_text)
 
 sync func add_chat_message(text):
 	get_node(chat_label).append_bbcode(text)

@@ -222,21 +222,6 @@ placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 
-[node name="Nickname_submit" type="Button" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer/Left/VBoxContainer"]
-
-margin_top = 26.0
-margin_right = 295.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 123, 22 )
-rect_clip_content = false
-mouse_filter = 0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Submit nickname"
-flat = false
-
 [node name="Right" type="Control" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer"]
 
 margin_left = 307.0
