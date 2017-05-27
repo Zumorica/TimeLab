@@ -16,7 +16,6 @@ sync var old_transform = Transform2D()
 
 func _ready():
 	rpc_config("emit_signal", RPC_MODE_SYNC)
-	rpc_config("set_name", RPC_MODE_SYNC)
 	rpc_config("move_to", RPC_MODE_SYNC)
 	rpc_config("move", RPC_MODE_SYNC)
 	rset_config("position", RPC_MODE_SYNC)
