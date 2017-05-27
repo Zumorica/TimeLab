@@ -20,12 +20,10 @@ func _grid_populate(grid_size):
 			grid[Vector2(x, y)] = []
 
 func track_element_on_map(element):
-	#if get_tree().get_network_unique_id() == 1:
-	if true:
+	if get_tree().get_network_unique_id() == 1:
 		assert typeof(element) == TYPE_OBJECT
 		assert element extends Node
 		element.connect("move", self, "_on_tracked_element_move")
-		print("CONNECTED")
 		_on_tracked_element_move(element, element.cell_position, Vector2(0, 0))
 
 remote func _on_tracked_element_move(element, new_position, old_position):
@@ -37,7 +35,7 @@ remote func _on_tracked_element_move(element, new_position, old_position):
 	if get_tree().get_network_unique_id() == 1:
 		rpc("_on_tracked_element_move", element, new_position, old_position)
 		
-remote func tracked_element_remove(element):
+sync func tracked_element_remove(element):
 	if element.is_connected("move", self, "on_tracked_element_move"):
 		element.disconnect("move", self, "on_tracked_element_move")
 	if grid.has(element.cell_position):

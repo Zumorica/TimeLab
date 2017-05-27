@@ -16,15 +16,18 @@ sync var old_transform = Transform2D()
 
 func _ready():
 	rpc_config("emit_signal", RPC_MODE_SYNC)
+	rpc_config("set_name", RPC_MODE_SYNC)
 	rpc_config("move_to", RPC_MODE_SYNC)
 	rpc_config("move", RPC_MODE_SYNC)
 	rset_config("position", RPC_MODE_SYNC)
 	add_to_group("element")
-	timelab.connect("game_start", self, "_game_start")
-	cell_slide(Vector2(32, 32))
+	if not timelab.has_game_started():
+		timelab.connect("game_start", self, "_track_element", [], CONNECT_ONESHOT)
+	else:
+		_track_element()
 
-func _game_start():
-	if timelab.has_game_started():
+func _track_element():
+	if get_tree().is_network_server():
 		cell_position = timelab.map.world_to_map(position)
 		old_cell_position = cell_position
 		timelab.map.track_element_on_map(self)
