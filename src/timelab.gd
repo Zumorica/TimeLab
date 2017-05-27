@@ -5,6 +5,7 @@ signal game_end()
 
 sync var game_started = false setget has_game_started, set_game_started	# Whether the game has started or not. Should not be changed manually.
 sync var map = null setget ,set_current_map	# Map instance
+onready var network = NetworkedMultiplayerENet.new()
 
 func _ready():
 	rpc_config("emit_signal", RPC_MODE_SYNC)
@@ -21,3 +22,9 @@ func set_game_started(value):
 		rpc("emit_signal", "game_start")
 	else:
 		rpc("emit_signal", "game_end")
+		
+func get_client(ID):
+	for client in get_tree().get_nodes_in_group("clients"):
+		if client.ID == ID:
+			return client
+	return false
