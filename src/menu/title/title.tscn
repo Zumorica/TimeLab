@@ -1,6 +1,8 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
 
-[node name="CenterContainer" type="CenterContainer"]
+[ext_resource path="res://src/menu/title/title.gd" type="Script" id=1]
+
+[node name="Title" type="CenterContainer"]
 
 anchor_right = 1
 anchor_bottom = 1
@@ -10,9 +12,16 @@ rect_min_size = Vector2( 1280, 700 )
 rect_clip_content = false
 mouse_filter = 0
 use_top_left = false
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+join_port = NodePath("Panel/HSplitContainer/Left/CenterContainer2/VBoxContainer/Port")
+join_address = NodePath("Panel/HSplitContainer/Left/CenterContainer2/VBoxContainer/Address")
+join_button = NodePath("Panel/HSplitContainer/Left/CenterContainer2/VBoxContainer/Button")
+host_port = NodePath("Panel/HSplitContainer/Right/CenterContainer2/VBoxContainer/Port")
+host_maxplayers = NodePath("Panel/HSplitContainer/Right/CenterContainer2/VBoxContainer/Max_players")
+host_button = NodePath("Panel/HSplitContainer/Right/CenterContainer2/VBoxContainer/Button")
 
 [node name="Panel" type="Panel" parent="."]
 
@@ -221,7 +230,7 @@ placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 
-[node name="LineEdit" type="LineEdit" parent="Panel/HSplitContainer/Right/CenterContainer2/VBoxContainer"]
+[node name="Max_players" type="LineEdit" parent="Panel/HSplitContainer/Right/CenterContainer2/VBoxContainer"]
 
 margin_top = 26.0
 margin_right = 120.0
@@ -253,7 +262,6 @@ flat = false
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel"]
 
-editor/display_folded = true
 anchor_right = 1
 margin_bottom = 80.0
 rect_clip_content = false
