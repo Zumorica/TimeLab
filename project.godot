@@ -1,9 +1,8 @@
 config_version=3
-config_version=null
-
 [application]
 
 name="Time Lab"
+main_scene="res://src/menu/title/title.tscn"
 icon="res://icon.png"
 
 [autoload]
