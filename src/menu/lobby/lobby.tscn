@@ -1,0 +1,86 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/menu/title/title.gd" type="Script" id=1]
+
+[node name="Lobby" type="CenterContainer"]
+
+anchor_right = 1
+anchor_bottom = 1
+margin_right = 146.0
+margin_bottom = 168.0
+rect_min_size = Vector2( 1280, 700 )
+rect_clip_content = false
+mouse_filter = 0
+use_top_left = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Panel" type="Panel" parent="."]
+
+margin_left = 128.0
+margin_top = 94.0
+margin_right = 1152.0
+margin_bottom = 606.0
+rect_min_size = Vector2( 1024, 512 )
+rect_clip_content = false
+mouse_filter = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel"]
+
+anchor_right = 1
+anchor_bottom = 1
+rect_min_size = Vector2( 1024, 512 )
+rect_clip_content = false
+mouse_filter = 0
+split_offset = 0
+collapsed = false
+dragger_visibility = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Left" type="Control" parent="Panel/HSplitContainer"]
+
+margin_right = 506.0
+margin_bottom = 512.0
+rect_min_size = Vector2( 506, 512 )
+rect_clip_content = false
+mouse_filter = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/HSplitContainer/Left"]
+
+margin_right = 506.0
+margin_bottom = 512.0
+rect_clip_content = false
+mouse_filter = 0
+use_top_left = false
+
+[node name="Right" type="Control" parent="Panel/HSplitContainer"]
+
+margin_left = 518.0
+margin_right = 1024.0
+margin_bottom = 512.0
+rect_min_size = Vector2( 506, 512 )
+rect_clip_content = false
+mouse_filter = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/HSplitContainer/Right"]
+
+margin_right = 506.0
+margin_bottom = 512.0
+rect_clip_content = false
+mouse_filter = 0
+use_top_left = false
+
+
