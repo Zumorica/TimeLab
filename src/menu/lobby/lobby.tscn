@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/menu/title/title.gd" type="Script" id=1]
+[ext_resource path="res://src/menu/lobby/lobby.gd" type="Script" id=1]
 
 [node name="Lobby" type="CenterContainer"]
 
@@ -16,6 +16,13 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+player_list = NodePath("Panel/HSplitContainer/Left/Container/ItemList")
+chat_label = NodePath("Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Chat/Panel/RichTextLabel")
+chat_lineedit = NodePath("Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Chat/Panel/LineEdit")
+nickname_lineedit = NodePath("Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer/Left/VBoxContainer/Nickname")
+nickname_button = NodePath("Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer/Left/VBoxContainer/Nickname_submit")
+ready_button = NodePath("Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer/HSplitContainer/Left/VBoxContainer/Ready_button")
+start_button = NodePath("Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer/HSplitContainer/Right/VBoxContainer/Start_button")
 
 [node name="Panel" type="Panel" parent="."]
 
@@ -46,29 +53,37 @@ __meta__ = {
 
 [node name="Left" type="Control" parent="Panel/HSplitContainer"]
 
-margin_right = 506.0
+margin_right = 400.0
 margin_bottom = 512.0
-rect_min_size = Vector2( 506, 512 )
+rect_min_size = Vector2( 400, 512 )
 rect_clip_content = false
 mouse_filter = 0
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel/HSplitContainer/Left"]
+[node name="Container" type="Container" parent="Panel/HSplitContainer/Left"]
 
 margin_right = 506.0
 margin_bottom = 512.0
 rect_clip_content = false
 mouse_filter = 0
-use_top_left = false
+
+[node name="ItemList" type="ItemList" parent="Panel/HSplitContainer/Left/Container"]
+
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 375.0
+margin_bottom = 487.0
+rect_min_size = Vector2( 350, 400 )
+mouse_filter = 0
 
 [node name="Right" type="Control" parent="Panel/HSplitContainer"]
 
-margin_left = 518.0
+margin_left = 412.0
 margin_right = 1024.0
 margin_bottom = 512.0
-rect_min_size = Vector2( 506, 512 )
+rect_min_size = Vector2( 612, 512 )
 rect_clip_content = false
 mouse_filter = 0
 __meta__ = {
@@ -77,10 +92,269 @@ __meta__ = {
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel/HSplitContainer/Right"]
 
-margin_right = 506.0
-margin_bottom = 512.0
+anchor_right = 1
+anchor_bottom = 1
+rect_min_size = Vector2( 612, 512 )
 rect_clip_content = false
 mouse_filter = 0
 use_top_left = false
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Panel/HSplitContainer/Right/CenterContainer"]
+
+margin_top = 21.0
+margin_right = 612.0
+margin_bottom = 491.0
+rect_clip_content = false
+mouse_filter = 0
+split_offset = 0
+collapsed = false
+dragger_visibility = 0
+
+[node name="TabContainer" type="TabContainer" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer"]
+
+margin_right = 612.0
+margin_bottom = 229.0
+rect_min_size = Vector2( 612, 229 )
+rect_clip_content = false
+mouse_filter = 0
+tab_align = 0
+tabs_visible = true
+
+[node name="Chat" type="CenterContainer" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer"]
+
+editor/display_folded = true
+visible = false
+anchor_right = 1
+anchor_bottom = 1
+margin_left = 4.0
+margin_top = 38.0
+margin_right = 4.0
+margin_bottom = 4.0
+rect_clip_content = false
+mouse_filter = 0
+use_top_left = false
+
+[node name="Panel" type="Panel" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Chat"]
+
+self_modulate = Color( 0, 0, 0, 0.1 )
+margin_left = 3.0
+margin_right = 601.0
+margin_bottom = 187.0
+rect_min_size = Vector2( 598, 187 )
+rect_clip_content = false
+mouse_filter = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Chat/Panel"]
+
+margin_right = 599.0
+margin_bottom = 165.0
+rect_min_size = Vector2( 599, 165 )
+mouse_filter = 0
+bbcode_enabled = true
+bbcode_text = ""
+visible_characters = -1
+
+[node name="LineEdit" type="LineEdit" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Chat/Panel"]
+
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+margin_top = 22.0
+margin_right = 1.0
+rect_clip_content = false
+mouse_filter = 0
+expand_to_len = false
+focus_mode = 2
+placeholder_text = "Send a message"
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+
+[node name="Setup" type="Control" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer"]
+
+anchor_right = 1
+anchor_bottom = 1
+margin_left = 4.0
+margin_top = 38.0
+margin_right = 4.0
+margin_bottom = 4.0
+rect_clip_content = false
+mouse_filter = 0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup"]
+
+anchor_right = 1
+anchor_bottom = 1
+rect_min_size = Vector2( 604, 187 )
+rect_clip_content = false
+mouse_filter = 0
+split_offset = 0
+collapsed = false
+dragger_visibility = 0
+
+[node name="Left" type="Control" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer"]
+
+margin_right = 295.0
+margin_bottom = 187.0
+rect_min_size = Vector2( 295, 187 )
+rect_clip_content = false
+mouse_filter = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer/Left"]
+
+anchor_right = 1
+anchor_bottom = 1
+rect_clip_content = false
+mouse_filter = 1
+alignment = 0
+
+[node name="Nickname" type="LineEdit" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer/Left/VBoxContainer"]
+
+margin_right = 295.0
+margin_bottom = 22.0
+rect_clip_content = false
+mouse_filter = 0
+max_length = 8
+expand_to_len = false
+focus_mode = 2
+placeholder_text = "Nickname"
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+
+[node name="Nickname_submit" type="Button" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer/Left/VBoxContainer"]
+
+margin_top = 26.0
+margin_right = 295.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 123, 22 )
+rect_clip_content = false
+mouse_filter = 0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Submit nickname"
+flat = false
+
+[node name="Right" type="Control" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer"]
+
+margin_left = 307.0
+margin_right = 604.0
+margin_bottom = 187.0
+rect_min_size = Vector2( 295, 187 )
+rect_clip_content = false
+mouse_filter = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer/Right"]
+
+anchor_right = 1
+anchor_bottom = 1
+rect_clip_content = false
+mouse_filter = 1
+alignment = 0
+
+[node name="Character Customization" type="Control" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer"]
+
+visible = false
+anchor_right = 1
+anchor_bottom = 1
+margin_left = 4.0
+margin_top = 38.0
+margin_right = 568.0
+margin_bottom = 151.0
+rect_clip_content = false
+mouse_filter = 0
+
+[node name="Control" type="Control" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer"]
+
+margin_top = 241.0
+margin_right = 612.0
+margin_bottom = 470.0
+rect_min_size = Vector2( 612, 229 )
+rect_clip_content = false
+mouse_filter = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control"]
+
+anchor_right = 1
+anchor_bottom = 1
+rect_min_size = Vector2( 612, 229 )
+rect_clip_content = false
+mouse_filter = 0
+use_top_left = false
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer"]
+
+margin_left = 4.0
+margin_top = 21.0
+margin_right = 608.0
+margin_bottom = 208.0
+rect_min_size = Vector2( 604, 187 )
+rect_clip_content = false
+mouse_filter = 0
+split_offset = 0
+collapsed = false
+dragger_visibility = 0
+
+[node name="Left" type="Control" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer/HSplitContainer"]
+
+margin_right = 295.0
+margin_bottom = 187.0
+rect_min_size = Vector2( 295, 187 )
+rect_clip_content = false
+mouse_filter = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer/HSplitContainer/Left"]
+
+anchor_right = 1
+anchor_bottom = 1
+rect_clip_content = false
+mouse_filter = 1
+alignment = 0
+
+[node name="Ready_button" type="Button" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer/HSplitContainer/Left/VBoxContainer"]
+
+margin_right = 295.0
+margin_bottom = 22.0
+rect_clip_content = false
+mouse_filter = 0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Ready"
+flat = false
+
+[node name="Right" type="Control" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer/HSplitContainer"]
+
+margin_left = 307.0
+margin_right = 604.0
+margin_bottom = 187.0
+rect_min_size = Vector2( 295, 187 )
+rect_clip_content = false
+mouse_filter = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer/HSplitContainer/Right"]
+
+anchor_right = 1
+anchor_bottom = 1
+rect_clip_content = false
+mouse_filter = 1
+alignment = 0
+
+[node name="Start_button" type="Button" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer/HSplitContainer/Right/VBoxContainer"]
+
+margin_right = 297.0
+margin_bottom = 22.0
+rect_clip_content = false
+mouse_filter = 0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Start game"
+flat = false
 
 
