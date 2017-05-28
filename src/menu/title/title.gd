@@ -20,11 +20,15 @@ func _ready():
 func _on_join_button_pressed():
 	var port_node = get_node(join_port)
 	var address_node = get_node(join_address)
-	if not (port_node.text.is_valid_integer() and address_node.text.is_valid_ip_address()):
-		prints("Port", port_node.text.is_valid_integer(), "Address" , address_node.text.is_valid_ip_address())
+	var port
+	var address
+	if not (port_node.text.is_valid_integer()):
 		return
-	var port = int(port_node.text)
-	var address = address_node.text
+	if not address_node.text.is_valid_ip_address():
+		address = IP.resolve_hostname(address_node.text, IP.TYPE_IPV4)
+	else:
+		address = address_node.text
+	port = int(port_node.text)
 	timelab.join_game(address, port)
 	
 func _on_host_button_pressed():
