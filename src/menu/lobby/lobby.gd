@@ -22,6 +22,9 @@ func _ready():
 	get_node(ready_button).connect("toggled", self, "_on_ready_button_toggle")
 	get_node(start_button).connect("pressed", self, "_on_start_button_pressed")
 	
+	rpc_config("show", RPC_MODE_SYNC)
+	rpc_config("hide", RPC_MODE_SYNC)
+	
 	refresh_timer.set_wait_time(0.25)
 	refresh_timer.set_autostart(true)
 	add_child(refresh_timer)
@@ -66,7 +69,17 @@ sync func add_chat_message(text):
 	get_node(chat_label).newline()
 	
 func _on_start_button_pressed():
-	get_node(start_button).set_disabled(true)
+	if get_tree().is_network_server():
+		get_node(start_button).set_disabled(true)
+		timelab.set_current_map(get_node("/root/Game/Map"))
+		timelab.rpc("set_game_started", true)
+		rpc("hide")
+		var count = 3
+		for client in get_tree().get_nodes_in_group("clients"):
+			if client.preround_ready:
+				timelab.rpc("instance", timelab.base.human, get_node("/root/Game/Map").get_path(), {"position" : Vector2(48 * count, 48 * count)}, [], client.get_name())
+				get_node("/root/Game/Map/%s/Mind"%client.get_name()).set_client(client)
+				count += 1
 	
 func _process(dt):
 	if get_tree().is_network_server() and not timelab.has_game_started():

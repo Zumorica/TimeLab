@@ -16,6 +16,6 @@ scale = Vector2( 1, 1 )
 
 margin_bottom = -45.0
 
-[node name="TileMap" parent="." instance=ExtResource( 2 )]
+[node name="Map" parent="." instance=ExtResource( 2 )]
 
 
