@@ -39,8 +39,13 @@ func _ready():
 func has_game_started():
 	return game_started
 
-func set_current_map(new_map):
-	rset("map", new_map)
+sync func set_current_map(new_map):
+	if typeof(new_map) == TYPE_STRING or typeof(new_map) == TYPE_NODE_PATH:
+		map = get_node(new_map)
+	elif typeof(new_map) == TYPE_OBJECT and new_map extends TileMap:
+		map = new_map
+	else:
+		raise()
 	
 sync func set_game_started(value):
 	game_started = value

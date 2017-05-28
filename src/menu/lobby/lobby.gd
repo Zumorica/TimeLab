@@ -71,7 +71,7 @@ sync func add_chat_message(text):
 func _on_start_button_pressed():
 	if get_tree().is_network_server():
 		get_node(start_button).set_disabled(true)
-		timelab.set_current_map(get_node("/root/Game/Map"))
+		timelab.rpc("set_current_map", "/root/Game/Map")
 		timelab.rpc("set_game_started", true)
 		rpc("hide")
 		var count = 3
