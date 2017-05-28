@@ -5,21 +5,22 @@ signal game_end()
 signal camera_change(new_camera)
 
 const direction = {
-"NORTH" : Vector2(0, 1),
-"NORTHWEST" : Vector2(-1, 1),
+"NORTH" : Vector2(0, 1-),
+"NORTHWEST" : Vector2(-1, -1),
 "WEST" : Vector2(-1, 0),
-"SOUTHWEST" : Vector2(-1, -1),
-"SOUTH" : Vector2(0, -1),
-"SOUTHEAST" : Vector2(1, -1),
+"SOUTHWEST" : Vector2(-1, 1),
+"SOUTH" : Vector2(0, 1),
+"SOUTHEAST" : Vector2(1, 1),
 "EAST" : Vector2(1, 0),
-"NORTHEAST" : Vector2(1, 1)}
+"NORTHEAST" : Vector2(1, -1)}
 const states = {}
 const disabilities = {
 "CANNOT_WALK" : int(pow(2, 0))}
 const base = {
 "element" : "res://src/element/element.gd",
 "client" : "res://src/client.gd",
-"mind" : "res://src/module/mind/mind.gd"
+"mind" : "res://src/module/mind/mind.gd",
+"human" : "res://src/mob/human/human.tscn"
 }
 
 sync var game_started = false setget has_game_started, set_game_started	# Whether the game has started or not. Should not be changed manually.
@@ -41,12 +42,12 @@ func has_game_started():
 func set_current_map(new_map):
 	rset("map", new_map)
 	
-func set_game_started(value):
-	rset("game_started", value)
+sync func set_game_started(value):
+	game_started = value
 	if value:
-		rpc("emit_signal", "game_start")
+		emit_signal("game_start")
 	else:
-		rpc("emit_signal", "game_end")
+		emit_signal("game_end")
 		
 func get_client(ID):
 	for client in get_tree().get_nodes_in_group("clients"):
@@ -87,6 +88,7 @@ sync func instance(object, parent_path, variables={}, call_functions=[], name=""
 	if name.strip_edges().length() > 0:
 		object.set_name(name)
 	get_node(parent_path).add_child(object, true)
+	return object
 
 func create_server(port=7777, max_players=32):
 	network.create_server(port, max_players)
