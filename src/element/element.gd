@@ -84,7 +84,12 @@ func remove_disability(disability):
 	assert typeof(disability) == TYPE_INT
 	rset("disabilities", disabilities & ~disability)
 	rpc("emit_signal", "disability_removed", disability)
-	
+
+func has_disability(disability):
+	if ((disabilities & disability) == disability):
+		return true
+	return false
+
 func add_state(added_state):
 	assert typeof(added_state) == TYPE_INT
 	rset("state", state | added_state)
@@ -94,6 +99,11 @@ func remove_state(removed_state):
 	assert typeof(removed_state) == TYPE_INT
 	rset("state", state & ~removed_state)
 	rpc("emit_signal", "state_removed", removed_state)
+	
+func has_state(int_state):
+	if ((state & int_state) == int_state):
+		return true
+	return false
 
 func _fixed_process(dt):
 	cell_position = timelab.map.world_to_map(position) # This should already be synced, so no rset here.
