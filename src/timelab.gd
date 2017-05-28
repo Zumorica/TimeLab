@@ -2,15 +2,18 @@ extends Node
 
 signal game_start()
 signal game_end()
+signal camera_change(new_camera)
 
 var base = {
 "element" : "res://src/element/element.gd",
-"client" : "res://src/client.gd"
+"client" : "res://src/client.gd",
+"mind" : "res://src/module/mind/mind.gd"
 }
 
 sync var game_started = false setget has_game_started, set_game_started	# Whether the game has started or not. Should not be changed manually.
 sync var map = null setget ,set_current_map	# Map instance
 onready var network = NetworkedMultiplayerENet.new()
+var _active_camera = null setget get_active_camera, set_active_camera
 
 func _ready():
 	rpc_config("emit_signal", RPC_MODE_SYNC)
@@ -113,3 +116,23 @@ func _on_peer_disconnect(ID):
 sync func rename(path, name):
 	assert typeof(path) == TYPE_NODE_PATH
 	get_node(path).set_name(name)
+	
+func has_active_camera():
+	if typeof(_active_camera) == TYPE_OBJECT:
+		if _active_camera extends Camera2D:
+			return true
+	return false
+	
+func get_active_camera():
+	return _active_camera
+
+func set_active_camera(reference):
+	assert typeof(active_camera) == TYPE_OBJECT
+	assert active_camera extends Camera2D
+	_active_camera = reference
+	emit_signal("camera_change", reference)
+
+func _process(dt):
+	if has_active_camera():
+		if not get_active_camera().is_current():
+			get_active_camera().make_current()
