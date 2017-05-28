@@ -3,6 +3,11 @@ extends Node
 signal game_start()
 signal game_end()
 
+var base = {
+"element" : "res://src/element/element.gd",
+"client" : "res://src/client.gd"
+}
+
 sync var game_started = false setget has_game_started, set_game_started	# Whether the game has started or not. Should not be changed manually.
 sync var map = null setget ,set_current_map	# Map instance
 onready var network = NetworkedMultiplayerENet.new()
@@ -72,7 +77,7 @@ func create_server(port=7777, max_players=32):
 	network.create_server(port, max_players)
 	get_tree().set_network_peer(network)
 	get_tree().change_scene("res://src/game.tscn")
-	var server = load("res://src/client.gd").new()
+	var server = load(base.client).new()
 	server.ID = get_tree().get_network_unique_id()
 	server.set_name("Host")
 	add_child(server)
@@ -94,17 +99,15 @@ func _on_server_disconnect():
 	get_tree().quit()
 	
 func _on_peer_connect(ID):
-	prints(ID, "connected.")
 	if get_tree().is_network_server():
 		for client in get_tree().get_nodes_in_group("clients"):
 			var variables = {}
 			for i in client.get_property_list():
 				variables[i["name"]] = client.get(i["name"])
-			rpc_id(ID, "instance", "res://src/client.gd", get_path(), variables, [], client.get_name())
-		rpc("instance", "res://src/client.gd", get_path(), {"ID" : ID}, [], "Scientist")
+			rpc_id(ID, "instance", base.client, get_path(), variables, [], client.get_name())
+		rpc("instance", base.client, get_path(), {"ID" : ID}, [], "Scientist")
 
 func _on_peer_disconnect(ID):
-	prints(ID, "disconnected.")
 	get_client(ID).rset("is_alive", false)
 	
 sync func rename(path, name):
