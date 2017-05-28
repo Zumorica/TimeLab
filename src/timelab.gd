@@ -4,7 +4,10 @@ signal game_start()
 signal game_end()
 signal camera_change(new_camera)
 
-var base = {
+const states = {}
+const disabilities = {
+"CANNOT_WALK" : int(pow(2, 0))}
+const base = {
 "element" : "res://src/element/element.gd",
 "client" : "res://src/client.gd",
 "mind" : "res://src/module/mind/mind.gd"
@@ -127,8 +130,8 @@ func get_active_camera():
 	return _active_camera
 
 func set_active_camera(reference):
-	assert typeof(active_camera) == TYPE_OBJECT
-	assert active_camera extends Camera2D
+	assert typeof(_active_camera) == TYPE_OBJECT
+	assert _active_camera extends Camera2D
 	_active_camera = reference
 	emit_signal("camera_change", reference)
 

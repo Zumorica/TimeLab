@@ -1,7 +1,12 @@
 extends KinematicBody2D
 
 signal move(element, new_cell_position, old_cell_position)
+signal disability_added(added_disability)
+signal disability_removed(removed_disability)
+signal state_added(added_state)
+signal state_removed(removed_state)
 
+sync var disabilities = 0
 sync var state = 0
 export sync var speed_per_tick = 2
 export sync var is_solid = false setget ,set_solid  # Whether you can walk through this element or not.
@@ -69,7 +74,27 @@ func cell_slide(destination, relative=false):
 		rset("old_transform", get_transform())
 		rset("is_sliding", true)
 		return true
+
+func add_disability(disability):
+	assert typeof(disability) == TYPE_INT
+	rset("disabilities", disabilities | disability)
+	rpc("emit_signal", "disability_added", disability)
 	
+func remove_disability(disability):
+	assert typeof(disability) == TYPE_INT
+	rset("disabilities", disabilities & ~disability)
+	rpc("emit_signal", "disability_removed", disability)
+	
+func add_state(added_state):
+	assert typeof(added_state) == TYPE_INT
+	rset("state", state | added_state)
+	rpc("emit_signal", "state_added", added_state)
+	
+func remove_state(removed_state):
+	assert typeof(removed_state) == TYPE_INT
+	rset("state", state & ~removed_state)
+	rpc("emit_signal", "state_removed", removed_state)
+
 func _fixed_process(dt):
 	cell_position = timelab.map.world_to_map(position) # This should already be synced, so no rset here.
 	if is_sliding:
