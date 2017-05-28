@@ -20,8 +20,7 @@ func set_client(client):
 	if get_tree().is_network_server() or get_tree().get_network_unique_id() == client.ID:
 		assert typeof(client) == TYPE_OBJECT
 		assert client extends load(timelab.base.client)
-		rset("_client", client)
-		_client = client
+		rpc("_set_client", client.get_path())
 		if client.has_mind():
 			if client.get_mind() != self:
 				client.set_mind(self)
@@ -32,6 +31,9 @@ func set_client(client):
 		else:
 			get_parent().rpc_id(client.ID, "set_network_mode", NETWORK_MODE_MASTER)
 		emit_signal("client_enter", client)
+
+sync func _set_client(path):
+	_client = get_node(path)
 
 func remove_client():
 	if has_client():

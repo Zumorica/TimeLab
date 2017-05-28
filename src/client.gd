@@ -26,8 +26,7 @@ func set_mind(mind):
 	if get_tree().is_network_server() or get_tree().get_network_unique_id() == ID:
 		assert typeof(mind) == TYPE_OBJECT
 		assert mind extends load(timelab.base.mind)
-		rset("_mind", mind)
-		_mind = mind
+		rpc("_set_mind", mind.get_path())
 		print(_mind)
 		if mind.has_client():
 			if mind.get_client() != self:
@@ -35,7 +34,10 @@ func set_mind(mind):
 		else:
 			mind.set_client(self)
 		emit_signal("mind_enter", mind)
-			
+
+sync func _set_mind(path):
+	_mind = get_node(path)
+
 func remove_mind():
 	if has_mind():
 		if get_tree().is_network_server() or get_tree().get_network_unique_id() == ID:
