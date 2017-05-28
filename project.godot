@@ -1,4 +1,6 @@
 config_version=3
+config_version=null
+
 [application]
 
 name="Time Lab"
@@ -13,6 +15,13 @@ timelab="*res://src/timelab.gd"
 
 window/width=1280
 window/height=700
+
+[input]
+
+move_left=[ InputEvent(KEY,65) ]
+move_right=[ InputEvent(KEY,68) ]
+move_up=[ InputEvent(KEY,87) ]
+move_down=[ InputEvent(KEY,83) ]
 
 [memory]
 
