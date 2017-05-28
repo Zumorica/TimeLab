@@ -5,7 +5,7 @@ signal game_end()
 signal camera_change(new_camera)
 
 const direction = {
-"NORTH" : Vector2(0, 1-),
+"NORTH" : Vector2(0, -1),
 "NORTHWEST" : Vector2(-1, -1),
 "WEST" : Vector2(-1, 0),
 "SOUTHWEST" : Vector2(-1, 1),
