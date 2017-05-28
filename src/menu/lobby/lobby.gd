@@ -36,7 +36,7 @@ func _player_list_refresh():
 	var list = get_node(player_list)
 	list.clear()
 	for node in get_tree().get_nodes_in_group("clients"):
-		assert node extends preload("res://src/client.gd")
+		assert node extends load(timelab.base.client)
 		if node == timelab.get_current_client():
 			list.add_item("%s >>%s (You)"%[node.get_name(), node.ID], null, false)
 		else:
