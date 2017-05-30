@@ -8,17 +8,20 @@ signal state_removed(removed_state)
 
 sync var disabilities = 0
 sync var state = 0
-export sync var speed_per_tick = 2
+export sync var speed_per_tick = 3
 export sync var is_solid = false setget ,set_solid  # Whether you can walk through this element or not.
 export sync var is_opaque = false setget ,set_opaque # Whether you can see through this element or not.
 sync var direction = timelab.direction.SOUTH
 sync var is_sliding = false
 sync var cell_position = Vector2(0, 0)
+sync var goal_destination = Vector2(0, 0)
+sync var old_position = Vector2(0, 0)
+sync var last_transform = Transform2D()
 sync var last_cell_position = Vector2(0, 0)
 sync var old_cell_position = Vector2(0, 0)
-sync var goal_destination = Vector2(0, 0) # The cell destination.
-sync var delta_move = Vector2(0, 0) # The movement from the old position to the goal destination in pixels.
-sync var old_transform = Transform2D()
+#sync var old_position = Vector2(0, 0)
+#sync var goal_destination = Vector2(0, 0) # The destination in pixels.
+#sync var delta_move = Vector2(0, 0) # The movement from the old position to the goal destination in pixels.
 
 func _ready():
 	rpc_config("set_network_mode", RPC_MODE_REMOTE)
@@ -35,7 +38,7 @@ func _ready():
 func _track_element():
 	if get_tree().is_network_server():
 		cell_position = timelab.map.world_to_map(position)
-		old_cell_position = cell_position
+		#old_cell_position = cell_position
 		timelab.map.track_element_on_map(self)
 		
 func set_solid(value):
@@ -67,13 +70,15 @@ func cell_slide(destination, relative=false):
 	# Do not call with RPC.
 	if not is_sliding:
 		if relative:
-			destination += cell_position
+			destination += timelab.map.world_to_map(position)
 		if not timelab.map.grid.has(destination):
 			return false
-		rset("goal_destination", destination)
+		rset("cell_position", timelab.map.world_to_map(position))
+		rset("goal_destination", timelab.map.map_to_world(destination))
 		rset("last_cell_position",  cell_position)
 		rset("old_cell_position", cell_position)
-		rset("old_transform", get_transform())
+		rset("old_position", position)
+		rset("last_transform", get_transform())
 		rset("is_sliding", true)
 		return true
 	return false
@@ -110,24 +115,33 @@ func has_state(int_state):
 
 func _fixed_process(dt):
 	if timelab.has_game_started():
-		cell_position = timelab.map.world_to_map(position) # This should already be synced, so no rset here.
-		if is_sliding:
-			var delta_movement = timelab.map.map_to_world(goal_destination - last_cell_position)
-			var goal_distance = sqrt(pow(delta_movement.x, 2) + pow(delta_movement.y, 2))
-			if test_move(old_transform, delta_movement):
-				is_sliding = false
-				if is_colliding():
-					prints("Colliding with", get_collider(), get_collision_pos())
+		cell_position = timelab.map.world_to_map(position)
+		if is_sliding and get_tree().is_network_server():
+			var delta_movement = goal_destination - position
+			var goal_distance = delta_movement.length()
+			if test_move(last_transform, delta_movement) or test_move(get_transform(), delta_movement):
+				rset("is_sliding", false)
+				cell_move(last_cell_position)
+				return
 			else:
 				if goal_distance > speed_per_tick:
 					var ratio = speed_per_tick / goal_distance
-					var movement = ratio * delta_movement
-					move(movement)
+					var movement = delta_movement * ratio
+					if test_move(last_transform, movement) or test_move(get_transform(), movement):
+						rset("is_sliding", false)
+						cell_move(last_cell_position)
+						return
+					rpc("move", movement)
 					if last_cell_position != cell_position:
-						emit_signal("move", self, cell_position, last_cell_position)
-						last_cell_position = cell_position
+						rpc("emit_signal", "move", get_path(), cell_position, last_cell_position)
+						rset("last_cell_position", cell_position)
+						rset("last_transform", get_transform())
 				else:
-					is_sliding = false
-					move_to(timelab.map.map_to_world(goal_destination))
+					rset("is_sliding", false)
+					rpc("move_to", goal_destination)
 					if cell_position != last_cell_position:
 						emit_signal("move", self, cell_position, last_cell_position)
+		elif get_tree().is_network_server():
+			var cell_size = timelab.map.cell_size
+			if (fmod(position.x, cell_size.x) != 0) or (fmod(position.y, cell_size.y) != 0):
+				position = timelab.map.map_to_world(last_cell_position)
