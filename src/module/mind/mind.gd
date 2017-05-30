@@ -20,6 +20,7 @@ func set_client(client):
 	if get_tree().is_network_server() or get_tree().get_network_unique_id() == client.ID:
 		assert typeof(client) == TYPE_OBJECT
 		assert client extends load(timelab.base.client)
+		timelab.set_active_camera(self)
 		rpc("_set_client", client.get_path())
 		if client.has_mind():
 			if client.get_mind() != self:
@@ -47,15 +48,11 @@ func remove_client():
 func _fixed_process(dt):
 	if has_client():
 		if get_tree().get_network_unique_id() == get_client().ID:
-			var movement = Vector2(0, 0)
 			if Input.is_action_pressed("move_left"):
-				movement += timelab.direction.WEST
+				get_parent().cell_slide(timelab.direction.WEST, true)
 			if Input.is_action_pressed("move_right"):
-				movement += timelab.direction.EAST
+				get_parent().cell_slide(timelab.direction.EAST, true)
 			if Input.is_action_pressed("move_up"):
-				movement += timelab.direction.NORTH
+				get_parent().cell_slide(timelab.direction.NORTH, true)
 			if Input.is_action_pressed("move_down"):
-				movement += timelab.direction.SOUTH
-			print(movement)
-			if movement.length() > 0:
-				print(get_parent().cell_slide(movement, true))
+				get_parent().cell_slide(timelab.direction.SOUTH, true)
