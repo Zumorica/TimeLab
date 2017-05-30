@@ -77,7 +77,7 @@ func _on_start_button_pressed():
 		var count = 3
 		for client in get_tree().get_nodes_in_group("clients"):
 			if client.preround_ready:
-				timelab.rpc("instance", timelab.base.human, get_node("/root/Game/Map").get_path(), {"position" : Vector2(48 * count, 48 * count)}, [], client.get_name())
+				timelab.rpc("instance", timelab.base.human, get_node("/root/Game/Map").get_path(), {"position" : Vector2(32 * count, 32 * count)}, [], client.get_name())
 				get_node("/root/Game/Map/%s/Mind"%client.get_name()).set_client(client)
 				count += 1
 	
