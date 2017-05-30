@@ -146,8 +146,8 @@ func get_active_camera():
 	return _active_camera
 
 func set_active_camera(reference):
-	assert typeof(_active_camera) == TYPE_OBJECT
-	assert _active_camera extends Camera2D
+	assert typeof(reference) == TYPE_OBJECT
+	assert reference extends Camera2D
 	_active_camera = reference
 	emit_signal("camera_change", reference)
 
