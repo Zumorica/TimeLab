@@ -42,7 +42,7 @@ func has_game_started():
 sync func set_current_map(new_map):
 	if typeof(new_map) == TYPE_STRING or typeof(new_map) == TYPE_NODE_PATH:
 		map = get_node(new_map)
-	elif typeof(new_map) == TYPE_OBJECT and new_map extends TileMap:
+	elif typeof(new_map) == TYPE_OBJECT and new_map is TileMap:
 		map = new_map
 	else:
 		raise()
@@ -83,7 +83,7 @@ sync func instance(object, parent_path, variables={}, call_functions=[], name=""
 			object = object.new()
 		else:
 			raise()
-	assert typeof(object) == TYPE_OBJECT and object extends Node
+	assert typeof(object) == TYPE_OBJECT and object is Node
 	for variable in variables.keys():
 		if variable != "script":
 			object.set(variable, variables[variable])
@@ -138,7 +138,7 @@ sync func rename(path, name):
 	
 func has_active_camera():
 	if typeof(_active_camera) == TYPE_OBJECT:
-		if _active_camera extends Camera2D:
+		if _active_camera is Camera2D:
 			return true
 	return false
 	
@@ -147,7 +147,7 @@ func get_active_camera():
 
 func set_active_camera(reference):
 	assert typeof(reference) == TYPE_OBJECT
-	assert reference extends Camera2D
+	assert reference is Camera2D
 	_active_camera = reference
 	emit_signal("camera_change", reference)
 

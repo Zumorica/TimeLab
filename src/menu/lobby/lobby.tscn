@@ -20,7 +20,6 @@ player_list = NodePath("Panel/HSplitContainer/Left/Container/ItemList")
 chat_label = NodePath("Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Chat/Panel/RichTextLabel")
 chat_lineedit = NodePath("Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Chat/Panel/LineEdit")
 nickname_lineedit = NodePath("Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer/Left/VBoxContainer/Nickname")
-nickname_button = NodePath("Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer/Left/VBoxContainer/Nickname_submit")
 ready_button = NodePath("Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer/HSplitContainer/Left/VBoxContainer/Ready_button")
 start_button = NodePath("Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer/HSplitContainer/Right/VBoxContainer/Start_button")
 
@@ -126,7 +125,7 @@ editor/display_folded = true
 anchor_right = 1
 anchor_bottom = 1
 margin_left = 4.0
-margin_top = 38.0
+margin_top = 32.0
 margin_right = 4.0
 margin_bottom = 4.0
 rect_clip_content = false
@@ -137,8 +136,9 @@ use_top_left = false
 
 self_modulate = Color( 0, 0, 0, 0.1 )
 margin_left = 3.0
+margin_top = 3.0
 margin_right = 601.0
-margin_bottom = 187.0
+margin_bottom = 190.0
 rect_min_size = Vector2( 598, 187 )
 rect_clip_content = false
 mouse_filter = 0
@@ -175,7 +175,7 @@ visible = false
 anchor_right = 1
 anchor_bottom = 1
 margin_left = 4.0
-margin_top = 38.0
+margin_top = 32.0
 margin_right = 4.0
 margin_bottom = 4.0
 rect_clip_content = false
@@ -195,7 +195,7 @@ dragger_visibility = 0
 [node name="Left" type="Control" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer"]
 
 margin_right = 295.0
-margin_bottom = 187.0
+margin_bottom = 193.0
 rect_min_size = Vector2( 295, 187 )
 rect_clip_content = false
 mouse_filter = 0
@@ -211,7 +211,7 @@ alignment = 0
 [node name="Nickname" type="LineEdit" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/TabContainer/Setup/HSplitContainer/Left/VBoxContainer"]
 
 margin_right = 295.0
-margin_bottom = 22.0
+margin_bottom = 24.0
 rect_clip_content = false
 mouse_filter = 0
 max_length = 8
@@ -226,7 +226,7 @@ caret_blink_speed = 0.65
 
 margin_left = 307.0
 margin_right = 604.0
-margin_bottom = 187.0
+margin_bottom = 193.0
 rect_min_size = Vector2( 295, 187 )
 rect_clip_content = false
 mouse_filter = 0
@@ -245,7 +245,7 @@ visible = false
 anchor_right = 1
 anchor_bottom = 1
 margin_left = 4.0
-margin_top = 38.0
+margin_top = 32.0
 margin_right = 4.0
 margin_bottom = 4.0
 rect_clip_content = false
@@ -301,7 +301,7 @@ alignment = 0
 [node name="Ready_button" type="Button" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer/HSplitContainer/Left/VBoxContainer"]
 
 margin_right = 295.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 rect_clip_content = false
 mouse_filter = 0
 toggle_mode = true
@@ -331,7 +331,7 @@ alignment = 0
 [node name="Start_button" type="Button" parent="Panel/HSplitContainer/Right/CenterContainer/VSplitContainer/Control/CenterContainer/HSplitContainer/Right/VBoxContainer"]
 
 margin_right = 297.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 rect_clip_content = false
 mouse_filter = 0
 disabled = true

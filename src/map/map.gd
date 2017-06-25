@@ -20,7 +20,7 @@ func _grid_populate(grid_size):
 func track_element_on_map(element):
 	if get_tree().get_network_unique_id() == 1:
 		assert typeof(element) == TYPE_OBJECT
-		assert element extends Node
+		assert element is Node
 		element.connect("move", self, "_on_tracked_element_move")
 		_on_tracked_element_move(element, element.cell_position, Vector2(0, 0))
 

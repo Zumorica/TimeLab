@@ -103,9 +103,9 @@ use_top_left = false
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer/Left/CenterContainer2"]
 
 margin_left = 193.0
-margin_top = 159.0
+margin_top = 158.0
 margin_right = 313.0
-margin_bottom = 233.0
+margin_bottom = 234.0
 rect_clip_content = false
 mouse_filter = 1
 alignment = 0
@@ -113,7 +113,7 @@ alignment = 0
 [node name="Port" type="LineEdit" parent="Panel/HSplitContainer/Left/CenterContainer2/VBoxContainer"]
 
 margin_right = 120.0
-margin_bottom = 22.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 120, 22 )
 rect_clip_content = false
 mouse_filter = 0
@@ -127,9 +127,9 @@ caret_blink_speed = 0.65
 
 [node name="Address" type="LineEdit" parent="Panel/HSplitContainer/Left/CenterContainer2/VBoxContainer"]
 
-margin_top = 26.0
+margin_top = 28.0
 margin_right = 120.0
-margin_bottom = 48.0
+margin_bottom = 52.0
 rect_min_size = Vector2( 120, 22 )
 rect_clip_content = false
 mouse_filter = 0
@@ -142,9 +142,9 @@ caret_blink_speed = 0.65
 
 [node name="Button" type="Button" parent="Panel/HSplitContainer/Left/CenterContainer2/VBoxContainer"]
 
-margin_top = 52.0
+margin_top = 56.0
 margin_right = 120.0
-margin_bottom = 74.0
+margin_bottom = 76.0
 rect_clip_content = false
 mouse_filter = 0
 toggle_mode = false
@@ -190,9 +190,9 @@ max_lines_visible = -1
 
 [node name="Separator" type="HSeparator" parent="Panel/HSplitContainer/Right"]
 
-margin_top = 89.0
+margin_top = 80.0
 margin_right = 506.0
-margin_bottom = 129.0
+margin_bottom = 120.0
 rect_clip_content = false
 mouse_filter = 0
 
@@ -208,9 +208,9 @@ use_top_left = false
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer/Right/CenterContainer2"]
 
 margin_left = 193.0
-margin_top = 159.0
+margin_top = 158.0
 margin_right = 313.0
-margin_bottom = 233.0
+margin_bottom = 234.0
 rect_clip_content = false
 mouse_filter = 1
 alignment = 0
@@ -218,7 +218,7 @@ alignment = 0
 [node name="Port" type="LineEdit" parent="Panel/HSplitContainer/Right/CenterContainer2/VBoxContainer"]
 
 margin_right = 120.0
-margin_bottom = 22.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 120, 22 )
 rect_clip_content = false
 focus_neighbour_bottom = NodePath("../LineEdit")
@@ -232,9 +232,9 @@ caret_blink_speed = 0.65
 
 [node name="Max_players" type="LineEdit" parent="Panel/HSplitContainer/Right/CenterContainer2/VBoxContainer"]
 
-margin_top = 26.0
+margin_top = 28.0
 margin_right = 120.0
-margin_bottom = 48.0
+margin_bottom = 52.0
 rect_min_size = Vector2( 120, 22 )
 rect_clip_content = false
 focus_neighbour_top = NodePath("../Port")
@@ -248,9 +248,9 @@ caret_blink_speed = 0.65
 
 [node name="Button" type="Button" parent="Panel/HSplitContainer/Right/CenterContainer2/VBoxContainer"]
 
-margin_top = 52.0
+margin_top = 56.0
 margin_right = 120.0
-margin_bottom = 74.0
+margin_bottom = 76.0
 rect_clip_content = false
 mouse_filter = 0
 toggle_mode = false

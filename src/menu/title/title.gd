@@ -8,12 +8,12 @@ export(NodePath) var host_maxplayers
 export(NodePath) var host_button
 
 func _ready():
-	assert get_node(join_port) extends LineEdit
-	assert get_node(join_address) extends LineEdit
-	assert get_node(join_button) extends Button
-	assert get_node(host_port) extends LineEdit
-	assert get_node(host_maxplayers) extends LineEdit
-	assert get_node(host_button) extends Button
+	assert(get_node(join_port) is LineEdit)
+	assert(get_node(join_address) is LineEdit)
+	assert(get_node(join_button) is Button)
+	assert(get_node(host_port) is LineEdit)
+	assert(get_node(host_maxplayers) is LineEdit)
+	assert(get_node(host_button) is Button)
 	get_node(join_button).connect("pressed", self, "_on_join_button_pressed")
 	get_node(host_button).connect("pressed", self, "_on_host_button_pressed")
 	

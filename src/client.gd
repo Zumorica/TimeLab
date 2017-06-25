@@ -25,7 +25,7 @@ func get_mind():
 func set_mind(mind):
 	if get_tree().is_network_server() or get_tree().get_network_unique_id() == ID:
 		assert typeof(mind) == TYPE_OBJECT
-		assert mind extends load(timelab.base.mind)
+		assert mind is load(timelab.base.mind)
 		rpc("_set_mind", mind.get_path())
 		print(_mind)
 		if mind.has_client():

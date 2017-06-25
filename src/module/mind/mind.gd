@@ -6,7 +6,7 @@ signal client_exit(client)
 sync var _client = null setget get_client, set_client
 
 func _ready():
-	assert get_parent() extends load(timelab.base.element)
+	assert get_parent() is load(timelab.base.element)
 	set_name("Mind")
 	set_network_mode(NETWORK_MODE_INHERIT)
 	
@@ -19,7 +19,7 @@ func get_client():
 func set_client(client):
 	if get_tree().is_network_server() or get_tree().get_network_unique_id() == client.ID:
 		assert typeof(client) == TYPE_OBJECT
-		assert client extends load(timelab.base.client)
+		assert client is load(timelab.base.client)
 		timelab.set_active_camera(self)
 		rpc("_set_client", client.get_path())
 		if client.has_mind():

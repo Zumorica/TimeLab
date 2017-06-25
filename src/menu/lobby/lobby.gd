@@ -4,19 +4,18 @@ export(NodePath) var player_list
 export(NodePath) var chat_label
 export(NodePath) var chat_lineedit
 export(NodePath) var nickname_lineedit
-export(NodePath) var nickname_button
 export(NodePath) var ready_button
 export(NodePath) var start_button
 
 var refresh_timer = Timer.new()
 
 func _ready():
-	assert get_node(player_list) extends ItemList
-	assert get_node(chat_label) extends RichTextLabel
-	assert get_node(chat_lineedit) extends LineEdit
-	assert get_node(nickname_lineedit) extends LineEdit
-	assert get_node(ready_button) extends Button
-	assert get_node(start_button) extends Button
+	assert get_node(player_list) is ItemList
+	assert get_node(chat_label) is RichTextLabel
+	assert get_node(chat_lineedit) is LineEdit
+	assert get_node(nickname_lineedit) is LineEdit
+	assert get_node(ready_button) is Button
+	assert get_node(start_button) is Button
 	get_node(chat_lineedit).connect("text_entered", self, "_on_chat_text_entered")
 	get_node(nickname_lineedit).connect("text_entered", self, "_on_nickname_submit")
 	get_node(ready_button).connect("toggled", self, "_on_ready_button_toggle")
@@ -39,7 +38,7 @@ func _player_list_refresh():
 	var list = get_node(player_list)
 	list.clear()
 	for node in get_tree().get_nodes_in_group("clients"):
-		assert node extends load(timelab.base.client)
+		assert node is load(timelab.base.client)
 		if node == timelab.get_current_client():
 			list.add_item("%s >>%s (You)"%[node.get_name(), node.ID], null, false)
 		else:
